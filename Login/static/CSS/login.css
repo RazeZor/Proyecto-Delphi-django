@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-image: url("background_1.jpg");
+    background-image: url("{% static 'image/background_1.jpg' %}");
     background-size: cover;
 }
 
@@ -104,6 +104,7 @@ form {
     color: white;
     font-family: 'Poppins', sans-serif;
     width: 75%;
+
 }
 
 .botonLogin:hover {
