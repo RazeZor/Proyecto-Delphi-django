@@ -25,6 +25,10 @@
             body {
                 background-image: url("{% static 'image/background_1.jpg' %}");
                 background-size: cover;  /* Esto ajusta la imagen al tamaño de la pantalla */
+                
+            }
+            body.loaded {
+                opacity: 1; /* La imagen se hace visible al cargar */
             }
         </style>
     </head>
@@ -100,5 +104,15 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script>
+            window.addEventListener('load', function () {
+                // Añade la clase 'loaded' al body para activar las animaciones
+                document.body.classList.add('loaded');
+            });
+            window.addEventListener('load', function () {
+                document.body.classList.add('loaded');
+            });
+        </script>
     </body>
 </html>
