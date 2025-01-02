@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def FormularioInicial(request):
+    return render(request, 'FormularioInicial.html')
