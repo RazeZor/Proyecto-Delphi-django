@@ -19,6 +19,7 @@ from django.urls import path
 from Login.views import Login as login
 from PanelDeControl import views as v # Importa la vista PanelDeControl desde el archivo views.py de la aplicación PanelDeControl.
 from CrudClinico import views as vistaClinico
+from FormularioInicial import views as vistaClinicos
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,5 @@ urlpatterns = [
     path('panel/', v.panel ),  # Asocia la URL /panel/ con la vista PanelDeControl.),
     path('AgregarClinico/', vistaClinico.AgregarClinico),
     path('Ver/', vistaClinico.VerClinicos),
+    path('FormularioInicial/', vistaClinicos.FormularioInicial),
 ]
