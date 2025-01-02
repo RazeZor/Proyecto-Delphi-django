@@ -5,6 +5,7 @@ class Clinico(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, unique=True)  # Clave primaria única
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
+    profesion = models.CharField(max_length=50,default='default_profession')
     contraseña = models.CharField(max_length=50, default='default_password')
     pacientes = models.ManyToManyField('Paciente', related_name='clinicos')
 

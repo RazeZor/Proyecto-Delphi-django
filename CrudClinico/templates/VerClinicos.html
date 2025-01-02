@@ -2,78 +2,226 @@
 <html lang="en">
     <head>
         <title>Clinicos</title>
-        <!-- Required meta tags -->
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-        <!-- Bootstrap CSS v5.2.1 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-    </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <style>
+            :root {
+                --pink: #cd2481;
+                --blue: #21294e;
+                --white: #ffffff;
+                --light-gray: #f8f9fa;
+            }
 
+            .navbar {
+                background-color: var(--blue);
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .navbar-brand {
+                color: var(--white) !important;
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+
+            .nav-link {
+                color: var(--white) !important;
+                margin: 0 1rem;
+                transition: color 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: var(--pink) !important;
+            }
+
+            main {
+                min-height: calc(100vh - 160px);
+                padding: 2rem 0;
+                background-color: var(--light-gray);
+            }
+
+            h1 {
+                color: var(--blue);
+                margin-bottom: 2rem;
+                font-weight: bold;
+            }
+
+            .card {
+                border-radius: 15px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                background-color: var(--white);
+                padding: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .table {
+                margin-bottom: 0;
+            }
+
+            .table thead th {
+                background-color: var(--blue);
+                color: var(--white);
+                border: none;
+                padding: 1rem;
+            }
+
+            .table tbody td {
+                padding: 1rem;
+                vertical-align: middle;
+            }
+
+            .table tbody tr:hover {
+                background-color: rgba(205, 36, 129, 0.05);
+            }
+
+            .btn-primary {
+                background-color: var(--pink);
+                border-color: var(--pink);
+                padding: 0.5rem 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .btn-primary:hover {
+                background-color: var(--blue);
+                border-color: var(--blue);
+                transform: translateY(-2px);
+            }
+
+            .btn-danger {
+                padding: 0.5rem 1rem;
+                transition: all 0.3s ease;
+            }
+
+            .btn-danger:hover {
+                transform: translateY(-2px);
+            }
+
+            .add-button {
+                margin-bottom: 1rem;
+            }
+
+            .action-buttons .btn {
+                margin: 0 0.25rem;
+            }
+
+            .footer {
+                background-color: var(--blue);
+                color: var(--white);
+                padding: 1rem 0;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+            }
+
+            .search-box {
+                position: relative;
+                margin-bottom: 1.5rem;
+            }
+
+            .search-box input {
+                padding-left: 2.5rem;
+                border-radius: 20px;
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 1rem;
+                top: 50%;
+                transform: translateY(-50%);
+                color: #6c757d;
+            }
+
+            @media (max-width: 768px) {
+                .action-buttons .btn {
+                    margin: 0.25rem 0;
+                    display: block;
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
     <body>
-        <header>
-            <!-- place navbar here -->
-        </header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">Sistema Clínico</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CerrarSesion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <main>
-            <div class="container mt-5">
-                <h1>Clínicos</h1>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Rut</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for clinico in clinicos %}
-                        <tr>
-                            <td>{{ clinico.rut }}</td>
-                            <td>{{ clinico.nombre }}</td>
-                            <td>{{ clinico.apellido }}</td>
-                            <td>
-                                <a
-                                    href=""
-                                    class="btn btn-primary"
-                                >
-                                    Editar
-                                </a>
-                                <a
-                                    href=""
-                                    class="btn btn-danger"
-                                >
-                                    Eliminar
-                                </a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <div class="container">
+                <div class="card">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1 class="mb-0">Clínicos</h1>
+                        <a href="" class="btn btn-primary add-button">
+                            <i class="fas fa-plus me-2"></i>Agregar Clínico
+                        </a>
+                    </div>
+
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="form-control" placeholder="Buscar clínico...">
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Rut</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">profesion</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for clinico in clinicos %}
+                                <tr>
+                                    <td>{{ clinico.rut }}</td>
+                                    <td>{{ clinico.nombre }}</td>
+                                    <td>{{ clinico.apellido }}</td>
+                                    <td>{{ clinico.profesion }}</td>
+                                    <td class="action-buttons">
+                                        <a href="" class="btn btn-primary">
+                                            <i class="fas fa-edit me-1"></i>Editar
+                                        </a>
+                                        <a href="" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt me-1"></i>Eliminar
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
+        <footer class="footer mt-5">
+            <div class="container text-center">
+                <p class="mb-0">© 2025 Sistema Clínico. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

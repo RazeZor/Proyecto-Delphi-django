@@ -6,10 +6,11 @@ def AgregarClinico(request):
         rut = request.POST['rut']
         nombre = request.POST['nombre']
         apellido = request.POST['apellido']
+        profesion = request.POST['profesion']
         contraseña = request.POST['contraseña']
         
         try:
-            clinico = Clinico(rut=rut, nombre=nombre, apellido=apellido, contraseña=contraseña)
+            clinico = Clinico(rut=rut, nombre=nombre, apellido=apellido,profesion=profesion, contraseña=contraseña)
             clinico.save()
             
         except Exception as e:
@@ -20,5 +21,11 @@ def VerClinicos(request):
     clinicos = Clinico.objects.all()
     return render(request, 'VerClinicos.html', {'clinicos': clinicos})
 
+def eliminarClinico(request, rut):
+    clinico = Clinico.objects.get(rut=rut)
+    clinico.delete()
+    return render(request, 'VerClinicos.html')
 
+
+    
     
