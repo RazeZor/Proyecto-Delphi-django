@@ -25,4 +25,5 @@ urlpatterns = [
     path('', login),
     path('panel/', v.panel ),  # Asocia la URL /panel/ con la vista PanelDeControl.),
     path('AgregarClinico/', vistaClinico.AgregarClinico),
+    path('Ver/', vistaClinico.VerClinicos),
 ]
