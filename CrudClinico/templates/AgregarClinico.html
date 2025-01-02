@@ -1,88 +1,198 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Title</title>
-        <!-- Required meta tags -->
+        <title>Agregar Clínicos</title>
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-        <!-- Bootstrap CSS v5.2.1 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
+        <style>
+            :root {
+                --pink: #cd2481;
+                --blue: #21294e;
+                --white: #ffffff;
+            }
+
+            .navbar {
+                background-color: var(--blue);
+                padding: 1rem;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .navbar-brand {
+                color: var(--white) !important;
+                font-weight: bold;
+                font-size: 1.5rem;
+            }
+
+            .nav-link {
+                color: var(--white) !important;
+                margin: 0 1rem;
+                transition: color 0.3s ease;
+            }
+
+            .nav-link:hover {
+                color: var(--pink) !important;
+            }
+
+            main {
+                min-height: calc(100vh - 160px);
+                padding: 2rem 0;
+            }
+
+            h1 {
+                color: var(--blue);
+                margin-bottom: 2rem;
+                font-weight: bold;
+            }
+
+            .form-label {
+                color: var(--blue);
+                font-weight: 500;
+            }
+
+            .form-control:focus {
+                border-color: var(--pink);
+                box-shadow: 0 0 0 0.25rem rgba(205, 36, 129, 0.25);
+            }
+
+            .btn-primary {
+                background-color: var(--pink);
+                border-color: var(--pink);
+                padding: 0.5rem 2rem;
+                transition: all 0.3s ease;
+            }
+
+            .btn-primary:hover {
+                background-color: var(--blue);
+                border-color: var(--blue);
+                transform: translateY(-2px);
+            }
+
+            .footer {
+                background-color: var(--blue);
+                color: var(--white);
+                padding: 1rem 0;
+                position: relative;
+                bottom: 0;
+                width: 100%;
+            }
+
+            .container {
+                max-width: 800px;
+            }
+
+            .card {
+                border-radius: 15px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 2rem;
+                background-color: var(--white);
+            }
+        </style>
     </head>
-
     <body>
-        <header>
-            <!-- place navbar here -->
-        </header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">Sistema Clínico</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Clínicos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">CerrarSesion</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <main>
-            <form type="submit">
-                <div class="mb-3">
-                    <label for="rut" class="form-label">Rut</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="rut"
-                        name="rut"
-                        placeholder="12345678-9"
-                    />
+            <div class="container mt-5">
+                <div class="card">
+                    <h1 class="text-center">Agregar Clínico</h1>
+                    {% if messages %}
+                        <div>
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="rut" class="form-label">Rut</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="rut"
+                                name="rut"
+                                placeholder="12345678-9"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nombre"
+                                name="nombre"
+                                placeholder="Juan"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="apellido"
+                                name="apellido"
+                                placeholder="Perez"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="profesion" class="form-label">Profesion</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="profesion"
+                                name="profesion"
+                                placeholder="kinesologo"
+                            />
+                        </div>
+                        <div class="mb-3">
+                            <label for="contraseña" class="form-label">Contraseña</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="contraseña"
+                                name="contraseña"
+                                placeholder="••••••••"
+                            />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Agregar Clínico</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="nombre"
-                        name="nombre"
-                        placeholder="Juan"
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="apellido"
-                        name="apellido"
-                        placeholder="Perez"
-                    />
-                </div>
-
-                <div class="mb-3">
-                    <label for="contraseña" class="form-label">Contraseña</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        id="contraseña"
-                        name="contraseña"
-                        placeholder="12345678"
-                    />
-                </div>
-                <button type="submit" class="btn btn-primary">Agregar Clinico</button>
-
-            </form>
+            </div>
         </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
+        <footer class="footer mt-5">
+            <div class="container text-center">
+                <p class="mb-0">© 2025 Sistema Clínico. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>
