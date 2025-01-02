@@ -22,11 +22,11 @@ from CrudClinico import views as vistaClinico
 from FormularioInicial import views as vistaClinicos
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # Asocia la URL /admin/ con la vista de administración de Django.
     path('', login),
     path('panel/', v.panel ),  # Asocia la URL /panel/ con la vista PanelDeControl.),
-    path('AgregarClinico/', vistaClinico.AgregarClinico),
-    path('Ver/', vistaClinico.VerClinicos),
+    path('AgregarClinico/', vistaClinico.AgregarClinico,name='agregar'),
+    path('Ver/', vistaClinico.VerClinicos,name='ver'),
     path('FormularioInicial/', vistaClinicos.FormularioInicial),
     
 ]

@@ -1,0 +1,81 @@
+:root {
+    --pink: #cd2481;
+    --blue: #21294e;
+    --white: #ffffff;
+}
+
+.navbar {
+    background-color: var(--blue);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--white) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--white) !important;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--pink) !important;
+}
+
+main {
+    min-height: calc(100vh - 160px);
+    padding: 2rem 0;
+}
+
+h1 {
+    color: var(--blue);
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.form-label {
+    color: var(--blue);
+    font-weight: 500;
+}
+
+.form-control:focus {
+    border-color: var(--pink);
+    box-shadow: 0 0 0 0.25rem rgba(205, 36, 129, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--pink);
+    border-color: var(--pink);
+    padding: 0.5rem 2rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+}
+
+.footer {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.container {
+    max-width: 800px;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    background-color: var(--white);
+}
