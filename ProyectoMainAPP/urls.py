@@ -28,5 +28,5 @@ urlpatterns = [
     path('AgregarClinico/', vistaClinico.AgregarClinico,name='agregar'),
     path('Ver/', vistaClinico.VerClinicos,name='ver'),
     path('FormularioInicial/', vistaClinicos.FormularioInicial),
-    
+
 ]

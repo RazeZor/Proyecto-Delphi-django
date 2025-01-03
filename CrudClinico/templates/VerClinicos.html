@@ -188,7 +188,7 @@
                                     <th scope="col">Rut</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Apellido</th>
-                                    <th scope="col">profesion</th>
+                                    <th scope="col">Profesión</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -199,13 +199,14 @@
                                     <td>{{ clinico.nombre }}</td>
                                     <td>{{ clinico.apellido }}</td>
                                     <td>{{ clinico.profesion }}</td>
-                                    <td class="action-buttons">
-                                        <a href="" class="btn btn-primary">
-                                            <i class="fas fa-edit me-1"></i>Editar
-                                        </a>
-                                        <a href="" class="btn btn-danger">
-                                            <i class="fas fa-trash-alt me-1"></i>Eliminar
-                                        </a>
+                                    <td>
+                                        <form action="{% url 'ver' %}" method="POST" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="rut" value="{{ clinico.rut }}">
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash-alt me-1"></i> Borrar
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 {% endfor %}
