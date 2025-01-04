@@ -16,17 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Login.views import Login as login
+from Login import views as l
 from PanelDeControl import views as v # Importa la vista PanelDeControl desde el archivo views.py de la aplicación PanelDeControl.
-from CrudClinico import views as vistaClinico
+from CrudClinico import views as vistaClinico # Importa las vistas de la aplicación CrudClinico.
 from FormularioInicial import views as vistaClinicos
 
 urlpatterns = [
     path('admin/', admin.site.urls), # Asocia la URL /admin/ con la vista de administración de Django.
-    path('', login),
-    path('panel/', v.panel ),  # Asocia la URL /panel/ con la vista PanelDeControl.),
+    path('', l.validarLogin,name='login'),  # Asocia la URL / con la vista Login.validarLogin.
+    path('panel/', v.panel, name="panel"),  # Asocia la URL /panel/ con la vista PanelDeControl.),
     path('AgregarClinico/', vistaClinico.AgregarClinico,name='agregar'),
     path('Ver/', vistaClinico.VerClinicos,name='ver'),
     path('FormularioInicial/', vistaClinicos.FormularioInicial),
+    path('Cerrar/',v.cerrar_sesion,name='cerrarSesion')
+    
 
 ]

@@ -16,14 +16,13 @@
         <div class="container-fluid">
             <span class="navbar-brand">
                 <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
+                </i> 
 
-                </i>   
             </span>
             <div class="d-flex align-items-center">
                 <div class="menu-links">
-                    <a href="#" class="btn btn-outline-light">
-                        <i class="bx bx-home-alt"></i>
-                        Inicio </a>
+
+                    <i><h1 style="color: white;">Bienvenido {{ nombre_clinico }}</h1></i>
                 </div>
             </div>
         </div>
@@ -52,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="text-danger">
+                    <a href="{% url 'cerrarSesion' %}" class="text-danger">
                         <i class='bx bx-log-out'></i>
                         Cerrar Sesión
                     </a>
