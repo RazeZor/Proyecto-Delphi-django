@@ -66,6 +66,8 @@
                 Siguiente 
             </button>
             <h2>Caracter&iacutesticas de su dolor</h2>
+            <!-- PRIMERA PREGUNTA DEL FORMULARIO -->
+            <div>
             <label 
             for="" class="form-label">1.-Duraci&oacuten de su dolor
             </label>
@@ -73,7 +75,200 @@
             min="1" max="100" 
             value="50" 
             class="slider" 
-            id="DuracionDolor">
+            id="DuracionDolor" REQUIRED>
+            </div>
+            <!-- SEGUNDA PREGUNTA DEL FORMULARIO -->
+            <div class="list-group">2.-Seleccione las caracter&iacutesticas de su dolor
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Punzante
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Ardiente
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Sordo
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Puls&aacutetivo
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Opresivo
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Corriente
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Adormecimiento
+                </label>
+                <label class="list-group-item">
+                    <input class="form-check-input me-1" type="checkbox" value="" />
+                    Hormigueo
+                </label>
+            </div>
+            <!-- TERCERA PREGUNTA DEL FORMULARIO -->
+            <div class="mb-3">
+                    <label for="" class="form-label">3.-De la lista a continuaci&oacuten, ¿Qu&eacute elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
+                    <select
+                        class="form-select form-select-lg"
+                        name=""
+                        id=""
+                    >
+                        <option selected>--Seleccione uno--</option>
+                        <option value="a">Accidente dom&eacutestico</option>
+                        <option value="b">Accidente vehicular</option>
+                        <option value="c">Accidente laboral</option>
+                        <option value="d">Por enfermedad</option>
+                        <option value="e">Post cirug&iacutea</option>
+                        <option value="f">Sin causa identificada o reconocida</option>
+                    </select>
+            </div>
+            <!-- CUARTA PREGUNTA DEL FORMULARIO-->
+            <div 
+                class="btn-group"
+                role="group"
+                aria-label="Basic checkbox toggle button group"
+            > 4.-¿Es su dolor resultado de un accidente laboral?
+                <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btncheck1"
+                    autocomplete="off"
+                />
+                <label
+                    class="btn btn-outline-primary"
+                    for="btncheck1"
+                    >Si</label
+                >
+            
+                <input
+                    type="radio"
+                    class="btn-check"
+                    name="btnradio"
+                    id="btncheck2"
+                    autocomplete="off"
+                />
+                <label
+                    class="btn btn-outline-primary"
+                    for="btncheck2"
+                    >No</label
+                >
+            </div>
+            <!-- HACER CON CSS POSIBLE OCULTAR EN EL CASO QUE LA RESPUESTA SEA DISTINTA QUE SI-->
+            <div class="mb-3">
+                <label for="" class="form-label" >¿Recibi&oacute una buena atenci&oacuten por la mutualidad contratada por su empresa?</label>
+                <textarea class="form-control" name="" id="" rows="1">Ingrese texto</textarea>
+            </div>
+            <!-- QUINTA PREGUNTA DEL FORMULARIO-->
+            <div 
+            class="btn-group"
+            role="group"
+            aria-label="Basic checkbox toggle button group"
+            > 5.- ¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?
+            <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btncheck1"
+                autocomplete="off"
+            />
+            <label
+                class="btn btn-outline-primary"
+                for="btncheck1"
+                >Si</label>
+        
+            <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btncheck2"
+                autocomplete="off"
+            />
+            <label
+                class="btn btn-outline-primary"
+                for="btncheck2"
+                >No</label
+            >
+            
+            <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btncheck3"
+                autocomplete="off"
+            />
+            <label
+                class="btn btn-outline-primary"
+                for="btncheck3"
+                >Nolo s&eacute</label>
+            </div>
+            <!-- SEXTA PREGUNTA DEL FORMULARIO-->
+            <div 
+            class="btn-group"
+            role="group"
+            aria-label="Basic checkbox toggle button group"
+            > 6.- ¿Piensa usted que hay cura para su dolor?
+            <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btncheck1"
+                autocomplete="off"
+            />
+            <label
+                class="btn btn-outline-primary"
+                for="btncheck1"
+                >Si</label
+            >
+            <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btncheck2"
+                autocomplete="off"
+            />
+            <label
+                class="btn btn-outline-primary"
+                for="btncheck2"
+                >No</label
+            >
+            
+            <input
+                type="radio"
+                class="btn-check"
+                name="btnradio"
+                id="btncheck3"
+                autocomplete="off"
+            />
+            <label
+                class="btn btn-outline-primary"
+                for="btncheck3"
+                >Nolo s&eacute</label>
+            </div>
+            <!-- SEPTIMA PREGUNTA DEL FORMULARIO-->
+            <div class="mb-3">
+            <p>7.- ¿Hay alguna actividad importante que no esta pudiendo realizar o tiene dificultades debido a su dolor persistente?</p>
+            a)Describa la actividad
+            <label for="" class="form-label"></label>
+            <textarea class="form-control" name="" id="" rows="1">Ingrese texto</textarea>
+            b)Porfavor describa la habilidad de realizar  dicha actividad cuando experimenta su dolor:
+            <label 
+            for="" class="form-label"> 
+            </label>
+            <input type="range" 
+            min="1" max="100" 
+            value="50" 
+            class="slider" 
+            id="ProgressionBarPregunta7" REQUIRED>
+            </div>
+            
         </form>    
         
         </div>
