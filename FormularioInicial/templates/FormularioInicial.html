@@ -1,4 +1,5 @@
 {% load static %}
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -11,16 +12,18 @@
             rel="stylesheet"
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"/>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'styles.css' %}" />
     </head>
 
 <body>
-    <header>
         <main>
             <form action="" method="post">
-                <div class="mb-3">
+                <div class="Login">
+                    <h1>Datos personales</h1>
                     <label for="" class="form-label">Rut</label>
                     <input
-                        type="rut"
+                        type="text"
                         class="form-control"
                         name="rut"
                         id="rut"
@@ -28,7 +31,7 @@
                     />
                     <label for="" class="form-label">Nombres</label>
                     <input
-                        type="nombres"
+                        type="text"
                         class="form-control"
                         name="nombres"
                         id="nombres"
@@ -36,7 +39,7 @@
                     />
                     <label for="" class="form-label">Apellidos</label>
                     <input
-                        type="Apellidos"
+                        type="text"
                         class="form-control"
                         name="Apellidos"
                         id="Apellidos"
@@ -44,7 +47,7 @@
                     />
                     <label for="" class="form-label">Fecha de Nacimiento</label>
                     <input
-                        type="ncto"
+                        type="date"
                         class="form-control"
                         name="ncto"
                         id="ncto"
@@ -52,89 +55,119 @@
                     />
                     <label for="" class="form-label">Contacto</label>
                     <input
-                        type="contact"
+                        type="text"
                         class="form-control"
                         name="contact"
                         id="contact"
-                        placeholder="Ingrese Telefono de paciente"
+                        placeholder="(+569) 12345678"
                     />
                 </div>
-                <button type ="submit" class="botonBack">
-                    Volver al menu 
-                </button>
-                <button type ="submit" class="botonSiguiente">
-                    Siguiente 
-                </button>
-                <h2>Caracter&iacutesticas de su dolor</h2>
+                <div class="Pagina1">
                 <!-- PRIMERA PREGUNTA DEL FORMULARIO -->
-                <div>
-                <label 
-                for="" class="form-label">1.-Duraci&oacuten de su dolor
-                </label>
-                <input type="range" 
-                min="1" max="100" 
-                value="50" 
-                class="slider" 
-                id="DuracionDolor" REQUIRED>
-                </div>
-                <!-- SEGUNDA PREGUNTA DEL FORMULARIO -->
-                <div class="list-group">2.-Seleccione las caracter&iacutesticas de su dolor
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Punzante
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Ardiente
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Sordo
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Puls&aacutetivo
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Opresivo
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Corriente
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Adormecimiento
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" value="" />
-                        Hormigueo
-                    </label>
-                </div>
-                <!-- TERCERA PREGUNTA DEL FORMULARIO -->
-                <div class="mb-3">
-                        <label for="" class="form-label">3.-De la lista a continuaci&oacuten, ¿Qu&eacute elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
-                        <select
-                            class="form-select form-select-lg"
-                            name=""
-                            id=""
+                    <div>
+                        <h2>Caracter&iacutesticas de su dolor</h2>
+                        <label 
+                        for="" class="form-label">1.-Duraci&oacuten de su dolor
+                        </label>
+                        <input type="range" 
+                        min="1" max="100" 
+                        value="50" 
+                        class="slider" 
+                        id="DuracionDolor" REQUIRED>
+                    </div>
+                    <!-- SEGUNDA PREGUNTA DEL FORMULARIO -->
+                    <div class="list-group">2.-Seleccione las caracter&iacutesticas de su dolor
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Punzante
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Ardiente
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Sordo
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Puls&aacutetivo
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Opresivo
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Corriente
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Adormecimiento
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" value="" />
+                            Hormigueo
+                        </label>
+                    </div>
+                    <!-- TERCERA PREGUNTA DEL FORMULARIO -->
+                    <div class="mb-3">
+                            <label for="" class="form-label">3.-De la lista a continuaci&oacuten, ¿Qu&eacute elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
+                            <select
+                                class="form-select form-select-lg"
+                                name=""
+                                id=""
+                            >
+                                <option selected>--Seleccione uno--</option>
+                                <option value="a">Accidente dom&eacutestico</option>
+                                <option value="b">Accidente vehicular</option>
+                                <option value="c">Accidente laboral</option>
+                                <option value="d">Por enfermedad</option>
+                                <option value="e">Post cirug&iacutea</option>
+                                <option value="f">Sin causa identificada o reconocida</option>
+                            </select>
+                    </div>
+                    <!-- CUARTA PREGUNTA DEL FORMULARIO-->
+                    <div 
+                        class="btn-group"
+                        role="group"
+                        aria-label="Basic checkbox toggle button group"
+                    > 4.-¿Es su dolor resultado de un accidente laboral?
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="btnradio"
+                            id="btncheck1"
+                            autocomplete="off"
+                        />
+                        <label
+                            class="btn btn-outline-primary"
+                            for="btncheck1"
+                            >Si</label
                         >
-                            <option selected>--Seleccione uno--</option>
-                            <option value="a">Accidente dom&eacutestico</option>
-                            <option value="b">Accidente vehicular</option>
-                            <option value="c">Accidente laboral</option>
-                            <option value="d">Por enfermedad</option>
-                            <option value="e">Post cirug&iacutea</option>
-                            <option value="f">Sin causa identificada o reconocida</option>
-                        </select>
+                    
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="btnradio"
+                            id="btncheck2"
+                            autocomplete="off"
+                        />
+                        <label
+                            class="btn btn-outline-primary"
+                            for="btncheck2"
+                            >No</label
+                        >
+                    </div>
+                    <!-- HACER CON CSS POSIBLE OCULTAR EN EL CASO QUE LA RESPUESTA SEA DISTINTA QUE SI-->
+                    <div class="mb-3">
+                        <label for="" class="form-label" >¿Recibi&oacute una buena atenci&oacuten por la mutualidad contratada por su empresa?</label>
+                        <textarea class="form-control" name="" id="" rows="1">Ingrese texto</textarea>
+                    </div>
                 </div>
-                <!-- CUARTA PREGUNTA DEL FORMULARIO-->
-                <div 
-                    class="btn-group"
-                    role="group"
-                    aria-label="Basic checkbox toggle button group"
-                > 4.-¿Es su dolor resultado de un accidente laboral?
+                <div class="Pagina2">
+                    <!-- QUINTA PREGUNTA DEL FORMULARIO-->
+                    <div > 5.- ¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?
                     <input
                         type="radio"
                         class="btn-check"
@@ -145,8 +178,7 @@
                     <label
                         class="btn btn-outline-primary"
                         for="btncheck1"
-                        >Si</label
-                    >
+                        >Si</label>
                 
                     <input
                         type="radio"
@@ -160,153 +192,205 @@
                         for="btncheck2"
                         >No</label
                     >
-                </div>
-                <!-- HACER CON CSS POSIBLE OCULTAR EN EL CASO QUE LA RESPUESTA SEA DISTINTA QUE SI-->
-                <div class="mb-3">
-                    <label for="" class="form-label" >¿Recibi&oacute una buena atenci&oacuten por la mutualidad contratada por su empresa?</label>
+                    
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btncheck3"
+                        autocomplete="off"
+                    />
+                    <label
+                        class="btn btn-outline-primary"
+                        for="btncheck3"
+                        >Nolo s&eacute</label>
+                    </div>
+                    <!-- SEXTA PREGUNTA DEL FORMULARIO-->
+                    <div 
+                    class="btn-group"
+                    role="group"
+                    aria-label="Basic checkbox toggle button group"
+                    > 6.- ¿Piensa usted que hay cura para su dolor?
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btncheck1"
+                        autocomplete="off"
+                    />
+                    <label
+                        class="btn btn-outline-primary"
+                        for="btncheck1"
+                        >Si</label
+                    >
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btncheck2"
+                        autocomplete="off"
+                    />
+                    <label
+                        class="btn btn-outline-primary"
+                        for="btncheck2"
+                        >No</label
+                    >
+                    
+                    <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btncheck3"
+                        autocomplete="off"
+                    />
+                    <label
+                        class="btn btn-outline-primary"
+                        for="btncheck3"
+                        >Nolo s&eacute</label>
+                    </div>
+                    <!-- SEPTIMA PREGUNTA DEL FORMULARIO-->
+                    <div class="mb-3">
+                    <p>7.- ¿Hay alguna actividad importante que no esta pudiendo realizar o tiene dificultades debido a su dolor persistente?</p>
+                    a)Describa la actividad
+                    <label for="" class="form-label"></label>
                     <textarea class="form-control" name="" id="" rows="1">Ingrese texto</textarea>
+                    b)Porfavor describa la habilidad de realizar  dicha actividad cuando experimenta su dolor:
+                    <label 
+                    for="" class="form-label"> 
+                    </label>
+                    <input type="range" 
+                    min="1" max="100" 
+                    value="50" 
+                    class="slider" 
+                    id="ProgressionBarPregunta7" REQUIRED>
+
+                    <table border="1" cellpadding="10" cellspacing="0" width="300">
+                        <tr>
+                            <td>Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor
+                                manejo de la ansiedad y la depresión a menudo conduce mejor a un manejo del dolor. hable con su medico de la familia o enfermero especializado para. una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
+                                <div 
+                                class="btn-group"
+                                role="group"
+                                aria-label="Basic checkbox toggle button group"
+                                > ¿Desea usted apoyo en esta situaci&oacuten?
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="btnradio"
+                                    id="btncheck1"
+                                    autocomplete="off"
+                                />
+                                <label
+                                    class="btn btn-outline-primary"
+                                    for="btncheck1"
+                                    >Si</label
+                                >
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="btnradio"
+                                    id="btncheck2"
+                                    autocomplete="off"
+                                />
+                                <label
+                                    class="btn btn-outline-primary"
+                                    for="btncheck2"
+                                    >No</label
+                                >
+                            </td>
+                            
+                        </tr>
+                    </table>
+                    </div>
                 </div>
-                <!-- QUINTA PREGUNTA DEL FORMULARIO-->
-                <div 
-                class="btn-group"
-                role="group"
-                aria-label="Basic checkbox toggle button group"
-                > 5.- ¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?
-                <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btncheck1"
-                    autocomplete="off"
-                />
-                <label
-                    class="btn btn-outline-primary"
-                    for="btncheck1"
-                    >Si</label>
-            
-                <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btncheck2"
-                    autocomplete="off"
-                />
-                <label
-                    class="btn btn-outline-primary"
-                    for="btncheck2"
-                    >No</label
-                >
-                
-                <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btncheck3"
-                    autocomplete="off"
-                />
-                <label
-                    class="btn btn-outline-primary"
-                    for="btncheck3"
-                    >Nolo s&eacute</label>
+                <!-- ESTA PREGUNTA DEBE ESTAR EN UNA PAGINA SOLA -->
+                <div class="Pagina3">  
+                    <h4>Lea detenidamente y selecciona las condiciones de salud que presente</h4>
+                    <table>
+                        <tr>
+                            <th>Musculoesqueléticos</th>
+                            <th>Neurológicos</th>
+                            <th>Endocrinos</th>
+                            <th>Cardiopulmonar</th>
+                            <th>Otros</th>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Artrosis</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Cefaleas</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Diabetes</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Arritmia</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Ansiedad</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Artritis reumatoide</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Accidente Vascular</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas renales</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Colesterol Alto</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Depresión</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Fibromialgia</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Hormigueos o adormecimiento</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas de vejiga</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Marcapasos</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Cáncer</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Osteoporosis</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Párkinson</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas de hígado</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Anemia</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Cirugías previas</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Historia de caídas</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Epilepsia</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Alteración de tiroides</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Hipertensión</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Síndrome de fatiga crónica</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Dolor mandibular</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Esclerosis múltiple</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Resistencia a la insulina</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Asma</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Alergias</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Hernia discal o discopatías</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Síndrome de piernas inquietas</td>
+                            <td></td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />VIH</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Obesidad</td>
+                        </tr>
+                        <tr>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Fracturas</td>
+                            <td></td>
+                            <td></td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Falta de aire</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="" />Trombosis</td>
+                        </tr>
+                    </table>
+                    <div class="side-note">
+                        <p><strong>*Si tiene otra enfermedad que no esté en la lista, escríbala a continuación:</strong></p>
+                        <textarea rows="4" placeholder="Ingrese texto..."></textarea>
+                    </div>
+                    <div>
+                        <p>Mencione 3 cosas que hoy no puede hacer con normalidad debido a su problema (y que quiere recuperar)</p>
+                        <input type="text" placeholder="Ingrese texto...">
+                        <input type="text" placeholder="Ingrese texto...">
+                        <input type="text" placeholder="Ingrese texto...">
+
+                    </div>
                 </div>
-                <!-- SEXTA PREGUNTA DEL FORMULARIO-->
-                <div 
-                class="btn-group"
-                role="group"
-                aria-label="Basic checkbox toggle button group"
-                > 6.- ¿Piensa usted que hay cura para su dolor?
-                <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btncheck1"
-                    autocomplete="off"
-                />
-                <label
-                    class="btn btn-outline-primary"
-                    for="btncheck1"
-                    >Si</label
-                >
-                <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btncheck2"
-                    autocomplete="off"
-                />
-                <label
-                    class="btn btn-outline-primary"
-                    for="btncheck2"
-                    >No</label
-                >
-                
-                <input
-                    type="radio"
-                    class="btn-check"
-                    name="btnradio"
-                    id="btncheck3"
-                    autocomplete="off"
-                />
-                <label
-                    class="btn btn-outline-primary"
-                    for="btncheck3"
-                    >Nolo s&eacute</label>
+                <div class = "botones">
+                    <button type ="submit" class="botonAnterior2">
+                        Anterior 
+                    </button>
+                    <button type ="submit" class="botonSiguiente3">
+                        Siguiente 
+                    </button>
                 </div>
-                <!-- SEPTIMA PREGUNTA DEL FORMULARIO-->
-                <div class="mb-3">
-                <p>7.- ¿Hay alguna actividad importante que no esta pudiendo realizar o tiene dificultades debido a su dolor persistente?</p>
-                a)Describa la actividad
-                <label for="" class="form-label"></label>
-                <textarea class="form-control" name="" id="" rows="1">Ingrese texto</textarea>
-                b)Porfavor describa la habilidad de realizar  dicha actividad cuando experimenta su dolor:
-                <label 
-                for="" class="form-label"> 
-                </label>
-                <input type="range" 
-                min="1" max="100" 
-                value="50" 
-                class="slider" 
-                id="ProgressionBarPregunta7" REQUIRED>
-                </div>
-                <!-- OCTAVA PREGUNTA DEL FORMULARIO-->
-                <table border="1" cellpadding="10" cellspacing="0" width="300">
-                    <tr>
-                        <td>Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor
-                            manejo de la ansiedad y la depresión a menudo conduce mejor a un manejo del dolor. hable con su medico de la familia o enfermero especializado para. una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
-                            <div 
-                            class="btn-group"
-                            role="group"
-                            aria-label="Basic checkbox toggle button group"
-                            > ¿Desea usted apoyo en esta situaci&oacuten?
-                            <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btncheck1"
-                                autocomplete="off"
-                            />
-                            <label
-                                class="btn btn-outline-primary"
-                                for="btncheck1"
-                                >Si</label
-                            >
-                            <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btncheck2"
-                                autocomplete="off"
-                            />
-                            <label
-                                class="btn btn-outline-primary"
-                                for="btncheck2"
-                                >No</label
-                            >
-                        </td>
-                        
-                    </tr>
-                </table>
-    
             </form>   
         </main>
         <footer>

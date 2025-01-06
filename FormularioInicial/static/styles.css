@@ -1,3 +1,53 @@
-input, progress {
-    accent-color: green;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f0f0f0;
+}
+.Login{
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Login{
+  margin: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.Pagina1{
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Pagina1{
+  margin: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.Pagina2{
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Pagina2{
+  margin: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.Pagina3{
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Pagina3{
+  margin: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
