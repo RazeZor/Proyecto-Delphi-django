@@ -28,7 +28,8 @@ urlpatterns = [
     path('AgregarClinico/', vistaClinico.AgregarClinico,name='agregar'),
     path('Ver/', vistaClinico.VerClinicos,name='ver'),
     path('FormularioInicial/', vistaClinicos.FormularioInicial),
-    path('Cerrar/',v.cerrar_sesion,name='cerrarSesion')
+    path('Cerrar/',v.cerrar_sesion,name='cerrarSesion'),
+    path('CuerpoHumano/', vistaClinicos.CuerpoHumano),
     
 
 ]
