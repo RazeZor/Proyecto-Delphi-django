@@ -26,7 +26,7 @@ def VerClinicos(request):
         if rut:
             clinico = Clinico.objects.get(rut=rut)  # Obtener el clínico a eliminar
             clinico.delete()  # Eliminar al clínico
-            return render(request, 'VerClinicos.html')
+            redirect('VerClinicos.html')
             
 
     # Obtener la lista actualizada de clínicos
