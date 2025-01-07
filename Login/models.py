@@ -8,6 +8,7 @@ class Clinico(models.Model):
     profesion = models.CharField(max_length=50,default='default_profession')
     contraseña = models.CharField(max_length=50, default='default_password')
     pacientes = models.ManyToManyField('Paciente', related_name='clinicos')
+    
 
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
@@ -24,5 +25,8 @@ class Paciente(models.Model):
     cobertura_de_salud = models.CharField(max_length=50)
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
+
+
+    
 
 

@@ -1,53 +1,116 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  outline: none;
-  font-family: 'Poppins', sans-serif;
+
+
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: transparent;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
-body{
+
+.timeline {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+  padding: 0 20px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: #e9ecef;
+  z-index: 1;
+}
+
+.step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e9ecef;
+  display: flex;
   align-items: center;
-  background: #f0f0f0;
-}
-.Login{
-  background: #fff;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.Login{
-  margin: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.Pagina1{
-  background: #fff;
-  border-radius: 5px;
-  text-align: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  color: #6c757d;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-.Pagina1{
-  margin: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.Pagina2{
-  background: #fff;
-  border-radius: 5px;
-  text-align: center;
+.step-indicator.active {
+  background: #cd2481;
+  color: white;
 }
 
-.Pagina2{
-  margin: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-.Pagina3{
-  background: #fff;
-  border-radius: 5px;
-  text-align: center;
+.step-indicator.completed {
+  background: #21294E;
+  color: white;
 }
 
-.Pagina3{
-  margin: 20px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+.step-title {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  white-space: nowrap;
+  color: #6c757d;
+}
+
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.nav-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-line {
+  height: 2px;
+  background: #0d6efd;
+  position: absolute;
+  top: 15px;
+  left: 40px;
+  transition: width 0.3s ease;
+  z-index: 1;
+}
+
+.list-group-item {
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+}
+
+.slider {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+#tablaPagina3{
+  border: solid;
+  box-shadow: #21294E;
+}
+
+#tablaPagina3 tr td{
+  border: solid;
+  box-shadow: #21294E;
+}
+
+.mencionar3Cosas{
+  padding-top: 40px;
 }
