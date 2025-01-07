@@ -51,26 +51,27 @@
                 <span class="step-title">Preguntas</span>
             </div>
             
-        </div>
+    </div>
 
-        <form id="Step">
+        <form id="Step" action="" method="post">
+            {% csrf_token %}
             <div class="step active">
                 <h2 class="mb-4">Datos de ingreso de paciente</h2>
                 <div class="form-group">
                     <label class="form-label">Rut</label>
-                    <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese rut de paciente"/>
+                    <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese rut de paciente" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Nombres</label>
-                    <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Ingrese nombres de paciente"/>
+                    <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Ingrese nombres de paciente" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" name="Apellidos" id="Apellidos" placeholder="Ingrese apellidos de paciente"/>
+                    <input type="text" class="form-control" name="Apellidos" id="Apellidos" placeholder="Ingrese apellidos de paciente" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" name="ncto" id="ncto"/>
+                    <input type="date" class="form-control" name="ncto" id="ncto" required/>
                 </div>
 
                 <div class="form-group">
@@ -79,7 +80,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label">Contacto</label>
-                    <input type="tel" class="form-control" name="contact" id="contact" placeholder="Ingrese Teléfono de paciente"/>
+                    <input type="tel" class="form-control" name="contact" id="contact" placeholder="Ingrese Teléfono de paciente" required/>
                 </div>
             </div>
 
@@ -87,33 +88,33 @@
                 <h2 class="mb-4">Características de su dolor</h2>
                 <div class="form-group">
                     <label class="form-label">Duración de su dolor</label>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="DuracionDolor"/>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="DuracionDolor" required/>
                 </div>
                 <div class="list-group">
                     <h3 class="h6 mb-3">Seleccione las características de su dolor</h3>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Punzante
+                        <input class="form-check-input me-1" type="checkbox" required/> Punzante
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Ardiente
+                        <input class="form-check-input me-1" type="checkbox" required/> Ardiente
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Sordo
+                        <input class="form-check-input me-1" type="checkbox"required/> Sordo
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Pulsátivo
+                        <input class="form-check-input me-1" type="checkbox"required/> Pulsátivo
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Opresivo
+                        <input class="form-check-input me-1" type="checkbox"required/> Opresivo
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Corriente
+                        <input class="form-check-input me-1" type="checkbox"required/> Corriente
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Adormecimiento
+                        <input class="form-check-input me-1" type="checkbox"required/> Adormecimiento
                     </label>
                     <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"/> Hormigueo
+                        <input class="form-check-input me-1" type="checkbox"required/> Hormigueo
                     </label>
                 </div>
             </div>
@@ -199,19 +200,21 @@
                                 class="btn-check"
                                 name="btnradio"
                                 id="btncheck1"
+                                required
                            
                             />
                             <label
                                 class="btn btn-outline-primary"
                                 for="btncheck1"
                                 >Si</label
+                            
                             >
                             <input
                                 type="radio"
                                 class="btn-check"
                                 name="btnradio"
                                 id="btncheck2"
-
+ 
                             />
                             <label
                                 class="btn btn-outline-primary"
@@ -298,17 +301,17 @@
                         <h5>Mencione 3 cosas que hoy no puede hacer con normalidad debido a su problema (y que quiere recuperar)</h5>
                         <div class="mb-3">
                             <label for="" class="form-label">ingrese Texto</label>
-                            <textarea class="form-control" name="" id="mencion1" rows="3"></textarea>
+                            <textarea class="form-control" name="" id="mencion1" rows="3"required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">ingrese Texto</label>
-                            <textarea class="form-control" name="" id="mencion2" rows="3"></textarea>
+                            <textarea class="form-control" name="" id="mencion2" rows="3"required></textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">ingrese Texto</label>
-                            <textarea class="form-control" name="" id="mencion3" rows="3"></textarea>
+                            <textarea class="form-control" name="" id="mencion3" rows="3"required></textarea>
                         </div>
                         
                     </div>
@@ -385,12 +388,16 @@
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tablaDolorBody">
+                                    <tbody id="minitablita">
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+            
                     </div>
+        </form>
+            
+        
 
 
                     <script>
@@ -479,29 +486,29 @@
 
                         function mostrarSelectorIntensidad(nombreParte) {
                             const intensidades = ['Baja', 'Media', 'Alta'];
-                            const selectHTML = `
+                            const htmlGenerado = `
                                 <td>${nombreParte}</td>
                                 <td>
                                     <select class="form-select">
-                                        <option value="">Seleccionar intensidad</option>
+                                        <option value="" required>Seleccionar intensidad</option>
                                         ${intensidades.map(intensidad => 
                                             `<option value="${intensidad.toLowerCase()}">${intensidad}</option>`
                                         ).join('')}
                                     </select>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm" onclick="eliminarFila(this)">
+                                    <button class="btn btn-danger btn-sm" onclick="eliminar(this)">
                                         Eliminar
                                     </button>
                                 </td>
                             `;
                             
                             const tr = document.createElement('tr');
-                            tr.innerHTML = selectHTML;
-                            document.getElementById('tablaDolorBody').appendChild(tr);
+                            tr.innerHTML = htmlGenerado;
+                            document.getElementById('minitablita').appendChild(tr);
                         }
                         
-                        function eliminarFila(button) {
+                        function eliminar(button) {
                             button.closest('tr').remove();
                         }
                     </script>
