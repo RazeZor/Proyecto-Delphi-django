@@ -13,3 +13,6 @@ def cerrar_sesion(request):
     
     # Redirige al login (o a cualquier otra página que desees)
     return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
+
+def VerfichaPacientes(request):
+       return render(request, 'FichaPacientes.html')
