@@ -88,7 +88,14 @@
                 <h2 class="mb-4">Características de su dolor</h2>
                 <div class="form-group">
                     <label class="form-label">Duración de su dolor</label>
-                    <input type="range" min="1" max="100" value="50" class="slider" id="DuracionDolor" required/>
+                    <div class="btn-group w-100">
+                        <input type="radio" class="btn-check" name="btnradio" id="btncheck1" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btncheck1">Menos de 3 meses</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btncheck2" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btncheck2">Entre 3 y 6 meses</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btncheck3" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btncheck2">Mas de 6 meses</label>
+                    </div>
                 </div>
                 <div class="list-group">
                     <h3 class="h6 mb-3">Seleccione las características de su dolor</h3>
@@ -300,17 +307,17 @@
                     <div class="mencionar3Cosas">
                         <h5>Mencione 3 cosas que hoy no puede hacer con normalidad debido a su problema (y que quiere recuperar)</h5>
                         <div class="mb-3">
-                            <label for="" class="form-label">ingrese Texto</label>
+                            <label for="" class="form-label"></label>
                             <textarea class="form-control" name="" id="mencion1" rows="3"required></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label for="" class="form-label">ingrese Texto</label>
+                            <label for="" class="form-label"></label>
                             <textarea class="form-control" name="" id="mencion2" rows="3"required></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label for="" class="form-label">ingrese Texto</label>
+                            <label for="" class="form-label"></label>
                             <textarea class="form-control" name="" id="mencion3" rows="3"required></textarea>
                         </div>
                         
@@ -388,7 +395,7 @@
                                     <form action="">
                                         <center>
                                             <div class="cuerpoHumano" id="cuerpoHumano">
-                                                <img src="{% static 'image/cuerpo.jpg' %}" alt="" srcset="">
+                                                <img src="{% static 'image/cuerpo.png' %}" alt="" srcset="">
                                             </div>
                                         </center>
                                     </form>
