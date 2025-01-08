@@ -15,857 +15,888 @@
         background-size: cover;  /* Esto ajusta la imagen al tamaño de la pantalla */
         
     }
+    
 
 </style>
 <body class="bg-light">
-    <div class="form-container">
-        <div class="timeline">
-            <div class="progress-line"></div>
-            <div class="position-relative">
-                <div class="step-indicator active" data-step="1">1</div>
-                <span class="step-title">Datos</span>
-            </div>
-            <div class="position-relative">
-                <div class="step-indicator" data-step="2">2</div>
-                <span class="step-title">Dolor</span>
-            </div>
-            <div class="position-relative">
-                <div class="step-indicator" data-step="3">3</div>
-                <span class="step-title">Causa</span>
-            </div>
-            <div class="position-relative">
-                <div class="step-indicator" data-step="4">4</div>
-                <span class="step-title">afecciones</span>
-            </div>
-            <div class="position-relative">
-                <div class="step-indicator" data-step="5">5</div>
-                <span class="step-title">Salud</span>
-            </div>
-            <div class="position-relative">
-                <div class="step-indicator" data-step="6">6</div>
-                <span class="step-title">Esquema</span>
-            </div>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">Formulario Clinico</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'panel' %}">Inicio</a>
+                        </li>
 
-            <div class="position-relative">
-                <div class="step-indicator" data-step="7">7</div>
-                <span class="step-title">Preguntas</span>
+                    </ul>
+                </div>
             </div>
-            
-    </div>
-
-        <form id="Step" action="" method="post">
-            {% csrf_token %}
-            <div class="step active">
-                <h2 class="mb-4">Datos de ingreso de paciente</h2>
-                <div class="form-group">
-                    <label class="form-label">Rut</label>
-                    <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese rut de paciente" required/>
+        </nav>
+    </header>
+    <main>
+        <div class="form-container">
+            <div class="timeline">
+                <div class="progress-line"></div>
+                <div class="position-relative">
+                    <div class="step-indicator active" data-step="1">1</div>
+                    <span class="step-title">Datos</span>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Nombres</label>
-                    <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Ingrese nombres de paciente" required/>
+                <div class="position-relative">
+                    <div class="step-indicator" data-step="2">2</div>
+                    <span class="step-title">Dolor</span>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" name="Apellidos" id="Apellidos" placeholder="Ingrese apellidos de paciente" required/>
+                <div class="position-relative">
+                    <div class="step-indicator" data-step="3">3</div>
+                    <span class="step-title">Causa</span>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Fecha de Nacimiento</label>
-                    <input type="date" class="form-control" name="ncto" id="ncto" required/>
+                <div class="position-relative">
+                    <div class="step-indicator" data-step="4">4</div>
+                    <span class="step-title">afecciones</span>
+                </div>
+                <div class="position-relative">
+                    <div class="step-indicator" data-step="5">5</div>
+                    <span class="step-title">Salud</span>
+                </div>
+                <div class="position-relative">
+                    <div class="step-indicator" data-step="6">6</div>
+                    <span class="step-title">Esquema</span>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">Cobertura de salud</label>
-                    <input type="text" class="form-control" name="cobertura" id="cobertura" placeholder="ingrese su cobertura de salud" required/>
+                <div class="position-relative">
+                    <div class="step-indicator" data-step="7">7</div>
+                    <span class="step-title">Preguntas</span>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Contacto</label>
-                    <input type="tel" class="form-control" name="contact" id="contact" placeholder="Ingrese Teléfono de paciente" required/>
-                </div>
-            </div>
+                
+        </div>
 
-            <div class="step">
-                <h2 class="mb-4">Características de su dolor</h2>
-                <div class="form-group">
-                    <label class="form-label">Duración de su dolor</label>
-                    <div class="btn-group w-100">
-                        <input type="radio" class="btn-check" name="btnradio" id="btncheck1" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="btncheck1">Menos de 3 meses</label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btncheck2" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="btncheck2">Entre 3 y 6 meses</label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btncheck3" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="btncheck2">Mas de 6 meses</label>
+            <form id="Step" action="" method="post">
+                {% csrf_token %}
+                <div class="step active">
+                    <h2 class="mb-4">Datos de ingreso de paciente</h2>
+                    <div class="form-group">
+                        <label class="form-label">Rut</label>
+                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese rut de paciente" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nombres</label>
+                        <input type="text" class="form-control" name="nombres" id="nombres" placeholder="Ingrese nombres de paciente" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" name="Apellidos" id="Apellidos" placeholder="Ingrese apellidos de paciente" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" name="ncto" id="ncto" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Cobertura de salud</label>
+                        <input type="text" class="form-control" name="cobertura" id="cobertura" placeholder="ingrese su cobertura de salud" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contacto</label>
+                        <input type="tel" class="form-control" name="contact" id="contact" placeholder="Ingrese Teléfono de paciente" required/>
                     </div>
                 </div>
-                <div class="list-group">
-                    <h3 class="h6 mb-3">Seleccione las características de su dolor</h3>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" required/> Punzante
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox" required/> Ardiente
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"required/> Sordo
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"required/> Pulsátivo
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"required/> Opresivo
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"required/> Corriente
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"required/> Adormecimiento
-                    </label>
-                    <label class="list-group-item">
-                        <input class="form-check-input me-1" type="checkbox"required/> Hormigueo
-                    </label>
-                </div>
-            </div>
 
-            <div class="step">
-                <h2 class="mb-4">Causa del dolor</h2>
-                <div class="form-group">
-                    <label class="form-label">¿Qué elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
-                    <select class="form-select form-select-lg">
-                        <option selected>--Seleccione uno--</option>
-                        <option value="a">Accidente doméstico</option>
-                        <option value="b">Accidente vehicular</option>
-                        <option value="c">Accidente laboral</option>
-                        <option value="d">Por enfermedad</option>
-                        <option value="e">Post cirugía</option>
-                        <option value="f">Sin causa identificada o reconocida</option>
-                    </select>
-                </div>
-                <div class="form-group mt-4">
-                    <label class="form-label">¿Es su dolor resultado de un accidente laboral?</label>
-                    <div class="btn-group w-100">
-                        <input type="radio" class="btn-check" name="btnradio" id="btncheck1" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="btncheck1">Si</label>
-                        <input type="radio" class="btn-check" name="btnradio" id="btncheck2" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="btncheck2">No</label>
+                <div class="step">
+                    <h2 class="mb-4">Características de su dolor</h2>
+                    <div class="form-group">
+                        <label class="form-label">Duración de su dolor</label>
+                        <input type="range" min="0" max="9" class="slider" id="DuracionDolor" required/>
+
+                    </div>
+                    <div class="list-group">
+                        <h3 class="h6 mb-3">Seleccione las características de su dolor</h3>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" required/> Punzante
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" required/> Ardiente
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox"required/> Sordo
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox"required/> Pulsátivo
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox"required/> Opresivo
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox"required/> Corriente
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox"required/> Adormecimiento
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox"required/> Hormigueo
+                        </label>
                     </div>
                 </div>
-                <div class="form-group mt-4">
-                    <label class="form-label">¿Recibió una buena atención por la mutualidad contratada por su empresa?</label>
-                    <textarea class="form-control" rows="3" placeholder="Ingrese texto"></textarea>
-                </div>
 
-                <div class="form-group">
-                    <label class="form-label">¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?</label>
-                    <div class="btn-group w-100">
-                        <input type="radio" class="btn-check" name="diagnosis" id="diagnosis1" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="diagnosis1">Si</label>
-                        <input type="radio" class="btn-check" name="diagnosis" id="diagnosis2" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="diagnosis2">No</label>
-                        <input type="radio" class="btn-check" name="diagnosis" id="diagnosis3" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="diagnosis3">No lo sé</label>
+                <div class="step">
+                    <h2 class="mb-4">Causa del dolor</h2>
+                    <div class="form-group">
+                        <label class="form-label">¿Qué elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
+                        <select class="form-select form-select-lg">
+                            <option selected>--Seleccione uno--</option>
+                            <option value="a">Accidente doméstico</option>
+                            <option value="b">Accidente vehicular</option>
+                            <option value="c">Accidente laboral</option>
+                            <option value="d">Por enfermedad</option>
+                            <option value="e">Post cirugía</option>
+                            <option value="f">Sin causa identificada o reconocida</option>
+                        </select>
                     </div>
-                </div>
-                <div class="form-group mt-4">
-                    <label class="form-label">¿Piensa usted que hay cura para su dolor?</label>
-                    <div class="btn-group w-100">
-                        <input type="radio" class="btn-check" name="cure" id="cure1" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="cure1">Si</label>
-                        <input type="radio" class="btn-check" name="cure" id="cure2" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="cure2">No</label>
-                        <input type="radio" class="btn-check" name="cure" id="cure3" autocomplete="off"/>
-                        <label class="btn btn-outline-primary" for="cure3">No lo sé</label>
+                    <div class="form-group mt-4">
+                        <label class="form-label">¿Es su dolor resultado de un accidente laboral?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="btnradio" id="btncheck1" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="btncheck1">Si</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btncheck2" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="btncheck2">No</label>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-
-            <div class="step">
-                <h2 class="mb-4">Actividades afectadas</h2>
-                <div class="form-group">
-                    <label class="form-label">¿Hay alguna actividad importante que no está pudiendo realizar o tiene dificultades debido a su dolor persistente?</label>
-                    <div class="mb-3">
-                        <label class="form-label">Describa la actividad:</label>
+                    <div class="form-group mt-4">
+                        <label class="form-label">¿Recibió una buena atención por la mutualidad contratada por su empresa?</label>
                         <textarea class="form-control" rows="3" placeholder="Ingrese texto"></textarea>
                     </div>
-                    <div class="mt-4">
-                        <label class="form-label">Por favor describa la habilidad de realizar dicha actividad cuando experimenta su dolor:</label>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="ProgressionBarPregunta7"/>
-                        <label for="">1</label>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis1" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="diagnosis1">Si</label>
+                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis2" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="diagnosis2">No</label>
+                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis3" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="diagnosis3">No lo sé</label>
+                        </div>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="form-label">¿Piensa usted que hay cura para su dolor?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="cure" id="cure1" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="cure1">Si</label>
+                            <input type="radio" class="btn-check" name="cure" id="cure2" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="cure2">No</label>
+                            <input type="radio" class="btn-check" name="cure" id="cure3" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="cure3">No lo sé</label>
+                        </div>
                     </div>
                 </div>
-                <table border="1" cellpadding="10" cellspacing="0" >
-                    <tr>
-                        <td>Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor
-                            manejo de la ansiedad y la depresión a menudo conduce mejor a un manejo del dolor. hable con su medico de la familia o enfermero especializado para. una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
-                            <div 
-                            class="btn-group"
-                            role="group"
-                            aria-label="Basic checkbox toggle button group"
-                            > ¿Desea usted apoyo en esta situaci&oacuten?
-                            <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btncheck1"
-                                required
-                           
-                            />
-                            <label
-                                class="btn btn-outline-primary"
-                                for="btncheck1"
-                                >Si</label
-                            
-                            >
-                            <input
-                                type="radio"
-                                class="btn-check"
-                                name="btnradio"
-                                id="btncheck2"
- 
-                            />
-                            <label
-                                class="btn btn-outline-primary"
-                                for="btncheck2"
-                                >No</label
-                            >
-                        </td>
-                        
-                    </tr>
-                </table>
-            </div>
 
 
-            <div class="step">
-                <div class="Pagina3">  
-                    <h4>Lea detenidamente y selecciona las condiciones de salud que presente</h4>
-                    <table id="tablaPagina3">
-                        <tr>
-                            <th>Musculoesqueléticos</th>
-                            <th>Neurológicos</th>
-                            <th>Endocrinos</th>
-                            <th>Cardiopulmonar</th>
-                            <th>Otros</th>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Artrosis</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Cefaleas</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Diabetes</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Arritmia</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Ansiedad</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Artritis reumatoide</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Accidente Vascular</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas renales</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Colesterol Alto</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Depresión</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Fibromialgia</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Hormigueos o adormecimiento</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas de vejiga</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Marcapasos</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Cáncer</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Osteoporosis</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Párkinson</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas de hígado</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Anemia</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Cirugías previas</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Historia de caídas</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Epilepsia</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Alteración de tiroides</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Hipertensión</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Síndrome de fatiga crónica</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Dolor mandibular</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Esclerosis múltiple</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Resistencia a la insulina</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Asma</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Alergias</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Hernia discal o discopatías</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Síndrome de piernas inquietas</td>
-                            <td></td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />VIH</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Obesidad</td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Fracturas</td>
-                            <td></td>
-                            <td></td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Falta de aire</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="" />Trombosis</td>
-                        </tr>
-                    </table>
-
-                    <div class="mencionar3Cosas">
-                        <h5>Mencione 3 cosas que hoy no puede hacer con normalidad debido a su problema (y que quiere recuperar)</h5>
+                <div class="step">
+                    <h2 class="mb-4">Actividades afectadas</h2>
+                    <div class="form-group">
+                        <label class="form-label">¿Hay alguna actividad importante que no está pudiendo realizar o tiene dificultades debido a su dolor persistente?</label>
                         <div class="mb-3">
-                            <label for="" class="form-label"></label>
-                            <textarea class="form-control" name="" id="mencion1" rows="3"required></textarea>
+                            <label class="form-label">Describa la actividad:</label>
+                            <textarea class="form-control" rows="3" placeholder="Ingrese texto"></textarea>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="" class="form-label"></label>
-                            <textarea class="form-control" name="" id="mencion2" rows="3"required></textarea>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="" class="form-label"></label>
-                            <textarea class="form-control" name="" id="mencion3" rows="3"required></textarea>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="step">
-
-                <style>
-                    .cuerpoHumano {
-                        position: relative;
-                        display: inline-block;
-                        text-align: center;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                    
-                    .parteCuerpo {
-                        position: absolute;
-                        cursor: pointer;
-                        transition: all 0.3s ease; 
-                        border: 2px solid transparent; 
-                    }
-            
-                    .parteCuerpo:hover {
-                        background-color: rgba(0, 123, 255, 0.3); 
-                        border: 2px solid #0056b3; 
-                        border-radius: 4px; 
-                        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); 
-                    }
-            
-                    /* Nuevos estilos para los niveles de dolor */
-                    .dolor-baja {
-                        background-color: rgba(200, 230, 201, 0.5) !important;
-                        border: 2px solid #81c784 !important;
-                    }
-            
-                    .dolor-media {
-                        background-color: rgba(255, 243, 224, 0.5) !important;
-                        border: 2px solid #ffb74d !important;
-                    }
-            
-                    .dolor-alta {
-                        background-color: rgba(255, 205, 210, 0.5) !important;
-                        border: 2px solid #e57373 !important;
-                    }
-            
-                    .table {
-                        margin-top: 20px;
-                    }
-                    
-                    .form-select {
-                        width: 100%;
-                    }
-                    
-                    .form-select option[value="baja"] {
-                        background-color: #c8e6c9;
-                    }
-                    
-                    .form-select option[value="media"] {
-                        background-color: #fff3e0;
-                    }
-                    
-                    .form-select option[value="alta"] {
-                        background-color: #ffcdd2;
-                    }
-                </style>
-                <body>
-                    <header></header>
-                    <main>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <form action="">
-                                        <center>
-                                            <div class="cuerpoHumano" id="cuerpoHumano">
-                                                <img src="{% static 'image/cuerpo.png' %}" alt="" srcset="">
-                                            </div>
-                                        </center>
-                                    </form>
-                                </div>
-                                <div class="col-md-6">
-                                    <table class="table table-bordered mt-3">
-                                        <thead>
-                                            <tr>
-                                                <th>Parte del Cuerpo</th>
-                                                <th>Intensidad de Dolor</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="minitablita">
-                                        </tbody>
-                                    </table>
-                                </div>
+                        <div class="mt-4">
+                            <label class="form-label">Por favor describa la habilidad de realizar dicha actividad cuando experimenta su dolor:</label>
+                            <input type="range" min="1" max="10" value="1" class="slider" id="ProgressionBarPregunta7" />
+                            <div style="display: flex; justify-content: space-between; width: 100%;">
+                                <label for="ProgressionBarPregunta">1</label>
+                                <label for="ProgressionBarPregunta">2</label>
+                                <label for="ProgressionBarPregunta">3</label>
+                                <label for="ProgressionBarPregunta">4</label>
+                                <label for="ProgressionBarPregunta">5</label>
+                                <label for="ProgressionBarPregunta">6</label>
+                                <label for="ProgressionBarPregunta">7</label>
+                                <label for="ProgressionBarPregunta">8</label>
+                                <label for="ProgressionBarPregunta">9</label>
+                                <label for="ProgressionBarPregunta">10</label>
                             </div>
                         </div>
-                    </main>
-                    <footer></footer>
-            
-                    <script>
-                        const cuerpo = document.getElementById("cuerpoHumano");
-                        const partesDelCuerpo = [
-                            //VISTA FRONTAL
-                            { nombre: "Cara", x: 42, y: 0, ancho: 34, alto: 51 },  // Cabeza FRONTAL
-                            { nombre: "Cuello ", x: 29, y: 50,ancho :52,alto:20}, // cuello FRONTAL
-                            { nombre: "Pectoral Izquierdo", x: 23, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo FRONTAL
-                            { nombre: "Pectoral derecho", x: 58, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho FRONTAL
-                            { nombre: "Hombro izquierdo", x: 4, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo FRONTAL
-                            { nombre: "Hombro derecho", x: 92, y: 70, ancho: 19, alto: 39 }, // Hombro derecho FRONTAL
-                            { nombre: "Brazo izquierdo", x: 4, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo FRONTAL
-                            { nombre: "Brazo derecho", x: 92, y: 108, ancho: 21, alto: 40 }, // Brazo derecho FRONTAL
-                            { nombre: "Antebrazo izquierdo", x: 1, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo FRONTAL
-                            { nombre: "Antebrazo derecho", x: 92, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho FRONTAL
-                            { nombre: "Mano Izquierda", x: 0, y: 207, ancho: 20, alto: 39 }, // Man izquierdo FRONTAL
-                            { nombre: "Mano derecha", x: 97, y: 207, ancho: 20, alto: 39 }, // Man derecho FRONTAL
-                            { nombre: "Abdomen Superior Izquierdo", x: 28, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo FRONTAL
-                            { nombre: "Abdomen Superior Derecho", x: 58, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho FRONTAL
-                            { nombre: "bdomen Inferior Izquierdo", x: 28, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo FRONTAL
-                            { nombre: "Abdomen Inferior Derecho", x: 58, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho FRONTAL
-                            { nombre: "Pelvis", x: 27, y: 176, ancho: 63, alto: 27 }, // Pelvis FRONTAL
-                            { nombre: "Genitales", x: 52, y: 202, ancho: 13, alto: 8 }, // Genitales FRONTAL
-                            { nombre: "Muslo Izquierdo", x: 24, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo FRONTAL
-                            { nombre: "Muslo Derecho", x: 64, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho FRONTAL
-                            { nombre: "Rodilla Izquierda", x: 27, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquiera FRONTAL
-                            { nombre: "Rodilla Derecha", x: 64, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha FRONTAL
-                            { nombre: "Pierna Izquierda", x: 27, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierdo FRONTAL
-                            { nombre: "Pierna Derecha", x: 64, y: 307, ancho: 26, alto: 93 }, // Pierna Derecho FRONTAL
-                            { nombre: "Talon Izquierdo", x: 29, y: 400, ancho: 24, alto: 12 }, // Talon Izquierdo FRONTAL
-                            { nombre: "Talon Derecho", x: 64, y: 400, ancho: 26, alto: 12 }, // Talon Derecho FRONTAL 
-                            { nombre: "Pie Izquierdo", x: 29, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo FRONTAL
-                            { nombre: "Pie Derecho", x: 64, y: 412, ancho: 26, alto: 37 }, // Pie Derecho FRONTAL
-                            //VISTA TRASERA
-                            { nombre: "Cabeza", x: 211, y: 0, ancho: 34, alto: 51 },  // Cabeza TRASERA
-                            { nombre: "cuello", x: 198, y: 50, ancho: 52, alto: 20 }, // cuello TRASERA
-                            { nombre: "Espalda Alta", x: 192, y: 70, ancho: 70, alto: 70 }, // Espalda Alta
-                            { nombre: "Hombro izquierdo", x: 173, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo TRASERA
-                            { nombre: "Hombro derecho", x: 261, y: 70, ancho: 19, alto: 39 }, // Hombro derecho TRASERA
-                            { nombre: "Brazo izquierdo", x: 173, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo TRASERA
-                            { nombre: "Brazo izquierdo", x: 261, y: 108, ancho: 21, alto: 40 }, // Brazo derecho TRASERA
-                            { nombre: "Antebrazo izquierdo", x: 170, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo TRASERA
-                            { nombre: "Antebrazo derecho", x: 261, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho TRASERA
-                            { nombre: "Man izquierda", x: 169, y: 207, ancho: 20, alto: 39 }, // Man izquierdo TRASERA
-                            { nombre: "Mano derecha", x: 266, y: 207, ancho: 20, alto: 39 }, // Man derecho TRASERA
-                            { nombre: "Espalda Baja", x: 197, y: 140, ancho: 63, alto: 32 }, // Abdomen Inferior Izquierdo TRASERA
-                            { nombre: "Gluteo Izquierdo", x: 196, y: 176, ancho: 30, alto: 27 }, // Pelvis TRASERA
-                            { nombre: "Gluteo Derecho", x: 226, y: 176, ancho: 33, alto: 27 }, // Pelvis TRASERA
-                            { nombre: "Muslo Izquierdo", x: 193, y: 202, ancho: 29, alto: 105 }, // Muslo Izquierdo TRASERA
-                            { nombre: "Muslo Derecho", x: 233, y: 202, ancho: 29, alto: 105 }, // Muslo Derecho TRASERA
-                            { nombre: "Pierna Izquierda", x: 196, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierda TRASERA
-                            { nombre: "Pierna Derecha", x: 233, y: 307, ancho: 26, alto: 93 }, // Pierna Derecha TRASERA
-                            { nombre: "Pie Izquierdo", x: 198, y: 398, ancho: 24, alto: 50 }, // Pie Izquierdo TRASERA
-                            { nombre: "Pie Derecho", x: 233, y: 398, ancho: 26, alto: 50 }, // Pie Derecho TRASERA
-                        ];
-            
-                        // Objeto para mantener un registro de los elementos creados
-                        const elementosPorNombre = {};
-            
-                        function CrearPartesDelCuerpo() {
-                            partesDelCuerpo.forEach(parte => {
-                                const parteElemento = document.createElement("div");
-                                parteElemento.classList.add("parteCuerpo");
-                                parteElemento.style.left = `${parte.x}px`;
-                                parteElemento.style.top = `${parte.y}px`;
-                                parteElemento.style.width = `${parte.ancho}px`;
-                                parteElemento.style.height = `${parte.alto}px`;
-                                parteElemento.setAttribute("title", parte.nombre);
-                                parteElemento.setAttribute("data-nombre", parte.nombre);
-                                
-                                parteElemento.addEventListener("click", () => {
-                                    mostrarSelectorIntensidad(parte.nombre, parteElemento);
-                                });
-            
-                                elementosPorNombre[parte.nombre] = parteElemento;
-                                cuerpo.appendChild(parteElemento);
-                            });
-                        }
-            
-                        function actualizarColorParte(elemento, intensidad) {
-                            // Primero removemos todas las clases de dolor
-                            elemento.classList.remove('dolor-baja', 'dolor-media', 'dolor-alta');
+                    </div>
+                    <table border="1" cellpadding="10" cellspacing="0" >
+                        <tr>
+                            <td>Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor
+                                manejo de la ansiedad y la depresión a menudo conduce mejor a un manejo del dolor. hable con su medico de la familia o enfermero especializado para. una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
+                                <div 
+                                class="btn-group"
+                                role="group"
+                                aria-label="Basic checkbox toggle button group"
+                                > ¿Desea usted apoyo en esta situaci&oacuten?
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="btnradio"
+                                    id="btncheck1"
+                                    required
                             
-                            // Añadimos la clase correspondiente según la intensidad
-                            if (intensidad) {
-                                elemento.classList.add(`dolor-${intensidad.toLowerCase()}`);
-                            }
+                                />
+                                <label
+                                    class="btn btn-outline-primary"
+                                    for="btncheck1"
+                                    >Si</label
+                                
+                                >
+                                <input
+                                    type="radio"
+                                    class="btn-check"
+                                    name="btnradio"
+                                    id="btncheck2"
+    
+                                />
+                                <label
+                                    class="btn btn-outline-primary"
+                                    for="btncheck2"
+                                    >No</label
+                                >
+                            </td>
+                            
+                        </tr>
+                    </table>
+                </div>
+
+
+                <div class="step">
+                    <div class="Pagina3">  
+                        <h4>Lea detenidamente y selecciona las condiciones de salud que presente</h4>
+                        <table id="tablaPagina3">
+                            <tr>
+                                <th>Musculoesqueléticos</th>
+                                <th>Neurológicos</th>
+                                <th>Endocrinos</th>
+                                <th>Cardiopulmonar</th>
+                                <th>Otros</th>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Artrosis</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Cefaleas</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Diabetes</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Arritmia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Ansiedad</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Artritis reumatoide</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Accidente Vascular</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas renales</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Colesterol Alto</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Depresión</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Fibromialgia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Hormigueos o adormecimiento</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas de vejiga</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Marcapasos</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Cáncer</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Osteoporosis</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Párkinson</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Problemas de hígado</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Anemia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Cirugías previas</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Historia de caídas</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Epilepsia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Alteración de tiroides</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Hipertensión</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Síndrome de fatiga crónica</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Dolor mandibular</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Esclerosis múltiple</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Resistencia a la insulina</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Asma</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Alergias</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Hernia discal o discopatías</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Síndrome de piernas inquietas</td>
+                                <td></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />VIH</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Obesidad</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Fracturas</td>
+                                <td></td>
+                                <td></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Falta de aire</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="" />Trombosis</td>
+                            </tr>
+                        </table>
+
+                        <div class="mencionar3Cosas">
+                            <h5>Mencione 3 cosas que hoy no puede hacer con normalidad debido a su problema (y que quiere recuperar)</h5>
+                            <div class="mb-3">
+                                <label for="" class="form-label">ingrese Texto</label>
+                                <textarea class="form-control" name="" id="mencion1" rows="3"required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">ingrese Texto</label>
+                                <textarea class="form-control" name="" id="mencion2" rows="3"required></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">ingrese Texto</label>
+                                <textarea class="form-control" name="" id="mencion3" rows="3"required></textarea>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+
+                    <style>
+                        .cuerpoHumano {
+                            position: relative;
+                            display: inline-block;
+                            text-align: center;
+                            align-items: center;
+                            justify-content: center;
                         }
-            
-                        function mostrarSelectorIntensidad(nombreParte, elemento) {
-                            // Verificar si ya existe una fila para esta parte
-                            const filaExistente = Array.from(document.querySelectorAll('#minitablita tr')).find(
-                                tr => tr.cells[0].textContent === nombreParte
-                            );
-            
-                            if (filaExistente) {
-                                alert('Esta parte del cuerpo ya ha sido seleccionada');
-                                return;
-                            }
-            
-                            const intensidades = ['Baja', 'Media', 'Alta'];
-                            const tr = document.createElement('tr');
-                            tr.innerHTML = `
-                                <td>${nombreParte}</td>
-                                <td>
-                                    <select class="form-select">
-                                        <option value="">Seleccionar intensidad</option>
-                                        ${intensidades.map(intensidad => 
-                                            `<option value="${intensidad.toLowerCase()}">${intensidad}</option>`
-                                        ).join('')}
-                                    </select>
-                                </td>
-                                <td>
-                                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                                </td>
-                            `;
-            
-                            // Añadir event listener al select
-                            const select = tr.querySelector('select');
-                            select.addEventListener('change', (e) => {
-                                actualizarColorParte(elemento, e.target.value);
-                            });
-            
-                            // Añadir event listener al botón de eliminar
-                            const btnEliminar = tr.querySelector('button');
-                            btnEliminar.addEventListener('click', () => {
-                                tr.remove();
-                                actualizarColorParte(elemento, null);
-                            });
-            
-                            document.getElementById('minitablita').appendChild(tr);
+                        
+                        .parteCuerpo {
+                            position: absolute;
+                            cursor: pointer;
+                            transition: all 0.3s ease; 
+                            border: 2px solid transparent; 
                         }
-            
-                        CrearPartesDelCuerpo();
-                    </script>
-            
-                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-                </body>
-            </div>
+                
+                        .parteCuerpo:hover {
+                            background-color: rgba(0, 123, 255, 0.3); 
+                            border: 2px solid #0056b3; 
+                            border-radius: 4px; 
+                            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); 
+                        }
+                
+                        /* Nuevos estilos para los niveles de dolor */
+                        .dolor-baja {
+                            background-color: rgba(200, 230, 201, 0.5) !important;
+                            border: 2px solid #81c784 !important;
+                        }
+                
+                        .dolor-media {
+                            background-color: rgba(255, 243, 224, 0.5) !important;
+                            border: 2px solid #ffb74d !important;
+                        }
+                
+                        .dolor-alta {
+                            background-color: rgba(255, 205, 210, 0.5) !important;
+                            border: 2px solid #e57373 !important;
+                        }
+                
+                        .table {
+                            margin-top: 20px;
+                        }
+                        
+                        .form-select {
+                            width: 100%;
+                        }
+                        
+                        .form-select option[value="baja"] {
+                            background-color: #c8e6c9;
+                        }
+                        
+                        .form-select option[value="media"] {
+                            background-color: #fff3e0;
+                        }
+                        
+                        .form-select option[value="alta"] {
+                            background-color: #ffcdd2;
+                        }
+                    </style>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form action="">
+                                            <center>
+                                                <div class="cuerpoHumano" id="cuerpoHumano">
+                                                    <img src="{% static 'image/cuerpo.jfif' %}" alt="" srcset="">
+                                                </div>
+                                            </center>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table class="table table-bordered mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th>Parte del Cuerpo</th>
+                                                    <th>Intensidad de Dolor</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="minitablita">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        <script>
+                            const cuerpo = document.getElementById("cuerpoHumano");
+                            const partesDelCuerpo = [
+                                //VISTA FRONTAL
+                                { nombre: "Cara", x: 42, y: 0, ancho: 34, alto: 51 },  // Cabeza FRONTAL
+                                { nombre: "Cuello ", x: 29, y: 50,ancho :52,alto:20}, // cuello FRONTAL
+                                { nombre: "Pectoral Izquierdo", x: 23, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo FRONTAL
+                                { nombre: "Pectoral derecho", x: 58, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho FRONTAL
+                                { nombre: "Hombro izquierdo", x: 4, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo FRONTAL
+                                { nombre: "Hombro derecho", x: 92, y: 70, ancho: 19, alto: 39 }, // Hombro derecho FRONTAL
+                                { nombre: "Brazo izquierdo", x: 4, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo FRONTAL
+                                { nombre: "Brazo derecho", x: 92, y: 108, ancho: 21, alto: 40 }, // Brazo derecho FRONTAL
+                                { nombre: "Antebrazo izquierdo", x: 1, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo FRONTAL
+                                { nombre: "Antebrazo derecho", x: 92, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho FRONTAL
+                                { nombre: "Mano Izquierda", x: 0, y: 207, ancho: 20, alto: 39 }, // Man izquierdo FRONTAL
+                                { nombre: "Mano derecha", x: 97, y: 207, ancho: 20, alto: 39 }, // Man derecho FRONTAL
+                                { nombre: "Abdomen Superior Izquierdo", x: 28, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo FRONTAL
+                                { nombre: "Abdomen Superior Derecho", x: 58, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho FRONTAL
+                                { nombre: "bdomen Inferior Izquierdo", x: 28, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo FRONTAL
+                                { nombre: "Abdomen Inferior Derecho", x: 58, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho FRONTAL
+                                { nombre: "Pelvis", x: 27, y: 176, ancho: 63, alto: 27 }, // Pelvis FRONTAL
+                                { nombre: "Genitales", x: 52, y: 202, ancho: 13, alto: 8 }, // Genitales FRONTAL
+                                { nombre: "Muslo Izquierdo", x: 24, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo FRONTAL
+                                { nombre: "Muslo Derecho", x: 64, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho FRONTAL
+                                { nombre: "Rodilla Izquierda", x: 27, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquiera FRONTAL
+                                { nombre: "Rodilla Derecha", x: 64, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha FRONTAL
+                                { nombre: "Pierna Izquierda", x: 27, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierdo FRONTAL
+                                { nombre: "Pierna Derecha", x: 64, y: 307, ancho: 26, alto: 93 }, // Pierna Derecho FRONTAL
+                                { nombre: "Talon Izquierdo", x: 29, y: 400, ancho: 24, alto: 12 }, // Talon Izquierdo FRONTAL
+                                { nombre: "Talon Derecho", x: 64, y: 400, ancho: 26, alto: 12 }, // Talon Derecho FRONTAL 
+                                { nombre: "Pie Izquierdo", x: 29, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo FRONTAL
+                                { nombre: "Pie Derecho", x: 64, y: 412, ancho: 26, alto: 37 }, // Pie Derecho FRONTAL
+                                //VISTA TRASERA
+                                { nombre: "Cabeza", x: 211, y: 0, ancho: 34, alto: 51 },  // Cabeza TRASERA
+                                { nombre: "cuello", x: 198, y: 50, ancho: 52, alto: 20 }, // cuello TRASERA
+                                { nombre: "Espalda Alta", x: 192, y: 70, ancho: 70, alto: 70 }, // Espalda Alta
+                                { nombre: "Hombro izquierdo", x: 173, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo TRASERA
+                                { nombre: "Hombro derecho", x: 261, y: 70, ancho: 19, alto: 39 }, // Hombro derecho TRASERA
+                                { nombre: "Brazo izquierdo", x: 173, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo TRASERA
+                                { nombre: "Brazo izquierdo", x: 261, y: 108, ancho: 21, alto: 40 }, // Brazo derecho TRASERA
+                                { nombre: "Antebrazo izquierdo", x: 170, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo TRASERA
+                                { nombre: "Antebrazo derecho", x: 261, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho TRASERA
+                                { nombre: "Man izquierda", x: 169, y: 207, ancho: 20, alto: 39 }, // Man izquierdo TRASERA
+                                { nombre: "Mano derecha", x: 266, y: 207, ancho: 20, alto: 39 }, // Man derecho TRASERA
+                                { nombre: "Espalda Baja", x: 197, y: 140, ancho: 63, alto: 32 }, // Abdomen Inferior Izquierdo TRASERA
+                                { nombre: "Gluteo Izquierdo", x: 196, y: 176, ancho: 30, alto: 27 }, // Pelvis TRASERA
+                                { nombre: "Gluteo Derecho", x: 226, y: 176, ancho: 33, alto: 27 }, // Pelvis TRASERA
+                                { nombre: "Muslo Izquierdo", x: 193, y: 202, ancho: 29, alto: 105 }, // Muslo Izquierdo TRASERA
+                                { nombre: "Muslo Derecho", x: 233, y: 202, ancho: 29, alto: 105 }, // Muslo Derecho TRASERA
+                                { nombre: "Pierna Izquierda", x: 196, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierda TRASERA
+                                { nombre: "Pierna Derecha", x: 233, y: 307, ancho: 26, alto: 93 }, // Pierna Derecha TRASERA
+                                { nombre: "Pie Izquierdo", x: 198, y: 398, ancho: 24, alto: 50 }, // Pie Izquierdo TRASERA
+                                { nombre: "Pie Derecho", x: 233, y: 398, ancho: 26, alto: 50 }, // Pie Derecho TRASERA
+                            ];
+                
+                            // Objeto para mantener un registro de los elementos creados
+                            const elementosPorNombre = {};
+                
+                            function CrearPartesDelCuerpo() {
+                                partesDelCuerpo.forEach(parte => {
+                                    const parteElemento = document.createElement("div");
+                                    parteElemento.classList.add("parteCuerpo");
+                                    parteElemento.style.left = `${parte.x}px`;
+                                    parteElemento.style.top = `${parte.y}px`;
+                                    parteElemento.style.width = `${parte.ancho}px`;
+                                    parteElemento.style.height = `${parte.alto}px`;
+                                    parteElemento.setAttribute("title", parte.nombre);
+                                    parteElemento.setAttribute("data-nombre", parte.nombre);
+                                    
+                                    parteElemento.addEventListener("click", () => {
+                                        mostrarSelectorIntensidad(parte.nombre, parteElemento);
+                                    });
+                
+                                    elementosPorNombre[parte.nombre] = parteElemento;
+                                    cuerpo.appendChild(parteElemento);
+                                });
+                            }
+                
+                            function actualizarColorParte(elemento, intensidad) {
+                                // Primero removemos todas las clases de dolor
+                                elemento.classList.remove('dolor-baja', 'dolor-media', 'dolor-alta');
+                                
+                                // Añadimos la clase correspondiente según la intensidad
+                                if (intensidad) {
+                                    elemento.classList.add(`dolor-${intensidad.toLowerCase()}`);
+                                }
+                            }
+                
+                            function mostrarSelectorIntensidad(nombreParte, elemento) {
+                                // Verificar si ya existe una fila para esta parte
+                                const filaExistente = Array.from(document.querySelectorAll('#minitablita tr')).find(
+                                    tr => tr.cells[0].textContent === nombreParte
+                                );
+                
+                                if (filaExistente) {
+                                    alert('Esta parte del cuerpo ya ha sido seleccionada');
+                                    return;
+                                }
+                
+                                const intensidades = ['Baja', 'Media', 'Alta'];
+                                const tr = document.createElement('tr');
+                                tr.innerHTML = `
+                                    <td>${nombreParte}</td>
+                                    <td>
+                                        <select class="form-select">
+                                            <option value="">Seleccionar intensidad</option>
+                                            ${intensidades.map(intensidad => 
+                                                `<option value="${intensidad.toLowerCase()}">${intensidad}</option>`
+                                            ).join('')}
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn-sm">Eliminar</button>
+                                    </td>
+                                `;
+                
+                                // Añadir event listener al select
+                                const select = tr.querySelector('select');
+                                select.addEventListener('change', (e) => {
+                                    actualizarColorParte(elemento, e.target.value);
+                                });
+                
+                                // Añadir event listener al botón de eliminar
+                                const btnEliminar = tr.querySelector('button');
+                                btnEliminar.addEventListener('click', () => {
+                                    tr.remove();
+                                    actualizarColorParte(elemento, null);
+                                });
+                
+                                document.getElementById('minitablita').appendChild(tr);
+                            }
+                
+                            CrearPartesDelCuerpo();
+                        </script>
+                
+                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+                    </body>
+                </div>
+                <div class="step">
+                    <h3>PARA RESPONDER LAS SIGUIENTES PREGUNTAS, PIENSE SOLO RESPECTO DE LAS ÚLTIMAS 2 SEMANAS</h3>
+                    <h6>1.- En promedio, ¿Cuan intenso ha sido su dolor?(donde 0 es “nada de dolor y 10 es ”el peor dolor posible”) </h6>
+                    <div class="form-group">
+                        <label class="form-label">Duración de su dolor</label>
+                        <input type="range" min="1" max="10"  class="slider" id="IntensidadDolor"/>
+                        <div style="display: flex; justify-content: space-between; width: 100%;">
+                            <label for="ProgressionBarPregunta">1</label>
+                            <label for="ProgressionBarPregunta">2</label>
+                            <label for="ProgressionBarPregunta">3</label>
+                            <label for="ProgressionBarPregunta">4</label>
+                            <label for="ProgressionBarPregunta">5</label>
+                            <label for="ProgressionBarPregunta">6</label>
+                            <label for="ProgressionBarPregunta">7</label>
+                            <label for="ProgressionBarPregunta">8</label>
+                            <label for="ProgressionBarPregunta">9</label>
+                            <label for="ProgressionBarPregunta">10</label>
+                        </div>
+                    
+                </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><h6>Por favor marque una casilla para cada pregunta a continuación</h6></th>
+                                <th>si</th>
+                                <th>no</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">¿Se siente a menudo inseguro sobre cómo controlar su dolor?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Le ha molestado mucho su dolor?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Su dolor sólo le ha permitido caminar distancias cortas?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Ha tenido dolores articulares o musculares molestos en más de una parte del cuerpo?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Piensa que su patología o problema de salud durará mucho tiempo?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Tiene otros problemas de salud importantes?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿El dolor le ha hecho sentirse desanimado o deprimido?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Siente que podría ser peligroso que una persona con un problema de salud como el suyo realice actividad fisica?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td scope="row">¿Ha padecido su actual problema de dolor durante 6 meses o más?</td>
+                                <td><input type="checkbox"></button></td>
+                                <td><input type="checkbox"></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                
+                    
+                </div>
             <div class="step">
-                <h3>PARA RESPONDER LAS SIGUIENTES PREGUNTAS, PIENSE SOLO RESPECTO DE LAS ÚLTIMAS 2 SEMANAS</h3>
-                <h6>1.- En promedio, ¿Cuan intenso ha sido su dolor?(donde 0 es “nada de dolor y 10 es ”el peor dolor posible”) </h6>
+                    <h3>
+                        Impacto del Dolor en tus Objetivos.
+                    </h3>
+                    <h6>
+                        ¿Que esperas lograr con un mejor manejo del dolor?, seleccione máximo 2 opción.
+                    </h6>
                 <div class="form-group">
-                    <label class="form-label">Duración de su dolor</label>
-                    <input type="range" min="1" max="10"  class="slider" id="IntensidadDolor"/>
-                
-            </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th><h6>Por favor marque una casilla para cada pregunta a continuación</h6></th>
-                            <th>si</th>
-                            <th>no</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">¿Se siente a menudo inseguro sobre cómo controlar su dolor?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Le ha molestado mucho su dolor?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Su dolor sólo le ha permitido caminar distancias cortas?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Ha tenido dolores articulares o musculares molestos en más de una parte del cuerpo?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Piensa que su patología o problema de salud durará mucho tiempo?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Tiene otros problemas de salud importantes?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿El dolor le ha hecho sentirse desanimado o deprimido?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Siente que podría ser peligroso que una persona con un problema de salud como el suyo realice actividad fisica?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
-                        <tr>
-                            <td scope="row">¿Ha padecido su actual problema de dolor durante 6 meses o más?</td>
-                            <td><input type="checkbox"></button></td>
-                            <td><input type="checkbox"></td>
-                        </tr>
+                    
+                    <form id="idform">
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Mejor comprensión de por qué tengo dolor persistente.
+                        </label>
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Aprender habilidades para manejar mi dolor sin medicación.
+                        </label>
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Aprender a identificar los desencadenantes de nuestro dolor.
+                        </label>
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Explorar opciones farmacológicas.
+                        </label>
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).
+                        </label>
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Me gustaría mejorar mi actividad física.
+                        </label>
+                        <label>
+                            <input type="checkbox" name="opcion" class="opcion-checkbox">
+                            Me gustaría mejorar mis habilidades de comunicación relacionadas con el manejo de mi dolor crónico.
+                        </label>
+                    </form>
 
-                    </tbody>
-                </table>
-
-              
-                 
-            </div>
-        <div class="step">
-                <h3>
-                    Impacto del Dolor en tus Objetivos.
-                </h3>
-                <h6>
-                    ¿Que esperas lograr con un mejor manejo del dolor?, seleccione máximo 2 opción.
-                </h6>
-            <div class="form-group">
-                
-                <form id="idform">
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Mejor comprensión de por qué tengo dolor persistente.
-                    </label>
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Aprender habilidades para manejar mi dolor sin medicación.
-                    </label>
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Aprender a identificar los desencadenantes de nuestro dolor.
-                    </label>
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Explorar opciones farmacológicas.
-                    </label>
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).
-                    </label>
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Me gustaría mejorar mi actividad física.
-                    </label>
-                    <label>
-                        <input type="checkbox" name="opcion" class="opcion-checkbox">
-                        Me gustaría mejorar mis habilidades de comunicación relacionadas con el manejo de mi dolor crónico.
-                    </label>
-                </form>
-
-
-                
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="mb-3">
-                <label for="niveldesalud" class="form-label">
-                    1. Por favor indique en qué rango se encuentra su nivel de salud
-                </label>
-                <input type="range" min="1" max="10" class="slider" id="niveldesalud" />
-            </div>
-            
-            <div class="contenedor">
-               
-            
-                <div class="pregunta">
-                    <label>
-                        2) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion1" class="opcion-radio" /> Menos que cuatro horas<br />
-                        <input type="radio" name="opcion1" class="opcion-radio" /> 4-5 horas<br />
-                        <input type="radio" name="opcion1" class="opcion-radio" /> 6 horas<br />
-                        <input type="radio" name="opcion1" class="opcion-radio" /> 7 a 8 horas<br />
-                        <input type="radio" name="opcion1" class="opcion-radio" /> 9 o más horas
-                    </div>
-                </div>
-            
-                <div class="pregunta">
-                    <label>
-                        3)Durante las últimas dos semanas, ¿con qué frecuencia se sintió 
-                        cansado o tuvo dificultad para mantenerse despierto al realizar tareas rutinarias durante el día?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion2" class="opcion-radio" /> nunca <br />
-                        <input type="radio" name="opcion2" class="opcion-radio" /> varios dias<br />
-                        <input type="radio" name="opcion2" class="opcion-radio" /> mas de la mitad del dia <br />
-                        <input type="radio" name="opcion2" class="opcion-radio" /> casi todos los dias
-                    </div>
-                </div>
-                <div class="pregunta">
-                    <label>
-                        4) ¿Qué opinas sobre tu peso actual?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion3" class="opcion-radio" /> Quiero ganar mucho peso<br />
-                        <input type="radio" name="opcion3" class="opcion-radio" /> quiero ganar poco peso<br />
-                        <input type="radio" name="opcion3" class="opcion-radio" /> estoy feliz con mi peso<br />
-                        <input type="radio" name="opcion3" class="opcion-radio" /> quiero perder un poco de peso<br />
-                        <input type="radio" name="opcion3" class="opcion-radio" /> quiero perder mucho peso 
-                    </div>
-                </div>
-                <div class="pregunta">
-                    <label>
-                        5) Durante las últimas dos semanas, ¿con qué frecuencia ha comido comida rápida, bebidas azucaradas (por ejemplo, soca, bebidas deportivas, jugos) o 
-                        alimentos envasados (por ejemplo, papas fritas, dulces, galletas saladas, galletas dulces)?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion4" class="opcion-radio" /> nunca <br />
-                        <input type="radio" name="opcion4" class="opcion-radio" /> varios dias<br />
-                        <input type="radio" name="opcion4" class="opcion-radio" /> mas de la mitad del dia <br />
-                        <input type="radio" name="opcion4" class="opcion-radio" /> casi todos los dias
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-
-        <div class="step">
-            <div class="contenedor">
-                <div class="pregunta">
-                    <label>
-                        6) En un día normal, ¿cuántas porciones de frutas y verduras enteras comes
-                         (1 porción equivale aproximadamente a un puñado y no incluye jugo de fruta)?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion5" class="opcion-radio" />menos de 2 porciones <br />
-                        <input type="radio" name="opcion5" class="opcion-radio" /> 2 a 3 porciones <br />
-                        <input type="radio" name="opcion5" class="opcion-radio" /> 4 a 5 porciones <br />
-                        <input type="radio" name="opcion5" class="opcion-radio" /> mas de 5 porciones<br />
-
-                    </div>
-                </div>
-                <div class="pregunta">
-                    <label>
-                        7) durante las ultimas 2 semanas, 
-                        ¿Cuántos días hiciste ejercicio a una intensidad moderada a extenuante 
-                        (es decir, caminar a paso ligero o movimiento suficiente para sudar un poco)?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion6" class="opcion-radio" />menos de 1 vez por semana <br />
-                        <input type="radio" name="opcion6" class="opcion-radio" /> 1-2 veces por semana <br />
-                        <input type="radio" name="opcion6" class="opcion-radio" /> 3-4 veces por semana<br />
-                        <input type="radio" name="opcion6" class="opcion-radio" /> 5 o mas veces por semana <br />
-                    </div>
-                </div>
-
-                <div class="pregunta">
-                    <label>
-                        8) Durante una sesión promedio, ¿cuántos minutos haces ejercicio a una intensidad moderada a intensa 
-                        (es decir, caminar a paso ligero o moverse lo suficiente como para sudar un poco)?
-                    </label>
-                    <div>
-                        <input type="radio" name="opcion7" class="opcion-radio" /> Menos que cuatro horas<br />
-                        <input type="radio" name="opcion7" class="opcion-radio" /> 4-5 horas<br />
-                        <input type="radio" name="opcion7" class="opcion-radio" /> 6 horas<br />
-                        <input type="radio" name="opcion7" class="opcion-radio" /> 7 a 8 horas<br />
-                        <input type="radio" name="opcion7" class="opcion-radio" /> 9 o más horas
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
 
                     
-
-
-            <div class="nav-buttons">
-                <button type="button" class="btn btn-secondary" id="prevBtn">Anterior</button>
-                <button type="button" class="btn btn-primary" id="nextBtn">Siguiente</button>
+                </div>
             </div>
-        </form>
-    </div>
 
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            let currentStep = 0;
-            const steps = document.querySelectorAll(".step");
-            const indicators = document.querySelectorAll(".step-indicator");
-            const progressLine = document.querySelector(".progress-line");
-            const btnNext = document.getElementById("nextBtn");
-            const btnPrev = document.getElementById("prevBtn");
-
-            const updateUI = (stepIndex) => {
-
-                steps.forEach((step, i) => {
-                    step.classList.toggle("active", i === stepIndex);
-                });
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle("active", i === stepIndex);
-                    indicator.classList.toggle("completed", i < stepIndex);
-                });
-
-                const progress = (stepIndex / (steps.length - 1)) * 100;
-                progressLine.style.width = `calc(${progress}% - 40px)`;
-
-                btnPrev.style.display = stepIndex === 0 ? "none" : "block";
-                btnNext.textContent = stepIndex === steps.length - 1 ? "Enviar" : "Siguiente";
-            };
-
-            btnNext.addEventListener("click", () => {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    updateUI(currentStep);
-                } else {
-                    document.getElementById("Step").submit();
-                }
-            });
-
-            btnPrev.addEventListener("click", () => {
-                if (currentStep > 0) {
-                    currentStep--;
-                    updateUI(currentStep);
-                }
-            });
-
-        const checkboxes = document.querySelectorAll('.opcion-checkbox');
-
-        checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            const checkedCheckboxes = document.querySelectorAll('.opcion-checkbox:checked');
-            if (checkedCheckboxes.length > 2) {
-                checkbox.checked = false; 
-                alert('Solo puedes seleccionar hasta 2 opciones.');
-            }
-        });
-    });
-
-          
-
-            // Initialize UI
-            updateUI(currentStep);
-
-        });
-
-        
-        
-
-   
+            <div class="step">
+                <div class="mb-3">
+                    <label for="niveldesalud" class="form-label">
+                        1. Por favor indique en qué rango se encuentra su nivel de salud
+                    </label>
+                    <input type="range" min="1" max="10" class="slider" id="niveldesalud" />
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <label for="ProgressionBarPregunta">1</label>
+                        <label for="ProgressionBarPregunta">2</label>
+                        <label for="ProgressionBarPregunta">3</label>
+                        <label for="ProgressionBarPregunta">4</label>
+                        <label for="ProgressionBarPregunta">5</label>
+                        <label for="ProgressionBarPregunta">6</label>
+                        <label for="ProgressionBarPregunta">7</label>
+                        <label for="ProgressionBarPregunta">8</label>
+                        <label for="ProgressionBarPregunta">9</label>
+                        <label for="ProgressionBarPregunta">10</label>
+                    </div>
+                </div>
                 
-        
-  
+                <div class="contenedor">
+                
+                
+                    <div class="pregunta">
+                        <label>
+                            2) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion1" class="opcion-radio" /> Menos que cuatro horas<br />
+                            <input type="radio" name="opcion1" class="opcion-radio" /> 4-5 horas<br />
+                            <input type="radio" name="opcion1" class="opcion-radio" /> 6 horas<br />
+                            <input type="radio" name="opcion1" class="opcion-radio" /> 7 a 8 horas<br />
+                            <input type="radio" name="opcion1" class="opcion-radio" /> 9 o más horas
+                        </div>
+                    </div>
+                
+                    <div class="pregunta">
+                        <label>
+                            3)Durante las últimas dos semanas, ¿con qué frecuencia se sintió 
+                            cansado o tuvo dificultad para mantenerse despierto al realizar tareas rutinarias durante el día?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion2" class="opcion-radio" /> nunca <br />
+                            <input type="radio" name="opcion2" class="opcion-radio" /> varios dias<br />
+                            <input type="radio" name="opcion2" class="opcion-radio" /> mas de la mitad del dia <br />
+                            <input type="radio" name="opcion2" class="opcion-radio" /> casi todos los dias
+                        </div>
+                    </div>
+                    <div class="pregunta">
+                        <label>
+                            4) ¿Qué opinas sobre tu peso actual?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion3" class="opcion-radio" /> Quiero ganar mucho peso<br />
+                            <input type="radio" name="opcion3" class="opcion-radio" /> quiero ganar poco peso<br />
+                            <input type="radio" name="opcion3" class="opcion-radio" /> estoy feliz con mi peso<br />
+                            <input type="radio" name="opcion3" class="opcion-radio" /> quiero perder un poco de peso<br />
+                            <input type="radio" name="opcion3" class="opcion-radio" /> quiero perder mucho peso 
+                        </div>
+                    </div>
+                    <div class="pregunta">
+                        <label>
+                            5) Durante las últimas dos semanas, ¿con qué frecuencia ha comido comida rápida, bebidas azucaradas (por ejemplo, soca, bebidas deportivas, jugos) o 
+                            alimentos envasados (por ejemplo, papas fritas, dulces, galletas saladas, galletas dulces)?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion4" class="opcion-radio" /> nunca <br />
+                            <input type="radio" name="opcion4" class="opcion-radio" /> varios dias<br />
+                            <input type="radio" name="opcion4" class="opcion-radio" /> mas de la mitad del dia <br />
+                            <input type="radio" name="opcion4" class="opcion-radio" /> casi todos los dias
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="contenedor">
+                    <div class="pregunta">
+                        <label>
+                            6) En un día normal, ¿cuántas porciones de frutas y verduras enteras comes
+                            (1 porción equivale aproximadamente a un puñado y no incluye jugo de fruta)?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion5" class="opcion-radio" />menos de 2 porciones <br />
+                            <input type="radio" name="opcion5" class="opcion-radio" /> 2 a 3 porciones <br />
+                            <input type="radio" name="opcion5" class="opcion-radio" /> 4 a 5 porciones <br />
+                            <input type="radio" name="opcion5" class="opcion-radio" /> mas de 5 porciones<br />
+
+                        </div>
+                    </div>
+                    <div class="pregunta">
+                        <label>
+                            7) durante las ultimas 2 semanas, 
+                            ¿Cuántos días hiciste ejercicio a una intensidad moderada a extenuante 
+                            (es decir, caminar a paso ligero o movimiento suficiente para sudar un poco)?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion6" class="opcion-radio" />menos de 1 vez por semana <br />
+                            <input type="radio" name="opcion6" class="opcion-radio" /> 1-2 veces por semana <br />
+                            <input type="radio" name="opcion6" class="opcion-radio" /> 3-4 veces por semana<br />
+                            <input type="radio" name="opcion6" class="opcion-radio" /> 5 o mas veces por semana <br />
+                        </div>
+                    </div>
+
+                    <div class="pregunta">
+                        <label>
+                            8) Durante una sesión promedio, ¿cuántos minutos haces ejercicio a una intensidad moderada a intensa 
+                            (es decir, caminar a paso ligero o moverse lo suficiente como para sudar un poco)?
+                        </label>
+                        <div>
+                            <input type="radio" name="opcion7" class="opcion-radio" /> Menos que cuatro horas<br />
+                            <input type="radio" name="opcion7" class="opcion-radio" /> 4-5 horas<br />
+                            <input type="radio" name="opcion7" class="opcion-radio" /> 6 horas<br />
+                            <input type="radio" name="opcion7" class="opcion-radio" /> 7 a 8 horas<br />
+                            <input type="radio" name="opcion7" class="opcion-radio" /> 9 o más horas
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             
 
+                        
+
+
+                <div class="nav-buttons">
+                    <button type="button" class="btn btn-secondary" id="prevBtn">Anterior</button>
+                    <button type="button" class="btn btn-primary" id="nextBtn">Siguiente</button>
+                </div>
+            </form>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                let currentStep = 0;
+                const steps = document.querySelectorAll(".step");
+                const indicators = document.querySelectorAll(".step-indicator");
+                const progressLine = document.querySelector(".progress-line");
+                const btnNext = document.getElementById("nextBtn");
+                const btnPrev = document.getElementById("prevBtn");
+
+                const updateUI = (stepIndex) => {
+
+                    steps.forEach((step, i) => {
+                        step.classList.toggle("active", i === stepIndex);
+                    });
+                    indicators.forEach((indicator, i) => {
+                        indicator.classList.toggle("active", i === stepIndex);
+                        indicator.classList.toggle("completed", i < stepIndex);
+                    });
+
+                    const progress = (stepIndex / (steps.length - 1)) * 100;
+                    progressLine.style.width = `calc(${progress}% - 40px)`;
+
+                    btnPrev.style.display = stepIndex === 0 ? "none" : "block";
+                    btnNext.textContent = stepIndex === steps.length - 1 ? "Enviar" : "Siguiente";
+                };
+
+                btnNext.addEventListener("click", () => {
+                    if (currentStep < steps.length - 1) {
+                        currentStep++;
+                        updateUI(currentStep);
+                    } else {
+                        document.getElementById("Step").submit();
+                    }
+                });
+
+                btnPrev.addEventListener("click", () => {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        updateUI(currentStep);
+                    }
+                });
+
+            const checkboxes = document.querySelectorAll('.opcion-checkbox');
+
+            checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCheckboxes = document.querySelectorAll('.opcion-checkbox:checked');
+                if (checkedCheckboxes.length > 2) {
+                    checkbox.checked = false; 
+                    alert('Solo puedes seleccionar hasta 2 opciones.');
+                }
+            });
+        });
+                updateUI(currentStep);
+
+            });
+
+        </script>
     
+    </main>
     
-    </script>
+    <footer>
+    </footer>
 </body>
 </html>
