@@ -108,8 +108,12 @@
                     <h2 class="mb-4">Características de su dolor</h2>
                     <div class="form-group">
                         <label class="form-label">Duración de su dolor</label>
-                        <input type="range" min="0" max="9" class="slider" id="DuracionDolor" required/>
-
+                        <input type="radio" class="btn-check" name="btnradio" id="btncheck1" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btncheck1">Menos de 3 meses</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btncheck2" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btncheck2">Entre 3 y 6 meses</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btncheck3" autocomplete="off"/>
+                        <label class="btn btn-outline-primary" for="btncheck2">Mas de 6 meses</label>
                     </div>
                     <div class="list-group">
                         <h3 class="h6 mb-3">Seleccione las características de su dolor</h3>
@@ -417,7 +421,7 @@
                                         <form action="">
                                             <center>
                                                 <div class="cuerpoHumano" id="cuerpoHumano">
-                                                    <img src="{% static 'image/cuerpo.jfif' %}" alt="" srcset="">
+                                                    <img src="{% static 'image/cuerpo.png' %}" alt="" srcset="">
                                                 </div>
                                             </center>
                                         </form>
