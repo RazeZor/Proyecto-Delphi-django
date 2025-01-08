@@ -114,3 +114,7 @@
 .mencionar3Cosas{
   padding-top: 40px;
 }
+
+.pregunta1 .pregunta2{
+  display: flex;
+}

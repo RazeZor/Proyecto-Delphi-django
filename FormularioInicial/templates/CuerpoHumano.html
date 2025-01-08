@@ -20,120 +20,201 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="cuerpo.css">
+
     </head>
  
+    <style>
+        .cuerpoHumano {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .parteCuerpo {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease; 
+            border: 2px solid transparent; 
+        }
 
+        .parteCuerpo:hover {
+            background-color: rgba(0, 123, 255, 0.3); 
+            border: 2px solid #0056b3; 
+            border-radius: 4px; 
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); 
+        }
+
+        .table {
+            margin-top: 20px;
+        }
+        
+        .form-select {
+            width: 100%;
+        }
+        
+        .form-select option[value="baja"] {
+            background-color: #c8e6c9;
+        }
+        
+        .form-select option[value="media"] {
+            background-color: #fff3e0;
+        }
+        
+        .form-select option[value="alta"] {
+            background-color: #ffcdd2;
+        }
+        
+    </style>
     <body>
         <header>
             <!-- place navbar here -->
         </header>
         <main>
-            <form action="">
-                <center>
-                    <div class="cuerpoHumano" id="cuerpoHumano">
-                        <img src="{% static 'image/cuerpo.jfif' %}" alt="" srcset="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form action="">
+                            <center>
+                                <div class="cuerpoHumano" id="cuerpoHumano">
+                                    <img src="{% static 'image/cuerpo.jfif' %}" alt="" srcset="">
+                                </div>
+                            </center>
+                        </form>
                     </div>
-                </center>
-                
-            </form>
-            
-            <script>
-            
-            const cuerpo = document.getElementById("cuerpoHumano")
-                
-            const partesDelCuerpo = [
-            //VISTA FRONTAL
-            { nombre: "FRCabeza", x: 42, y: 0, ancho: 34, alto: 51 },  // Cabeza FRONTAL
-            { nombre : "FRcuello ", x: 29, y: 50,ancho :52,alto:20}, // cuello FRONTAL
-            { nombre: "FRPectoralIzq", x: 23, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo FRONTAL
-            { nombre: "FRPectoralDer", x: 58, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho FRONTAL
-            { nombre: "FRHombroIzq", x: 4, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo FRONTAL
-            { nombre: "FRHombroDer", x: 92, y: 70, ancho: 19, alto: 39 }, // Hombro derecho FRONTAL
-            { nombre: "FRBrazoIzq", x: 4, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo FRONTAL
-            { nombre: "FRBrazoDer", x: 92, y: 108, ancho: 21, alto: 40 }, // Brazo derecho FRONTAL
-            { nombre: "FRAntIzq", x: 1, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo FRONTAL
-            { nombre: "FRAntDer", x: 92, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho FRONTAL
-            { nombre: "FRManIzq", x: 0, y: 207, ancho: 20, alto: 39 }, // Man izquierdo FRONTAL
-            { nombre: "FRManDer", x: 97, y: 207, ancho: 20, alto: 39 }, // Man derecho FRONTAL
-            { nombre: "FRAbSupIzq", x: 28, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo FRONTAL
-            { nombre: "FRAbSupDer", x: 58, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho FRONTAL
-            { nombre: "FRAbInfIzq", x: 28, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo FRONTAL
-            { nombre: "FRAbInfDer", x: 58, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho FRONTAL
-            { nombre: "FRPelvis", x: 27, y: 176, ancho: 63, alto: 27 }, // Pelvis FRONTAL
-            { nombre: "FRGenitales", x: 52, y: 202, ancho: 13, alto: 8 }, // Genitales FRONTAL
-            { nombre: "FRMusloIzq", x: 24, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo FRONTAL
-            { nombre: "FRMusloDer", x: 64, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho FRONTAL
-            { nombre: "FRRodIzq", x: 27, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquiera FRONTAL
-            { nombre: "FRRodDer", x: 64, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha FRONTAL
-            { nombre: "FRPiernIzq", x: 27, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierdo FRONTAL
-            { nombre: "FRPiernDer", x: 64, y: 307, ancho: 26, alto: 93 }, // Pierna Derecho FRONTAL
-            { nombre: "FRTalIzq", x: 29, y: 400, ancho: 24, alto: 12 }, // Talon Izquierdo FRONTAL
-            { nombre: "FRTalDer", x: 64, y: 400, ancho: 26, alto: 12 }, // Talon Derecho FRONTAL 
-            { nombre: "FRPieIzq", x: 29, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo FRONTAL
-            { nombre: "FRPieDer", x: 64, y: 412, ancho: 26, alto: 37 }, // Pie Derecho FRONTAL
-            //VISTA TRASERA
-            { nombre: "BCCabeza", x: 211, y: 0, ancho: 34, alto: 51 },  // Cabeza TRASERA
-            { nombre: "BCcuello ", x: 198, y: 50, ancho: 52, alto: 20 }, // cuello TRASERA
-            { nombre: "BCPectoralIzq", x: 192, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo TRASERA
-            { nombre: "BCPectoralDer", x: 227, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho TRASERA
-            { nombre: "BCHombroIzq", x: 173, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo TRASERA
-            { nombre: "BCHombroDer", x: 261, y: 70, ancho: 19, alto: 39 }, // Hombro derecho TRASERA
-            { nombre: "BCBrazoIzq", x: 173, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo TRASERA
-            { nombre: "BCBrazoDer", x: 261, y: 108, ancho: 21, alto: 40 }, // Brazo derecho TRASERA
-            { nombre: "BCAntIzq", x: 170, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo TRASERA
-            { nombre: "BCAntDer", x: 261, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho TRASERA
-            { nombre: "BCManIzq", x: 169, y: 207, ancho: 20, alto: 39 }, // Man izquierdo TRASERA
-            { nombre: "BCManDer", x: 266, y: 207, ancho: 20, alto: 39 }, // Man derecho TRASERA
-            { nombre: "BCAbSupIzq", x: 197, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo TRASERA
-            { nombre: "BCAbSupDer", x: 227, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho TRASERA
-            { nombre: "BCAbInfIzq", x: 197, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo TRASERA
-            { nombre: "BCAbInfDer", x: 227, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho TRASERA
-            { nombre: "BCPelvis", x: 196, y: 176, ancho: 63, alto: 27 }, // Pelvis TRASERA
-            { nombre: "BCGenitales", x: 221, y: 202, ancho: 13, alto: 8 }, // Genitales TRASERA
-            { nombre: "BCMusloIzq", x: 193, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo TRASERA
-            { nombre: "BCMusloDer", x: 233, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho TRASERA
-            { nombre: "BCRodIzq", x: 196, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquierda TRASERA
-            { nombre: "BCRodDer", x: 233, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha TRASERA
-            { nombre: "BCPiernIzq", x: 196, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierda TRASERA
-            { nombre: "BCPiernDer", x: 233, y: 307, ancho: 26, alto: 93 }, // Pierna Derecha TRASERA
-            { nombre: "BCTalIzq", x: 198, y: 400, ancho: 24, alto: 12 }, // Talón Izquierdo TRASERA
-            { nombre: "BCTalDer", x: 233, y: 400, ancho: 26, alto: 12 }, // Talón Derecho TRASERA
-            { nombre: "BCPieIzq", x: 198, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo TRASERA
-            { nombre: "BCPieDer", x: 233, y: 412, ancho: 26, alto: 37 }, // Pie Derecho TRASERA
-            
-            ];
-
-            function CrearPartesDelCuerpo(){
-                partesDelCuerpo.forEach(parte => {
-                    const parteElemento = document.createElement("div")
-                    parteElemento.classList.add("parteCuerpo")
-                    parteElemento.style.left= `${parte.x}px`;
-                    parteElemento.style.top = `${parte.y}px`;
-                    parteElemento.style.width = `${parte.ancho}px`;
-                    parteElemento.style.height = `${parte.alto}px`;
-                    parteElemento.setAttribute("title", parte.nombre);
+                    <div class="col-md-6">
+                        <table class="table table-bordered mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Parte del Cuerpo</th>
+                                    <th>Intensidad de Dolor</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="minitablita">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+    
+            </div>
+</form>
+        <script>
+    
+                const cuerpo = document.getElementById("cuerpoHumano")
                     
-                    parteElemento.addEventListener("click", () => {
-                        alert(`Has seleccionado: ${parte.nombre}`);
-                    });
+                const partesDelCuerpo = [
+                //VISTA FRONTAL
+                { nombre: "FRCabeza", x: 42, y: 0, ancho: 34, alto: 51 },  // Cabeza FRONTAL
+                { nombre : "FRcuello ", x: 29, y: 50,ancho :52,alto:20}, // cuello FRONTAL
+                { nombre: "FRPectoralIzq", x: 23, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo FRONTAL
+                { nombre: "FRPectoralDer", x: 58, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho FRONTAL
+                { nombre: "FRHombroIzq", x: 4, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo FRONTAL
+                { nombre: "FRHombroDer", x: 92, y: 70, ancho: 19, alto: 39 }, // Hombro derecho FRONTAL
+                { nombre: "FRBrazoIzq", x: 4, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo FRONTAL
+                { nombre: "FRBrazoDer", x: 92, y: 108, ancho: 21, alto: 40 }, // Brazo derecho FRONTAL
+                { nombre: "FRAntIzq", x: 1, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo FRONTAL
+                { nombre: "FRAntDer", x: 92, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho FRONTAL
+                { nombre: "FRManIzq", x: 0, y: 207, ancho: 20, alto: 39 }, // Man izquierdo FRONTAL
+                { nombre: "FRManDer", x: 97, y: 207, ancho: 20, alto: 39 }, // Man derecho FRONTAL
+                { nombre: "FRAbSupIzq", x: 28, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo FRONTAL
+                { nombre: "FRAbSupDer", x: 58, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho FRONTAL
+                { nombre: "FRAbInfIzq", x: 28, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo FRONTAL
+                { nombre: "FRAbInfDer", x: 58, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho FRONTAL
+                { nombre: "FRPelvis", x: 27, y: 176, ancho: 63, alto: 27 }, // Pelvis FRONTAL
+                { nombre: "FRGenitales", x: 52, y: 202, ancho: 13, alto: 8 }, // Genitales FRONTAL
+                { nombre: "FRMusloIzq", x: 24, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo FRONTAL
+                { nombre: "FRMusloDer", x: 64, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho FRONTAL
+                { nombre: "FRRodIzq", x: 27, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquiera FRONTAL
+                { nombre: "FRRodDer", x: 64, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha FRONTAL
+                { nombre: "FRPiernIzq", x: 27, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierdo FRONTAL
+                { nombre: "FRPiernDer", x: 64, y: 307, ancho: 26, alto: 93 }, // Pierna Derecho FRONTAL
+                { nombre: "FRTalIzq", x: 29, y: 400, ancho: 24, alto: 12 }, // Talon Izquierdo FRONTAL
+                { nombre: "FRTalDer", x: 64, y: 400, ancho: 26, alto: 12 }, // Talon Derecho FRONTAL 
+                { nombre: "FRPieIzq", x: 29, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo FRONTAL
+                { nombre: "FRPieDer", x: 64, y: 412, ancho: 26, alto: 37 }, // Pie Derecho FRONTAL
+                //VISTA TRASERA
+                { nombre: "BCCabeza", x: 211, y: 0, ancho: 34, alto: 51 },  // Cabeza TRASERA
+                { nombre: "BCcuello ", x: 198, y: 50, ancho: 52, alto: 20 }, // cuello TRASERA
+                { nombre: "BCPectoralIzq", x: 192, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo TRASERA
+                { nombre: "BCPectoralDer", x: 227, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho TRASERA
+                { nombre: "BCHombroIzq", x: 173, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo TRASERA
+                { nombre: "BCHombroDer", x: 261, y: 70, ancho: 19, alto: 39 }, // Hombro derecho TRASERA
+                { nombre: "BCBrazoIzq", x: 173, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo TRASERA
+                { nombre: "BCBrazoDer", x: 261, y: 108, ancho: 21, alto: 40 }, // Brazo derecho TRASERA
+                { nombre: "BCAntIzq", x: 170, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo TRASERA
+                { nombre: "BCAntDer", x: 261, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho TRASERA
+                { nombre: "BCManIzq", x: 169, y: 207, ancho: 20, alto: 39 }, // Man izquierdo TRASERA
+                { nombre: "BCManDer", x: 266, y: 207, ancho: 20, alto: 39 }, // Man derecho TRASERA
+                { nombre: "BCAbSupIzq", x: 197, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo TRASERA
+                { nombre: "BCAbSupDer", x: 227, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho TRASERA
+                { nombre: "BCAbInfIzq", x: 197, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo TRASERA
+                { nombre: "BCAbInfDer", x: 227, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho TRASERA
+                { nombre: "BCPelvis", x: 196, y: 176, ancho: 63, alto: 27 }, // Pelvis TRASERA
+                { nombre: "BCGenitales", x: 221, y: 202, ancho: 13, alto: 8 }, // Genitales TRASERA
+                { nombre: "BCMusloIzq", x: 193, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo TRASERA
+                { nombre: "BCMusloDer", x: 233, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho TRASERA
+                { nombre: "BCRodIzq", x: 196, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquierda TRASERA
+                { nombre: "BCRodDer", x: 233, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha TRASERA
+                { nombre: "BCPiernIzq", x: 196, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierda TRASERA
+                { nombre: "BCPiernDer", x: 233, y: 307, ancho: 26, alto: 93 }, // Pierna Derecha TRASERA
+                { nombre: "BCTalIzq", x: 198, y: 400, ancho: 24, alto: 12 }, // Talón Izquierdo TRASERA
+                { nombre: "BCTalDer", x: 233, y: 400, ancho: 26, alto: 12 }, // Talón Derecho TRASERA
+                { nombre: "BCPieIzq", x: 198, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo TRASERA
+                { nombre: "BCPieDer", x: 233, y: 412, ancho: 26, alto: 37 }, // Pie Derecho TRASERA
+                ];
+                function CrearPartesDelCuerpo(){
+                    partesDelCuerpo.forEach(parte => {
+                        const parteElemento = document.createElement("div")
+                        parteElemento.classList.add("parteCuerpo")
+                        parteElemento.style.left= `${parte.x}px`;
+                        parteElemento.style.top = `${parte.y}px`;
+                        parteElemento.style.width = `${parte.ancho}px`;
+                        parteElemento.style.height = `${parte.alto}px`;
+                        parteElemento.setAttribute("title", parte.nombre);
+                        
+                        parteElemento.addEventListener("click", () => {
+                            alert(`Has seleccionado: ${parte.nombre}`);
+                            mostrarSelectorIntensidad(parte.nombre)
+                            
+                        });
+                        cuerpo.appendChild(parteElemento);
+                    })
+                }      
+                CrearPartesDelCuerpo()
 
-                    cuerpo.appendChild(parteElemento);
+                function mostrarSelectorIntensidad(nombreParte) {
+                    const intensidades = ['Baja', 'Media', 'Alta'];
+                    const htmlGenerado = `
+                        <td>${nombreParte}</td>
+                        <td>
+                            <select class="form-select">
+                                <option value="" required>Seleccionar intensidad</option>
+                                ${intensidades.map(intensidad => 
+                                    `<option value="${intensidad.toLowerCase()}">${intensidad}</option>`
+                                ).join('')}
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="eliminar(this)">
+                                Eliminar
+                            </button>
+                        </td>
+                    `;
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = htmlGenerado;
+                    document.getElementById('minitablita').appendChild(tr);
+                }
 
-                })
-            }
-
-            CrearPartesDelCuerpo()
-
-
-                
-                
-            </script>
+                function eliminar(button) {
+                    button.closest('tr').remove();
+                }
+        </script>
         </main>
         <footer>
-            <!-- place footer here -->
         </footer>
-        <!-- Bootstrap JavaScript Libraries -->
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
