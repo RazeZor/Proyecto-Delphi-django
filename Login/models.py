@@ -20,7 +20,7 @@ class Paciente(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     edad = models.IntegerField()
-    sexo = models.CharField(max_length=1)
+    genero = models.CharField(max_length=15)
     telefono = models.CharField(max_length=12)
     cobertura_de_salud = models.CharField(max_length=50)
     def __str__(self):
