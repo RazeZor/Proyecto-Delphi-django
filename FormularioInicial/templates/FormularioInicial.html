@@ -666,51 +666,123 @@
 
         <div class="step">
             <div class="mb-3">
-                <label for="" class="form-label">
-                    1 .Porfavor indique en que rango se encuentra su nivel de salud
+                <label for="niveldesalud" class="form-label">
+                    1. Por favor indique en qué rango se encuentra su nivel de salud
                 </label>
-                    <input type="range" min="1" max="10"  class="slider" id="niveldesalud"/>
+                <input type="range" min="1" max="10" class="slider" id="niveldesalud" />
             </div>
-
-                <div class="pregunta1">
+            
+            <div class="contenedor">
+               
+            
+                <div class="pregunta">
                     <label>
-                        1) Durante las últimas dos semanas, 
-                        cuántas horas de sueño en promedio durmió en 24 horas?
+                        2) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
                     </label>
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    Menos que cuatro horas
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    4-5 horas
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    6 horas
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    7 a 8 horas
-        
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    9 o mas horas
+                    <div>
+                        <input type="radio" name="opcion1" class="opcion-radio" /> Menos que cuatro horas<br />
+                        <input type="radio" name="opcion1" class="opcion-radio" /> 4-5 horas<br />
+                        <input type="radio" name="opcion1" class="opcion-radio" /> 6 horas<br />
+                        <input type="radio" name="opcion1" class="opcion-radio" /> 7 a 8 horas<br />
+                        <input type="radio" name="opcion1" class="opcion-radio" /> 9 o más horas
+                    </div>
                 </div>
-
-                <div class="pregunta2">
+            
+                <div class="pregunta">
                     <label>
-                        1) Durante las últimas dos semanas, 
-                        cuántas horas de sueño en promedio durmió en 24 horas?
+                        3)Durante las últimas dos semanas, ¿con qué frecuencia se sintió 
+                        cansado o tuvo dificultad para mantenerse despierto al realizar tareas rutinarias durante el día?
                     </label>
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    Menos que cuatro horas
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    4-5 horas
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    6 horas
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    7 a 8 horas
-        
-                    <input type="radio" name="opcion" class="opcion-radio">
-                    9 o mas horas
+                    <div>
+                        <input type="radio" name="opcion2" class="opcion-radio" /> nunca <br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> varios dias<br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> mas de la mitad del dia <br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> casi todos los dias
+                    </div>
                 </div>
-           
-
+                <div class="pregunta">
+                    <label>
+                        4) ¿Qué opinas sobre tu peso actual?
+                    </label>
+                    <div>
+                        <input type="radio" name="opcion3" class="opcion-radio" /> Quiero ganar mucho peso<br />
+                        <input type="radio" name="opcion3" class="opcion-radio" /> quiero ganar poco peso<br />
+                        <input type="radio" name="opcion3" class="opcion-radio" /> estoy feliz con mi peso<br />
+                        <input type="radio" name="opcion3" class="opcion-radio" /> quiero perder un poco de peso<br />
+                        <input type="radio" name="opcion3" class="opcion-radio" /> quiero perder mucho peso 
+                    </div>
+                </div>
+                <div class="pregunta">
+                    <label>
+                        5) Durante las últimas dos semanas, ¿con qué frecuencia ha comido comida rápida, bebidas azucaradas (por ejemplo, soca, bebidas deportivas, jugos) o 
+                        alimentos envasados (por ejemplo, papas fritas, dulces, galletas saladas, galletas dulces)?
+                    </label>
+                    <div>
+                        <input type="radio" name="opcion4" class="opcion-radio" /> nunca <br />
+                        <input type="radio" name="opcion4" class="opcion-radio" /> varios dias<br />
+                        <input type="radio" name="opcion4" class="opcion-radio" /> mas de la mitad del dia <br />
+                        <input type="radio" name="opcion4" class="opcion-radio" /> casi todos los dias
+                    </div>
+                </div>
+                
+            </div>
         </div>
 
+        <div class="step">
+            <div class="contenedor">
+                <div class="pregunta">
+                    <label>
+                        6) En un día normal, ¿cuántas porciones de frutas y verduras enteras comes
+                         (1 porción equivale aproximadamente a un puñado y no incluye jugo de fruta)?
+                    </label>
+                    <div>
+                        <input type="radio" name="opcion5" class="opcion-radio" />menos de 2 porciones <br />
+                        <input type="radio" name="opcion5" class="opcion-radio" /> 2 a 3 porciones <br />
+                        <input type="radio" name="opcion5" class="opcion-radio" /> 4 a 5 porciones <br />
+                        <input type="radio" name="opcion5" class="opcion-radio" /> mas de 5 porciones<br />
+
+                    </div>
+                </div>
+                <div class="pregunta">
+                    <label>
+                        7) durante las ultimas 2 semanas, cuantos dias hiciste ejercicio moderado 
+                    </label>
+                    <div>
+                        <input type="radio" name="opcion6" class="opcion-radio" /> Menos que cuatro horas<br />
+                        <input type="radio" name="opcion6" class="opcion-radio" /> 4-5 horas<br />
+                        <input type="radio" name="opcion6" class="opcion-radio" /> 6 horas<br />
+                        <input type="radio" name="opcion6" class="opcion-radio" /> 7 a 8 horas<br />
+                        <input type="radio" name="opcion6" class="opcion-radio" /> 9 o más horas
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <label>
+                        8) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
+                    </label>
+                    <div>
+                        <input type="radio" name="opcion7" class="opcion-radio" /> Menos que cuatro horas<br />
+                        <input type="radio" name="opcion7" class="opcion-radio" /> 4-5 horas<br />
+                        <input type="radio" name="opcion7" class="opcion-radio" /> 6 horas<br />
+                        <input type="radio" name="opcion7" class="opcion-radio" /> 7 a 8 horas<br />
+                        <input type="radio" name="opcion7" class="opcion-radio" /> 9 o más horas
+                    </div>
+                </div>
+                <div class="pregunta">
+                    <label>
+                        9) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
+                    </label>
+                    <div>
+                        <input type="radio" name="opcion2" class="opcion-radio" /> Menos que cuatro horas<br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> 4-5 horas<br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> 6 horas<br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> 7 a 8 horas<br />
+                        <input type="radio" name="opcion2" class="opcion-radio" /> 9 o más horas
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         
 
                     
