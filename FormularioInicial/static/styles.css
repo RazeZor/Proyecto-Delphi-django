@@ -115,6 +115,40 @@
   padding-top: 40px;
 }
 
-.pregunta1 .pregunta2{
-  display: flex;
+
+
+
+
+
+.contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 20px; /* Espaciado entre columnas */
+  padding: 20px;
+  border: 2px solid #ccc; /* Bordes del cuadrado */
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  max-width: 600px; /* Ancho máximo del contenedor */
+  margin: auto; /* Centrado horizontal */
+}
+
+.pregunta {
+  padding: 10px;
+  border: 1px solid #ddd; /* Bordes individuales */
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.form-label, .pregunta label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.slider {
+  width: 100%;
+}
+
+.opcion-radio {
+  margin-right: 10px;
 }
