@@ -18,10 +18,10 @@ class Clinico(models.Model):
 class Paciente(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, unique=True)  # Clave primaria única
     nombre = models.CharField(max_length=50)
-    apellido = models.CharField(max_length=50)
-    edad = models.IntegerField()
+    apellido = models.CharField(max_length=50,null=False)
+    fechaNacimiento = models.DateTimeField(null=True)
     genero = models.CharField(max_length=15,null=True)
-    telefono = models.CharField(max_length=12)
+    contacto = models.CharField(max_length=12)
     cobertura_de_salud = models.CharField(max_length=50)
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
@@ -44,59 +44,30 @@ class formularioClinico(models.Model):
     paciente = models.OneToOneField('Paciente', on_delete=models.CASCADE, related_name='formulario')
     clinico = models.ForeignKey('Clinico', on_delete=models.CASCADE, related_name='formularios')
     fechaCreacion = models.DateTimeField(auto_now_add=True) 
-
-
-    #aqui vamos con la primera parte del formulario que es la DuracionDelDolor
-    curacionDolor = models.CharField(max_length=20) # todos los tipos de botones 
-    # como de 3 o 2 btones la idea es manejarlos como como char para que solo reciban
-    # el valor y manejar las validaciones con mi propia logica 
-    
+    curacionDolor = models.CharField(max_length=20,null=True, blank=True) # todos los tipos de botones 
     caracteristicasDeDolor = models.JSONField()
-    # el models.json field es para almacenar datos complejos, como diccionarios 
-    #y selecciones multiples, permite seleccionar datos clave ; valor y  optros tipos
-    # de nombre y resultado 
-    
-    #causa del dolor <-------------------------------------------------------> 
-    
-    causaDolor = models.CharField(max_length=50)
-    accidenteLaboral = models.JSONField()
+    causaDolor = models.CharField(max_length=50,null=True, blank=True)
+    accidenteLaboral = models.JSONField(null=True, blank=True)
     calidadAtencion = models.TextField(null=True, blank=True)
-    opinionProblemaEnfermeda = models.CharField(max_length=20)
-    opinionCuraDolor = models.CharField(max_length=20)
-    
-    
-    # Actividades afectadas <------------------------------------------------------>
+    opinionProblemaEnfermeda = models.CharField(max_length=20,null=True, blank=True)
+    opinionCuraDolor = models.CharField(max_length=20,null=True, blank=True)
     dificultadActividad = models.TextField(null=True,blank=True)
-    rangoDificultad = models.IntegerField()
-    nesesidadDeApoyo = models.BooleanField()
-    
-    #condiciones de salud <---------------------------------------------------------->
-    
-    TiposDeEnfermedades = models.JSONField() # aqui manejo todos los checkbox 
-    #menciones <------->
-    mencionesActividades = models.JSONField()
-    
-    #esquemaCorporal
-    dolorIntensidad = models.JSONField()
-    
-    IntensidadDolor = models.IntegerField()
-    
-    #PreguntasMini
-    preguntas1 = models.JSONField() #manejar valores si o no 
-    #manejar todos los chekbox Seleccionados 
-    #¿Que esperas lograr con un mejor manejo del dolor?, seleccione máximo 2 opción.
-    preguntas2 = models.JSONField()
-    
-    
-    #preguntas formulario universitario <------------------------------------------------------->  
-    pregunta1_nivelDeSalud = models.IntegerField()
-    pregunta2_horas_de_sueño_en_promedio = models.CharField(max_length=30)
-    pregunta3_frecuencia_De_Suenio = models.CharField(max_length=30)
-    pregunta4_opinion_peso_actual = models.CharField(max_length=30)
-    pregunta5_ConsumoComidaRapida = models.CharField(max_length=30)
-    pregunta6_PorcionesDeFrutas = models.CharField(max_length=30)
-    pregunta7_ejercicioDias = models.CharField(max_length=30)
-    pregunta8_minutosPorEjercicios = models.CharField(max_length=30)
+    rangoDificultad = models.IntegerField(null=True, blank=True)
+    nesesidadDeApoyo = models.CharField(max_length=20,null=True, blank=True)
+    TiposDeEnfermedades = models.JSONField(null=True, blank=True) # aqui manejo todos los checkbox 
+    mencionesActividades = models.JSONField(null=True, blank=True)
+    dolorIntensidad = models.JSONField(null=True, blank=True)
+    DuracionDolor = models.IntegerField(null=True, blank=True)
+    preguntas1 = models.JSONField(null=True, blank=True) 
+    preguntas2 = models.JSONField(null=True, blank=True)
+    pregunta1_nivelDeSalud = models.IntegerField(null=True, blank=True)
+    pregunta2_horas_de_sueño_en_promedio = models.JSONField(null=True, blank=True)
+    pregunta3_frecuencia_De_Suenio = models.JSONField(null=True, blank=True)
+    pregunta4_opinion_peso_actual = models.JSONField(null=True, blank=True)
+    pregunta5_ConsumoComidaRapida = models.JSONField(null=True, blank=True)
+    pregunta6_PorcionesDeFrutas = models.JSONField(null=True, blank=True)
+    pregunta7_ejercicioDias = models.JSONField(null=True, blank=True)
+    pregunta8_minutosPorEjercicios = models.JSONField(null=True, blank=True)
     
     
     

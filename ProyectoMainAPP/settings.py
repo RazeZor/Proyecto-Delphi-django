@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'Login',
     'PanelDeControl',
     'CrudClinico',
-    'FormularioInicial',	
+    'FormularioInicial',
+    'TiposDeFormularios',	
 ]
 
 MIDDLEWARE = [
