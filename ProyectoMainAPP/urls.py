@@ -20,6 +20,7 @@ from Login import views as l
 from PanelDeControl import views as v # Importa la vista PanelDeControl desde el archivo views.py de la aplicación PanelDeControl.
 from CrudClinico import views as vistaClinico # Importa las vistas de la aplicación CrudClinico.
 from FormularioInicial import views as vistaClinicos
+from informe import views as vistaInforme
 
 urlpatterns = [
     path('admin/', admin.site.urls), # Asocia la URL /admin/ con la vista de administración de Django.
@@ -30,6 +31,7 @@ urlpatterns = [
     path('FormularioInicial/', vistaClinicos.FormularioInicial,name='formularioInicial'),
     path('Cerrar/',v.cerrar_sesion,name='cerrarSesion'),
     path('cuerpoHumano/',vistaClinicos.CuerpoHumano),
-    path('fichaPacientes/',v.VerfichaPacientes,name='ficha')
+    path('fichaPacientes/',v.VerfichaPacientes,name='ficha'),
+    path('informe/',vistaInforme.RenderInforme,name='informe')
 
 ]
