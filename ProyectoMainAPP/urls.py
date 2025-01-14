@@ -28,10 +28,10 @@ urlpatterns = [
     path('panel/', v.panel, name="panel"),  # Asocia la URL /panel/ con la vista PanelDeControl.),
     path('AgregarClinico/', vistaClinico.AgregarClinico,name='agregar'),
     path('Ver/', vistaClinico.VerClinicos,name='ver'),
-    path('FormularioInicial/', vistaClinicos.FormularioInicial,name='formularioInicial'),
+    path('panel/FormularioInicial/', vistaClinicos.FormularioInicial,name='formularioInicial'),
     path('Cerrar/',v.cerrar_sesion,name='cerrarSesion'),
     path('cuerpoHumano/',vistaClinicos.CuerpoHumano),
-    path('fichaPacientes/',v.VerfichaPacientes,name='ficha'),
+    path('panel/fichaPacientes/',v.VerfichaPacientes,name='ficha'),
     path('informe/',vistaInforme.RenderInforme,name='informe')
 
 ]
