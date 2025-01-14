@@ -100,10 +100,15 @@
                         <label class="form-label">Fecha de Nacimiento</label>
                         <input type="date" class="form-control" name="fechaNac" id="fechaNac" required/>
                     </div>
-                    <select class="form-select form-select-lg" id="genero" name="genero">
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                    </select>
+                    <div class="form-group">
+                        <label class="form-label">Seleccione genero</label>
+                        <select class="form-select form-select-lg" id="genero" name="genero">
+                            <option selected>--Seleccione--</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="femenino">Femenino</option>
+                        </select>
+                    </div>
+
 
                     <div class="form-group">
                         <label class="form-label">Contacto</label>

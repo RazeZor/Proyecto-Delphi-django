@@ -1,90 +1,117 @@
+{% load static %}
+
 <!doctype html>
-<html lang="en">
-    <head>
-        <title>FichaPaciente</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+<html lang="es">
+<head>
+    <title>Panel De Control</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'CSS/panel.css' %}">
+</head>
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-        
-    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand">
+                <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
+                </i> 
 
-    <style>
-        :root {
-            --pink: #cd2481;
-            --blue: #21294e;
-            --white: #ffffff;
-        }
-        
-        .navbar {
-            background-color: var(--blue);
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .navbar-brand {
-            color: var(--white) !important;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        
-        .nav-link {
-            color: var(--white) !important;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--pink) !important;
-        }
-    </style>
+            </span>
+            <div class="d-flex align-items-center">
+                <div class="menu-links">
 
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container">
-                    <a class="navbar-brand" href="#">Ficha Pacientes</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">CerrarSesion</a>
-                            </li>
-                        </ul>
+                    <i><h1 style="color: white;">Bienvenido {{ nombre_clinico }}</h1></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex">
+        <div class="sidebar">
+            <h4>Menú</h4>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="{% url 'formularioInicial' %}">
+                        <i class='bx bx-user'></i>
+                        Agregar Pacientes
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'ficha' %}">
+                        <i class='bx bx-list-ul'></i>
+                        Lista de Pacientes
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-chart'></i>
+                        Gráfico de salud por paciente
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'cerrarSesion' %}" class="text-danger">
+                        <i class='bx bx-log-out'></i>
+                        Cerrar Sesión
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <main class="main-content">
+            <div class="container-fluid">
+                <div>
+                    <form method="get" id="search-form">
+                        <h4>Buscar paciente</h4>
+                        <fieldset>
+                            <input type="text" id="search-input" placeholder="Ingrese rut..."  />
+                            <input class="search-button" type="submit" value="Buscar" />
+                            <i class="search-icon"></i>
+                        </fieldset>
+                    </form>
+                </div>
+                <div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                            <h4>Lista de formularios</h4>
+                        </label>
+                        <select
+                            class="form-select form-select-lg"
+                            name=""
+                            id=""
+                        >
+                            <option selected>--Seleccione--</option>
+                            <option value="">f1</option>
+                            <option value="">f2</option>
+                            <option value="">f3</option>
+                        </select>
                     </div>
                 </div>
-            </nav>
-        </header>
-        <main></main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
+                <style>
+                    .ficha {
+                        margin-top: 20px;
+                        padding: 20px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                    }
+                </style>
+                <div>
+                    <div class ='ficha'>
+                        {{informe|safe}}
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+    <footer class="text-white text-center">
+        <p class="mb-0">&copy; 2024 Dashboard Clínico - Todos los derechos reservados</p>
+    </footer>
+    
+    <script src="login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+</body>
 </html>
