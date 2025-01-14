@@ -15,4 +15,11 @@ def cerrar_sesion(request):
     return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
 
 def VerfichaPacientes(request):
-       return render(request, 'FichaPacientes.html')
+    if 'nombre_clinico' in request.session:
+        nombre_clinico = request.session['nombre_clinico']
+        with open('informe/templates/informe.html','r',encoding='utf-8') as informe:
+            informe = informe.read()
+        return render(request, 'FichaPacientes.html', {'nombre_clinico': nombre_clinico, 'informe': informe})
+    else:
+        return redirect('login')
+
