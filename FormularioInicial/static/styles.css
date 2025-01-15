@@ -174,3 +174,34 @@
 .nav-link:hover {
   color: #ccc !important;
 }
+
+.form-label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+.slider {
+  width: 100%;
+  margin: 10px 0;
+}
+.btn-group {
+  margin: 10px 0;
+}
+
+/* Estilo para cuando el slider está activo */
+.slider:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+.slider:active::-moz-range-thumb {
+  transform: scale(1.2);
+}
+
+.pregunta {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pregunta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}

@@ -873,13 +873,12 @@
 
                 <div>
                     <div class="step">
-                        <div class="contenedor">
+                        <div class="contenedor1">
                             <label for="" class="form-label">
-                                <h1>Durante las últimas 2 semanas,¿con qué frecuencia? </h1>
+                                <h3>Durante las últimas 2 semanas,¿con qué frecuencia? </h3>
 
-                            <div class="pregunta">
-                                <label for="" class="form-label">
-                                    sentiste que tu vida, tenia un proposito o significado 
+                            <div class="pregunta1">
+                                   <p> sentiste que tu vida, tenia un proposito o significado </p>
                                 <div>
                                     <input type="range" min="0" max="3" name="proposito" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -891,76 +890,94 @@
         
                                 </div>
                             </div>
-                            <div class="pregunta">
-                                <label for="" class="form-label">
-                                    estuvo conectado con alguna red de apoyo(ejemplo : 
-                                    comunidad espiritual, amistad, familia, naturaleza, yoga o meditacion )?                                </label>
+                            <div class="pregunta1">
+                                    <p>estuvo conectado con alguna red de apoyo(ejemplo : 
+                                    comunidad espiritual, amistad, familia, naturaleza, yoga o meditacion )?</p>                             </label>
                                 <div>
                                     <input type="range" min="0" max="3" name="red_de_apoyo" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
-                                        <label for="ProgressionBarPregunta">3</label>
-                                        <label for="ProgressionBarPregunta">2</label>
-                                        <label for="ProgressionBarPregunta">1</label>
                                         <label for="ProgressionBarPregunta">0</label>
+                                        <label for="ProgressionBarPregunta">1</label>
+                                        <label for="ProgressionBarPregunta">2</label>
+                                        <label for="ProgressionBarPregunta">3</label>
                                     </div>
         
                                 </div>
                             </div>
-                            <div class="pregunta">
-                                <label for="" class="form-label">
-                                    se ha sentido molesto por tener poco interes o placer en hacer las cosas  
-                                </label>
+                            <div class="pregunta1">
+                                
+                                <p>se ha sentido molesto por tener poco interes o placer en hacer las cosas</p>  
+                                
                                 <div>
                                     <input type="range" min="0" max="3" name="placer_cosas" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
-                                        <label for="ProgressionBarPregunta">3</label>
-                                        <label for="ProgressionBarPregunta">2</label>
-                                        <label for="ProgressionBarPregunta">1</label>
                                         <label for="ProgressionBarPregunta">0</label>
+                                        <label for="ProgressionBarPregunta">1</label>
+                                        <label for="ProgressionBarPregunta">2</label>
+                                        <label for="ProgressionBarPregunta">3</label>
                                     </div>
         
                                 </div>
                             </div>
-                            <div class="pregunta">
-                                <label for="" class="form-label">
-                                    se ha sentido molesto por estar deprimido, depresivo o desesperanzado?
-                                </label>
+                            <div class="pregunta1">
+                                
+                                <p>se ha sentido molesto por estar deprimido, depresivo o desesperanzado?</p>
+                            
                                 <div>
                                     <input type="range" min="0" max="3" name="deprimido" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
-                                        <label for="ProgressionBarPregunta">3</label>
-                                        <label for="ProgressionBarPregunta">2</label>
-                                        <label for="ProgressionBarPregunta">1</label>
                                         <label for="ProgressionBarPregunta">0</label>
+                                        <label for="ProgressionBarPregunta">1</label>
+                                        <label for="ProgressionBarPregunta">2</label>
+                                        <label for="ProgressionBarPregunta">3</label>
                                     </div>
         
                                 </div>
                             </div>
-                            <div class="pregunta">
-                                <label for="" class="form-label">
-                                    se ha sentido molesto por estar nervioso, ansioso o tenso?
-                                </label>
+                            <div class="pregunta1">
+                                
+                                <p>se ha sentido molesto por estar nervioso, ansioso o tenso?</p>
+                                
                                 <div>
                                     <input type="range" min="0" max="3" name="ansioso" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
-                                        <label for="ProgressionBarPregunta">3</label>
-                                        <label for="ProgressionBarPregunta">2</label>
-                                        <label for="ProgressionBarPregunta">1</label>
                                         <label for="ProgressionBarPregunta">0</label>
+                                        <label for="ProgressionBarPregunta">1</label>
+                                        <label for="ProgressionBarPregunta">2</label>
+                                        <label for="ProgressionBarPregunta">3</label>
                                     </div>
                                 </div>
+                                <style>
+                                    /* Estilo para cuando el slider está activo */
+.slider:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+}
+
+.slider:active::-moz-range-thumb {
+  transform: scale(1.2);
+}
+
+.pregunta {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pregunta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+                                </style>
                             </div>
-                            <div class="pregunta">
-                                <label for="" class="form-label">
-                                    se ha sentido molesto por preocuparse mucho sobre diferentes cosas?
-                                </label>
+                            <div class="pregunta1">
+                                
+                                <p>se ha sentido molesto por preocuparse mucho sobre diferentes cosas?</p>
+                                
                                 <div>
                                     <input type="range" min="0" max="3" name="preocupacion" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
-                                        <label for="ProgressionBarPregunta">3</label>
-                                        <label for="ProgressionBarPregunta">2</label>
-                                        <label for="ProgressionBarPregunta">1</label>
                                         <label for="ProgressionBarPregunta">0</label>
+                                        <label for="ProgressionBarPregunta">1</label>
+                                        <label for="ProgressionBarPregunta">2</label>
+                                        <label for="ProgressionBarPregunta">3</label>
                                     </div>
                                 </div>
                             </div>
@@ -972,9 +989,9 @@
             </div>
             <div class="step">
                 <div class="sustanciasUsadas">
-                    <h2>¿Ha consumido alguna de las siguientes sustancias durante el último año?</h2>
+                    <h4>¿Ha consumido alguna de las siguientes sustancias durante el último año?</h4>
                         <label for="" class="form-label">
-                            <h2> Nicotina (cigarrillos, cigarrillos electronicos, entre otros) </h2>      
+                            <h4> Nicotina (cigarrillos, cigarrillos electronicos, entre otros) </h4>      
                         </label>
                         <label for="nicotina" class="form-label">
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -986,14 +1003,14 @@
                             </div>   
                         </label>
                         <label for="" class="form-label">
-                            <h3> si marcaste si, cuantos cigarros fumas usualmente por dia? </h3> 
+                            <h5> si marcaste si, cuantos cigarros fumas usualmente por dia? </h5> 
                             <div class="mb-3">
                                 <label for="" class="form-label"></label>
                                 <textarea class="form-control" name="condicionNicotina" id="cantidadCigarros" rows="3"></textarea>
                                 
                                 <label for="" class="form-label">
-                                    <h3>Si marcaste si, marca en un círculo el nivel de 
-                                    preocupación que tienes con respecto a la nicotina.</h3>    
+                                    <h5>Si marcaste si, marca en un círculo el nivel de 
+                                    preocupación que tienes con respecto a la nicotina.</h5>    
                                     <div>
                                         <input type="range" min="0" max="5" name="nicotinaPreocupacion" class="slider" id="ProgressionBarPregunta7" />
                                         <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -1009,7 +1026,7 @@
                             </div>
                         </label>
                         <label for="" class="form-label">
-                            <h2> alcohol (cervezas, vino , licores) </h2>      
+                            <h4> alcohol (cervezas, vino , licores) </h4>      
                         </label>
                         <label for="" class="form-label">
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -1020,15 +1037,15 @@
                             </div>   
                         </label>
                         <label for="" class="form-label">
-                            <h3> si marcaste si, cuanto alcohol usualmente consumes? </h3> 
+                            <h5> si marcaste si, cuanto alcohol usualmente consumes? </h5> 
                             <div class="mb-3">
-                                <label for="" class="form-label"></label>
+                                
                                 <textarea class="form-control" name="condicionAlcohol" id="cantidadAlcohol" rows="3" placeholder="escribe aqui....">
                                 </textarea>
                                 <label for="" class="form-label">
-                                    <h3>Si marcaste si, marca en un círculo el nivel de 
+                                    <h5>Si marcaste si, marca en un círculo el nivel de 
                                     preocupación que tienes con respecto a el consumo 
-                                    de alcohol</h3>    
+                                    de alcohol</h5>    
                                     <div>
                                         <input type="range" min="0" max="5" name="AlcoholPreocuopacion" class="slider" id="ProgressionBarPregunta7" />
                                         <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -1043,27 +1060,30 @@
                                 </label>  
                             </div>
                         </label>
-                        <label for="" class="form-label">
-                            <h2> drogras recreativas (cocaina, heroina, cannabis) </h2>      
-                        </label>
-                        <label for="drogas" class="form-label">
+                            
+                        
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h4> drogras recreativas (cocaina, heroina, cannabis) </h4>      
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                 <input type="radio" class="btn-check" name="drogasSiOno" id="drogasi" autocomplete="off" value="si"/>
                                 <label class="btn btn-outline-primary" for="drogasi">Sí</label>
                                 <input type="radio" class="btn-check" name="drogasSiOno" id="drogasNO" autocomplete="off" value="no"/>
                                 <label class="btn btn-outline-primary" for="drogasNO">No</label>
                             </div>   
-                        </label>
-                        <label for="" class="form-label">
-                            <h3>si marcaste si, cuanta droga consumes usualmente por dia?</h3> 
+                        
+                        
+                            <h5>si marcaste si, cuanta droga consumes usualmente por dia?</h5> 
                             
                             <div class="mb-3">
-                                <label for="" class="form-label"></label>
+                                
                                 <textarea class="form-control" name="condicionDrogas" id="CantidadDrogras" rows="3"></textarea>
                                 
-                                <label for="" class="form-label">
-                                    <h3>Si marcaste si, marca en un círculo el nivel de 
-                                    preocupación que tienes con respecto a el consumo de drogas.</h3>    
+                                
+                                    <h5>Si marcaste si, marca en un círculo el nivel de 
+                                    preocupación que tienes con respecto a el consumo de drogas.</h5>    
                                     <div>
                                         <input type="range" min="0" max="5" name="DrogasPreocupacion" class="slider" id="ProgressionBarPregunta7" />
                                         <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -1075,30 +1095,23 @@
                                             <label for="ProgressionBarPregunta">5</label>
                                         </div>
                                     </div>  
-                                </label>  
+                                
                             </div>
-                        </label>
-                        <label for="" class="form-label">
-                            <h2> Marihuana </h2>      
-                        </label>
-                        <label for="nicotina" class="form-label">
+                            <h4> Marihuana </h4>      
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="radio" class="btn-check" name="marihuanaSiOno " id="marihuanasi" autocomplete="off" value="si"/>
-                                <label class="btn btn-outline-primary" for="marihuanasi">Si</label>
-                
-                                <input type="radio" class="btn-check" name="marihuanaSiOno" id="marihuanaNO" autocomplete="off" value="no"/>
-                                <label class="btn btn-outline-primary" for="marihuanaNO">No</label>
+                                <input type="radio" class="btn-check" name="marihuanaSiOno" id="marihuanaSi" autocomplete="off" value="si"/>
+                                <label class="btn btn-outline-primary" for="marihuanaSi">Sí</label>
+                                <input type="radio" class="btn-check" name="marihuanaSiOno" id="marihuanaNo" autocomplete="off" value="no"/>
+                                <label class="btn btn-outline-primary" for="marihuanaNo">No</label>
                             </div>   
-                        </label>
-                        <label for="" class="form-label">
-                            <h3> si marcaste si, cuanta marihuana consumes habitualmente por dia? </h3> 
+                            <h5> si marcaste si, cuanta marihuana consumes habitualmente por dia? </h5> 
                             <div class="mb-3">
-                                <label for="" class="form-label"></label>
+                                
                                 <textarea class="form-control" name="condicionMarihuana" id="CantidadDeMarihuana" rows="3"></textarea>
                                 
-                                <label for="" class="form-label">
-                                    <h3>Si marcaste si, marca en un círculo el nivel de 
-                                    preocupación que tienes con respecto a la nicotina.</h3>    
+                                
+                                    <h5>Si marcaste si, marca en un círculo el nivel de 
+                                    preocupación que tienes con respecto a la marihuana</h5>    
                                     <div>
                                         <input type="range" min="0" max="5" name="marihuanaPreocupacion" class="slider" id="ProgressionBarPregunta7" />
                                         <div style="display: flex; justify-content: space-between; width: 100%;">
@@ -1110,11 +1123,9 @@
                                             <label for="ProgressionBarPregunta">5</label>
                                         </div>
                                     </div>  
-                                </label>  
+                                
                             </div>
-                        </label>
-                    </div>
-            </div>
+                </div>
             <div class="step">
                 <div class="motivacion">
                     <h6>Seleccione TRES areas en las cuales usted este m&aacutes motivado en cambiar para mejorar su nivel actual de salud </h6>
