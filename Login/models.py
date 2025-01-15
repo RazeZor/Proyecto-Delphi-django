@@ -82,19 +82,19 @@ class formularioClinico(models.Model):
     preocupacion = models.IntegerField(null=True,blank=True)
     
     #consumo Sustancias 
-    NicotinaSiOno = models.CharField(max_length=5,blank=True,null=True)
+    NicotinaSiOno = models.JSONField(blank=True,null=True)
     condicionNicotina =  models.TextField(null=True,blank=True)
     nicotinaPreocupacion = models.IntegerField(null=True,blank=True)
     
-    cigarroSiOno = models.CharField(max_length=5,blank=True,null=True)
-    condicioncigarro =  models.TextField(null=True,blank=True)
-    cigarroPreocupacion = models.IntegerField(null=True,blank=True)
+    AlcoholSiOno = models.JSONField(blank=True,null=True)
+    condicionAlcohol =  models.TextField(null=True,blank=True)
+    AlcoholPreocupacion = models.IntegerField(null=True,blank=True)
     
-    drogasSiOno = models.CharField(max_length=5,blank=True,null=True)
+    drogasSiOno = models.JSONField(blank=True,null=True)
     condicionDrogas =  models.TextField(null=True,blank=True)
-    DrograsPreocupacion = models.IntegerField(null=True,blank=True)
+    DrogasPreocupacion = models.IntegerField(null=True,blank=True)
     
-    marihuanaSiOno = models.CharField(max_length=5,blank=True,null=True)
+    marihuanaSiOno = models.JSONField(blank=True,null=True)
     condicionMarihuana =  models.TextField(null=True,blank=True)
     marihuanaPreocupacion = models.IntegerField(null=True,blank=True)
     

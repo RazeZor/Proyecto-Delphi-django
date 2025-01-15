@@ -69,8 +69,33 @@ def FormularioInicial(request):
     pregunta8_minutosPorEjercicios=json.dumps(request.POST.getlist('op8')),
     medicamentos = json.dumps(request.POST.getlist('medicamentos')),
     medicamento_efectivo = json.dumps(request.POST.getlist('medicamento_efectivo')),
-    proposito = int(request.POST.get('proposito'),0)
-        
+    #preguntas de salud mental
+    proposito = int(request.POST.get('proposito'),0),
+    red_de_apoyo = int(request.POST.get('red_de_apoyo'),0),
+    placer_cosas = int(request.POST.get('placer_cosas'),0),
+    deprimido = int(request.POST.get('deprimido'),0),
+    ansioso = int(request.POST.get('ansioso'),0),
+    preocupacion = int(request.POST.get('preocupacion'),0),
+    #consumo de sustancias
+    #nicotica
+    NicotinaSiOno = request.POST.get('NicotinaSiOno'),
+    condicionNicotina = request.POST.get('condicionNicotina'),
+    nicotinaPreocupacion = int(request.POST.get('nicotinaPreocupacion'),0),
+    #cigarro
+    AlcoholSiOno = request.POST.get('alcoholSiOno'),
+    condicionAlcohol = request.POST.get('condicionAlcohol'),
+    AlcoholPreocupacion = int(request.POST.get('AlcoholPreocuopacion'),0),
+    #drogas
+    drogasSiOno = request.POST.get('drogasSiOno'),
+    condicionDrogas = request.POST.get('condicionDrogas'),
+    DrogasPreocupacion = int(request.POST.get('DrogasPreocupacion'),0),
+    #marihuana
+    marihuanaSiOno = request.POST.get('marihuanaSiOno'),
+    condicionMarihuana = request.POST.get('condicionMarihuana'),
+    marihuanaPreocupacion = int(request.POST.get('marihuanaPreocupacion'),0),
+    #preguntas de motivacion
+    AreasMotivacion = json.dumps(request.POST.getlist('motivacion')),
+    motivacion_Salud = request.POST.get('motivacion_Salud')
 )
         formulario.save()
         
