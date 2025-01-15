@@ -92,16 +92,46 @@
                     </div>
                 </div>
                 <style>
+                
                     .ficha {
                         margin-top: 20px;
                         padding: 20px;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
+                        border: 1px solid #cd2481; /* Color de borde con acento */
+                        border-radius: 10px; /* Bordes redondeados */
+                        background-color: #ffffff; /* Fondo blanco */
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
                     }
+                
+                    .scrollable-table-container {
+                        max-height: 500px; /* Ajusta la altura que desees */
+                        overflow-y: auto; /* Habilita el desplazamiento vertical */
+                        border-radius: 10px; /* Bordes redondeados */
+                        background-color: #f8f9fa; /* Fondo claro para la tabla */
+                        padding: 10px; /* Relleno interno */
+                    }
+                
+                    /* Estilo para las tablas */
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                
+           
+                    /* Estilo para las filas al pasar el cursor */
+                    tr:hover {
+                        background-color: #cd2481; /* Color de fondo al pasar el cursor */
+                        color: white; /* Color de texto blanco */
+                    }
+                
+                   
                 </style>
                 <div>
-                    <div class ='ficha'>
-                        {{informe|safe}}
+                    <div class="scrollable-table-container">
+                        <table>
+                            <div class="ficha">
+                                {{ informe|safe }}
+                            </div>
+                        </table>
                     </div>
                 </div>
             </div>
