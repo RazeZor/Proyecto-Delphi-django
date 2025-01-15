@@ -56,6 +56,7 @@ class formularioClinico(models.Model):
     nesesidadDeApoyo = models.CharField(max_length=20,null=True, blank=True)
     TiposDeEnfermedades = models.JSONField(null=True, blank=True) # aqui manejo todos los checkbox 
     mencionesActividades = models.JSONField(null=True, blank=True)
+    ubicacionDolor= models.JSONField(null=True,blank=True)
     dolorIntensidad = models.JSONField(null=True, blank=True)
     DuracionDolor = models.IntegerField(null=True, blank=True)
     preguntas1 = models.JSONField(null=True, blank=True) 

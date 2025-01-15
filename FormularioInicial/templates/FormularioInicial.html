@@ -556,8 +556,9 @@
                                 const tr = document.createElement('tr');
                                 tr.innerHTML = `
                                     <td>${nombreParte}</td>
+                                    <input type="hidden" name="ubicacionDolor" value="${nombreParte}">
                                     <td>
-                                        <select class="form-select">
+                                        <select class="form-select" name="intensidad">
                                             <option value="">Seleccionar intensidad</option>
                                             ${intensidades.map(intensidad => 
                                                 `<option value="${intensidad.toLowerCase()}">${intensidad}</option>`

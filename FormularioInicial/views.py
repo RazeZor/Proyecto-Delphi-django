@@ -54,6 +54,8 @@ def FormularioInicial(request):
     nesesidadDeApoyo=request.POST.get('support'),
     TiposDeEnfermedades=json.dumps(request.POST.getlist('TiposDeEnfermedades')),
     mencionesActividades=json.dumps(request.POST.getlist('mencionesActividades')),
+    ubicacionDolor = json.dumps(request.POST.getlist('ubicacionDolor')),
+    dolorIntensidad= json.dumps(request.POST.getlist('intensidad')),
     DuracionDolor=int(request.POST.get('DuracionDolor', 0)) if request.POST.get('DuracionDolor') else None,
     preguntas1=json.dumps(request.POST.getlist('preguntas1')),
     preguntas2=json.dumps(request.POST.getlist('preguntas2')),
