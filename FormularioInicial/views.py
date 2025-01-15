@@ -82,7 +82,7 @@ def FormularioInicial(request):
     condicionNicotina = request.POST.get('condicionNicotina'),
     nicotinaPreocupacion = int(request.POST.get('nicotinaPreocupacion'),0),
     #cigarro
-    AlcoholSiOno = request.POST.get('alcoholSiOno'),
+    AlcoholSiOno = request.POST.get('AlcoholSiOno'),
     condicionAlcohol = request.POST.get('condicionAlcohol'),
     AlcoholPreocupacion = int(request.POST.get('AlcoholPreocuopacion'),0),
     #drogas

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Modelo Clínico: Representa un clínico en el sistema.
 class Clinico(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, unique=True)  # Clave primaria única
@@ -90,7 +91,7 @@ class formularioClinico(models.Model):
     condicionAlcohol =  models.TextField(null=True,blank=True)
     AlcoholPreocupacion = models.IntegerField(null=True,blank=True)
     
-    drogasSiOno = models.JSONField(blank=True,null=True)
+    drogasSiOno = models.JSONField(blank=True,null=True) 
     condicionDrogas =  models.TextField(null=True,blank=True)
     DrogasPreocupacion = models.IntegerField(null=True,blank=True)
     
@@ -104,10 +105,7 @@ class formularioClinico(models.Model):
     motivacion_Salud = models.TextField(null=True,blank=True)
     
     
-    
-    
-    
-    
+
     
     
     
