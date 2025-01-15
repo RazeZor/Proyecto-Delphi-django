@@ -67,6 +67,10 @@ def FormularioInicial(request):
     pregunta6_PorcionesDeFrutas=json.dumps(request.POST.getlist('op6')),
     pregunta7_ejercicioDias=json.dumps(request.POST.getlist('op7')),
     pregunta8_minutosPorEjercicios=json.dumps(request.POST.getlist('op8')),
+    medicamentos = json.dumps(request.POST.getlist('medicamentos')),
+    medicamento_efectivo = json.dumps(request.POST.getlist('medicamento_efectivo')),
+    proposito = int(request.POST.get('proposito'),0)
+        
 )
         formulario.save()
         

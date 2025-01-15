@@ -129,7 +129,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Seleccione tipo de cobertura de salud</label>
-                        <select class="form-select form-select-lg" id="coberturaSalud" name="CcoverturaSalud">
+                        <select class="form-select form-select-lg" id="cobertura" name="cobertura">
                             <option selected>--Seleccione--</option>
                             <option value="Fonasa">Fonasa</option>
                             <option value="Isapre">Isapre</option>
@@ -717,23 +717,31 @@
                                 Me gustaría mejorar mis habilidades de comunicación relacionadas con el manejo de mi dolor crónico.
                             </label>
                             <div class="form-group">
-                                <label 
-                                class="form-label">Detalla a continuacion medicamentos para el dolor que usas o has usado. Marque el medicamento que le resulte más efectivo:
-                                    <input type="radio" name="medicamento" class="opcion-radio" value="med1" /> <input type="text" class="form-control" name="med1" id="med1" placeholder="Ingrese medicamento" /><br />
-                                </label>
-                                <label><input type="radio" name="medicamento" class="opcion-radio" value="med2" /> <input type="text" class="form-control" name="med1" id="med2" placeholder="Ingrese medicamento" /><br />
-                                </label>
-                                <label>
-                                    <input type="radio" name="medicamento" class="opcion-radio" value="med3" /> <input type="text" class="form-control" name="med1" id="med3" placeholder="Ingrese medicamento" /><br />
-                                </label>
-                                <label>
-                                    <input type="radio" name="medicamento" class="opcion-radio" value="med4" /> <input type="text" class="form-control" name="med1" id="med4" placeholder="Ingrese medicamento" /><br />
-                                </label>
-                                <label>
-                                    <input type="radio" name="medicamento" class="opcion-radio" value="med5" /> <input type="text" class="form-control" name="med5" id="med1" placeholder="Ingrese medicamento" /><br />
-                                </label>
+                                <label class="form-label">Detalla a continuación medicamentos para el dolor que usas o has usado. Marque el medicamento que le resulte más efectivo:</label>
+                                <input type="radio" name="medicamento_efectivo" class="opcion-radio" onclick="Obtener('med1', this)" />
+                                <input type="text" class="form-control" name="medicamentos" id="med1" placeholder="Ingrese medicamento" /><br />
+                            
+                                <script>
+                                    function Obtener(idTextarea, radioBtn) {
+                                        const textArea = document.getElementById(idTextarea);
+          
+                                        radioBtn.value = textArea.value;
+                                    }
+                                </script>
+   
+                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med2", this)'/> 
+                                    <input type="text" class="form-control" name="medicamentos" id="med2" placeholder="Ingrese medicamento" /><br />
+                                
 
-                            </label>
+                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med3", this)'/> 
+                                    <input type="text" class="form-control" name="medicamentos" id="med3" placeholder="Ingrese medicamento" /><br />
+
+                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med4", this)' /> 
+                                    <input type="text" class="form-control" name="medicamentos" id="med4" placeholder="Ingrese medicamento" /><br />
+             
+                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med5", this)'/> 
+                                    <input type="text" class="form-control" name="medicamentos" id="med1" placeholder="Ingrese medicamento" /><br />
+
                             </div>
 
                     </div>
@@ -840,6 +848,7 @@
                             <input type="radio" name="op7" class="opcion-radio" value="1 - 2 veces por semana "/> 1-2 veces por semana <br />
                             <input type="radio" name="op7" class="opcion-radio" value="3-4 veces por semana"/> 3-4 veces por semana<br />
                             <input type="radio" name="op7" class="opcion-radio" value="5 o mas veces por semana"/> 5 o mas veces por semana <br />
+
                         </div>
                     </div>
 
@@ -868,18 +877,16 @@
                             <label for="" class="form-label">
                                 <h1>Durante las últimas 2 semanas,¿con qué frecuencia? </h1>
 
-                            </label>
                             <div class="pregunta">
                                 <label for="" class="form-label">
                                     sentiste que tu vida, tenia un proposito o significado 
-                                </label>
                                 <div>
-                                    <input type="range" min="0" max="3" name="saludMental1" class="slider" id="ProgressionBarPregunta7" />
+                                    <input type="range" min="0" max="3" name="proposito" class="slider" id="ProgressionBarPregunta7" />
                                     <div style="display: flex; justify-content: space-between; width: 100%;">
-                                        <label for="ProgressionBarPregunta">3</label>
-                                        <label for="ProgressionBarPregunta">2</label>
-                                        <label for="ProgressionBarPregunta">1</label>
                                         <label for="ProgressionBarPregunta">0</label>
+                                        <label for="ProgressionBarPregunta">1</label>
+                                        <label for="ProgressionBarPregunta">2</label>
+                                        <label for="ProgressionBarPregunta">3</label>
                                     </div>
         
                                 </div>
