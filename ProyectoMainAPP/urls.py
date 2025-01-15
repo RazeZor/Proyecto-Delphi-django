@@ -31,7 +31,7 @@ urlpatterns = [
     path('panel/FormularioInicial/', vistaClinicos.FormularioInicial,name='formularioInicial'),
     path('Cerrar/',v.cerrar_sesion,name='cerrarSesion'),
     path('cuerpoHumano/',vistaClinicos.CuerpoHumano),
-    path('panel/fichaPacientes/',v.VerfichaPacientes,name='ficha'),
+    path('panel/fichaPacientes/',v.VerFichaPacientes,name='ficha'),
     path('informe/',vistaInforme.RenderInforme,name='informe')
 
 ]

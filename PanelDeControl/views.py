@@ -1,4 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
+from Login.models import Paciente, formularioClinico
+from django.http import JsonResponse
 
 def panel(request):
     if 'nombre_clinico' in request.session:
@@ -14,12 +16,32 @@ def cerrar_sesion(request):
     # Redirige al login (o a cualquier otra página que desees)
     return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
 
-def VerfichaPacientes(request):
-    if 'nombre_clinico' in request.session:
-        nombre_clinico = request.session['nombre_clinico']
-        with open('informe/templates/informe.html','r',encoding='utf-8') as informe:
-            informe = informe.read()
-        return render(request, 'FichaPacientes.html', {'nombre_clinico': nombre_clinico, 'informe': informe})
-    else:
+def VerFichaPacientes(request):
+    if 'nombre_clinico' not in request.session:
         return redirect('login')
-
+    
+    nombre_clinico = request.session['nombre_clinico']
+    rut = request.GET.get('rut', None)
+    context = {'nombre_clinico': nombre_clinico}
+    
+    if rut:
+        try:
+            paciente = Paciente.objects.get(rut=rut)
+            formulario = formularioClinico.objects.get(paciente=paciente)
+        
+            with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
+                informe_template = template_file.read()
+            
+            informe = informe_template.format(
+                paciente=paciente,
+                formulario=formulario
+            )
+            
+            context['informe'] = informe
+            context['encontrado'] = True
+            
+        except (Paciente.DoesNotExist, formularioClinico.DoesNotExist):
+            context['encontrado'] = False
+            context['mensaje'] = "No se encontró el paciente o su formulario clínico"
+    
+    return render(request, 'FichaPacientes.html', context)
