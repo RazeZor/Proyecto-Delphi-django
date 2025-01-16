@@ -7,7 +7,8 @@ from django.http import HttpResponse, JsonResponse
 def panel(request):
     if 'nombre_clinico' in request.session:
         nombre_clinico = request.session['nombre_clinico']
-        return render(request, 'panel.html', {'nombre_clinico': nombre_clinico})
+        es_admin = request.session.get('es_admin', False)
+        return render(request, 'panel.html', {'nombre_clinico': nombre_clinico, 'es_admin': es_admin})
     else:
         return redirect('login')
     

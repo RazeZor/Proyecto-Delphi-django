@@ -2,10 +2,6 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from Login.models import Clinico
 
-# Vista Login: Permite a un clínico iniciar sesión en el sistema.
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Clinico
 
 def validarLogin(request):
     if request.method == 'POST':
@@ -22,11 +18,12 @@ def validarLogin(request):
                 if clinico.EsAdmin:
                         print("Es administrador")
                         request.session['es_admin'] = True
-                        return render(request, 'panel.html', {'nombre_clinico': clinico.nombre,'es_admin': True,})
+                        
+                        return redirect('panel')
                 else:
                     print("No es administrador")
                     request.session['es_admin'] = False
-                    return render(request, 'panel.html', {'nombre_clinico': clinico.nombre,'es_admin': False,})
+                    return redirect('panel')
             else:
                 messages.error(request, 'La contraseña ingresada es incorrecta.')
                 print("Contraseña incorrecta")
