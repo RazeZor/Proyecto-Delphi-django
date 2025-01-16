@@ -19,6 +19,13 @@ def validarLogin(request):
             if clinico.contraseña == password:
                 request.session['rut_clinico'] = clinico.rut
                 request.session['nombre_clinico'] = f"{clinico.nombre} {clinico.apellido}"
+                if clinico.EsAdmin:
+                    print("Es administrador")
+                    request.session['es_admin'] = True
+                    return render(request, 'panel.html', {'nombre_clinico': clinico.nombre,'es_admin': True,})
+                else:
+                    print("No es administrador")
+                    request.session['es_admin'] = False
                 return redirect('panel')
             else:
                 messages.error(request, 'La contraseña ingresada es incorrecta.')
@@ -29,10 +36,22 @@ def validarLogin(request):
         except Exception as e:
             messages.error(request, f'Error inesperado: {str(e)}')
             print(f"Error inesperado: {str(e)}")
-  
-        
-    
     return render(request, 'Login.html')
 
+'''    try:
+        # Recuperar el perfil del clínico asociado al usuario logueado
+        clinico = request.user.clinico
+    except Clinico.DoesNotExist:
+        # Si no tiene un perfil de clínico, redirigir o manejar el error
+        return redirect('login')
 
+    # Verificar si el usuario es administrador
+    if clinico.EsAdmin:
+        pacientes = Paciente.objects.all()  # Cargar pacientes solo para administradores
+        return render(request, 'panel.html', {'nombre_clinico': clinico.nombre,'es_admin': True,'pacientes': pacientes,})
+    else:
+        return render(request, 'panel.html', {
+            'nombre_clinico': clinico.nombre,
+            'es_admin': False,
+        })'''
 
