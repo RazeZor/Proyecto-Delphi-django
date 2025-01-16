@@ -83,6 +83,32 @@
                 color: var(--primary);
             }}
         }}
+        /* Diseño de la flecha */
+            .arrow-down {{
+                display: inline-block;
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-top: 10px solid #ff0000; /* Color de la flecha, puedes cambiarlo */
+                margin-right: 10px; /* Espacio entre la flecha y el texto */
+            }}
+
+            /* Diseño del texto de la ubicación */
+            .ubicacion-text {{
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+            }}
+
+            /* Diseño de la intensidad del dolor */
+            .intensidad-text {{
+                font-size: 16px;
+                font-weight: bold;
+                color: #FF0000;
+                padding-right: 4 0%;
+                
+            }}
     </style>
 <body>
     <div class="header-section">
@@ -128,12 +154,16 @@
                         <div class="info-value">{formulario.DuracionDolor}</div>
                         <div class="info-label">Características del Dolor</div>
                         <div class="info-value">{formulario.caracteristicasDeDolor}</div>
-                        <div class="info-label">Ubicación del Dolor</div>
-                        <div class="info-value">{formulario.ubicacionDolor}</div>
+                        <div class="info-label">Ubicación e Intensidad del Dolor</div>
+                        <div class="info-value">
+                            <span class="arrow-down"></span> 
+                            <span class="ubicacion-text">{formulario.ubicacionDolor}</span> 🠗 
+                            <div class="intensidad-text">{formulario.dolorIntensidad}</div>
+                         
+                        
                     </div>
                     <div class="col-md-6">
-                        <div class="info-label">Intensidad del Dolor</div>
-                        <div class="info-value">{formulario.dolorIntensidad}</div>
+                        
                         <div class="info-label">Causa del Dolor</div>
                         <div class="info-value">{formulario.causaDolor}</div>
                         <div class="info-label">¿Accidente Laboral?</div>
@@ -147,11 +177,11 @@
                 <h2 class="section-title">Medicación y Tratamiento</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="info-label">Medicamentos Actuales</div>
+                        <div class="info-label">Medicamentos que ah usado </div>
                         <div class="info-value">{formulario.medicamentos}</div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-label">Medicamentos Efectivos</div>
+                        <div class="info-label">Medicamentos que mas efectivos para el :</div>
                         <div class="info-value">{formulario.medicamento_efectivo}</div>
                     </div>
                 </div>
@@ -161,20 +191,21 @@
                 <h2 class="section-title">Estado Emocional (Últimas 2 semanas)</h2>
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="info-label">Nivel de Propósito</div>
-                        <div class="info-value">{formulario.proposito}/10</div>
-                        <div class="info-label">Red de Apoyo</div>
-                        <div class="info-value">{formulario.red_de_apoyo}/10</div>
-                        <div class="info-label">Placer en Actividades</div>
-                        <div class="info-value">{formulario.placer_cosas}/10</div>
+                        <div class="info-label">sentiste que tu vida, tenia un proposito o significado?</div>
+                        <div class="info-value">{formulario.proposito}/3</div>
+                        <div class="info-label">estuvo conectado con alguna red de apoyo(ejemplo : 
+                        comunidad espiritual, amistad, familia, naturaleza, yoga o meditacion )?</div>
+                        <div class="info-value">{formulario.red_de_apoyo}/3</div>
+                        <div class="info-label">se ha sentido molesto por tener poco interes o placer en hacer las cosas?</div>
+                        <div class="info-value">{formulario.placer_cosas}/3</div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-label">Nivel de Depresión</div>
-                        <div class="info-value">{formulario.deprimido}/10</div>
-                        <div class="info-label">Nivel de Ansiedad</div>
-                        <div class="info-value">{formulario.ansioso}/10</div>
-                        <div class="info-label">Nivel de Preocupación</div>
-                        <div class="info-value">{formulario.preocupacion}/10</div>
+                        <div class="info-label">se ha sentido molesto por estar deprimido, depresivo o desesperanzado?</div>
+                        <div class="info-value">{formulario.deprimido}/3</div>
+                        <div class="info-label">se ha sentido molesto por estar nervioso, ansioso o tenso?</div>
+                        <div class="info-value">{formulario.ansioso}/3</div>
+                        <div class="info-label">se ha sentido molesto por preocuparse mucho sobre diferentes cosas?</div>
+                        <div class="info-value">{formulario.preocupacion}/3</div>
                     </div>
                 </div>
             </div>
@@ -220,7 +251,7 @@
     <footer>
         <div class="container text-center">
             <p class="mb-0">
-                <small>Informe generado el {formulario.fechaCreacion}</small><br>
+                <h2>Informe generado el {formulario.fechaCreacion}</h2><br>
                 <small>Este documento es confidencial y contiene información médica protegida</small>
             </p>
         </div>
