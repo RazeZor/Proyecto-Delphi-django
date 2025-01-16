@@ -60,6 +60,14 @@
                         Lista de Pacientes
                     </a>
                 </li>
+                {% if es_admin %}
+                <li>
+                    <a href="{% url 'ver' %}" class="calendar-plus">
+                        <i class='bx bx-calendar-plus'></i>
+                        Lista Clinicos
+                    </a>
+                </li>
+                {% endif %}
                 <li>
                     <a href="#">
                         <i class='bx bx-chart'></i>

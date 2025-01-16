@@ -23,10 +23,10 @@ def VerFichaPacientes(request):
     if 'nombre_clinico' not in request.session:
         return redirect('login')
     
+    
     nombre_clinico = request.session['nombre_clinico']
     rut = request.GET.get('rut', None)
     context = {'nombre_clinico': nombre_clinico}
-    
     if rut:
         try:
             paciente = Paciente.objects.get(rut=rut)
@@ -49,5 +49,5 @@ def VerFichaPacientes(request):
         except (Paciente.DoesNotExist, formularioClinico.DoesNotExist):
             context['encontrado'] = False
             context['mensaje'] = "No se encontró el paciente o su formulario clínico"
-    
+
     return render(request, 'FichaPacientes.html', context)
