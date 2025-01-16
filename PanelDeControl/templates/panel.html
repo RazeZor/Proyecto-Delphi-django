@@ -19,8 +19,6 @@
                     <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
                     </i> 
                 </a>
-                
-
             </span>
             <div class="d-flex align-items-center">
                 <div class="menu-links">
@@ -41,6 +39,14 @@
                         Agregar Pacientes
                     </a>
                 </li>
+                {% if es_admin %}
+                <li>
+                    <a href="{% url 'ver' %}" class="calendar-plus">
+                        <i class='bx bx-calendar-plus'></i>
+                        Lista Clinicos
+                    </a>
+                </li>
+                {% endif %}
                 <li>
                     <a href="{% url 'ficha' %}">
                         <i class='bx bx-list-ul'></i>
