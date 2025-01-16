@@ -109,6 +109,17 @@
                 padding-right: 4 0%;
                 
             }}
+
+            .PDF{{
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+
+            }}
+            .botoncito{{
+                color: #21294e
+                
+            }}
     </style>
 <body>
     <div class="header-section">
@@ -159,11 +170,9 @@
                             <span class="arrow-down"></span> 
                             <span class="ubicacion-text">{formulario.ubicacionDolor}</span> 🠗 
                             <div class="intensidad-text">{formulario.dolorIntensidad}</div>
-                         
-                        
+                            
                     </div>
                     <div class="col-md-6">
-                        
                         <div class="info-label">Causa del Dolor</div>
                         <div class="info-value">{formulario.causaDolor}</div>
                         <div class="info-label">¿Accidente Laboral?</div>
@@ -245,6 +254,11 @@
                     </div>
                 </div>
             </div>
+            <div class="PDF"> 
+                <a  class="botoncito">
+                    Generar PDF
+                </a>
+            </div>
         </div>
     </div>
 
@@ -258,5 +272,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 import json
 from django.shortcuts import render, redirect
 from Login.models import Paciente, formularioClinico
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
+
 
 def panel(request):
     if 'nombre_clinico' in request.session:
@@ -30,8 +31,6 @@ def VerFichaPacientes(request):
             paciente = Paciente.objects.get(rut=rut)
             formulario = formularioClinico.objects.get(paciente=paciente)
             
-            ubicaciones = formulario.ubicacionDolor.split(',')
-            intensidades = formulario.dolorIntensidad.split(',')
         
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
@@ -40,13 +39,11 @@ def VerFichaPacientes(request):
                 paciente=paciente,
                 formulario=formulario
             )
-            context['ubicaciones'] = ubicaciones
-            context['intensidades'] = intensidades
+
             context['informe'] = informe
             context['encontrado'] = True
-            
-            print(f"Ubicaciones: {ubicaciones}")
-            print(f"Intensidades: {intensidades}")
+
+        
             
         except (Paciente.DoesNotExist, formularioClinico.DoesNotExist):
             context['encontrado'] = False
