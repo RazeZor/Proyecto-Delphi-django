@@ -59,18 +59,27 @@
                         Gráfico de salud por paciente
                     </a>
                 </li>
+                {% if es_admin %}
+                <li>
+                    <a href="{% url 'ver' %}" class="calendar-plus">
+                        <i class='bx bx-calendar-plus'></i>
+                        Lista Clinicos
+                    </a>
+                </li>
+                {% endif %}
                 <li>
                     <a href="{% url 'cerrarSesion' %}" class="text-danger">
                         <i class='bx bx-log-out'></i>
                         Cerrar Sesión
                     </a>
                 </li>
+
+
             </ul>
         </div>
 
         <main class="main-content">
             <div class="container-fluid">
-                <h2 class="mb-4">Panel Principal</h2>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="dashboard-card">
@@ -112,7 +121,6 @@
         </main>
     </div>
     
-
     <footer class="text-white text-center">
         <p class="mb-0">&copy; 2024 Dashboard Clínico - Todos los derechos reservados</p>
     </footer>
