@@ -19,6 +19,21 @@
                     <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
                     </i> 
                 </a>
+               
+                <style>
+                    .error-message {
+                        color: red;
+                        margin: 10px 0;
+                    }
+                    .success-message {
+                        color: green;
+                        margin: 10px 0;
+                    }
+                    #informe-container {
+                        margin-top: 20px;
+                    }
+                </style>
+
             </span>
             <div class="d-flex align-items-center">
                 <div class="menu-links">
@@ -66,7 +81,7 @@
                     <form method="get" id="search-form">
                         <h4>Buscar paciente</h4>
                         <fieldset>
-                            <input type="text" id="search-input" placeholder="Ingrese rut..."  />
+                            <input type="text" id="search-input" name="rut" placeholder="Ingrese rut..." />
                             <input class="search-button" type="submit" value="Buscar" />
                             <i class="search-icon"></i>
                         </fieldset>
@@ -126,9 +141,18 @@
                 <div>
                     <div class="scrollable-table-container">
                         <table>
-                            <div class="ficha">
+                                    {% if encontrado == False %}
+                                    <div class="error-message">
+                                        {{ mensaje }}
+                                    </div>
+                                    {% endif %}
+                                
+                                {% if informe %}
+                                <div class="ficha">
                                 {{ informe|safe }}
-                            </div>
+
+                                </div>
+                                {% endif %}
                         </table>
                     </div>
                 </div>
@@ -144,5 +168,14 @@
     <script src="login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            const rut = document.getElementById('search-input').value.trim();
+            if (!rut) {
+                e.preventDefault();
+                alert('Por favor ingrese un RUT');
+            }
+        });
+    </script>
 </body>
 </html>
