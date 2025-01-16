@@ -19,7 +19,14 @@ def validarLogin(request):
             if clinico.contraseña == password:
                 request.session['rut_clinico'] = clinico.rut
                 request.session['nombre_clinico'] = f"{clinico.nombre} {clinico.apellido}"
-                return redirect('panel')
+                if clinico.EsAdmin:
+                    print("Es administrador")
+                    request.session['es_admin'] = True
+                    return render(request, 'panel.html', {'nombre_clinico': clinico.nombre,'es_admin': True,})
+                else:
+                    print("No es administrador")
+                    request.session['es_admin'] = False
+                    return render(request, 'panel.html', {'nombre_clinico': clinico.nombre,'es_admin': True,})
             else:
                 messages.error(request, 'La contraseña ingresada es incorrecta.')
                 print("Contraseña incorrecta")

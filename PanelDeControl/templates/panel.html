@@ -53,6 +53,14 @@
                         Gráfico de salud por paciente
                     </a>
                 </li>
+                {% if es_admin %}
+                <li>
+                    <a href="{% url 'ver' %}" class="calendar-plus">
+                        <i class='bx bx-calendar-plus'></i>
+                        Lista Clinicos
+                    </a>
+                </li>
+                {% endif %}
                 <li>
                     <a href="{% url 'cerrarSesion' %}" class="text-danger">
                         <i class='bx bx-log-out'></i>

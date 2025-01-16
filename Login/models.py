@@ -9,7 +9,8 @@ class Clinico(models.Model):
     profesion = models.CharField(max_length=50,default='default_profession')
     contraseña = models.CharField(max_length=50, default='default_password')
     pacientes = models.ManyToManyField('Paciente', related_name='clinicos')
-    
+    EsAdmin = models.BooleanField(default=False)
+
 
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
