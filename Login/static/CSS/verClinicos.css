@@ -1,0 +1,132 @@
+:root {
+    --pink: #cd2481;
+    --blue: #21294e;
+    --white: #ffffff;
+}
+
+.navbar {
+    background-color: var(--blue);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--white) !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--white) !important;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--pink) !important;
+}
+
+main {
+    min-height: calc(100vh - 160px);
+    padding: 2rem 0;
+    background-color: var(--light-gray);
+}
+
+h1 {
+    color: var(--blue);
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+}
+
+.table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(205, 36, 129, 0.05);
+}
+
+.btn-primary {
+    background-color: var(--pink);
+    border-color: var(--pink);
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+}
+
+.add-button {
+    margin-bottom: 1rem;
+}
+
+.action-buttons .btn {
+    margin: 0 0.25rem;
+}
+
+.footer {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.search-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.search-box input {
+    padding-left: 2.5rem;
+    border-radius: 20px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .action-buttons .btn {
+        margin: 0.25rem 0;
+        display: block;
+        width: 100%;
+    }
+}
