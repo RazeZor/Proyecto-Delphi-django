@@ -86,7 +86,7 @@ DATABASES = {
         'USER': 'django_user',      # Actualizado para coincidir con MYSQL_USER
         'PASSWORD': 'my_password',
         'HOST': 'db',
-        'PORT': '3307',
+        'PORT': '3306',
     }
 }
 
