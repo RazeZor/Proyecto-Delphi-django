@@ -162,7 +162,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="info-label">Duración del Dolor (meses)</div>
-                        <div class="info-value">{formulario.DuracionDolor}</div>
+                        <div class="info-value">fue de {formulario.DuracionDolor} meses</div>
                         <div class="info-label">Características del Dolor</div>
                         <div class="info-value">{formulario.caracteristicasDeDolor}</div>
                         <div class="info-label">Ubicación e Intensidad del Dolor</div>
@@ -187,7 +187,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="info-label">Medicamentos que ah usado </div>
-                        <div class="info-value">{formulario.medicamentos}</div>
+                        <div class="info-value">
+                            <ul>
+                                <li>
+                                    {formulario.medicamentos}
+                                </li>
+                            </ul>
+                            
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="info-label">Medicamentos que mas efectivos para el :</div>
@@ -238,6 +245,30 @@
                         <div class="info-value">{formulario.pregunta6_PorcionesDeFrutas}</div>
                         <div class="info-label">Opinión sobre Peso Actual</div>
                         <div class="info-value">{formulario.pregunta4_opinion_peso_actual}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-label">Consumos de Sustancias </div>
+                        <div class="info-value">yo {formulario.NicotinaSiOno} consumo nicotina.</div>
+                        <div class="info-value">yo {formulario.AlcoholSiOno} consumo alcohol.</div>
+
+                        <div class="info-value">yo {formulario.drogasSiOno} consumo drogas sustancias.</div>
+         
+                        <div class="info-value">yo{formulario.marihuanaSiOno} consumo marihuana.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="info-label">Preocupacion</div>
+                        <div class="info-value"> mi preocupacion por
+                            mi consumo de nicotine es : {formulario.nicotinaPreocupacion}/3</div>
+                        <div class="info-value">mi preocupacion por
+                            mi consumo de alcochol es : {formulario.AlcoholPreocupacion}/3</div>
+                        <div class="info-value">mi preocupacion por
+                            mi consumo de drogas o sustancias es  : {formulario.DrogasPreocupacion}/3</div>
+                        <div class="info-value">mi preocupacion por
+                                mi consumo de marihuana es : {formulario.marihuanaPreocupacion}/3</div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
