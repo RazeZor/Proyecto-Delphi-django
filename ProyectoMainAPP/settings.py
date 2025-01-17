@@ -79,15 +79,14 @@ WSGI_APPLICATION = 'ProyectoMainAPP.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Clinica_Delphi',
-        'USER': 'root',
-        'PASSWORD': 'Maxitotaker83.',
-        'HOST': 'localhost',  
-        'PORT': '3306',       
+        'NAME': 'my_database',
+        'USER': 'django_user',      # Actualizado para coincidir con MYSQL_USER
+        'PASSWORD': 'my_password',
+        'HOST': 'db',
+        'PORT': '3307',
     }
 }
 
