@@ -12,8 +12,7 @@
 <style>
     body {
         background-image: url("{% static 'image/background_1.jpg' %}");
-        background-size: cover;  /* Esto ajusta la imagen al tamaño de la pantalla */
-        
+        background-size: cover;  /* Esto ajusta la imagen al tamaño de la pantalla */ 
     }
     
 
@@ -22,21 +21,37 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">Formulario Clinico</a>
+                <a class="navbar-brand" href="{% url 'panel' %}">Formulario Clinico</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'panel' %}">Inicio</a>
-                        </li>
-
+                        <i class="navbar-brand"  id = "tiempo">Tiempo : 00:00:00</i>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let segundos = 0; 
+            const tiempoElemento = document.getElementById("tiempo");
+        
+            const actualizarTiempo = () => {
+                const horas = Math.floor(segundos / 3600);
+                const minutos = Math.floor((segundos % 3600) / 60);
+                const seg = segundos % 60;
+                const formatoTiempo = `${String(horas).padStart(2, "0")}:${String(minutos).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
+        
+                tiempoElemento.textContent = `Tiempo : ${formatoTiempo}`;
+
+                segundos++;
+            };
+
+            setInterval(actualizarTiempo, 1000);
+        });
+    </script>
     <main>
         <div class="form-container">
             <div class="timeline">
@@ -689,7 +704,7 @@
                     <h6>¿Qué esperas lograr con un mejor manejo del dolor? Selecciona máximo 2 opciones.</h6>
                     <div class="form-group">
                             <label>
-                                <input type="checkbox" class="form-check-input me-1" type="checkbox" value="mejor comprension de por que tengo dolor persistente." name="preguntas2">
+                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" type="checkbox" value="mejor comprension de por que tengo dolor persistente." >
                                 Mejor comprensión de por qué tengo dolor persistente.
                             </label>
                             <label>
@@ -702,10 +717,10 @@
                             </label>
                             <label>
                                 <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Explorar opciones farmacologicas.">
-                                Explorar opciones farmacológicas.
+                                Hoy  me gustaria Explorar opciones Farmacologicas....
                             </label>
                             <label>
-                                <input type="checkbox" name="preguntas2" class="Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).">
+                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).">
                                 Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).
                             </label>
                             <label>
@@ -949,23 +964,23 @@
                                 </div>
                                 <style>
                                     /* Estilo para cuando el slider está activo */
-.slider:active::-webkit-slider-thumb {
-  transform: scale(1.2);
-}
+                                    .slider:active::-webkit-slider-thumb {
+                                    transform: scale(1.2);
+                                    }
 
-.slider:active::-moz-range-thumb {
-  transform: scale(1.2);
-}
+                                    .slider:active::-moz-range-thumb {
+                                    transform: scale(1.2);
+                                    }
 
-.pregunta {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+                                    .pregunta {
+                                        transition: transform 0.2s ease, box-shadow 0.2s ease;
+                                    }
 
-.pregunta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-                                </style>
+                                    .pregunta:hover {
+                                        transform: translateY(-2px);
+                                        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+                                    }
+                            </style>
                             </div>
                             <div class="pregunta1">
                                 
@@ -1215,6 +1230,32 @@
                         updateUI(currentStep);
                     }
                 });
+
+                document.addEventListener("DOMContentLoaded", () => {
+                    let segundos = 0; // Inicializamos el contador en 0 segundos
+                
+                    const tiempoElemento = document.getElementById("tiempo");
+                
+                    const actualizarTiempo = () => {
+                        const horas = Math.floor(segundos / 3600);
+                        const minutos = Math.floor((segundos % 3600) / 60);
+                        const seg = segundos % 60;
+                
+                        // Formateamos con ceros iniciales
+                        const formatoTiempo = `${String(horas).padStart(2, "0")}:${String(minutos).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
+                
+                        // Actualizamos el contenido del elemento HTML
+                        tiempoElemento.textContent = `Tiempo: ${formatoTiempo}`;
+                
+                        // Incrementamos el contador
+                        segundos++;
+                    };
+                
+                    // Llamamos a la función cada segundo
+                    setInterval(actualizarTiempo, 1000);
+                });
+
+               
 
             const checkboxes = document.querySelectorAll('.opcion-checkbox');
 

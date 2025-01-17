@@ -14,6 +14,32 @@
         <link rel="stylesheet" href="{% static 'CSS/AgregarClinico.css' %}" />
     </head>
     <body>
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{%url 'panel' %}">
+                        <i class="fas fa-hospital-user me-2"></i>Sistema Clínico
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'ver' %}">
+                                    <i class="fas fa-users me-1"></i>Ver Clínicos
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
         
 
         <main>

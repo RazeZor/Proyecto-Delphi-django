@@ -2,80 +2,185 @@
     --pink: #cd2481;
     --blue: #21294e;
     --white: #ffffff;
+    --light-pink: #fce4ef;
+    --light-blue: #e8e9f3;
+    --gray: #6c757d;
+    --light-gray: #f8f9fa;
 }
 
+body {
+    background-image: url("{% static 'image/background_1.jpg' %}");
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.92);
+    z-index: -1;
+}
+
+/* Navbar mejorado */
 .navbar {
-    background-color: var(--blue);
+    background: linear-gradient(to right, var(--blue), #2d3766);
     padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
 .navbar-brand {
     color: var(--white) !important;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 1.5rem;
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .nav-link {
     color: var(--white) !important;
     margin: 0 1rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
 }
 
-.nav-link:hover {
-    color: var(--pink) !important;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--pink);
+    transition: width 0.3s ease;
 }
 
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Contenedor principal */
 main {
     min-height: calc(100vh - 160px);
     padding: 2rem 0;
 }
 
+.card {
+    max-width: 800px;
+    margin: 2rem auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2.5rem;
+    border: none;
+    backdrop-filter: blur(10px);
+}
+
 h1 {
     color: var(--blue);
     margin-bottom: 2rem;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 2.2rem;
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
 }
 
+/* Estilos del formulario */
 .form-label {
     color: var(--blue);
     font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.form-control {
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    border: 2px solid var(--light-gray);
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 .form-control:focus {
     border-color: var(--pink);
-    box-shadow: 0 0 0 0.25rem rgba(205, 36, 129, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(205, 36, 129, 0.25);
 }
 
+.form-control::placeholder {
+    color: #adb5bd;
+}
+
+/* Botón personalizado */
 .btn-primary {
     background-color: var(--pink);
-    border-color: var(--pink);
-    padding: 0.5rem 2rem;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(205, 36, 129, 0.2);
+    margin-top: 1rem;
 }
 
 .btn-primary:hover {
-    background-color: var(--blue);
-    border-color: var(--blue);
+    background-color: #b61e6f;
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(205, 36, 129, 0.3);
 }
 
+/* Alertas personalizadas */
+.alert {
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Footer */
 .footer {
-    background-color: var(--blue);
+    background: linear-gradient(to right, var(--blue), #2d3766);
     color: var(--white);
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     position: relative;
-    bottom: 0;
     width: 100%;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
 }
 
-.container {
-    max-width: 800px;
-}
+/* Responsive design */
+@media (max-width: 768px) {
+    .card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
 
-.card {
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    background-color: var(--white);
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-primary {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .form-control {
+        padding: 0.7rem;
+    }
 }

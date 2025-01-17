@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'FormularioInicial',
     'TiposDeFormularios',	
     'informe',
+    'ListaDePacientes',
 ]
 
 MIDDLEWARE = [
