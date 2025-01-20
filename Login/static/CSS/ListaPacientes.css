@@ -3,7 +3,44 @@
     --secondary-color: #21294e;
     --accent-color: #e74c3c;
     --light-gray: #f8f9fa;
-    --text-color: #21294e;
+    --text-color: #ffffff;
+    --pink: #cd2481;
+}
+.navbar {
+    background: linear-gradient(to right, var(--blue), #2d3766);
+    padding: 1rem;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: var(--white) !important;
+    font-weight: 600;
+    font-size: 1.5rem;
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    text-shadow: 1px 1px 2px #21294e
+}
+
+.nav-link {
+    color: var(--white) !important;
+    margin: 0 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--pink);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 body {
@@ -44,6 +81,11 @@ header h1 {
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+header a i {
+    color: white;
+}
+
 
 .table-container {
     background: white;
