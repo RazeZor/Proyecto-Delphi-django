@@ -8,131 +8,222 @@
 </head>
 
     <style>
-        :root {{
-            --primary: #21294e;
-            --accent: #cd2481;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-        }}
-        
-        body {{
-            font-family: 'Arial', sans-serif;
-            background-color: var(--light);
-            color: var(--primary);
-            line-height: 1.6;
+            :root {{
+                --primary: #21294e;
+                --accent: #cd2481;
+                --light: #f8f9fa;
+                --gray: #6c757d;
+            }}
             
-        }}
-        
-        .header-section {{
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }}
-        
-        .report-card {{
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }}
-        
-        .section-title {{
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent);
-        }}
-        
-        .info-section {{
-            background-color: var(--light);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }}
-        
-        .info-label {{
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }}
-        
-        .info-value {{
-            color: var(--gray);
-            margin-bottom: 1rem;
-        }}
-        
-        img {{
-            width: 250px;
-        }}
-        
-        footer {{
-            background-color: var(--primary);
-            color: white;
-            padding: 1.5rem 0;
-            margin-top: 3rem;
-        }}
-        
-        @media print {{
-            body {{ background-color: white; }}
-            .report-card {{ box-shadow: none; }}
-            .header-section, footer {{
+            body {{
+                font-family: 'Arial', sans-serif;
+                background-color: #f5f6f8;
+                color: var(--primary);
+                line-height: 1.6;
+            }}
+            
+            .header-section {{
+                background-color: var(--primary);
+                color: white;
+                padding: 2rem 0;
+                margin-bottom: 2rem;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }}
+    
+            .header-actions {{
+                margin-top: 1.5rem;
+            }}
+    
+            .action-button {{
+                padding: 0.5rem 1.5rem;
+                border-radius: 50px;
+                border: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }}
+    
+            .btn-print {{
                 background-color: white;
                 color: var(--primary);
             }}
-        }}
-        /* Diseño de la flecha */
-            .arrow-down {{
-                display: inline-block;
-                width: 0;
-                height: 0;
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-top: 10px solid #ff0000; /* Color de la flecha, puedes cambiarlo */
-                margin-right: 10px; /* Espacio entre la flecha y el texto */
+    
+            .btn-download {{
+                background-color: var(--accent);
+                color: white;
             }}
-
-            /* Diseño del texto de la ubicación */
-            .ubicacion-text {{
-                font-size: 16px;
-                font-weight: bold;
-                color: #333;
+    
+            .btn-print:hover, .btn-download:hover {{
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             }}
-
-            /* Diseño de la intensidad del dolor */
-            .intensidad-text {{
-                font-size: 16px;
-                font-weight: bold;
-                color: #FF0000;
-                padding-right: 4 0%;
-                
+            
+            .report-card {{
+                background-color: white;
+                border-radius: 16px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+                padding: 2rem;
+                margin-bottom: 2rem;
             }}
-
-            .PDF{{
-                text-align: center;
-                justify-content: center;
+            
+            .section-title {{
+                color: var(--accent);
+                font-weight: 600;
+                margin-bottom: 1.5rem;
+                padding-bottom: 0.8rem;
+                border-bottom: 2px solid var(--accent);
+                position: relative;
+            }}
+    
+            .section-title::after {{
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 50px;
+                height: 2px;
+                background-color: var(--primary);
+            }}
+            
+            .info-section {{
+                background-color: #ffffff;
+                padding: 1.8rem;
+                border-radius: 12px;
+                margin-bottom: 2rem;
+                border: 1px solid rgba(0,0,0,0.05);
+                transition: all 0.3s ease;
+            }}
+    
+            .info-section:hover {{
+                box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            }}
+            
+            .info-label {{
+                font-weight: 600;
+                color: var(--primary);
+                margin-bottom: 0.5rem;
+                font-size: 0.95rem;
+            }}
+            
+            .info-value {{
+                color: var(--gray);
+                margin-bottom: 1.2rem;
+                padding-left: 0.5rem;
+                border-left: 3px solid var(--accent);
+            }}
+            
+            .logo-img {{
+                width: 200px;
+                height: auto;
+                margin-bottom: 1.5rem;
+            }}
+            
+            footer {{
+                background-color: var(--primary);
+                color: white;
+                padding: 2rem 0;
+                margin-top: 3rem;
+            }}
+    
+            /* Diseño mejorado para la ubicación del dolor */
+            .pain-location {{
+                display: flex;
                 align-items: center;
-
+                gap: 1rem;
+                padding: 1rem;
+                background-color: #f8f9fa;
+                border-radius: 8px;
+                margin: 1rem 0;
             }}
-            .botoncito{{
-                color: #21294e
-                
+    
+            .arrow-down {{
+                color: #ff0000;
+                font-size: 1.2rem;
+            }}
+    
+            .ubicacion-text {{
+                font-size: 1rem;
+                font-weight: 500;
+                color: var(--primary);
+            }}
+    
+            .intensidad-text {{
+                font-weight: bold;
+                color: #ff0000;
+                padding: 0.3rem 0.8rem;
+                background-color: rgba(255,0,0,0.1);
+                border-radius: 50px;
+            }}
+    
+            /* Mejoras para el botón Ver más/menos */
+            #verMasBtn {{
+                width: 100%;
+                padding: 1rem;
+                background-color: white;
+                border: 2px solid var(--primary);
+                color: var(--primary);
+                border-radius: 8px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }}
+    
+            #verMasBtn:hover {{
+                background-color: var(--primary);
+                color: white;
+            }}
+    
+            /* Estilos para el contenido expandible */
+            #informacion {{
+                max-height: 500px;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }}
+    
+            .expanded {{
+                max-height: 5000px !important;
+            }}
+    
+            @media print {{
+                body {{
+                    background-color: white;
+                }}
+                .report-card {{
+                    box-shadow: none;
+                    border: none;
+                }}
+                .header-section, footer {{
+                    background-color: white;
+                    color: var(--primary);
+                }}
+                .header-actions, #verMasBtn {{
+                    display: none;
+                }}
+                .info-section {{
+                    break-inside: avoid;
+                }}
+                #informacion {{
+                    max-height: none !important;
+                }}
             }}
     </style>
+
 <body>
     <div class="header-section">
         <div class="container text-center">
-            <img src="/static/image/Logo_Centro_Clinico_Delphi.svg" alt="Logo Clínico">
             <h1 class="mb-0">Informe Clínico</h1>
         </div>
     </div>
 
     <div class="container">
         <div class="report-card">
-            <div class="info-section">
+            <!-- Sección inicial (siempre visible) -->
+            <div class="info-section" id="informacion">
                 <h2 class="section-title">Datos del Paciente</h2>
                 <div class="row">
                     <div class="col-md-6">
@@ -146,7 +237,7 @@
                         <div class="info-value">{paciente.genero}</div>
                     </div>
                     <div class="col-md-6">
-                        <div class="info-label">Contacto del paciente.</div>
+                        <div class="info-label">Contacto del paciente</div>
                         <div class="info-value">{paciente.contacto}</div>
                         <div class="info-label">Cobertura de Salud</div>
                         <div class="info-value">{paciente.cobertura_de_salud}</div>
@@ -157,153 +248,169 @@
                     </div>
                 </div>
             </div>
-
-            <div class="info-section">
-                <h2 class="section-title">Evaluación del Dolor</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="info-label">Duración del Dolor (meses)</div>
-                        <div class="info-value">fue de {formulario.DuracionDolor} meses</div>
-                        <div class="info-label">Características del Dolor</div>
-                        <div class="info-value">{formulario.caracteristicasDeDolor}</div>
-                        <div class="info-label">Ubicación e Intensidad del Dolor</div>
-                        <div class="info-value">
-                            <span class="arrow-down"></span> 
-                            <span class="ubicacion-text">{formulario.ubicacionDolor}</span> 🠗 
-                            <div class="intensidad-text">{formulario.dolorIntensidad}</div>
-                            
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-label">Causa del Dolor</div>
-                        <div class="info-value">{formulario.causaDolor}</div>
-                        <div class="info-label">¿Accidente Laboral?</div>
-                        <div class="info-value">{formulario.accidenteLaboral}</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="info-section">
-                <h2 class="section-title">Medicación y Tratamiento</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="info-label">Medicamentos que ah usado </div>
-                        <div class="info-value">
-                            <ul>
-                                <li>
-                                    {formulario.medicamentos}
-                                </li>
-                            </ul>
-                            
+    
+            <!-- Contenido expandible -->
+            <div id="contenido-expandible" style="display: none;">
+                <!-- Sección de Evaluación del Dolor -->
+                <section class="info-section">
+                    <h2 class="section-title">Evaluación del Dolor</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-label">Duración del Dolor</div>
+                            <div class="info-value">{formulario.DuracionDolor} meses</div>
+                            <div class="info-label">Características del Dolor</div>
+                            <div class="info-value">{formulario.caracteristicasDeDolor}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-label">Ubicación e Intensidad del Dolor</div>
+                            <div class="pain-location">
+                                <i class="fas fa-arrow-down arrow-down"></i>
+                                <span class="ubicacion-text">{formulario.ubicacionDolor}</span>
+                                <span class="intensidad-text">{formulario.dolorIntensidad}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="info-label">Medicamentos que mas efectivos para el :</div>
-                        <div class="info-value">{formulario.medicamento_efectivo}</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="info-section">
-                <h2 class="section-title">Estado Emocional (Últimas 2 semanas)</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="info-label">sentiste que tu vida, tenia un proposito o significado?</div>
-                        <div class="info-value">{formulario.proposito}/3</div>
-                        <div class="info-label">estuvo conectado con alguna red de apoyo(ejemplo : 
-                        comunidad espiritual, amistad, familia, naturaleza, yoga o meditacion )?</div>
-                        <div class="info-value">{formulario.red_de_apoyo}/3</div>
-                        <div class="info-label">se ha sentido molesto por tener poco interes o placer en hacer las cosas?</div>
-                        <div class="info-value">{formulario.placer_cosas}/3</div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-label">se ha sentido molesto por estar deprimido, depresivo o desesperanzado?</div>
-                        <div class="info-value">{formulario.deprimido}/3</div>
-                        <div class="info-label">se ha sentido molesto por estar nervioso, ansioso o tenso?</div>
-                        <div class="info-value">{formulario.ansioso}/3</div>
-                        <div class="info-label">se ha sentido molesto por preocuparse mucho sobre diferentes cosas?</div>
-                        <div class="info-value">{formulario.preocupacion}/3</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hábitos y Estilo de Vida -->
-            <div class="info-section">
-                <h2 class="section-title">Hábitos y Estilo de Vida</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="info-label">Horas de Sueño Promedio</div>
-                        <div class="info-value">{formulario.pregunta2_horas_de_sueño_en_promedio}</div>
-                        <div class="info-label">Frecuencia de Ejercicio (días/semana)</div>
-                        <div class="info-value">{formulario.pregunta7_ejercicioDias}</div>
-                        <div class="info-label">Minutos de Ejercicio por Sesión</div>
-                        <div class="info-value">{formulario.pregunta8_minutosPorEjercicios}</div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-label">Consumo de Comida Rápida</div>
-                        <div class="info-value">{formulario.pregunta5_ConsumoComidaRapida}</div>
-                        <div class="info-label">Porciones de Frutas</div>
-                        <div class="info-value">{formulario.pregunta6_PorcionesDeFrutas}</div>
-                        <div class="info-label">Opinión sobre Peso Actual</div>
-                        <div class="info-value">{formulario.pregunta4_opinion_peso_actual}</div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="info-label">Consumos de Sustancias </div>
-                        <div class="info-value">yo {formulario.NicotinaSiOno} consumo nicotina.</div>
-                        <div class="info-value">yo {formulario.AlcoholSiOno} consumo alcohol.</div>
-
-                        <div class="info-value">yo {formulario.drogasSiOno} consumo drogas sustancias.</div>
-         
-                        <div class="info-value">yo{formulario.marihuanaSiOno} consumo marihuana.</div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="info-label">Preocupacion</div>
-                        <div class="info-value"> mi preocupacion por
-                            mi consumo de nicotine es : {formulario.nicotinaPreocupacion}/3</div>
-                        <div class="info-value">mi preocupacion por
-                            mi consumo de alcochol es : {formulario.AlcoholPreocupacion}/3</div>
-                        <div class="info-value">mi preocupacion por
-                            mi consumo de drogas o sustancias es  : {formulario.DrogasPreocupacion}/3</div>
-                        <div class="info-value">mi preocupacion por
-                                mi consumo de marihuana es : {formulario.marihuanaPreocupacion}/3</div>
+                </section>
+    
+                <!-- Sección de Medicación y Tratamiento -->
+                <section class="info-section">
+                    <h2 class="section-title">Medicación y Tratamiento</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-label">Medicamentos utilizados</div>
+                            <div class="info-value">
+                                <ul class="medication-list">
+                                    <li>{formulario.medicamentos}</li>
+                                </ul>
+                            </div>
                         </div>
-                        
+                        <div class="col-md-6">
+                            <div class="info-label">Medicamentos más efectivos</div>
+                            <div class="info-value">{formulario.medicamento_efectivo}</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Motivación y Áreas de Mejora -->
-            <div class="info-section">
-                <h2 class="section-title">Motivación y Áreas de Mejora</h2>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="info-label">Áreas de Motivación</div>
-                        <div class="info-value">{formulario.AreasMotivacion}</div>
-                        <div class="info-label">Motivación hacia la Salud</div>
-                        <div class="info-value">{formulario.motivacion_Salud}</div>
+                </section>
+    
+                <!-- Sección de Estado Emocional -->
+                <section class="info-section">
+                    <h2 class="section-title">Estado Emocional (Últimas 2 semanas)</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-label">Propósito y significado de vida</div>
+                            <div class="info-value">{formulario.proposito}/3</div>
+                            <div class="info-label">Conexión con red de apoyo</div>
+                            <div class="info-value">{formulario.red_de_apoyo}/3</div>
+                            <div class="info-label">Interés o placer en actividades</div>
+                            <div class="info-value">{formulario.placer_cosas}/3</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-label">Nivel de depresión</div>
+                            <div class="info-value">{formulario.deprimido}/3</div>
+                            <div class="info-label">Nivel de ansiedad</div>
+                            <div class="info-value">{formulario.ansioso}/3</div>
+                            <div class="info-label">Nivel de preocupación</div>
+                            <div class="info-value">{formulario.preocupacion}/3</div>
+                        </div>
                     </div>
-                </div>
+                </section>
+    
+                <!-- Sección de Hábitos y Estilo de Vida -->
+                <section class="info-section">
+                    <h2 class="section-title">Hábitos y Estilo de Vida</h2>
+                    <div class="row">
+                        <!-- Actividad Física y Sueño -->
+                        <div class="col-md-6">
+                            <div class="info-label">Horas de Sueño Promedio</div>
+                            <div class="info-value">{formulario.pregunta2_horas_de_sueño_en_promedio}</div>
+                            <div class="info-label">Frecuencia de Ejercicio</div>
+                            <div class="info-value">{formulario.pregunta7_ejercicioDias} días/semana</div>
+                            <div class="info-label">Duración del Ejercicio</div>
+                            <div class="info-value">{formulario.pregunta8_minutosPorEjercicios} minutos</div>
+                        </div>
+                        <!-- Alimentación -->
+                        <div class="col-md-6">
+                            <div class="info-label">Consumo de Comida Rápida</div>
+                            <div class="info-value">{formulario.pregunta5_ConsumoComidaRapida}</div>
+                            <div class="info-label">Consumo de Frutas</div>
+                            <div class="info-value">{formulario.pregunta6_PorcionesDeFrutas}</div>
+                            <div class="info-label">Percepción de Peso</div>
+                            <div class="info-value">{formulario.pregunta4_opinion_peso_actual}</div>
+                        </div>
+                    </div>
+    
+                    <!-- Consumo de Sustancias -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="info-label">Consumo de Sustancias</div>
+                            <div class="info-value substance-status">Nicotina: {formulario.NicotinaSiOno}</div>
+                            <div class="info-value substance-status">Alcohol: {formulario.AlcoholSiOno}</div>
+                            <div class="info-value substance-status">Drogas: {formulario.drogasSiOno}</div>
+                            <div class="info-value substance-status">Marihuana: {formulario.marihuanaSiOno}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-label">Nivel de Preocupación por Consumo</div>
+                            <div class="info-value">Nicotina: {formulario.nicotinaPreocupacion}/3</div>
+                            <div class="info-value">Alcohol: {formulario.AlcoholPreocupacion}/3</div>
+                            <div class="info-value">Drogas: {formulario.DrogasPreocupacion}/3</div>
+                            <div class="info-value">Marihuana: {formulario.marihuanaPreocupacion}/3</div>
+                        </div>
+                    </div>
+                </section>
+    
+                <!-- Sección de Motivación -->
+                <section class="info-section">
+                    <h2 class="section-title">Motivación y Áreas de Mejora</h2>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="info-label">Áreas de Motivación</div>
+                            <div class="info-value">{formulario.AreasMotivacion}</div>
+                            <div class="info-label">Motivación hacia la Salud</div>
+                            <div class="info-value">{formulario.motivacion_Salud}</div>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <div class="PDF"> 
-                <a  class="botoncito">
-                    Generar PDF
-                </a>
-            </div>
+    
+            <!-- Botón Ver más/menos -->
+            <button id="verMasBtn" class="expand-button" onclick="toggleContent()">
+                <i class="fas fa-chevron-down"></i>
+                Ver más
+            </button>
+        </div>
+    </div>
+            <script>
+                function toggleContent() {{
+                    const contenidoExpandible = document.getElementById('contenido-expandible');
+                    const button = document.getElementById('verMasBtn');
+                    
+                    if (contenidoExpandible.style.display === 'none') {{
+                        // Mostrar el contenido
+                        contenidoExpandible.style.display = 'block';
+                        button.innerHTML = '<i class="fas fa-chevron-up"></i> Ver menos';
+                    }} else {{
+                        // Ocultar el contenido
+                        contenidoExpandible.style.display = 'none';
+                        button.innerHTML = '<i class="fas fa-chevron-down"></i> Ver más';
+                    }}
+                }}
+        
+                function generarPDF() {{
+                    window.print();
+                    // Alternativamente, puedes implementar la generación de PDF usando jsPDF
+                    // Esta es una implementación básica usando la funcionalidad de impresión del navegador
+                }}
+            </script>
         </div>
     </div>
 
     <footer>
-        <div class="container text-center">
-            <p class="mb-0">
-                <h2>Informe generado el {formulario.fechaCreacion}</h2><br>
-                <small>Este documento es confidencial y contiene información médica protegida</small>
-            </p>
-        </div>
     </footer>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    
 </body>
+
 </html>
