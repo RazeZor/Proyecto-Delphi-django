@@ -203,16 +203,35 @@
                     <div class="form-group">
                         <label class="form-label">¿Piensa usted que su dolor es resultado de un accidente laboral?</label>
                         <div class="btn-group w-100">
-                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor1" value="si" autocomplete="off"/>
+                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor1" value="si" autocomplete="off" onclick="toggleCalidadAtencion()" />
                             <label class="btn btn-outline-primary" for="opdolor1">Si</label>
-                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor2" autocomplete="off" value="no" />
+                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor2" autocomplete="off" value="no" onclick="toggleCalidadAtencion()" />
                             <label class="btn btn-outline-primary" for="opdolor2">No</label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    
+                    <div class="form-group" id="calidadAtencionContainer" style="display: none;">
                         <label class="form-label">¿Recibió una buena atención por la mutualidad contratada por su empresa?</label>
-                        <textarea class="form-control" rows="3" placeholder="Ingrese texto" name="calidadAtencion"></textarea>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="calidadAtencion" id="calidadAtencion1" value="si" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="calidadAtencion1">Si</label>
+                            <input type="radio" class="btn-check" name="calidadAtencion" id="calidadAtencion2" autocomplete="off" value="no" />
+                            <label class="btn btn-outline-primary" for="calidadAtencion2">No</label>
+                        </div>
                     </div>
+
+                    <script>
+                        function toggleCalidadAtencion() {
+                            const accidenteLaboralSi = document.getElementById('opdolor1');
+                            const calidadAtencionContainer = document.getElementById('calidadAtencionContainer');
+                        
+                            if (accidenteLaboralSi.checked) {
+                                calidadAtencionContainer.style.display = 'block'; // Muestra la segunda pregunta
+                            } else {
+                                calidadAtencionContainer.style.display = 'none'; // Oculta la segunda pregunta
+                            }
+                        }
+                    </script>
 
                     <div class="form-group">
                         <label class="form-label">¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?</label>

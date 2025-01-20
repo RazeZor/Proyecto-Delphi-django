@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'CSS/FichaPaciente.css' %}">
 </head>
 
 <body>
@@ -19,26 +20,7 @@
                     </i> 
                 </a>
                
-                <style>
-                    .error-message {
-                        color: #856404; /* Texto marrón cálido */
-                        background-color: #fff3cd; /* Fondo amarillo suave */
-                        border: 1px solid #ffeeba; /* Borde amarillo claro */
-                        border-radius: 5px; /* Bordes redondeados */
-                        padding: 15px; /* Espaciado interno */
-                        margin: 10px 0; /* Margen superior e inferior */
-                        font-size: 16px; /* Tamaño de fuente legible */
-                        font-weight: bold; /* Negrita para destacar */
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        font-size: 20px; /* Tamaño del ícono */
-                        color: #856404; /* Color del ícono igual al texto */
-                    }
-
-                    
-                </style>
-
+                
             </span>
             <div class="d-flex align-items-center">
                 <div class="menu-links">
@@ -123,175 +105,7 @@
                         {% endif %}
                 </div>
                 <style>
-                    :root {
-                        --primary: #21294e;
-                        --accent: #cd2481;
-                        --light: #f8f9fa;
-                        --gray: #6c757d;
-                    }
-            
-                    /* Estilos generales */
-                    body {
-                        font-family: 'Arial', sans-serif;
-                        background-color: #f5f6f8;
-                        min-height: 100vh;
-                        display: flex;
-                        flex-direction: column;
-                    }
-            
-                    /* Navbar mejorado */
-                    .navbar {
-                        background-color: var(--primary);
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                        padding: 1rem 0;
-                    }
-            
-                    /* Sidebar mejorado */
-                    .sidebar {
-                        background-color: white;
-                        width: 250px;
-                        padding: 2rem 1rem;
-                        min-height: calc(100vh - 76px);
-                        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-                    }
-            
-                    .sidebar h4 {
-                        color: var(--primary);
-                        margin-bottom: 1.5rem;
-                        padding-bottom: 0.5rem;
-                        border-bottom: 2px solid var(--accent);
-                    }
-            
-                    .sidebar ul li a {
-                        display: flex;
-                        align-items: center;
-                        padding: 0.75rem 1rem;
-                        color: var(--gray);
-                        text-decoration: none;
-                        transition: all 0.3s ease;
-                        border-radius: 8px;
-                        margin-bottom: 0.5rem;
-                    }
-            
-                    .sidebar ul li a:hover {
-                        background-color: var(--light);
-                        color: var(--accent);
-                    }
-            
-                    .sidebar ul li a i {
-                        margin-right: 10px;
-                        font-size: 1.2rem;
-                    }
-            
-                    /* Main content mejorado */
-                    .main-content {
-                        flex: 1;
-                        padding: 2rem;
-                    }
-            
-                    /* Formulario de búsqueda mejorado */
-                    #search-form {
-                        background-color: white;
-                        padding: 1.5rem;
-                        border-radius: 10px;
-                        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-                        margin-bottom: 2rem;
-                    }
-            
-                    #search-form fieldset {
-                        border: none;
-                        padding: 0;
-                        margin: 0;
-                    }
-            
-                    #search-input {
-                        width: 300px;
-                        padding: 0.75rem;
-                        border: 1px solid #ddd;
-                        border-radius: 8px;
-                        margin-right: 1rem;
-                    }
-            
-                    .search-button {
-                        background-color: var(--accent);
-                        color: white;
-                        border: none;
-                        padding: 0.75rem 1.5rem;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                    }
-            
-                    .search-button:hover {
-                        background-color: #b01e6d;
-                    }
-            
-                    /* Overlay y Ficha mejorados */
-                    .overlay {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(0, 0, 0, 0.7);
-                        display: none;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 1000;
-                    }
-            
-                    .overlay.active {
-                        display: flex;
-                    }
-            
-                    .ficha {
-                        background-color: white;
-                        padding: 2rem;
-                        border-radius: 12px;
-                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-                        max-width: 100%;
-                        max-height: 100vh;
-                        overflow-y: auto;
-                        position: relative;
-                    }
-            
-                    .close-button-container {
-                        position: sticky;
-                        top: 0;
-                        right: 0;
-                        padding: 1rem;
-                        text-align: right;
-                        background-color: white;
-                        z-index: 1001;
-                        margin-bottom: 1rem;
-                    }
-            
-                    .close-button {
-                        background-color: var(--accent);
-                        color: white;
-                        border: none;
-                        padding: 0.75rem 1.5rem;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.5rem;
-                    }
-            
-                    .close-button:hover {
-                        background-color: #b01e6d;
-                        transform: translateY(-2px);
-                    }
-            
-
-            
-                    footer {
-                        background-color: var(--primary);
-                        color: white;
-                        padding: 1rem 0;
-                        margin-top: auto;
-                    }
+                    
                 </style>
                 <div>
                     <div class="overlay" id="overlay">
