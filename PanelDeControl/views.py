@@ -4,6 +4,7 @@ from Login.models import Paciente, formularioClinico
 from django.http import HttpResponse, JsonResponse
 
 
+
 def panel(request):
     if 'nombre_clinico' in request.session:
         nombre_clinico = request.session['nombre_clinico']
@@ -27,25 +28,50 @@ def VerFichaPacientes(request):
     nombre_clinico = request.session['nombre_clinico']
     rut = request.GET.get('rut', None)
     context = {'nombre_clinico': nombre_clinico}
+
     if rut:
         try:
             paciente = Paciente.objects.get(rut=rut)
             formulario = formularioClinico.objects.get(paciente=paciente)
+            respuestaMeses = formulario.curacionDolor.strip().lower()  
+
+            mensaje_section = ""
+
+
             
-        
+            mensaje = "menos de 3 meses".strip().lower()
+            print(respuestaMeses)
+            if respuestaMeses == mensaje:
+                mensaje_section = (
+                    '<div style="color: red; font-weight: bold;">'
+                    'Se le aconseja al clínico que este paciente se le realice una derivación a la escala DN4.'
+                    '</div>'
+                )
+            else:
+                mensaje_section = (
+                    '<div style="color: red; font-weight: bold;">'
+                    'No hay consejos en dolor.'
+                    '</div>'
+                )
+            
+            
+                
+
+            # Leer el archivo HTML
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
             
+            # Reemplazar las variables en el HTML usando .format()
             informe = informe_template.format(
                 paciente=paciente,
-                formulario=formulario
+                formulario=formulario,
+                mensaje_section=mensaje_section,
             )
 
+            # Añadir el informe al contexto
             context['informe'] = informe
             context['encontrado'] = True
 
-        
-            
         except (Paciente.DoesNotExist, formularioClinico.DoesNotExist):
             context['encontrado'] = False
             context['mensaje'] = "No se encontró el paciente o su formulario clínico"
