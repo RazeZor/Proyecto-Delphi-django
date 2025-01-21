@@ -70,29 +70,29 @@ def FormularioInicial(request):
     medicamentos = json.dumps(request.POST.getlist('medicamentos')),
     medicamento_efectivo = json.dumps(request.POST.getlist('medicamento_efectivo')),
     #preguntas de salud mental
-    proposito = int(request.POST.get('proposito'),0),
-    red_de_apoyo = int(request.POST.get('red_de_apoyo'),0),
-    placer_cosas = int(request.POST.get('placer_cosas'),0),
-    deprimido = int(request.POST.get('deprimido'),0),
-    ansioso = int(request.POST.get('ansioso'),0),
-    preocupacion = int(request.POST.get('preocupacion'),0),
+    proposito = request.POST.get('proposito'),
+    red_de_apoyo = request.POST.get('red_de_apoyo'),
+    placer_cosas = request.POST.get('placer_cosas'),
+    deprimido = request.POST.get('deprimido'),
+    ansioso = request.POST.get('ansioso'),
+    preocupacion = request.POST.get('preocupacion'),
     #consumo de sustancias
     #nicotica
     NicotinaSiOno = request.POST.get('NicotinaSiOno'),
     condicionNicotina = request.POST.get('condicionNicotina'),
-    nicotinaPreocupacion = int(request.POST.get('nicotinaPreocupacion'),0),
+    nicotinaPreocupacion = request.POST.get('nicotinaPreocupacion'),
     #cigarro
     AlcoholSiOno = request.POST.get('AlcoholSiOno'),
     condicionAlcohol = request.POST.get('condicionAlcohol'),
-    AlcoholPreocupacion = int(request.POST.get('AlcoholPreocuopacion'),0),
+    AlcoholPreocupacion = request.POST.get('AlcoholPreocuopacion'),
     #drogas
     drogasSiOno = request.POST.get('drogasSiOno'),
-    condicionDrogas = request.POST.get('condicionDrogas'),
-    DrogasPreocupacion = int(request.POST.get('DrogasPreocupacion'),0),
+    condicionDrogas = request.POST.get('CantidadDrogras'),
+    DrogasPreocupacion = request.POST.get('DrogasPreocupacion'),
     #marihuana
     marihuanaSiOno = request.POST.get('marihuanaSiOno'),
-    condicionMarihuana = request.POST.get('condicionMarihuana'),
-    marihuanaPreocupacion = int(request.POST.get('marihuanaPreocupacion'),0),
+    condicionMarihuana = request.POST.get('frecuenciaMarihuana'),
+    marihuanaPreocupacion = request.POST.get('marihuanaPreocupacion'),
     #preguntas de motivacion
     AreasMotivacion = json.dumps(request.POST.getlist('motivacion')),
     motivacion_Salud = request.POST.get('motivacion_Salud')

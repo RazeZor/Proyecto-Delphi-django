@@ -75,29 +75,29 @@ class formularioClinico(models.Model):
     
     
     #durante las ultimas 2 semanas
-    proposito = models.IntegerField(null=True,blank=True)
-    red_de_apoyo = models.IntegerField(null=True,blank=True)
-    placer_cosas = models.IntegerField(null=True,blank=True)
-    deprimido = models.IntegerField(null=True,blank=True)
-    ansioso = models.IntegerField(null=True,blank=True)
-    preocupacion = models.IntegerField(null=True,blank=True)
+    proposito = models.TextField(null=True,blank=True)
+    red_de_apoyo = models.TextField(null=True,blank=True)
+    placer_cosas = models.TextField(null=True,blank=True)
+    deprimido = models.TextField(null=True,blank=True)
+    ansioso = models.TextField(null=True,blank=True)
+    preocupacion = models.TextField(null=True,blank=True)
     
     #consumo Sustancias 
     NicotinaSiOno = models.JSONField(blank=True,null=True)
     condicionNicotina =  models.TextField(null=True,blank=True)
-    nicotinaPreocupacion = models.IntegerField(null=True,blank=True)
+    nicotinaPreocupacion = models.TextField(null=True,blank=True)
     
     AlcoholSiOno = models.JSONField(blank=True,null=True)
     condicionAlcohol =  models.TextField(null=True,blank=True)
-    AlcoholPreocupacion = models.IntegerField(null=True,blank=True)
+    AlcoholPreocupacion = models.TextField(null=True,blank=True)
     
     drogasSiOno = models.JSONField(blank=True,null=True) 
     condicionDrogas =  models.TextField(null=True,blank=True)
-    DrogasPreocupacion = models.IntegerField(null=True,blank=True)
+    DrogasPreocupacion = models.TextField(null=True,blank=True)
     
     marihuanaSiOno = models.JSONField(blank=True,null=True)
     condicionMarihuana =  models.TextField(null=True,blank=True)
-    marihuanaPreocupacion = models.IntegerField(null=True,blank=True)
+    marihuanaPreocupacion = models.TextField(null=True,blank=True)
     
     #motivacion 
     
