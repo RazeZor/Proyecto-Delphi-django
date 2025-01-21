@@ -120,11 +120,11 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Seleccione genero</label>
-                        <select class="form-select form-select-lg" id="genero" name="genero">
-                            <option selected>--Seleccione--</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                        </select>
+                        <input type="radio" class="btn-check" name="genero" id="masculino1" autocomplete="off" value="Masculino" />
+                        <label class="btn btn-outline-primary" for="masculino1">Masculino</label>
+
+                        <input type="radio" class="btn-check" name="genero" id="fem2" autocomplete="off" value="Femenino" />
+                        <label class="btn btn-outline-primary" for="fem2">Femenino</label>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Contacto</label>
@@ -132,11 +132,70 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Seleccione tipo de cobertura de salud</label>
-                        <select class="form-select form-select-lg" id="cobertura" name="cobertura">
-                            <option selected>--Seleccione--</option>
-                            <option value="Fonasa">Fonasa</option>
-                            <option value="Isapre">Isapre</option>
-                        </select>
+                        <input type="radio" class="btn-check" name="cobertura" id="fonasa1" autocomplete="off" value="fonasa" />
+                        <label class="btn btn-outline-primary" for="fonasa1">fonasa</label>
+
+                        <input type="radio" class="btn-check" name="cobertura" id="isapre1" autocomplete="off" value="isapre" />
+                        <label class="btn btn-outline-primary" for="isapre1">isapre</label>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Detalla a continuación medicamentos para el dolor que usas o has usado. Marque el medicamento que le resulte más efectivo:</label>
+                         
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Analgesicos simples" /> 
+                        1. Analgésicos simples  (⁠Paracetamol, Dipirona, Ibuprofeno)
+                        </label>
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Antiinflamatorios no esteroideos" />  
+                        2. Antiinflamatorios no esteroideos (Diclofenaco, Naproxeno, Ketoprofeno, Meloxicam)
+                        </label>
+                        
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Opioides debiless" />  
+                            3. Opioides débiles (Tramadol, Codeína)
+                        </label>
+                        
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Opioides fuertes" />  
+                        4. Opioides fuertes( Morfina, Fentanilo, parches de Bupenorfrina)
+                        </label> 
+                        <label class="list-group-item">   
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Anticonvulsivantess" />  
+                        5. Anticonvulsivantes (Pregabalina, Gabapentina, Carbamazepina)
+                        </label> 
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Antidepresivos" />  
+                        6. Antidepresivos (para el manejo del dolor crónico)•⁠ Amitriptilina, Duloxetina, Venlafaxina
+                        </label>
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Relajantes musculares y Benzodiacepinas" />  
+                        7. Relajantes musculares (Benzodiacepinas Diazepam, Clonazepam, Alprazolam, Clotiazepam)
+                        </label> 
+                        <label class="list-group-item">   
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Inductores del Sueño." />  
+                        8 Inductores del Sueño. Ejemplos: Zopiclona, Eszopiclona, Melatonina, Zolpide
+                        </label>
+                        <label class="list-group-item"> 
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Corticoide" />  
+                        9.Corticoides (para inflamación severa) Prednisona, Dexametasona, Betametasona.
+                        </label>
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Medicamentos topicos" />  
+                        10.Medicamentos tópicos(Capsaicina, Lidocaina en crema o parches, Diclofenaco en gel)
+                        </label>
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Terapias biologicas" />  
+                        Terapias biológicas (si corresponde)⁠  Adalimumab, Etanercept.
+                        </label>   
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Otros medicamentos usados para el dolor⁠  ⁠Ejemplos: Ketamina, Clonidina, Cannabis medicinal, Quetiapina."</label>
+                            <textarea class="form-control" name="Otros medicamentos" id="" rows="3"></textarea>
+                        </div>
+                         
+                        
+
                     </div>
                 
                     
@@ -147,6 +206,7 @@
                     <div class="form-group">
                         <label class="form-label">Duración de su dolor</label>
                         <div class="btn-group" role="group" aria-label="Duración del dolor">
+                            
                             <input type="radio" class="btn-check" name="btnradio1" id="btncheck1" autocomplete="off" value="menos de 3 meses" />
                             <label class="btn btn-outline-primary" for="btncheck1">Menos de 3 meses</label>
                     
@@ -160,245 +220,34 @@
                     <div class="list-group">
                         <h3 class="h6 mb-3">Seleccione las características de su dolor</h3>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Punzante" required/> Punzante
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Punzante" required/> Punzante (Un dolor agudo y localizado, como si te pincharan con una aguja.)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="ardiente" required/> Ardiente
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="ardiente" required/> Ardiente (Sensación de quemazón o calor intenso en la zona.)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="sordo"required/> Sordo
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="sordo"required/> Sordo (Un dolor constante y molesto, pero no muy intenso, como una presión continua.)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="pulsativo"required/> Pulsátivo
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="pulsativo"required/> Pulsátivo (Dolor que late o se siente como un pulso rítmico)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="opresivo" required/> Opresivo
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="opresivo" required/> Opresivo (Sensación de algo que aprieta o comprime, como si tuvieras un peso encima.)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="corriente" required/> Corriente
-                        </label>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="adormecimiento"required/> Adormecimiento
-                        </label>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Hormigueo" required/> Hormigueo
-                        </label>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <h2 class="mb-4">Causa del dolor</h2>
-                    <div class="form-group">
-                        <label class="form-label">¿Qué elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
-                        <select class="form-select form-select-lg" name="causaDolor">
-                            <option selected>--Seleccione uno--</option>
-                            <option value="Accidente doméstico">Accidente doméstico</option>
-                            <option value="Accidente vehicular">Accidente vehicular</option>
-                            <option value="Accidente laboral">Accidente laboral</option>
-                            <option value="Por enfermedad">Por enfermedad</option>
-                            <option value="Post cirugía">Post cirugía</option>
-                            <option value="Sin causa identificada o reconocida">Sin causa identificada o reconocida</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">¿Piensa usted que su dolor es resultado de un accidente laboral?</label>
-                        <div class="btn-group w-100">
-                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor1" value="si" autocomplete="off" onclick="toggleCalidadAtencion()" />
-                            <label class="btn btn-outline-primary" for="opdolor1">Si</label>
-                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor2" autocomplete="off" value="no" onclick="toggleCalidadAtencion()" />
-                            <label class="btn btn-outline-primary" for="opdolor2">No</label>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" id="calidadAtencionContainer" style="display: none;">
-                        <label class="form-label">¿Recibió una buena atención por la mutualidad contratada por su empresa?</label>
-                        <div class="btn-group w-100">
-                            <input type="radio" class="btn-check" name="calidadAtencion" id="calidadAtencion1" value="si" autocomplete="off"/>
-                            <label class="btn btn-outline-primary" for="calidadAtencion1">Si</label>
-                            <input type="radio" class="btn-check" name="calidadAtencion" id="calidadAtencion2" autocomplete="off" value="no" />
-                            <label class="btn btn-outline-primary" for="calidadAtencion2">No</label>
-                        </div>
-                    </div>
-
-                    <script>
-                        function toggleCalidadAtencion() {
-                            const accidenteLaboralSi = document.getElementById('opdolor1');
-                            const calidadAtencionContainer = document.getElementById('calidadAtencionContainer');
-                        
-                            if (accidenteLaboralSi.checked) {
-                                calidadAtencionContainer.style.display = 'block'; // Muestra la segunda pregunta
-                            } else {
-                                calidadAtencionContainer.style.display = 'none'; // Oculta la segunda pregunta
-                            }
-                        }
-                    </script>
-
-                    <div class="form-group">
-                        <label class="form-label">¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?</label>
-                        <div class="btn-group w-100">
-                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis1" autocomplete="off" value="si"/>
-                            <label class="btn btn-outline-primary" for="diagnosis1">Si</label>
-                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis2" autocomplete="off" value="no"/>
-                            <label class="btn btn-outline-primary" for="diagnosis2">No</label>
-                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis3" autocomplete="off" value="no lo sé"/>
-                            <label class="btn btn-outline-primary" for="diagnosis3">No lo sé</label>
-                        </div>
-                    </div>
-                    <div class="form-group mt-4">
-                        <label class="form-label">¿Piensa usted que hay cura para su dolor?</label>
-                        <div class="btn-group w-100">
-                            <input type="radio" class="btn-check" name="cure" id="cure1" autocomplete="off" value="si"/>
-                            <label class="btn btn-outline-primary" for="cure1" >Si</label>
-                            <input type="radio" class="btn-check" name="cure" id="cure2" autocomplete="off" value="no"/>
-                            <label class="btn btn-outline-primary" for="cure2">No</label>
-                            <input type="radio" class="btn-check" name="cure" id="cure3" autocomplete="off" value="no lo sé"/>
-                            <label class="btn btn-outline-primary" for="cure3">No lo sé</label>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="step">
-                    <h2 class="mb-4">Actividades afectadas</h2>
-                    <div class="form-group">
-                        <label class="form-label">¿Hay alguna actividad importante que no está pudiendo realizar o tiene dificultades debido a su dolor persistente?</label>
-                        <div class="mb-3">
-                            <label class="form-label">Describa la actividad:</label>
-                            <textarea class="form-control" rows="3" placeholder="Ingrese texto" name="dificultadActividad"></textarea>
-                        </div>
-                        <div class="mt-4">
-                            <label class="form-label">Por favor describa la habilidad de realizar dicha 
-                                actividad cuando experimenta su dolor: (donde 1 es mala habilidad y 10 es buena habilidad)
-
-                            </label>
-                            <input type="range" min="1" max="10" name="rangoDificultad" class="slider" id="ProgressionBarPregunta7" />
-                            <div style="display: flex; justify-content: space-between; width: 100%;">
-                                <label for="ProgressionBarPregunta">1</label>
-                                <label for="ProgressionBarPregunta">2</label>
-                                <label for="ProgressionBarPregunta">3</label>
-                                <label for="ProgressionBarPregunta">4</label>
-                                <label for="ProgressionBarPregunta">5</label>
-                                <label for="ProgressionBarPregunta">6</label>
-                                <label for="ProgressionBarPregunta">7</label>
-                                <label for="ProgressionBarPregunta">8</label>
-                                <label for="ProgressionBarPregunta">9</label>
-                                <label for="ProgressionBarPregunta">10</label>
-                            </div>
-                        </div>
-                    </div>
-                    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; text-align: left;">
-    <tr>
-        <td>
-            <p>
-                Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor manejo de la ansiedad y la depresión a menudo conduce a un mejor manejo del dolor. Hable con su médico de familia o enfermero especializado para una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
-            </p>
-            <p>¿Desea usted apoyo en esta situación?</p>
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                <input type="radio" class="btn-check" name="support" id="support-yes" autocomplete="off" value="si"/>
-                <label class="btn btn-outline-primary" for="support-yes">Sí</label>
-
-                <input type="radio" class="btn-check" name="support" id="support-no" autocomplete="off" value="no"/>
-                <label class="btn btn-outline-primary" for="support-no">No</label>
-            </div>
-        </td>
-    </tr>
-</table>
-                </div>
-
-
-                <div class="step">
-                    <div class="Pagina3">  
-                        <h4>Lea detenidamente y selecciona las condiciones de salud que presente</h4>
-                        <table id="tablaPagina3">
-                            <tr>
-                                <th>Musculoesqueléticos</th>
-                                <th>Neurológicos</th>
-                                <th>Endocrinos</th>
-                                <th>Cardiopulmonar</th>
-                                <th>Otros</th>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Artrosis" name="TiposDeEnfermedades" />Artrosis</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Cefaleas" name="TiposDeEnfermedades" />Cefaleas</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="diabetes" name="TiposDeEnfermedades" />Diabetes</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="arritmia"  name="TiposDeEnfermedades"/>Arritmia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Ansiedad" name="TiposDeEnfermedades"/>Ansiedad</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Artritis reumatoide"name="TiposDeEnfermedades" />Artritis reumatoide</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Accidente Vascular" name="TiposDeEnfermedades"/>Accidente Vascular</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas renales" name="TiposDeEnfermedades"/>Problemas renales</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Colesterol Alto" name="TiposDeEnfermedades"/>Colesterol Alto</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Depresión"name="TiposDeEnfermedades" />Depresión</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Fibromialgia" name="TiposDeEnfermedades"/>Fibromialgia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hormigueos o adormecimiento" name="TiposDeEnfermedades"/>Hormigueos o adormecimiento</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas de vejiga" name="TiposDeEnfermedades"/>Problemas de vejiga</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Marcapasos" name="TiposDeEnfermedades"/>Marcapasos</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Cáncer" name="TiposDeEnfermedades"/>Cáncer</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Osteoporosis" name="TiposDeEnfermedades"/>Osteoporosis</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Párkinson" name="TiposDeEnfermedades"/>Párkinson</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas de hígado" name="TiposDeEnfermedades"/>Problemas de hígado</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Anemia" name="TiposDeEnfermedades"/>Anemia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Cirugías previas" name="TiposDeEnfermedades"/>Cirugías previas</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Historia de caídas" name="TiposDeEnfermedades"/>Historia de caídas</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Epilepsia" name="TiposDeEnfermedades"/>Epilepsia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Alteración de tiroides" name="TiposDeEnfermedades"/>Alteración de tiroides</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hipertensión" name="TiposDeEnfermedades"/>Hipertensión</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Síndrome de fatiga crónica" name="TiposDeEnfermedades"/>Síndrome de fatiga crónica</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Dolor mandibular" name="TiposDeEnfermedades"/>Dolor mandibular</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Esclerosis múltiple" name="TiposDeEnfermedades"/>Esclerosis múltiple</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Resistencia a la insulina" name="TiposDeEnfermedades"/>Resistencia a la insulina</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Asma" name="TiposDeEnfermedades"/>Asma</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Alergias" name="TiposDeEnfermedades"/>Alergias</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hernia discal o discopatías" name="TiposDeEnfermedades"/>Hernia discal o discopatías</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Síndrome de piernas inquietas" name="TiposDeEnfermedades"/>Síndrome de piernas inquietas</td>
-                                <td></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="VIH" name="TiposDeEnfermedades"/>VIH</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Obesidad" name="TiposDeEnfermedades"/>Obesidad</td>
-                            </tr>
-                            <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Fracturas"name="TiposDeEnfermedades" />Fracturas</td>
-                                <td></td>
-                                <td></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Falta de air" name="TiposDeEnfermedades"/>Falta de aire</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Trombosis" name="TiposDeEnfermedades"/>Trombosis</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="no tengo" name="TiposDeEnfermedades"/>no tengo</td>
-                            </tr>
-                        </table>
-
-                        <div class="mencionar3Cosas">
-                            <h5>Mencione 3 cosas que hoy no puede hacer con normalidad debido a su problema (y que quiere recuperar)</h5>
-                            <div class="mb-3">
-                                <label for="" class="form-label">ingrese Texto</label>
-                                <textarea class="form-control" name="mencionesActividades" id="mencion1" rows="3"required></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">ingrese Texto</label>
-                                <textarea class="form-control" name="mencionesActividades" id="mencion2" rows="3"required></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">ingrese Texto</label>
-                                <textarea class="form-control" name="mencionesActividades" id="mencion3" rows="3"required></textarea>
-                            </div>
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="corriente" required/> Corriente (Dolor que recorre o se desplaza como si fuera una descarga eléctrica.
                             
-                        </div>
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="adormecimiento"required/> Adormecimiento (Sensación de pérdida de sensibilidad o como si la zona estuviera "dormida".)
+                        </label>
+                        <label class="list-group-item">
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Hormigueo" required/> Hormigueo (Sensación de pequeños pinchazos o cosquilleo, como si algo caminara sobre la piel.)
+                        </label>
                     </div>
                 </div>
 
                 <div class="step">
-
                     <style>
                         .cuerpoHumano {
                             position: relative;
@@ -622,13 +471,169 @@
                 
                         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-                    </body>
                 </div>
+
+
                 <div class="step">
+                    <h2 class="mb-4">Causa del dolor</h2>
+                    <div class="form-group">
+                        <label class="form-label">¿Qué elemento o circunstancia relaciona usted con el comienzo de su dolor?</label>
+                        <select class="form-select form-select-lg" name="causaDolor">
+                            <option selected>--Seleccione uno--</option>
+                            <option value="Accidente doméstico">Accidente doméstico</option>
+                            <option value="Accidente vehicular">Accidente vehicular</option>
+                            <option value="Accidente laboral">Accidente laboral</option>
+                            <option value="Por enfermedad">Por enfermedad</option>
+                            <option value="Post cirugía">Post cirugía</option>
+                            <option value="Sin causa identificada o reconocida">Sin causa identificada o reconocida</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">¿Piensa usted que su dolor es resultado de un accidente laboral?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor1" value="si" autocomplete="off" onclick="toggleCalidadAtencion()" />
+                            <label class="btn btn-outline-primary" for="opdolor1">Si</label>
+                            <input type="radio" class="btn-check" name="accidenteLaboral" id="opdolor2" autocomplete="off" value="no" onclick="toggleCalidadAtencion()" />
+                            <label class="btn btn-outline-primary" for="opdolor2">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="calidadAtencionContainer" style="display: none;">
+                        <label class="form-label">¿Recibió una buena atención por la mutualidad contratada por su empresa?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="calidadAtencion" id="calidadAtencion1" value="si" autocomplete="off"/>
+                            <label class="btn btn-outline-primary" for="calidadAtencion1">Si</label>
+                            <input type="radio" class="btn-check" name="calidadAtencion" id="calidadAtencion2" autocomplete="off" value="no" />
+                            <label class="btn btn-outline-primary" for="calidadAtencion2">No</label>
+                        </div>
+                    </div>
+
+                    <script>
+                        function toggleCalidadAtencion() {
+                            const accidenteLaboralSi = document.getElementById('opdolor1');
+                            const calidadAtencionContainer = document.getElementById('calidadAtencionContainer');
+                        
+                            if (accidenteLaboralSi.checked) {
+                                calidadAtencionContainer.style.display = 'block'; // Muestra la segunda pregunta
+                            } else {
+                                calidadAtencionContainer.style.display = 'none'; // Oculta la segunda pregunta
+                            }
+                        }
+                    </script>
+
+                    <div class="form-group">
+                        <label class="form-label">¿Piensa usted que su dolor es señal de un problema/enfermedad seria que no ha sido diagnosticada?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis1" autocomplete="off" value="si"/>
+                            <label class="btn btn-outline-primary" for="diagnosis1">Si</label>
+                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis2" autocomplete="off" value="no"/>
+                            <label class="btn btn-outline-primary" for="diagnosis2">No</label>
+                            <input type="radio" class="btn-check" name="diagnosis" id="diagnosis3" autocomplete="off" value="no lo sé"/>
+                            <label class="btn btn-outline-primary" for="diagnosis3">No lo sé</label>
+                        </div>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label class="form-label">¿Piensa usted que hay cura para su dolor?</label>
+                        <div class="btn-group w-100">
+                            <input type="radio" class="btn-check" name="cure" id="cure1" autocomplete="off" value="si"/>
+                            <label class="btn btn-outline-primary" for="cure1" >Si</label>
+                            <input type="radio" class="btn-check" name="cure" id="cure2" autocomplete="off" value="no"/>
+                            <label class="btn btn-outline-primary" for="cure2">No</label>
+                            <input type="radio" class="btn-check" name="cure" id="cure3" autocomplete="off" value="no lo sé"/>
+                            <label class="btn btn-outline-primary" for="cure3">No lo sé</label>
+                        </div>
+                    </div>
+                    
+                </div>
+
+
+                <div class="step">
+                    <div class="Pagina3">  
+                        <h4>Lea detenidamente y selecciona las condiciones de salud que presente</h4>
+                        <table id="tablaPagina3">
+                            <tr>
+                                <th>Musculoesqueléticos</th>
+                                <th>Neurológicos</th>
+                                <th>Endocrinos</th>
+                                <th>Cardiopulmonar</th>
+                                <th>Otros</th>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Artrosis" name="TiposDeEnfermedades" />Artrosis</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Cefaleas" name="TiposDeEnfermedades" />Cefaleas</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="diabetes" name="TiposDeEnfermedades" />Diabetes</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="arritmia"  name="TiposDeEnfermedades"/>Arritmia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Ansiedad" name="TiposDeEnfermedades"/>Ansiedad</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Artritis reumatoide"name="TiposDeEnfermedades" />Artritis reumatoide</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Accidente Vascular" name="TiposDeEnfermedades"/>Accidente Vascular</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas renales" name="TiposDeEnfermedades"/>Problemas renales</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Colesterol Alto" name="TiposDeEnfermedades"/>Colesterol Alto</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Depresión"name="TiposDeEnfermedades" />Depresión</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Fibromialgia" name="TiposDeEnfermedades"/>Fibromialgia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Hormigueos o adormecimiento" name="TiposDeEnfermedades"/>Hormigueos o adormecimiento</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas de vejiga" name="TiposDeEnfermedades"/>Problemas de vejiga</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Marcapasos" name="TiposDeEnfermedades"/>Marcapasos</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Cáncer" name="TiposDeEnfermedades"/>Cáncer</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Osteoporosis" name="TiposDeEnfermedades"/>Osteoporosis</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Párkinson" name="TiposDeEnfermedades"/>Párkinson</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas de hígado" name="TiposDeEnfermedades"/>Problemas de hígado</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Anemia" name="TiposDeEnfermedades"/>Anemia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Cirugías previas" name="TiposDeEnfermedades"/>Cirugías previas</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Historia de caídas" name="TiposDeEnfermedades"/>Historia de caídas</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Epilepsia" name="TiposDeEnfermedades"/>Epilepsia</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Alteración de tiroides" name="TiposDeEnfermedades"/>Alteración de tiroides</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Hipertensión" name="TiposDeEnfermedades"/>Hipertensión</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Síndrome de fatiga crónica" name="TiposDeEnfermedades"/>Síndrome de fatiga crónica</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Dolor mandibular" name="TiposDeEnfermedades"/>Dolor mandibular</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Esclerosis múltiple" name="TiposDeEnfermedades"/>Esclerosis múltiple</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Resistencia a la insulina" name="TiposDeEnfermedades"/>Resistencia a la insulina</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Asma" name="TiposDeEnfermedades"/>Asma</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Alergias" name="TiposDeEnfermedades"/>Alergias</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Hernia discal o discopatías" name="TiposDeEnfermedades"/>Hernia discal o discopatías</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Síndrome de piernas inquietas" name="TiposDeEnfermedades"/>Síndrome de piernas inquietas</td>
+                                <td></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="VIH" name="TiposDeEnfermedades"/>VIH</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Obesidad" name="TiposDeEnfermedades"/>Obesidad</td>
+                            </tr>
+                            <tr>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Fracturas"name="TiposDeEnfermedades" />Fracturas</td>
+                                <td></td>
+                                <td></td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Falta de air" name="TiposDeEnfermedades"/>Falta de aire</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Trombosis" name="TiposDeEnfermedades"/>Trombosis</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="no tengo" name="TiposDeEnfermedades"/>no tengo</td>
+                            </tr>
+                        </table>
+                       
+
+                        <style>
+                            table #apoyo{
+                                margin-top: 20%;
+                            }
+                        </style>
+
+                        
+                    </div>
+                </div>
+
+                <div class="step">
+                   
                     <h3>PARA RESPONDER LAS SIGUIENTES PREGUNTAS, PIENSE SOLO RESPECTO DE LAS ÚLTIMAS 2 SEMANAS</h3>
                     <h6>1.- En promedio, ¿Cuán intenso ha sido su dolor? (donde 0 es “nada de dolor” y 10 es “el peor dolor posible”) </h6>
                     <div class="form-group">
-                        <label class="form-label" for="DuracionDolor">Duración de su dolor</label>
+                        <label class="form-label" for="DuracionDolor">intensidad de su dolor</label>
                         <input type="range" min="1" max="10" name="DuracionDolor" class="slider" id="DuracionDolor"/>
                         <div style="display: flex; justify-content: space-between; width: 100%;">
                             <label for="DuracionDolor">1</label>
@@ -656,136 +661,109 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td scope="row" >¿Se siente a menudo inseguro sobre cómo controlar su dolor?</td>
+                            <td scope="row" >ha experimentado molestias significativas en las articulaciones o músculos en más de una parte de su cuerpo</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1" ></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Le ha molestado mucho su dolor?</td>
+                            <td scope="row">ha tenido dificultades para caminar largas distancias debido a su dolor</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Su dolor solo le ha permitido caminar distancias cortas?</td>
+                            <td scope="row">ha tenido que vestirse más lentamente de lo habitual debido a su dolor</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Ha tenido dolores articulares o musculares molestos en más de una parte del cuerpo?</td>
+                            <td scope="row">Tiene algún otro problema de salud importante que considere relevante</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Piensa que su patología o problema de salud durará mucho tiempo?</td>
+                            <td scope="row">¿Cree que no es seguro para alguien con su condición realizar actividad física</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Tiene otros problemas de salud importantes?</td>
+                            <td scope="row">En las últimas dos semanas, ¿ha tenido pensamientos recurrentes o preocupantes sobre su dolor</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿El dolor le ha hecho sentirse desanimado o deprimido?</td>
+                            <td scope="row">Cree que su condición de dolor persistirá durante mucho tiempo</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Siente que podría ser peligroso que una persona con un problema de salud como el suyo realice actividad física?</td>
+                            <td scope="row">ha dejado de disfrutar actividades que usualmente le gustan debido a su dolor</td>
                             <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">¿Ha padecido su actual problema de dolor durante 6 meses o más?</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
+                            <td scope="row"> ¿qué tan molesto ha sido su dolor en las últimas dos semanas?</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="nada" name="escalaMolestia">Nada</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="leve" name="escalaMolestia">leve</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="moderado" name="escalaMolestia">moderado</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="mucho" name="escalaMolestia">mucho</td>
+                            <td><input class="form-check-input me-1" type="checkbox" value="extremo" name="escalaMolestia">extremo</td>
+                            
                         </tr>
                     </tbody>
                 </table>
 
-                
+                <table id="apoyo" border="1" cellpadding="20" cellspacing="0" style="width: 100%; text-align: left;">
+                    <tr>
+                        <td>
+                            <p>
+                            Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor manejo de la ansiedad y la depresión a menudo conduce a un mejor manejo del dolor. Hable con su médico de familia o enfermero especializado para una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
+                            </p>
+                            <p>¿Desea usted apoyo en esta situación?</p>
+                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                <input type="radio" class="btn-check" name="support" id="support-yes" autocomplete="off" value="si"/>
+                                <label class="btn btn-outline-primary" for="support-yes">Sí</label>
+
+                                <input type="radio" class="btn-check" name="support" id="support-no" autocomplete="off" value="no"/>
+                                <label class="btn btn-outline-primary" for="support-no">No</label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                                        
                     
             </div>
+            
             <div class="step">
-                    <h3>Impacto del Dolor en tus Objetivos</h3>
-                    <h6>¿Qué esperas lograr con un mejor manejo del dolor? Selecciona máximo 2 opciones.</h6>
-                    <div class="form-group">
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" type="checkbox" value="mejor comprension de por que tengo dolor persistente." >
-                                Mejor comprensión de por qué tengo dolor persistente.
-                            </label>
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Aprender habilidades para manejar mi dolor sin medicacion.">
-                                Aprender habilidades para manejar mi dolor sin medicación.
-                            </label>
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Aprender a identificar los desencadenantes de mi dolor.">
-                                Aprender a identificar los desencadenantes de mi dolor.
-                            </label>
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Explorar opciones farmacologicas.">
-                                Hoy  me gustaria Explorar opciones Farmacologicas....
-                            </label>
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).">
-                                Explorar el manejo intervencionista (bloqueos nerviosos, infiltraciones, etc).
-                            </label>
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value="Me gustar&iacutea mejorar mi actividad fisica.">
-                                Me gustaría mejorar mi actividad física.
-                            </label>
-                            <label>
-                                <input type="checkbox" name="preguntas2" class="opcion-checkbox" value=" Me gustaria mejorar mis habilidades de comunicaciin relacionadas con el manejo de mi dolor crinico..">
-                                Me gustaría mejorar mis habilidades de comunicación relacionadas con el manejo de mi dolor crónico.
-                            </label>
-                            <div class="form-group">
-                                <label class="form-label">Detalla a continuación medicamentos para el dolor que usas o has usado. Marque el medicamento que le resulte más efectivo:</label>
-                                <input type="radio" name="medicamento_efectivo" class="opcion-radio" onclick="Obtener('med1', this)" />
-                                <input type="text" class="form-control" name="medicamentos" id="med1" placeholder="Ingrese medicamento" /><br />
-                            
-                                <script>
-                                    function Obtener(idTextarea, radioBtn) {
-                                        const textArea = document.getElementById(idTextarea);
-          
-                                        radioBtn.value = textArea.value;
-                                    }
-                                </script>
-   
-                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med2", this)'/> 
-                                    <input type="text" class="form-control" name="medicamentos" id="med2" placeholder="Ingrese medicamento" /><br />
-                                
-
-                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med3", this)'/> 
-                                    <input type="text" class="form-control" name="medicamentos" id="med3" placeholder="Ingrese medicamento" /><br />
-
-                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med4", this)' /> 
-                                    <input type="text" class="form-control" name="medicamentos" id="med4" placeholder="Ingrese medicamento" /><br />
-             
-                                    <input type="radio" name="medicamento_efectivo" class="opcion-radio"  onclick='Obtener("med5", this)'/> 
-                                    <input type="text" class="form-control" name="medicamentos" id="med1" placeholder="Ingrese medicamento" /><br />
-
-                            </div>
-
-                    </div>
+                    
             </div>
+            
             <div class="step">
+               
+                    
                 <div class="mb-3">
                     <label for="pregunta1_nivelDeSalud" class="form-label">
                         1. Por favor indique en qué rango se encuentra su nivel de salud
                     </label>
-                    <input type="range" min="1" max="10" name="pregunta1_nivelDeSalud" class="slider" id="ProgressionBarPregunta7" />
-                            <div style="display: flex; justify-content: space-between; width: 100%;">
-                                <label for="ProgressionBarPregunta">1</label>
-                                <label for="ProgressionBarPregunta">2</label>
-                                <label for="ProgressionBarPregunta">3</label>
-                                <label for="ProgressionBarPregunta">4</label>
-                                <label for="ProgressionBarPregunta">5</label>
-                                <label for="ProgressionBarPregunta">6</label>
-                                <label for="ProgressionBarPregunta">7</label>
-                                <label for="ProgressionBarPregunta">8</label>
-                                <label for="ProgressionBarPregunta">9</label>
-                                <label for="ProgressionBarPregunta">10</label>
-                            </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="Muy malo" autocomplete="off" value="No consumo drogas"/>
+                        <label class="form-check-label" for="Muy malo">Siento que mi salud está muy afectada, con problemas graves que dificultan casi todas mis actividades diarias</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="malo" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
+                        <label class="form-check-label" for="malo">Tengo muchas molestias o limitaciones que afectan significativamente mi vida diaria</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="Deficiente" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
+                        <label class="form-check-label" for="Deficiente">Puedo realizar algunas actividades, pero con esfuerzo constante y molestias frecuentes</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="bien" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
+                        <label class="form-check-label" for="bien">Me siento bien la mayor parte del tiempo, con pocas molestias que no afectan mucho mi día a día</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="saludable" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
+                        <label class="form-check-label" for="saludable">Estoy saludable y puedo realizar todas mis actividades con comodidad, salvo molestias menores</label>
+                    </div>
                 </div>
                 
                 <div class="contenedor">
@@ -902,19 +880,13 @@
                                     </label>
                                 <div>
                                     <input type="radio" class="opcion-radio" name="proposito" id="preocupacion0" value="Me preocupa un poco" />
-                                    No me preocupa en absoluto<br />
-                                    
+                                    nunca<br/>
                                     <input type="radio" class="opcion-radio" name="proposito" id="preocupacion1" value="Me preocupa un poco" />
-                              
-                                    Me preocupa un poco<br />
-                                    
+                                    un poco<br/>
                                     <input type="radio"class="opcion-radio" name="proposito" id="preocupacion2" value="Me preocupa moderadamente" />
-                
-                                    Me preocupa moderadamente<br />
-                                    
+                                    moderadamente<br/>
                                     <input type="radio"  class="opcion-radio" name="proposito" id="preocupacion3" value="Me preocupa mucho" />
-                           
-                                    Me preocupa mucho<br />
+                                    mucho<br/>
                                 </div>
                             
                         </div>
@@ -922,47 +894,47 @@
                                     <label for="" class="form-label">¿Estuvo conectado con alguna red de apoyo (ejemplo: comunidad espiritual, amistad, familia, naturaleza, yoga o meditación)?</label>
                                     <div>
                                         <input type="radio" name="red_de_apoyo" class="opcion-radio" id="red_de_apoyo_0" value="No estuve conectado en absoluto" />
-                                        No estuve conectado en absoluto<br />
+                                        nunca<br/>
                                         
                                         <input type="radio" name="red_de_apoyo" class="opcion-radio" id="red_de_apoyo_1" value="Estuve algo conectado" />
-                                        Estuve algo conectado</label>
+                                        un poco<br/>
                                         
                                         <input type="radio" name="red_de_apoyo" class="opcion-radio" id="red_de_apoyo_2" value="Estuve moderadamente conectado" />
-                                        Estuve moderadamente conectado<br />
+                                        moderadamente<br/>
                                         
                                         <input type="radio" name="red_de_apoyo" class="opcion-radio" id="red_de_apoyo_3" value="Estuve muy conectado" />
-                                        <label for="red_de_apoyo_3">Estuve muy conectado<br />
+                                        mucho<br/>
                                     </div>
                             </div>
                             <div class="pregunta">
                                 
-                                <label for="" class="form-label">¿Se ha sentido molesto por tener poco interés o placer en hacer las cosas?<label>
+                                <label for="" class="form-label">¿Se ha sentido molesto por tener poco interés o placer en hacer las cosas?</label>
                                 <div>
                                     <input type="radio" name="placer_cosas"  class="opcion-radio" id="placer_cosas_0" value="No, en absoluto" />
-                                    No, en absoluto<br />
+                                    nunca<br/>
                                     
                                     <input type="radio" name="placer_cosas"  class="opcion-radio"id="placer_cosas_1" value="Un poco" />
-                                    Un poco<br />
+                                    un poco<br/>
                                     
                                     <input type="radio" name="placer_cosas"  class="opcion-radio"id="placer_cosas_2" value="Moderadamente" />
-                                    Moderadamentev
+                                    Moderadamente<br/>
                                     
                                     <input type="radio" name="placer_cosas" class="opcion-radio" id="placer_cosas_3" value="Mucho" />
-                                    Mucho<br />
+                                    Mucho<br/>
                                 </div>
                             </div>
                             
                             <div class="pregunta">
                                 <label for="" class="form-label">¿Se ha sentido deprimido?</label>
                                 <div>
-                                    <input type="radio" name="deprimido" id="deprimido_0" class="opcion-radio" value="No, en absoluto" />
-                                    No, en absoluto<br />   
+                                    <input type="radio" name="deprimido" class="opcion-radio" id="deprimido_0" class="opcion-radio" value="No, en absoluto" />
+                                    nunca<br />   
                                     
-                                    <input type="radio" name="deprimido" id="deprimido_1"  class="opcion-radio"value="Un poco" />
-                                     Un poco <br />
+                                    <input type="radio" name="deprimido"class="opcion-radio" id="deprimido_1"  class="opcion-radio"value="Un poco" />
+                                    un poco<br/>
                                     
                                     <input type="radio" name="deprimido" id="deprimido_2" class="opcion-radio" value="Moderadamente" />
-                                    Moderadamente<br />
+                                    Moderadamente<br/>
                                     
                                     <input type="radio" name="deprimido" id="deprimido_3" class="opcion-radio" value="Mucho" />
                                     Mucho<br />
@@ -972,35 +944,35 @@
                                 <label for="" class="form-label">¿Se ha sentido molesto por estar nervioso, ansioso o tenso?</label>
                                 
                                     <input type="radio" name="ansioso" id="ansioso_0" class="opcion-radio" value="No, en absoluto" />
-                                    No, en absoluto<br />
+                                    nunca<br/>
                                     
                                     <input type="radio" name="ansioso" id="ansioso_1" class="opcion-radio" value="Un poco" />
-                                    Un poco<br />
+                                    un poco<br/>
                                     
                                     <input type="radio" name="ansioso" id="ansioso_2" class="opcion-radio" value="Moderadamente" />
-                                    Moderadamentev
+                                    Moderadamente<br/>
                                     
                                     <input type="radio" name="ansioso" id="ansioso_3" class="opcion-radio" value="Mucho" />
-                                    Mucho<br />
-                                
-                                
+                                    Mucho<br/>
+
                             </div>
+                            
                             <div class="pregunta">
-                                <label for="" class="form-label">se ha sentido molesto por preocuparse mucho sobre diferentes cosas?</label>
-                                <div>
-                                    <label for="" class="form-label">¿Cuál es tu nivel de preocupación?<br />
-                                    <input type="radio" name="preocupacion" class="opcion-radio" id="preocupacion_0" value="No estoy preocupado en absoluto" />
-                                    No estoy preocupado en absoluto<br />
+                                <label for="" class="form-label">¿Se ha sentido molesto por estar nervioso, ansioso o tenso?</label>
+                                
+                                    <input type="radio" name="preocupacion" id="preocupacion1" class="opcion-radio" value="No estoy preocupado en absoluto" />
+                                    nunca<br />
                                     
-                                    <input type="radio" name="preocupacion" class="opcion-radio" id="preocupacion_1" value="Estoy un poco preocupado" />
-                                    Estoy un poco preocupado<br />
+                                    <input type="radio" name="preocupacion" id="preocupacion2" class="opcion-radio" value="Estoy un poco preocupado" />
+                                    Un poco<br/>
                                     
-                                    <input type="radio" name="preocupacion"  class="opcion-radio"id="preocupacion_2" value="Estoy moderadamente preocupado" />
-                                    Estoy moderadamente preocupado<br />
+                                    <input type="radio" name="preocupacion" id="preocupacion3" class="opcion-radio" value="Estoy moderadamente preocupado" />
+                                    Moderadamente<br/>
                                     
-                                    <input type="radio" name="preocupacion"  class="opcion-radio"id="preocupacion_3" value="Estoy muy preocupado" />
-                                    Estoy muy preocupado<br />
-                                </div>
+                                    <input type="radio" name="preocupacion" id="preocupacion4" class="opcion-radio" value="Estoy muy preocupado" />
+                                    Mucho<br/>
+                                
+                                
                             </div>
                         <div>
                             
