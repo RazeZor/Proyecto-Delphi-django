@@ -66,7 +66,7 @@ def FormularioInicial(request):
     TiposDeEnfermedades=json.dumps(request.POST.getlist('TiposDeEnfermedades')),
 
     #pagina 6
-    IntensidadDolor=int(request.POST.get('DuracionDolor', 0)) if request.POST.get('DuracionDolor') else None,
+    IntensidadDolor=request.POST.get('IntensidadDolor'),
     preguntas1=json.dumps(request.POST.getlist('preguntas1')),
     nesesidadDeApoyo=request.POST.get('support'),
     #pagina 7
@@ -94,12 +94,12 @@ def FormularioInicial(request):
     #consumo de sustancias
     #nicotica
     NicotinaSiOno = request.POST.get('NicotinaSiOno'),
-    condicionNicotina = request.POST.get('condicionNicotina'),
-    nicotinaPreocupacion = request.POST.get('nicotinaPreocupacion'),
+    condicionNicotina = request.POST.get('frecuenciaNicotina'),
+    nicotinaPreocupacion = request.POST.get('preocupacionNicotina'),
     #cigarro
     AlcoholSiOno = request.POST.get('AlcoholSiOno'),
-    condicionAlcohol = request.POST.get('condicionAlcohol'),
-    AlcoholPreocupacion = request.POST.get('AlcoholPreocuopacion'),
+    condicionAlcohol = request.POST.get('frecuenciaAlcohol'),
+    AlcoholPreocupacion = request.POST.get('preocupacionAlcohol'),
     #drogas
     drogasSiOno = request.POST.get('drogasSiOno'),
     condicionDrogas = request.POST.get('CantidadDrogras'),

@@ -63,11 +63,12 @@ class formularioClinico(models.Model):
     opinionProblemaEnfermeda = models.CharField(max_length=20,null=True, blank=True)
     opinionCuraDolor = models.CharField(max_length=20,null=True, blank=True)
     
+    
     #pagina 5
     TiposDeEnfermedades = models.JSONField(null=True, blank=True)
 
     #pagina6
-    IntensidadDolor = models.IntegerField(null=True, blank=True)
+    IntensidadDolor = models.TextField(null=True, blank=True)
     preguntas1 = models.JSONField(null=True, blank=True)
     nesesidadDeApoyo = models.CharField(max_length=20,null=True, blank=True)
     
