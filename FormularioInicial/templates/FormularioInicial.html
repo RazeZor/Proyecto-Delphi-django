@@ -743,11 +743,6 @@
                     
             </div>
 
-            <style>
-                .hidden{
-
-                }
-            </style>
             
             <div class="step" name="PreguntaNueva">
                 <div class="mb-3">
@@ -764,155 +759,118 @@
                                 <li>Participar en reuniones o celebraciones familiares.</li>
                                 <li>Acompañar a familiares en actividades diarias (compras, trámites, paseos).</li>
                             </ul>
-                            <section id="parametros" >
-                                <div class="respuestas" id ="hidden">
-                                    <hr/><input type="radio" name="parametros" class="form-check-input" value="evitativo"> no realizo mucho esta actividad porque miedo a que el dolor empeore
-                                    <hr/><input type="radio" name="parametros" class="form-check-input" value="evitativo"> no realizo esta actividad que me gusta porque el dolor no me deja
-                                    <hr/><input type="radio" name="parametros" class="form-check-input" value="persistente"> realizo esta actividad pero me detengo o descanso seguido
-                                    <hr/><input type="radio" name="parametros" class="form-check-input" value="persistente"> realizo esta actividad aunque sienta dolor
-                                    <hr/><input type="radio" name="parametros" class="form-check-input" value="persistente"> me esfuerzo mucho por hacer esta actividad aunque el dolor persista o moleste
-                                    <hr/>
-                                </div>
-                            </section>
+                          
                         <label class="form-label">
-                            <input type="checkbox"  name="actividades_afectadas" value="Actividades Familiares">   Actividades Laborales
+                            <input type="checkbox"  name="actividades_afectadas" value="Actividades Laborales">   Actividades Laborales
                         </label>    
                             <ul>
                                 <li>Cumplir con mi trabajo o actividades profesionales.</li>
                                 <li>Realizar tareas físicas en el trabajo (levantar peso, caminar mucho).</li>
                                 <li>Asistir a reuniones o capacitaciones laborales</li>
                             </ul>
-                            <section id="parametros">
-                                
-                            <section>
+
                             <label class="form-label">
-                                <input type="checkbox" name="actividades_afectadas"  value="Actividades Familiares">  Actividades educativas o universitarias
+                                <input type="checkbox" name="actividades_afectadas"  value="Actividades educativas">  Actividades educativas o universitarias
                             </label>    
                                 <ul>
                                     <li>Asistir a clases o estudiar en casa</li>
                                     <li>Completar tareas, proyectos o actividades académicas</li>
                                     <li>Participar en actividades extracurriculares (grupos, talleres)</li>
                                 </ul>
-                                <section id="parametros" id="params-Actividades_Familiares"> 
-                                   
-                                <section>
+    
                                 
                             <label class="form-label"> 
-                                <input type="checkbox"  name="actividades_afectadas"  value="Actividades Familiares">  Actividades deportivas o físicas
+                                <input type="checkbox"  name="actividades_afectadas"  value="Actividades deportivas">  Actividades deportivas o físicas
                             </label> 
                                 <ul>
                                     <li>Salir a caminar, trotar o hacer ejercicio.</li>
                                     <li>Practicar deportes (fútbol, tenis, natación, etc.).</li>
                                     <li>Realizar actividades recreativas al aire libre (bicicleta, senderismo).</li>
                                 </ul>
-                                <section id="parametros" >
-                                    
-                                <section>
+
                             <label class="form-label">
-                                <input type="checkbox"  name="actividades_afectadas"  value="Actividades Familiares"> Actividades sociales
+                                <input type="checkbox"  name="actividades_afectadas"  value="Actividades sociales"> Actividades sociales
                             </label>    
                                 <ul>
                                     <li>Salir con amigos o asistir a reuniones sociales.</li>
                                     <li>Participar en actividades comunitarias o religiosas.</li>
                                     <li>Ir al cine, teatro o eventos culturales.</li>
                                 </ul>
-                                <section id="parametros" >
-                                    
-                                <section>
                              <label class="form-label">
-                                <input type="checkbox"  name="actividades_afectadas"  value="Actividades Familiares"> Actividades de autocuidado
+                                <input type="checkbox"  name="actividades_afectadas"  value="Actividades de autocuidado"> Actividades de autocuidado
                             </label>    
                                 <ul>
                                     <li>Realizar mis rutinas diarias (vestirme, asearme, comer)</li>
                                     <li>Asistir a citas médicas o terapias. </li>
                                     <li>Relajarme o descansar cuando lo necesito</li>
                                 </ul>
-                                <section id="parametros" >
-                                    
-                                <section>
-                            
                 </div>
             </div>
 
             <script>
-                
-                const style = document.createElement('style');
-                style.textContent = `
-                .parameters-section {
-                  display: none;
-                  padding: 10px;
-                  margin: 10px 0;
-                  border: 1px solid #ddd;
-                  border-radius: 4px;
-                }
-                
-                .parameters-section.active {
-                  display: block;
-                }
-                `;
-                document.head.appendChild(style);
-                
-                // Create parameter sections for each checkbox
-                document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]').forEach((checkbox, index) => {
-                  // Create unique section for each activity
-                  const parametersSection = document.createElement('section');
-                  parametersSection.className = 'parameters-section';
-                  parametersSection.id = `parameters-${index}`;
-                  
-                  // Clone the original parameters content
-                  const originalParams = document.querySelector('#parametros .respuestas').cloneNode(true);
-                  
-                  // Update radio button names to be unique per section
-                  originalParams.querySelectorAll('input[type="radio"]').forEach(radio => {
-                    radio.name = `parametros-${index}`;
-                  });
-                  
-                  parametersSection.appendChild(originalParams);
-                  checkbox.parentElement.appendChild(parametersSection);
-                  
-                  // Add event listener to checkbox
-                  checkbox.addEventListener('change', function() {
-                    parametersSection.classList.toggle('active', this.checked);
-                    
-                    // Hide other sections when unchecked
-                    document.querySelectorAll('.parameters-section').forEach(section => {
-                      if (section !== parametersSection && !section.previousElementSibling.querySelector('input[type="checkbox"]').checked) {
-                        section.classList.remove('active');
+                document.addEventListener("DOMContentLoaded", function () {
+                  const checkboxes = document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]');
+                  const maxSelecciones = 3;
+                  let seleccionadas = 0;
+              
+                  checkboxes.forEach((checkbox, index) => {
+                    // Crear un contenedor dinámico para cada checkbox
+                    const parametersSection = document.createElement("div");
+                    parametersSection.classList.add("parameters-section");
+                    parametersSection.style.display = "none";
+              
+                    // Contenido dinámico de los checkboxes
+                    parametersSection.innerHTML = `
+                      <hr/>
+                      <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo mucho esta actividad porque miedo a que el dolor empeore
+                      <hr/>
+                      <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo esta actividad que me gusta porque el dolor no me deja
+                      <hr/>
+                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad pero me detengo o descanso seguido
+                      <hr/>
+                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad aunque sienta dolor
+                      <hr/>
+                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Me esfuerzo mucho por hacer esta actividad aunque el dolor persista o moleste
+                      <hr/>
+                    `;
+              
+                    // Insertar el contenedor después del checkbox correspondiente
+                    checkbox.parentElement.appendChild(parametersSection);
+              
+                    // Manejar la lógica de mostrar/ocultar el contenedor dinámico
+                    checkbox.addEventListener("change", function () {
+                      if (this.checked) {
+                        // Si se seleccionan más de 3 actividades, se desmarca el checkbox
+                        if (seleccionadas >= maxSelecciones) {
+                          this.checked = false;
+                          alert("Solo puede seleccionar hasta 3 actividades");
+                          return;
+                        }
+                        seleccionadas++;
+                        parametersSection.style.display = "block";
+                      } else {
+                        seleccionadas--;
+                        parametersSection.style.display = "none";
                       }
                     });
+              
+                    // Desmarcar otros checkboxes cuando uno sea seleccionado
+                    const checkboxesInSection = parametersSection.querySelectorAll('input[type="checkbox"][name="parametros"]');
+                    checkboxesInSection.forEach((cb) => {
+                      cb.addEventListener("change", function () {
+                        if (this.checked) {
+                          // Desmarcar todos los demás checkboxes en la misma sección
+                          checkboxesInSection.forEach((otherCb) => {
+                            if (otherCb !== this) {
+                              otherCb.checked = false;
+                            }
+                          });
+                        }
+                      });
+                    });
                   });
                 });
-                
-                // Remove original parameters section
-                document.querySelector('#parametros').remove();
-
-                document.addEventListener('DOMContentLoaded', function() {
-                    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]');
-                    const maxSelecciones = 3;
-                    let seleccionadas = 0;
-                
-                    checkboxes.forEach(checkbox => {
-                        checkbox.addEventListener('change', function() {
-                            const parametrosId = 'params-' + this.value;
-                            const parametrosSection = document.getElementById(parametrosId);
-                
-                            if (this.checked) {
-                                if (seleccionadas >= maxSelecciones) {
-                                    this.checked = false;
-                                    alert('Solo puede seleccionar hasta 3 actividades');
-                                    return;
-                                }
-                                seleccionadas++;
-                                parametrosSection.classList.add('visible');
-                            } else {
-                                seleccionadas--;
-                                parametrosSection.classList.remove('visible');
-                            }
-                        });
-                    });
-                });
-            </script>
-            
+              </script>
             
             <div class="step">
                
