@@ -4,6 +4,7 @@ from Login.models import formularioClinico, Clinico, Paciente
 from django.contrib import messages
 import json
 
+
 def FormularioInicial(request):
     # Verificar si el usuario tiene sesión activa como clínico
     rut_clinico = request.session.get('rut_clinico')
@@ -42,40 +43,54 @@ def FormularioInicial(request):
     paciente=paciente,
     clinico=clinico,
     fechaCreacion=datetime.now(),
-    curacionDolor=request.POST.get('btnradio1'),
+    medicamentos = json.dumps(request.POST.getlist('medicamentos')),
+    ## hasta aqui llega la parte de usuarios.
+    
+    
+    ## pagina 2
+    duracionDolor=request.POST.get('btnradio1'),
     caracteristicasDeDolor=json.dumps(request.POST.getlist('caracteristicas')),
+
+    ## pagina 3 esquema
+    ubicacionDolor = json.dumps(request.POST.getlist('ubicacionDolor')),
+    dolorIntensidad= json.dumps(request.POST.getlist('intensidad')),
+  
+    
+    ## pagina 4
     causaDolor=request.POST.get('causaDolor'),
     accidenteLaboral=json.dumps(request.POST.getlist('accidenteLaboral')),
     calidadAtencion=request.POST.get('calidadAtencion'),
     opinionProblemaEnfermeda=request.POST.get('diagnosis'),
     opinionCuraDolor=request.POST.get('cure'),
-    dificultadActividad=request.POST.get('dificultadActividad'),
-    rangoDificultad=int(request.POST.get('rangoDificultad', 0)) if request.POST.get('rangoDificultad') else None,
-    nesesidadDeApoyo=request.POST.get('support'),
+    #pagina 5
     TiposDeEnfermedades=json.dumps(request.POST.getlist('TiposDeEnfermedades')),
-    mencionesActividades=json.dumps(request.POST.getlist('mencionesActividades')),
-    ubicacionDolor = json.dumps(request.POST.getlist('ubicacionDolor')),
-    dolorIntensidad= json.dumps(request.POST.getlist('intensidad')),
-    DuracionDolor=int(request.POST.get('DuracionDolor', 0)) if request.POST.get('DuracionDolor') else None,
+
+    #pagina 6
+    IntensidadDolor=int(request.POST.get('DuracionDolor', 0)) if request.POST.get('DuracionDolor') else None,
     preguntas1=json.dumps(request.POST.getlist('preguntas1')),
-    preguntas2=json.dumps(request.POST.getlist('preguntas2')),
-    pregunta1_nivelDeSalud=int(request.POST.get('pregunta1_nivelDeSalud', 0)) if request.POST.get('pregunta1_nivelDeSalud') else None,
-    pregunta2_horas_de_sueño_en_promedio=json.dumps(request.POST.getlist('horas_sueno')),
-    pregunta3_frecuencia_De_Suenio=json.dumps(request.POST.getlist('op3')),
-    pregunta4_opinion_peso_actual=json.dumps(request.POST.getlist('pregunta4_opinion_peso_actual')),
-    pregunta5_ConsumoComidaRapida=json.dumps(request.POST.getlist('op5')),
-    pregunta6_PorcionesDeFrutas=json.dumps(request.POST.getlist('op6')),
-    pregunta7_ejercicioDias=json.dumps(request.POST.getlist('op7')),
-    pregunta8_minutosPorEjercicios=json.dumps(request.POST.getlist('op8')),
-    medicamentos = json.dumps(request.POST.getlist('medicamentos')),
-    medicamento_efectivo = json.dumps(request.POST.getlist('medicamento_efectivo')),
+    nesesidadDeApoyo=request.POST.get('support'),
+    #pagina 7
+    actividades_afectadas = json.dumps(request.POST.getlist('actividades_afectadas')),
+    parametros = json.dumps(request.POST.getlist('parametros')),
+    
+    #pagina8
+    pregunta1_nivelDeSalud=request.POST.get('pregunta1_nivelDeSalud'),
+    pregunta2_horas_de_sueño_en_promedio=request.POST.get('horas_sueno'),
+    pregunta3_frecuencia_De_Suenio=request.POST.get('op3'),
+    pregunta4_opinion_peso_actual=request.POST.get('pregunta4_opinion_peso_actual'),
+    pregunta5_ConsumoComidaRapida=request.POST.get('op5'),
+    pregunta6_PorcionesDeFrutas=request.POST.get('op6'),
+    pregunta7_ejercicioDias=request.POST.get('op7'),
+    pregunta8_minutosPorEjercicios=request.POST.get('op8'),
     #preguntas de salud mental
+    
     proposito = request.POST.get('proposito'),
     red_de_apoyo = request.POST.get('red_de_apoyo'),
     placer_cosas = request.POST.get('placer_cosas'),
     deprimido = request.POST.get('deprimido'),
     ansioso = request.POST.get('ansioso'),
     preocupacion = request.POST.get('preocupacion'),
+
     #consumo de sustancias
     #nicotica
     NicotinaSiOno = request.POST.get('NicotinaSiOno'),
@@ -94,9 +109,11 @@ def FormularioInicial(request):
     condicionMarihuana = request.POST.get('frecuenciaMarihuana'),
     marihuanaPreocupacion = request.POST.get('marihuanaPreocupacion'),
     #preguntas de motivacion
+    preguntas2=json.dumps(request.POST.getlist('preguntas2')),
     AreasMotivacion = json.dumps(request.POST.getlist('motivacion')),
     motivacion_Salud = request.POST.get('motivacion_Salud')
-)
+
+    )
         formulario.save()
         
         messages.success(request, 'Formulario guardado exitosamente.')
