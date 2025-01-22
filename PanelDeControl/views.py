@@ -33,28 +33,8 @@ def VerFichaPacientes(request):
         try:
             paciente = Paciente.objects.get(rut=rut)
             formulario = formularioClinico.objects.get(paciente=paciente)
-            respuestaMeses = formulario.curacionDolor.strip().lower()  
-
-            mensaje_section = ""
 
 
-            
-            mensaje = "menos de 3 meses".strip().lower()
-            print(respuestaMeses)
-            if respuestaMeses == mensaje:
-                mensaje_section = (
-                    '<div style="color: red; font-weight: bold;">'
-                    'Se le aconseja al clínico que este paciente se le realice una derivación a la escala DN4.'
-                    '</div>'
-                )
-            else:
-                mensaje_section = (
-                    '<div style="color: red; font-weight: bold;">'
-                    'No hay consejos en dolor.'
-                    '</div>'
-                )
-            
-            
                 
 
             # Leer el archivo HTML
@@ -65,7 +45,7 @@ def VerFichaPacientes(request):
             informe = informe_template.format(
                 paciente=paciente,
                 formulario=formulario,
-                mensaje_section=mensaje_section,
+
             )
 
             # Añadir el informe al contexto
