@@ -99,3 +99,6 @@ def evaluar_necesidad_apoyo(apoyo):
     
 
     return ('')
+
+def Evaluar():
+    pass
