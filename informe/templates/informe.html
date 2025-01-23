@@ -225,6 +225,19 @@
         <div class="report-card">
             <!-- Sección inicial (siempre visible) -->
             <div class="info-section" id="informacion">
+                    <div class="respuestas">
+                           <ul> 
+                                <li>{mensajeDuracionDolor}</li>
+                                <li>{mensajeOpinion}</li>
+                                <li>{mensajeApoyo}</li>
+                                
+                           </ul>
+                    </div>
+            </div>
+    
+            <!-- Contenido expandible -->
+           
+            <div id="contenido-expandible" style="display: none;">
                 <h2 class="section-title">Datos del Paciente</h2>
                 <div class="row">
                     <div class="col-md-6">
@@ -248,21 +261,13 @@
                         <div class="info-value">{formulario.clinico}</div>
                     </div>
                 </div>
-                    <div class="respuestas">
-
-                            
-                    </div>
-            </div>
-    
-            <!-- Contenido expandible -->
-            <div id="contenido-expandible" style="display: none;">
                 <!-- Sección de Evaluación del Dolor -->
                 <section class="info-section">
                     <h2 class="section-title">Evaluación del Dolor</h2>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="info-label">Duración del Dolor</div>
-                            <div class="info-value">{formulario.duracionDolor} meses</div>
+                            <div class="info-value">{formulario.duracionDolor}</div>
                             <div class="info-label">Características del Dolor</div>
                             <div class="info-value">{formulario.caracteristicasDeDolor}</div>
                         </div>

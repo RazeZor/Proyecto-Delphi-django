@@ -24,7 +24,6 @@ def VerFichaPacientes(request):
     if 'nombre_clinico' not in request.session:
         return redirect('login')
     
-    
     nombre_clinico = request.session['nombre_clinico']
     rut = request.GET.get('rut', None)
     context = {'nombre_clinico': nombre_clinico}
@@ -34,21 +33,23 @@ def VerFichaPacientes(request):
             paciente = Paciente.objects.get(rut=rut)
             formulario = formularioClinico.objects.get(paciente=paciente)
 
-
-                
-
-            # Leer el archivo HTML
+            mensajeDuracionDolor = evaluar_duracion_dolor(formulario.duracionDolor)
+            mensajeOpinion = evaluar_opinion(formulario.opinionProblemaEnfermeda, formulario.opinionCuraDolor)
+            mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
+            
+            
+            
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
             
-            # Reemplazar las variables en el HTML usando .format()
             informe = informe_template.format(
                 paciente=paciente,
                 formulario=formulario,
-
+                mensajeDuracionDolor=mensajeDuracionDolor,
+                mensajeOpinion=mensajeOpinion,
+                mensajeApoyo = mensajeApoyo
             )
 
-            # Añadir el informe al contexto
             context['informe'] = informe
             context['encontrado'] = True
 
@@ -57,3 +58,44 @@ def VerFichaPacientes(request):
             context['mensaje'] = "No se encontró el paciente o su formulario clínico"
 
     return render(request, 'FichaPacientes.html', context)
+
+def evaluar_duracion_dolor(duracionDolor):
+    condicionduracionDolor = 'mas de 6 meses'
+    if duracionDolor == condicionduracionDolor:
+        return (
+            '<h6 style="color: red;">El paciente reporta un dolor de más de 6 meses. Se le sugiere al clinico utilizar la escala DN4.</h6>'
+        )
+    else:
+        return ("<h4>No hay consejos.</h4>")
+
+def evaluar_opinion(opinionEnfermedad, opinioncuraDolor):
+    puntaje = 0
+    
+    if opinioncuraDolor == 'no':
+        puntaje += 2
+    if opinionEnfermedad == 'si':
+        puntaje += 1
+
+    if puntaje > 2:
+        return (
+            '<h6 style="color: red;">Se le sugiere al médico utilizar la escala PCS ---> creencias: aceptación de dolor <--- CPAQ</h6>'
+        )
+    elif puntaje == 2:
+        return (
+            '<h6 style="color: red;">Creencias: aceptación de dolor <--- CPAQ</h6>'
+        )
+    elif puntaje == 1:
+        return (
+            '<h6 style="color: red;">Se le sugiere al médico utilizar la escala PCS ---> creencias</h6>'
+        )
+    
+    return ''
+
+def evaluar_necesidad_apoyo(apoyo):
+    if apoyo == 'si':
+        return (
+            '<h6 style="color: red;">El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra).</h6>'
+        )
+    
+
+    return ('')
