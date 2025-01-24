@@ -34,6 +34,8 @@ urlpatterns = [
     path('cuerpoHumano/',vistaClinicos.CuerpoHumano),
     path('panel/fichaPacientes/',v.VerFichaPacientes,name='ficha'),
     path('informe/',vistaInforme.RenderInforme,name='informe'),
-    path('panel/ListaPacientes',lista.MostrarPacientes,name='pacientes')
+    path('panel/ListaPacientes',lista.MostrarPacientes,name='pacientes'),
+    path('editar/', vistaClinico.EditarClinicos, name='editar'),
+    path('eliminar_paciente/', lista.EliminarPaciente, name='eliminar'),
 
 ]

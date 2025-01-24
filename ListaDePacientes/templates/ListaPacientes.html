@@ -67,12 +67,13 @@
                             <td>{{ paciente.genero }}</td>
                             <td>{{ paciente.cobertura_de_salud }}</td>
                             <td>
-                                <button class="btn btn-info btn-sm me-2">
-                                    <i class="fas fa-edit"></i> Editar
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i> Eliminar
-                                </button>
+                                <form action="{% url 'eliminar' %}" method="POST" style="display: inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="rut" value="{{ paciente.rut }}">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="abrirConfirmacionModal('{{ paciente.rut }}')">
+                                        <i class="fas fa-trash-alt me-1"></i> Eliminar
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         {% empty %}
@@ -85,7 +86,43 @@
                     </tbody>
                 </table>
             </div>
+            <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmacionModalLabel" style="color: black;">Confirmar Eliminación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p style="color: black;">¿Estás seguro de eliminar a este Paciente</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
+        <script>
+            function Confirmacion(button) {
+                const confirmacion = confirm("¿Estás seguro de eliminar a este paciente?");
+                if (confirmacion) {
+                    button.closest('form').submit(); 
+                }
+            }
+            let rutEliminar;
+
+                function abrirConfirmacionModal(rut) {
+                    rutEliminar = rut; 
+                    var myModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+                    myModal.show();
+                }
+                document.getElementById('confirmarEliminar').addEventListener('click', function() {
+                    const form = document.querySelector(`form input[value="${rutEliminar}"]`).closest('form');
+                    form.submit(); // Enviar el formulario
+                });
+        </script>
 
         <footer>
             <p>© 2025 Centro Clinico Delphi - Derechos Reservados </p>

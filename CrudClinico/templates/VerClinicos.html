@@ -72,8 +72,12 @@
                                         <form action="{% url 'ver' %}" method="POST" style="display: inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="rut" value="{{ clinico.rut }}">
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="button" class="btn btn-danger" onclick="abrirConfirmacionModal('{{ clinico.rut }}')">
                                                 <i class="fas fa-trash-alt me-1"></i> Borrar
+                                            </button>
+                                            <button type="button" class="btn btn-warning"
+                                                onclick='abrirModal("{{ clinico.rut }}", "{{ clinico.nombre }}", "{{ clinico.apellido }}", "{{ clinico.profesion }}")'>
+                                                <i class="fas fa-edit me-1"></i> Editar
                                             </button>
                                         </form>
                                     </td>
@@ -81,6 +85,53 @@
                                 {% endfor %}
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmacionModalLabel">Confirmar Eliminación</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Estás seguro de eliminar a este clínico?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="editarClinicoModal" tabindex="-1" aria-labelledby="editarClinicoModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editarClinicoModalLabel">Editar Clínico</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editarClinicoForm" method="POST" action="{% url 'editar' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="rut" id="rutInput">
+                                <div class="mb-3">
+                                    <label for="nombreInput" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" id="nombreInput" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellidoInput" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" name="apellido" id="apellidoInput" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="profesionInput" class="form-label">Profesión</label>
+                                    <input type="text" class="form-control" name="profesion" id="profesionInput" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            </form>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,6 +163,33 @@
                         }
                         rows[i].style.display = match ? '' : 'none';
                     }
+                });
+                function abrirModal(rut, nombre, apellido, profesion) {
+                    document.getElementById('rutInput').value = rut;
+                    document.getElementById('nombreInput').value = nombre;
+                    document.getElementById('apellidoInput').value = apellido;
+                    document.getElementById('profesionInput').value = profesion;
+                    
+                    var myModal = new bootstrap.Modal(document.getElementById('editarClinicoModal'));
+                    myModal.show();
+                }
+
+                function Confirmacion(button) {
+                    const confirmacion = confirm("¿Estás seguro de eliminar a este clínico?");
+                    if (confirmacion) {
+                        button.closest('form').submit(); 
+                    }
+                }
+                let rutEliminar;
+
+                function abrirConfirmacionModal(rut) {
+                    rutEliminar = rut; 
+                    var myModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+                    myModal.show();
+                }
+                document.getElementById('confirmarEliminar').addEventListener('click', function() {
+                    const form = document.querySelector(`form input[value="${rutEliminar}"]`).closest('form');
+                    form.submit(); // Enviar el formulario
                 });
         </script>
     </body>

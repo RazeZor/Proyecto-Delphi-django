@@ -36,6 +36,7 @@ def VerFichaPacientes(request):
             mensajeDuracionDolor = evaluar_duracion_dolor(formulario.duracionDolor)
             mensajeOpinion = evaluar_opinion(formulario.opinionProblemaEnfermeda, formulario.opinionCuraDolor)
             mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
+
             
             
             
@@ -48,6 +49,9 @@ def VerFichaPacientes(request):
                 mensajeDuracionDolor=mensajeDuracionDolor,
                 mensajeOpinion=mensajeOpinion,
                 mensajeApoyo = mensajeApoyo
+
+                
+                
             )
 
             context['informe'] = informe
@@ -99,6 +103,3 @@ def evaluar_necesidad_apoyo(apoyo):
     
 
     return ('')
-
-def Evaluar():
-    pass
