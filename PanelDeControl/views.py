@@ -1,15 +1,33 @@
 import json
 from django.shortcuts import render, redirect
-from Login.models import Paciente, formularioClinico
+from Login.models import Paciente, formularioClinico,tiempo
 from django.http import HttpResponse, JsonResponse
+from datetime import timedelta
 
-
+    
 
 def panel(request):
     if 'nombre_clinico' in request.session:
         nombre_clinico = request.session['nombre_clinico']
         es_admin = request.session.get('es_admin', False)
-        return render(request, 'panel.html', {'nombre_clinico': nombre_clinico, 'es_admin': es_admin})
+
+        tiempos = tiempo.objects.all()
+
+        if tiempos.exists():
+            total_duracion = sum((t.duracion for t in tiempos), timedelta())
+            promedio_duracion = total_duracion / len(tiempos)
+
+            horas, resto = divmod(promedio_duracion.total_seconds(), 3600)
+            minutos, segundos = divmod(resto, 60)
+            promedio_formateado = f"{int(horas):02}:{int(minutos):02}:{int(segundos):02}"
+        else:
+            promedio_formateado = "00:00:00"  
+
+        return render(request, 'panel.html', {
+            'nombre_clinico': nombre_clinico,
+            'es_admin': es_admin,
+            'promedio_formateado': promedio_formateado  
+        })
     else:
         return redirect('login')
     

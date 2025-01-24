@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render, redirect
-from Login.models import formularioClinico, Clinico, Paciente
+from Login.models import formularioClinico, Clinico, Paciente,tiempo
 from django.contrib import messages
+
 import json
 
 
@@ -18,7 +19,17 @@ def FormularioInicial(request):
         messages.error(request, 'el clinico no esta en el sistema, intenta nuevamente...')
         return redirect('login')
 
+        
     if request.method == 'POST':
+        duracion_sesion_str = request.POST.get('duracion_sesion')
+
+        try:
+            horas, minutos, segundos = map(int, duracion_sesion_str.split(':'))
+            duracion_sesion = timedelta(hours=horas, minutes=minutos, seconds=segundos)
+            nuevo_tiempo = tiempo(duracion=duracion_sesion)
+            nuevo_tiempo.save()
+        except ValueError:
+            messages.error(request, 'Formato de duración de sesión inválido.')
         rut = request.POST.get('rut')
         nombre = request.POST.get('nombre')
         apellido = request.POST.get('apellido')

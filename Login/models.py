@@ -120,7 +120,11 @@ class formularioClinico(models.Model):
     AreasMotivacion = models.JSONField(null=True,blank=True)
     motivacion_Salud = models.TextField(null=True,blank=True)
     
+class tiempo(models.Model):
+    duracion = models.DurationField()
     
+    def __str__(self):
+        return f'tiempo = {self.duracion}'
 
     
     

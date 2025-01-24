@@ -37,18 +37,20 @@
         document.addEventListener("DOMContentLoaded", () => {
             let segundos = 0; 
             const tiempoElemento = document.getElementById("tiempo");
+            const duracionInput = document.getElementById("duracionSesionInput");
         
             const actualizarTiempo = () => {
                 const horas = Math.floor(segundos / 3600);
                 const minutos = Math.floor((segundos % 3600) / 60);
                 const seg = segundos % 60;
                 const formatoTiempo = `${String(horas).padStart(2, "0")}:${String(minutos).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
-        
+                
                 tiempoElemento.textContent = `Tiempo : ${formatoTiempo}`;
-
+                duracionInput.value = formatoTiempo; // Actualiza el campo oculto con la duración
+        
                 segundos++;
             };
-
+        
             setInterval(actualizarTiempo, 1000);
         });
     </script>
@@ -100,6 +102,7 @@
 
     <form id="Step" action="{% url 'formularioInicial' %}" method="post">
                 {% csrf_token %}
+                <input type="hidden" name="duracion_sesion" id="duracionSesionInput" value="00:00:00">
                 <div class="step active">
                     <h2 class="mb-4">Datos de ingreso de paciente</h2>
                     <div class="form-group">
