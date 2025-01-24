@@ -2,9 +2,10 @@ import json
 from django.shortcuts import render, redirect
 from Login.models import Paciente, formularioClinico,tiempo
 from django.http import HttpResponse, JsonResponse
-from datetime import timedelta
+from datetime import datetime, timedelta
+import time 
 
-    
+
 
 def panel(request):
     if 'nombre_clinico' in request.session:
@@ -22,11 +23,20 @@ def panel(request):
             promedio_formateado = f"{int(horas):02}:{int(minutos):02}:{int(segundos):02}"
         else:
             promedio_formateado = "00:00:00"  
+        
+        pacientes = Paciente.objects.all()
+        numeroPaciente = 0
+        for paciente in pacientes:
+            numeroPaciente = numeroPaciente+1
+        
+
+        
 
         return render(request, 'panel.html', {
             'nombre_clinico': nombre_clinico,
             'es_admin': es_admin,
-            'promedio_formateado': promedio_formateado  
+            'promedio_formateado': promedio_formateado,
+            'numeroPaciente': numeroPaciente
         })
     else:
         return redirect('login')
