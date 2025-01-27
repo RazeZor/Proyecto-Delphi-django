@@ -67,24 +67,37 @@ def VerFichaPacientes(request):
             #uso importante de JsonLoad, esta es la unica manera
             #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
             
-            
-            
+            # el cuerpo humano Bien mostrado 
 
-            
-            
-            
+            ubicacionDolor = json.loads(formulario.ubicacionDolor)
+            intensidadDolor = json.loads(formulario.dolorIntensidad)
+
+            ubicacion_intensidad_list = ""
+
+            min_len = min(len(ubicacionDolor), len(intensidadDolor))
+            for i in range(min_len):
+                ubicacion = ubicacionDolor[i]
+                intensidad = intensidadDolor[i]
+                ubicacion_intensidad_list += f"<li><strong>{ubicacion}:</strong> {intensidad}</li>\n"
+
+            if len(ubicacionDolor) != len(intensidadDolor):
+                ubicacion_intensidad_list += "<li><strong>Error:</strong> Las listas no coinciden en longitud</li>\n"
+
+               
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
-            
+
+            # Pasar las variables al template
             informe = informe_template.format(
                 paciente=paciente,
                 formulario=formulario,
                 mensajeDuracionDolor=mensajeDuracionDolor,
                 mensajeOpinion=mensajeOpinion,
-                mensajeApoyo = mensajeApoyo,
-                mensajeEVPER = mensajeEVPER
-
+                mensajeApoyo=mensajeApoyo,
+                mensajeEVPER=mensajeEVPER,
+                ubicacion_intensidad=ubicacion_intensidad_list
             )
+
 
             context['informe'] = informe
             context['encontrado'] = True
