@@ -4,7 +4,7 @@
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  background: transparent;
+  background: white;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
@@ -205,3 +205,4 @@
     transform: translateY(-2px);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
+
