@@ -135,12 +135,95 @@
                         right: 10px;
                     }
                 </style>
+
+                <script>
+                    function formatearRut(rut) {
+                        // Eliminar caracteres no numéricos ni el guion
+                        rut = rut.replace(/[^\dKk-]/g, '');
+                        
+                        // Formatear con puntos y guion: 12.345.678-9 o 7.654.678-5
+                        if (rut.length >= 7) {
+                            rut = rut.replace(/^(\d{1,2})(\d{3})(\d{3})([\dkK])$/, '$1.$2.$3-$4');
+                            rut = rut.replace(/^(\d{1})(\d{3})(\d{3})([\dkK])$/, '$1.$2.$3-$4');
+                            rut = rut.replace(/^(\d{7})([\dkK])$/, '$1-$2');  // Para 7 dígitos
+                        }
+                        return rut;
+                    }
+                
+                    function validarRut(rut) {
+                        var rutLimpio = rut.replace(/[^\dKk]/g, ''); // Eliminar caracteres no numéricos ni el guion
+                
+                        // Validar longitud: debe ser entre 7 y 9 dígitos sin contar el guion
+                        if (rutLimpio.length < 7 || rutLimpio.length > 9) {
+                            return false; // El RUT no tiene la longitud correcta
+                        }
+                
+                        var dv = rutLimpio.charAt(rutLimpio.length - 1).toUpperCase(); // Último carácter es el DV
+                        var cuerpo = rutLimpio.slice(0, -1); // El resto es el número del RUT
+                        var suma = 0;
+                        var multiplo = 2;
+                
+
+                        for (var i = cuerpo.length - 1; i >= 0; i--) {
+                            suma += cuerpo.charAt(i) * multiplo;
+                            multiplo = (multiplo === 7) ? 2 : multiplo + 1;
+                        }
+                
+                        var resto = suma % 11;
+                        var dvCalculado = 11 - resto;
+                        if (dvCalculado === 11) dvCalculado = 0;
+                        if (dvCalculado === 10) dvCalculado = 'K';
+                
+                        return (dv === dvCalculado || dv === dvCalculado.toString());
+                    }
+                
+                    // Función para manejar el input del RUT
+                    function manejarRut() {
+                        var rutInput = document.getElementById('rut');
+                        var rut = rutInput.value;
+                        var mensajeError = document.getElementById('mensaje-error');
+                
+                        // Validar el RUT
+                        if (validarRut(rut)) {
+                            // Si es válido, formateamos el RUT y ocultamos el mensaje de error
+                            rutInput.value = formatearRut(rut);
+                            mensajeError.style.display = 'none'; // Ocultar mensaje de error
+                        } else {
+                            // Si no es válido, mostramos el mensaje de error
+                            mensajeError.style.display = 'block'; // Mostrar mensaje de error
+                        }
+                    }
+                
+
+                    function onBlurRut() {
+                        var rutInput = document.getElementById('rut');
+                        var rut = rutInput.value;
+                        var mensajeError = document.getElementById('mensaje-error');
+                
+                        rutInput.value = formatearRut(rut);
+                
+
+                        if (validarRut(rut)) {
+                            mensajeError.style.display = 'none'; 
+                        } else {
+                            mensajeError.style.display = 'block'; 
+                        }
+                    }
+                
+                    // Agregar event listeners
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var rutInput = document.getElementById('rut');
+                        rutInput.addEventListener('blur', onBlurRut);
+                        rutInput.addEventListener('input', manejarRut);
+                    });
+                </script>
                 <input type="hidden" name="duracion_sesion" id="duracionSesionInput" value="00:00:00">
                 <div class="step active">
                     <h2 class="mb-4">Datos de ingreso de paciente</h2>
                     <div class="form-group">
                         <label class="form-label">Rut</label>
-                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Example: 21320084-4" required/>
+                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Ejemplo: 21.222.899-3" required oninput="manejarRut()" onblur="onBlurRut()"/>
+                        <div id="mensaje-error" style="color: red; display: none;">Error en el formato. Por favor, ingrese un RUT válido.</div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Nombre</label>
