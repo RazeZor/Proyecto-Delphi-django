@@ -691,11 +691,13 @@
                             <td scope="row">Ha tenido que vestirse más lentamente de lo habitual debido a su dolor</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                    <input type="radio" class="btn-check" name="preguntas" id="support-yes-3" autocomplete="off" value="si"/>
-                                    <label class="btn btn-outline-primary" for="support-yes-3">Sí</label>
-                
-                                    <input type="radio" class="btn-check" name="preguntas" id="support-no-3" autocomplete="off" value="no"/>
-                                    <label class="btn btn-outline-primary" for="support-no-3">No</label>
+                                    <center>
+                                        <input type="radio" class="btn-check" name="preguntas" id="support-yes-3" autocomplete="off" value="si"/>
+                                        <label class="btn btn-outline-primary" for="support-yes-3">Sí</label>
+                    
+                                        <input type="radio" class="btn-check" name="preguntas" id="support-no-3" autocomplete="off" value="no"/>
+                                        <label class="btn btn-outline-primary" for="support-no-3">No</label>
+                                    </center>
                                 </div>
                             </td>
                         </tr>
@@ -872,99 +874,86 @@
 
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-                  const checkboxes = document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]');
-                  const maxSelecciones = 3;
-                  let seleccionadas = 0;
-              
-                  checkboxes.forEach((checkbox, index) => {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]');
+                const maxSelecciones = 3;
+                let seleccionadas = 0;
+            
+                checkboxes.forEach((checkbox, index) => {
                     // Crear un contenedor dinámico para cada checkbox
                     const parametersSection = document.createElement("div");
                     parametersSection.classList.add("parameters-section");
                     parametersSection.style.display = "none";
-              
+            
                     // Contenido dinámico de los checkboxes
                     parametersSection.innerHTML = `
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo mucho esta actividad porque miedo a que el dolor empeore
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo esta actividad que me gusta porque el dolor no me deja
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad pero me detengo o descanso seguido
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad aunque sienta dolor
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Me esfuerzo mucho por hacer esta actividad aunque el dolor persista o moleste
-                      <hr/>
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo mucho esta actividad porque miedo a que el dolor empeore
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo esta actividad que me gusta porque el dolor no me deja
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad pero me detengo o descanso seguido
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad aunque sienta dolor
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Me esfuerzo mucho por hacer esta actividad aunque el dolor persista o moleste
+                    <hr/>
                     `;
-              
+            
                     // Insertar el contenedor después del checkbox correspondiente
                     checkbox.parentElement.appendChild(parametersSection);
-              
+            
                     // Manejar la lógica de mostrar/ocultar el contenedor dinámico
                     checkbox.addEventListener("change", function () {
-                      if (this.checked) {
+                    if (this.checked) {
                         // Si se seleccionan más de 3 actividades, se desmarca el checkbox
                         if (seleccionadas >= maxSelecciones) {
-                          this.checked = false;
-                          alert("Solo puede seleccionar hasta 3 actividades");
-                          return;
+                        this.checked = false;
+                        alert("Solo puede seleccionar hasta 3 actividades");
+                        return;
                         }
                         seleccionadas++;
                         parametersSection.style.display = "block";
-                      } else {
+                    } else {
                         seleccionadas--;
                         parametersSection.style.display = "none";
-                      }
+                    }
                     });
-              
+            
                     // Desmarcar otros checkboxes cuando uno sea seleccionado
                     const checkboxesInSection = parametersSection.querySelectorAll('input[type="checkbox"][name="parametros"]');
                     checkboxesInSection.forEach((cb) => {
-                      cb.addEventListener("change", function () {
+                    cb.addEventListener("change", function () {
                         if (this.checked) {
                           // Desmarcar todos los demás checkboxes en la misma sección
-                          checkboxesInSection.forEach((otherCb) => {
+                        checkboxesInSection.forEach((otherCb) => {
                             if (otherCb !== this) {
-                              otherCb.checked = false;
+                            otherCb.checked = false;
                             }
-                          });
+                        });
                         }
-                      });
                     });
-                  });
+                    });
                 });
-              </script>
-            
+                });
+            </script>
+            <!--PAGINA 8 VIDA-->
             <div class="step">
-               
-                    
-                <div class="mb-3">
-                    <label for="pregunta1_nivelDeSalud" class="form-label">
-                        1. Por favor indique en qué rango se encuentra su nivel de salud
-                    </label>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="Muy malo" autocomplete="off" value="No consumo drogas"/>
-                        <label class="form-check-label" for="Muy malo">Siento que mi salud está muy afectada, con problemas graves que dificultan casi todas mis actividades diarias</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="malo" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
-                        <label class="form-check-label" for="malo">Tengo muchas molestias o limitaciones que afectan significativamente mi vida diaria</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="Deficiente" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
-                        <label class="form-check-label" for="Deficiente">Puedo realizar algunas actividades, pero con esfuerzo constante y molestias frecuentes</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="bien" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
-                        <label class="form-check-label" for="bien">Me siento bien la mayor parte del tiempo, con pocas molestias que no afectan mucho mi día a día</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="saludable" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
-                        <label class="form-check-label" for="saludable">Estoy saludable y puedo realizar todas mis actividades con comodidad, salvo molestias menores</label>
-                    </div>
-                </div>
-                
                 <div class="contenedor">
+                    <div class="mb-3">
+                        <label for="pregunta1_nivelDeSalud" class="form-label">
+                            1) Por favor indique en qué rango se encuentra su nivel de salud
+                        </label>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="Muy malo" autocomplete="off" value="No consumo drogas"/>
+                            Siento que mi salud está muy afectada, con problemas graves que dificultan casi todas mis actividades diarias<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="malo" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
+                            Tengo muchas molestias o limitaciones que afectan significativamente mi vida diaria<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="Deficiente" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
+                            Puedo realizar algunas actividades, pero con esfuerzo constante y molestias frecuentes<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="bien" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
+                            Me siento bien la mayor parte del tiempo, con pocas molestias que no afectan mucho mi día a día<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="saludable" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
+                            Estoy saludable y puedo realizar todas mis actividades con comodidad, salvo molestias menores<br/>
+                    </div>
                     <div class="pregunta">
                         <label for="" class="form-label">
                             2) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
