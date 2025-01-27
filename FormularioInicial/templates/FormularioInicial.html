@@ -125,7 +125,6 @@
                         <label class="form-label">Seleccione genero</label>
                         <input type="radio" class="btn-check" name="genero" id="masculino1" autocomplete="off" value="Masculino" />
                         <label class="btn btn-outline-primary" for="masculino1">Masculino</label>
-
                         <input type="radio" class="btn-check" name="genero" id="fem2" autocomplete="off" value="Femenino" />
                         <label class="btn btn-outline-primary" for="fem2">Femenino</label>
                     </div>
@@ -137,14 +136,13 @@
                         <label class="form-label">Seleccione tipo de cobertura de salud</label>
                         <input type="radio" class="btn-check" name="cobertura" id="fonasa1" autocomplete="off" value="fonasa" />
                         <label class="btn btn-outline-primary" for="fonasa1">fonasa</label>
-
                         <input type="radio" class="btn-check" name="cobertura" id="isapre1" autocomplete="off" value="isapre" />
                         <label class="btn btn-outline-primary" for="isapre1">isapre</label>
-
                     </div>
+                    <!--SECCION DE MEDICAMENTOS-->
                     <div class="form-group">
                         <label class="form-label">Detalla a continuación medicamentos para el dolor que usas o has usado. Marque el medicamento que le resulte más efectivo:</label>
-                         
+                        
                         <label class="list-group-item">
                         <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Analgesicos simples" /> 
                         1. Analgésicos simples  (⁠Paracetamol, Dipirona, Ibuprofeno)
@@ -173,35 +171,30 @@
                         </label>
                         <label class="list-group-item">
                         <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Relajantes musculares y Benzodiacepinas" />  
-                        7. Relajantes musculares (Benzodiacepinas Diazepam, Clonazepam, Alprazolam, Clotiazepam)
+                        7. Relajantes musculares (Benzodiacepinas, Diazepam, Clonazepam, Alprazolam, Clotiazepam)
                         </label> 
                         <label class="list-group-item">   
                         <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Inductores del Sueño." />  
-                        8 Inductores del Sueño. Ejemplos: Zopiclona, Eszopiclona, Melatonina, Zolpide
+                        8. Inductores del Sueño (Zopiclona, Eszopiclona, Melatonina, Zolpide, ketiapina)
                         </label>
                         <label class="list-group-item"> 
                         <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Corticoide" />  
-                        9.Corticoides (para inflamación severa) Prednisona, Dexametasona, Betametasona.
+                        9. Corticoides (para inflamación severa) Prednisona, Dexametasona, Betametasona.
                         </label>
                         <label class="list-group-item">
                         <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Medicamentos topicos" />  
-                        10.Medicamentos tópicos(Capsaicina, Lidocaina en crema o parches, Diclofenaco en gel)
+                        10. Medicamentos tópicos (Capsaicina, Lidocaina en crema o parches, Diclofenaco en gel)
                         </label>
                         <label class="list-group-item">
                         <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Terapias biologicas" />  
-                        Terapias biológicas (si corresponde)⁠  Adalimumab, Etanercept.
+                        11. Terapias biológicas (si corresponde)⁠  Adalimumab, Etanercept.
                         </label>   
-
-                        <div class="mb-3">
-                            <label for="" class="form-label">Otros medicamentos usados para el dolor⁠  ⁠Ejemplos: Ketamina, Clonidina, Cannabis medicinal, Quetiapina."</label>
-                            <textarea class="form-control" name="Otros medicamentos" id="" rows="3"></textarea>
-                        </div>
-                         
-                        
-
+                        </label>
+                        <label class="list-group-item">
+                        <input class="form-check-input me-1" type="checkbox" name="medicamentos" value="Cannabis medicinal" />  
+                        12. Cannabis Medicinal
+                        </label>  
                     </div>
-                
-                    
                 </div>
 
                 <div class="step">
@@ -223,29 +216,29 @@
                     <div class="list-group">
                         <label class="form-label">Seleccione las características de su dolor</label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Punzante" required/> Punzante (Un dolor agudo y localizado, como si te pincharan con una aguja.)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Punzante" required/> Punzante (Un dolor agudo y localizado, como si te pincharan con una aguja)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="ardiente" required/> Ardiente (Sensación de quemazón o calor intenso en la zona.)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="ardiente" required/> Ardiente (Sensación de quemazón o calor intenso en la zona)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="sordo"required/> Sordo (Un dolor constante y molesto, pero no muy intenso, como una presión continua.)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="sordo"required/> Sordo (Un dolor constante y molesto, pero no muy intenso, como una presión continua)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="pulsativo"required/> Pulsátivo (Dolor que late o se siente como un pulso rítmico)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="pulsativo"required/> Pulsátil (Dolor que late o se siente como un pulso rítmico)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="opresivo" required/> Opresivo (Sensación de algo que aprieta o comprime, como si tuvieras un peso encima.)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="opresivo" required/> Opresivo (Sensación de algo que aprieta o comprime, como si tuvieras un peso encima)
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="corriente" required/> Corriente (Dolor que recorre o se desplaza como si fuera una descarga eléctrica.
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="corriente" required/> Corriente (Dolor que recorre o se desplaza como si fuera una descarga eléctrica)
                             
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="adormecimiento"required/> Adormecimiento (Sensación de pérdida de sensibilidad o como si la zona estuviera "dormida".)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="adormecimiento"required/> Adormecimiento (Sensación de pérdida de sensibilidad o como si la zona estuviera "dormida")
                         </label>
                         <label class="list-group-item">
-                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Hormigueo" required/> Hormigueo (Sensación de pequeños pinchazos o cosquilleo, como si algo caminara sobre la piel.)
+                            <input class="form-check-input me-1" type="checkbox" name="caracteristicas" value="Hormigueo" required/> Hormigueo (Sensación de pequeños pinchazos o cosquilleo, como si algo caminara sobre la piel)
                         </label>
                     </div>
                 </div>
@@ -618,7 +611,7 @@
                                 <td><input class="form-check-input me-1" type="checkbox" value="Trombosis" name="TiposDeEnfermedades"/>Trombosis</td>
                             </tr>
                         </table>
-                       
+                    
 
                         <style>
                             table #apoyo{
@@ -633,9 +626,8 @@
                 <div class="step">
                 
                     <h3>PARA RESPONDER LAS SIGUIENTES PREGUNTAS, PIENSE SOLO RESPECTO DE LAS ÚLTIMAS 2 SEMANAS</h3>
-                    <label class="form-label">1.- En promedio, ¿Cuán intenso ha sido su dolor? (donde 0 es “nada de dolor” y 10 es “el peor dolor posible”) </label>
+                    <label class="form-label">1.- En promedio, ¿Cuán intenso ha sido su dolor? </label>
                     <div class="form-group">
-                        <label class="form-label">intensidad de su dolor</label>
                         <div class="mb-3">
                 
                             <div class="form-check">
@@ -682,9 +674,16 @@
                             <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
                         </tr>
                         <tr>
-                            <td scope="row">ha tenido que vestirse más lentamente de lo habitual debido a su dolor</td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="si" name="preguntas1"></td>
-                            <td><input class="form-check-input me-1" type="checkbox" value="no" name="preguntas1"></td>
+                            <td scope="row">Ha tenido que vestirse más lentamente de lo habitual debido a su dolor</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    <input type="radio" class="btn-check" name="preguntas" id="support-yes-3" autocomplete="off" value="si"/>
+                                    <label class="btn btn-outline-primary" for="support-yes-3">Sí</label>
+                
+                                    <input type="radio" class="btn-check" name="preguntas" id="support-no-3" autocomplete="off" value="no"/>
+                                    <label class="btn btn-outline-primary" for="support-no-3">No</label>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td scope="row">Tiene algún otro problema de salud importante que considere relevante</td>
@@ -812,99 +811,86 @@
 
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-                  const checkboxes = document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]');
-                  const maxSelecciones = 3;
-                  let seleccionadas = 0;
-              
-                  checkboxes.forEach((checkbox, index) => {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="actividades_afectadas"]');
+                const maxSelecciones = 3;
+                let seleccionadas = 0;
+            
+                checkboxes.forEach((checkbox, index) => {
                     // Crear un contenedor dinámico para cada checkbox
                     const parametersSection = document.createElement("div");
                     parametersSection.classList.add("parameters-section");
                     parametersSection.style.display = "none";
-              
+            
                     // Contenido dinámico de los checkboxes
                     parametersSection.innerHTML = `
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo mucho esta actividad porque miedo a que el dolor empeore
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo esta actividad que me gusta porque el dolor no me deja
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad pero me detengo o descanso seguido
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad aunque sienta dolor
-                      <hr/>
-                      <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Me esfuerzo mucho por hacer esta actividad aunque el dolor persista o moleste
-                      <hr/>
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo mucho esta actividad porque miedo a que el dolor empeore
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="evitativo"> No realizo esta actividad que me gusta porque el dolor no me deja
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad pero me detengo o descanso seguido
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Realizo esta actividad aunque sienta dolor
+                    <hr/>
+                    <input type="checkbox" name="parametros" class="form-check-input" value="persistente"> Me esfuerzo mucho por hacer esta actividad aunque el dolor persista o moleste
+                    <hr/>
                     `;
-              
+            
                     // Insertar el contenedor después del checkbox correspondiente
                     checkbox.parentElement.appendChild(parametersSection);
-              
+            
                     // Manejar la lógica de mostrar/ocultar el contenedor dinámico
                     checkbox.addEventListener("change", function () {
-                      if (this.checked) {
+                    if (this.checked) {
                         // Si se seleccionan más de 3 actividades, se desmarca el checkbox
                         if (seleccionadas >= maxSelecciones) {
-                          this.checked = false;
-                          alert("Solo puede seleccionar hasta 3 actividades");
-                          return;
+                        this.checked = false;
+                        alert("Solo puede seleccionar hasta 3 actividades");
+                        return;
                         }
                         seleccionadas++;
                         parametersSection.style.display = "block";
-                      } else {
+                    } else {
                         seleccionadas--;
                         parametersSection.style.display = "none";
-                      }
+                    }
                     });
-              
+            
                     // Desmarcar otros checkboxes cuando uno sea seleccionado
                     const checkboxesInSection = parametersSection.querySelectorAll('input[type="checkbox"][name="parametros"]');
                     checkboxesInSection.forEach((cb) => {
-                      cb.addEventListener("change", function () {
+                    cb.addEventListener("change", function () {
                         if (this.checked) {
                           // Desmarcar todos los demás checkboxes en la misma sección
-                          checkboxesInSection.forEach((otherCb) => {
+                        checkboxesInSection.forEach((otherCb) => {
                             if (otherCb !== this) {
-                              otherCb.checked = false;
+                            otherCb.checked = false;
                             }
-                          });
+                        });
                         }
-                      });
                     });
-                  });
+                    });
                 });
-              </script>
-            
+                });
+            </script>
+            <!--PAGINA 8 VIDA-->
             <div class="step">
-               
-                    
-                <div class="mb-3">
-                    <label for="pregunta1_nivelDeSalud" class="form-label">
-                        1. Por favor indique en qué rango se encuentra su nivel de salud
-                    </label>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="Muy malo" autocomplete="off" value="No consumo drogas"/>
-                        <label class="form-check-label" for="Muy malo">Siento que mi salud está muy afectada, con problemas graves que dificultan casi todas mis actividades diarias</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="malo" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
-                        <label class="form-check-label" for="malo">Tengo muchas molestias o limitaciones que afectan significativamente mi vida diaria</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="Deficiente" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
-                        <label class="form-check-label" for="Deficiente">Puedo realizar algunas actividades, pero con esfuerzo constante y molestias frecuentes</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="bien" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
-                        <label class="form-check-label" for="bien">Me siento bien la mayor parte del tiempo, con pocas molestias que no afectan mucho mi día a día</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" name="pregunta1_nivelDeSalud" id="saludable" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
-                        <label class="form-check-label" for="saludable">Estoy saludable y puedo realizar todas mis actividades con comodidad, salvo molestias menores</label>
-                    </div>
-                </div>
-                
                 <div class="contenedor">
+                    <div class="mb-3">
+                        <label for="pregunta1_nivelDeSalud" class="form-label">
+                            1) Por favor indique en qué rango se encuentra su nivel de salud
+                        </label>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="Muy malo" autocomplete="off" value="No consumo drogas"/>
+                            Siento que mi salud está muy afectada, con problemas graves que dificultan casi todas mis actividades diarias<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="malo" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
+                            Tengo muchas molestias o limitaciones que afectan significativamente mi vida diaria<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="Deficiente" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
+                            Puedo realizar algunas actividades, pero con esfuerzo constante y molestias frecuentes<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="bien" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
+                            Me siento bien la mayor parte del tiempo, con pocas molestias que no afectan mucho mi día a día<br/>
+                            <input type="radio" class="opcion-radio" name="pregunta1_nivelDeSalud" id="saludable" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
+                            Estoy saludable y puedo realizar todas mis actividades con comodidad, salvo molestias menores<br/>
+                    </div>
                     <div class="pregunta">
                         <label for="" class="form-label">
                             2) Durante las últimas dos semanas, ¿cuántas horas de sueño en promedio durmió en 24 horas?
