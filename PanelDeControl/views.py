@@ -28,10 +28,7 @@ def panel(request):
         numeroPaciente = 0
         for paciente in pacientes:
             numeroPaciente = numeroPaciente+1
-        
-
-        
-
+            
         return render(request, 'panel.html', {
             'nombre_clinico': nombre_clinico,
             'es_admin': es_admin,
@@ -65,6 +62,14 @@ def VerFichaPacientes(request):
             mensajeOpinion = evaluar_opinion(formulario.opinionProblemaEnfermeda, formulario.opinionCuraDolor)
             mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
 
+            respuestas = formulario.parametros
+            mensajeEVPER = Respuesta_evitativo_persistente(json.loads(respuestas)) 
+            #uso importante de JsonLoad, esta es la unica manera
+            #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
+            
+            
+            
+
             
             
             
@@ -76,10 +81,9 @@ def VerFichaPacientes(request):
                 formulario=formulario,
                 mensajeDuracionDolor=mensajeDuracionDolor,
                 mensajeOpinion=mensajeOpinion,
-                mensajeApoyo = mensajeApoyo
+                mensajeApoyo = mensajeApoyo,
+                mensajeEVPER = mensajeEVPER
 
-                
-                
             )
 
             context['informe'] = informe
@@ -131,3 +135,28 @@ def evaluar_necesidad_apoyo(apoyo):
     
 
     return ('')
+
+
+
+
+def Respuesta_evitativo_persistente(respuestas):
+    EVITATIVAS = "evitativo"
+    PERSISTENTES = "persistente"
+    evitativo = 0
+    persistente = 0
+
+    for respuesta in respuestas:
+        if respuesta.strip().lower() == EVITATIVAS:
+            evitativo += 1
+        elif respuesta.strip().lower() == PERSISTENTES:
+            persistente += 1
+
+    if evitativo > persistente:
+        return '<h6 style="color: red;">Tiene una conducta de evitación</h6>'
+    elif persistente > evitativo:
+        return '<h6 style="color: red;">Tiene una conducta persistente</h6>'
+    else:
+        return '<h6 style="color: orange;">Tiene una conducta equilibrada</h6>'
+    
+    
+

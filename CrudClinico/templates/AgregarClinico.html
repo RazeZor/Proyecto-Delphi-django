@@ -46,13 +46,7 @@
             <div class="container mt-5">
                 <div class="card">
                     <h1 class="text-center">Agregar Clínico</h1>
-                    {% if messages %}
-                        <div>
-                            {% for message in messages %}
-                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    
                     <form method="post" action="">
                         {% csrf_token %}
                         <div class="mb-3">

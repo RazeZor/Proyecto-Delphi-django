@@ -13,6 +13,8 @@ def AgregarClinico(request):
         try:
             clinico = Clinico(rut=rut, nombre=nombre, apellido=apellido,profesion=profesion, contraseña=contraseña)
             clinico.save()
+            messages.success(request, 'Clínico Agregado Exitosamente')
+            
             return redirect('ver')
             
             
@@ -48,6 +50,9 @@ def EditarClinicos(request):
             clinico.profesion = profesion
             clinico.save()
             messages.success(request, 'Clínico editado exitosamente.')
+            # Enviar el mensaje usando messages.success
+          
+
         except Exception as e:
             messages.error(request, f'Error al editar el clínico: {e}')
 
