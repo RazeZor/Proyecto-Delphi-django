@@ -87,7 +87,6 @@ def VerFichaPacientes(request):
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
 
-            # Pasar las variables al template
             informe = informe_template.format(
                 paciente=paciente,
                 formulario=formulario,
