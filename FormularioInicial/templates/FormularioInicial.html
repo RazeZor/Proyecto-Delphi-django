@@ -102,24 +102,57 @@
 
     <form id="Step" action="{% url 'formularioInicial' %}" method="post">
                 {% csrf_token %}
+                <div class="messages-container">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i> 
+                            {{ message|capfirst }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+                <style>
+                    .messages-container {
+                        margin-bottom: 20px;
+                        background-color:rgb(250, 250, 164);
+                    }
+                    .messages-container .alert {
+                        margin-bottom: 15px;
+                        padding: 15px 20px;
+                        border-radius: 8px; /* Bordes redondeados */
+                        font-size: 1rem; /* Tamaño de texto legible */
+                        position: relative;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+                    }
+
+                    .messages-container .alert {
+                        margin-bottom: 10px;
+                    }
+
+                    .messages-container .alert .btn-close {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                    }
+                </style>
                 <input type="hidden" name="duracion_sesion" id="duracionSesionInput" value="00:00:00">
                 <div class="step active">
                     <h2 class="mb-4">Datos de ingreso de paciente</h2>
                     <div class="form-group">
                         <label class="form-label">Rut</label>
-                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Ingrese rut de paciente" required/>
+                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Example: 21320084-4" required/>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese nombres de paciente" required/>
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required/>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Apellido</label>
-                        <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese apellidos de paciente" required/>
+                        <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" required/>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" name="fechaNac" id="fechaNac" required/>
+                        <input type="date" id="fechaNac" name="fechaNac" class="form-control" required/>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Seleccione genero</label>

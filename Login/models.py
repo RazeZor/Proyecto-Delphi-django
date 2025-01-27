@@ -20,7 +20,7 @@ class Paciente(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, unique=True)  # Clave primaria única
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50,null=False)
-    fechaNacimiento = models.DateTimeField(null=True)
+    fechaNacimiento = models.DateField(null=True)
     genero = models.CharField(max_length=15,null=True)
     contacto = models.CharField(max_length=12)
     cobertura_de_salud = models.CharField(max_length=50)
