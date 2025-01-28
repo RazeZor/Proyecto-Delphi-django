@@ -144,8 +144,6 @@ def evaluar_necesidad_apoyo(apoyo):
         return (
             '<h6 style="color: red;">El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra).</h6>'
         )
-    
-
     return ('')
 
 

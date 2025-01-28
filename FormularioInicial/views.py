@@ -42,16 +42,16 @@ def FormularioInicial(request):
         try:
             fechaNacimiento = datetime.strptime(request.POST.get('fechaNac'), '%Y-%m-%d').date()
         except ValueError:
-            messages.error(request, 'El campo fecha de nacimiento debe estar en formato YYYY-MM-DD.')
+            messages.error(request, 'la fecha de nacimiento tiene que tener el formato YYYY-MM-DD')
             return render(request, 'FormularioInicial.html')
 
         errores = []
         if not rut:
-            errores.append('El campo RUT es obligatorio.')
+            errores.append('El campo RUT es obligatorio')
         if not nombre:
-            errores.append('El campo nombre es obligatorio.')
+            errores.append('El campo nombre es obligatorio')
         if not apellido:
-            errores.append('El campo apellido es obligatorio.')
+            errores.append('El campo apellido es obligatorio')
         if not fechaNacimiento:
             errores.append('El campo fecha de nacimiento es obligatorio.')
         if not genero:
@@ -108,6 +108,7 @@ def FormularioInicial(request):
     #pagina 6
     IntensidadDolor=request.POST.get('IntensidadDolor'),
     preguntas1=json.dumps(request.POST.getlist('preguntas1')),
+    
     nesesidadDeApoyo=request.POST.get('support'),
     #pagina 7
     actividades_afectadas = json.dumps(request.POST.getlist('actividades_afectadas')),

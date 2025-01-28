@@ -238,9 +238,6 @@
   box-shadow: #21294E;
 }
 
-.mencionar3Cosas{
-  padding-top: 40px;
-}
 
 
 
@@ -408,4 +405,87 @@
 
 body {
   padding-top: 60px; /* Ajusta el valor según la altura del navbar */
+}
+
+.contenedorSINO {
+  display: flex;
+  padding: 1%;
+  justify-content: center;
+  align-items: center;
+
+}
+
+label.si {
+  padding-left: 5px;
+  margin-right: 100px; 
+  font-weight: bold; 
+}
+
+label.no {
+  padding-left: 5px;
+  font-weight: bold; 
+}
+                        
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla th {
+  background-color: #ffffff;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+.tabla td {
+  background-color: #ffffff;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.tabla tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.form-check-input {
+  margin-right: 5px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+
+.molestia {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.checkbox-group label {
+  margin-right: 15px;
+  margin-bottom: 10px;
 }
