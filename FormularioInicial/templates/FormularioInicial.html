@@ -1338,7 +1338,7 @@
                                     <label class="form-label">Si marcaste si, marca en un círculo el nivel de 
                                     preocupación que tienes con respecto a el consumo de drogas.</label>    
                                     <div>
-                                       
+                                    
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion10" value="0 - No me preocupa en absoluto">
                                             <label class="form-check-label" for="preocupacion10">0 - No me preocupa en absoluto</label>
@@ -1541,6 +1541,32 @@
                     <button type="button" class="btn btn-primary" id="nextBtn">Siguiente</button>
                 </div>
         </div>
+        <!-- Validacion para las opciones que puede elegir el paciente-->
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const grupos = [
+                    { clase: "opcion-checkbox", max: 2 },
+                    { clase: "opcion-checkbox2", max: 3 },
+                    { clase: "opcion-checkbox3", max: 1 },
+                ];
+            
+                grupos.forEach(({ clase, max }) => {
+                    const checkboxes = document.querySelectorAll(`.${clase}`);
+            
+                    checkboxes.forEach((checkbox) => {
+                        checkbox.addEventListener("change", () => {
+                            const seleccionados = Array.from(checkboxes).filter((chk) => chk.checked);
+            
+                            if (seleccionados.length > max) {
+                                checkbox.checked = false;
+                                alert(`Solo puedes seleccionar un máximo de ${max} opciones.`);
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+            
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 let currentStep = 0;
@@ -1627,7 +1653,7 @@
 
         </script>
 
-       
+    
     </form>
     </main>
     
