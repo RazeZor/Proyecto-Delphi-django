@@ -1,4 +1,6 @@
 /* Estilos generales del contenedor */
+
+
 .step {
   max-width: 800px;
   margin: 0 auto;
@@ -282,6 +284,10 @@
   background-color: #21294E;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: fixed; /* Hace que el navbar permanezca fijo */
+  top: 0; /* Ubica el navbar en la parte superior de la ventana */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+  z-index: 1000; /* Garantiza que esté por encima de otros elementos */
 }
 
 .navbar-brand {
@@ -398,4 +404,8 @@
   .next-btn {
       right: 10px;
   }
+}
+
+body {
+  padding-top: 60px; /* Ajusta el valor según la altura del navbar */
 }

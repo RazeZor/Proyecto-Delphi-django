@@ -1160,155 +1160,152 @@
             <div class="step">
                 <div class="sustanciasUsadas">
                     <h5>¿Ha consumido alguna de las siguientes sustancias durante el último año?</h5>
-                            <label class="form-label"> Nicotina (cigarrillos, cigarrillos electronicos, entre otros) </label>      
+                    <label class="form-label"> Nicotina (cigarrillos, cigarrillos electrónicos, entre otros) </label>
+                    
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="radio" class="btn-check" name="NicotinaSiOno" id="nicotina" autocomplete="off" value="si" />
+                        <label class="btn btn-outline-primary" for="nicotina">Sí</label>
+                    
+                        <input type="radio" class="btn-check" name="NicotinaSiOno" id="nicotinaNO" autocomplete="off" value="no" />
+                        <label class="btn btn-outline-primary" for="nicotinaNO">No</label>
+                    </div>
+                    
+                    <!-- Opciones adicionales -->
+                    <div id="opcionesNicotina" style="display: none; margin-top: 1rem;">
+                        <label class="form-label">Si marcaste sí, ¿cuánto fumas usualmente por día?</label>
+                        <div class="mb-3">
+                            <input type="radio" name="frecuenciaNicotina" id="frecuencia1" class="form-check-input" value="Ocacionalmente" />
+                            Ocasionalmente (Una vez a la semana)<br />
+                    
+                            <input type="radio" name="frecuenciaNicotina" id="frecuencia2" class="form-check-input" value="Regularmente" />
+                            Regularmente (Una vez al día)<br />
+                    
+                            <input type="radio" name="frecuenciaNicotina" id="frecuencia3" class="form-check-input" value="Frecuentemente" />
+                            Frecuentemente (Más de uno al día)<br />
 
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="radio" class="btn-check" name="NicotinaSiOno" id="nicotina" autocomplete="off" value="si"/>
-                                <label class="btn btn-outline-primary" for="nicotina">Sí</label>
-                
-                                <input type="radio" class="btn-check" name="NicotinaSiOno" id="nicotinaNO" autocomplete="off" value="no"/>
-                                <label class="btn btn-outline-primary" for="nicotinaNO">No</label>
-                            </div>   
+                            <input type="radio" name="frecuenciaNicotina" id="frecuencia3" class="form-check-input" value="Siempre" />
+                            Casi Todos los dias <br />
+                        </div>
+                    
+                        <label class="form-label">Si marcaste sí, marca en un círculo el nivel de preocupación que tienes con respecto a tu consumo de nicotina.</label>
+                        <div>
+                            <input type="radio" name="preocupacionNicotina" id="preocupacion1" class="form-check-input" value="Poco" />
+                            Me preocupa un poco<br />
+                    
+                            <input type="radio" name="preocupacionNicotina" id="preocupacion2" class="form-check-input" value="Moderada" />
+                            Me preocupa moderadamente<br />
+                    
+                            <input type="radio" name="preocupacionNicotina" id="preocupacion3" class="form-check-input" value="Alta" />
+                            Me preocupa mucho<br />
+                    
+                            <input type="radio" name="preocupacionNicotina" id="preocupacion4" class="form-check-input" value="Extrema" />
+                            Estoy extremadamente preocupado<br />
+                        </div>
+                    </div>
 
-                            <label class="form-label"> si marcaste si, cuantos cigarros fumas usualmente por dia? </label> 
-                            <div class="mb-3">
-                                <input type="radio" name="frecuenciaNicotina" id="frecuencia1" class="form-check-input" value="Ocacionalmente" />
-                                Ocasionalmente(Una vez a la semana)<br />
-                                
-                                <input type="radio" name="frecuenciaNicotina" id="frecuencia2" class="form-check-input" value="Regularmente" />
-                                Regularmente(Una vez al dia)<br/>
-                                
-                                <input type="radio" name="frecuenciaNicotina" id="frecuencia3" class="form-check-input" value="Frecuentemente" />
-                                Frecuentemente(Mas de uno al dia)<br/>
-                                
+                    <label class="form-label"> Alcohol (cervezas, vino, licores) </label>
 
-                                    <label class="form-label">Si marcaste si, marca en un círculo el nivel de 
-                                    preocupación que tienes con respecto a la nicotina.</label>  
-
-                                    <div>
-                                        <input type="radio" name="preocupacionNicotina" id="preocupacion1" class="form-check-input" value="Poco" />
-                                        Me preocupa un poco<br />
-                                        
-                                        <input type="radio" name="preocupacionNicotina" id="preocupacion2" class="form-check-input" value="Moderada" />
-                                        Me preocupa moderadamente<br/>
-                                        
-                                        <input type="radio" name="preocupacionNicotina" id="preocupacion3" class="form-check-input" value="Alta" />
-                                        Me preocupa mucho<br/>
-                                        <input type="radio" name="preocupacionNicotina" id="preocupacion4" class="form-check-input" value="Extrema" />
-                                        Estoy extremadamente preocupado<br/>
-                                    </div>
-  
-                            </div>
-
-                        <label for="" class="form-label">
-                            <label class="form-label"> alcohol (cervezas, vino , licores) </label>      
-                        </label>
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="radio" class="btn-check" name="AlcoholSiOno" id="alcoholsi" autocomplete="off" value="si"/>
-                                <label class="btn btn-outline-primary" for="alcoholsi">Sí</label>
-                
-                                <input type="radio" class="btn-check" name="AlcoholSiOno" id="alcoholno" autocomplete="off" value="no"/>
-                                <label class="btn btn-outline-primary" for="alcoholno">No</label>
-                            </div>   
-
-                            <label class="form-label"> si marcaste si, cuanto alcohol usualmente consumes? </label> 
-                                <div class="mb-3">
-                                    <input type="radio" name="frecuenciaAlcohol" id="frecuencia1" class="form-check-input" value="Ocacionalmente" />
-                                    Ocasionalmente(Una vez a la semana)<br />
-
-                                    <input type="radio" name="frecuenciaAlcohol" id="frecuencia2" class="form-check-input" value="Regularmente" />
-                                    Regularmente(Una vez al dia)<br/>
-
-                                    <input type="radio" name="frecuenciaAlcohol" id="frecuencia3" class="form-check-input" value="Frecuentemente" />
-                                    Frecuentemente(Mas de uno al dia)<br/>
-                                </div>
-                                
-                                    <label class="form-label">Si marcaste si, marca en un círculo el nivel de 
-                                    preocupación que tienes con respecto a el consumo 
-                                    de alcohol</label>
-                                    <div>
-                                        <input type="radio" name="preocupacionAlcohol" id="preocupacion1" class="form-check-input" value="Poco" />
-                                        Me preocupa un poco<br />
-
-                                        <input type="radio" name="preocupacionAlcohol" id="preocupacion2" class="form-check-input" value="Moderada" />
-                                        Me preocupa moderadamente<br/>
-
-                                        <input type="radio" name="preocupacionAlcohol" id="preocupacion3" class="form-check-input" value="Alta" />
-                                        Me preocupa mucho<br/>
-
-                                        <input type="radio" name="preocupacionAlcohol" id="preocupacion4" class="form-check-input" value="Extrema" />
-                                        Estoy extremadamente preocupado<br/>
-                                    </div>
-
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="radio" class="btn-check" name="AlcoholSiOno" id="alcoholsi" autocomplete="off" value="si" />
+                        <label class="btn btn-outline-primary" for="alcoholsi">Sí</label>
+                    
+                        <input type="radio" class="btn-check" name="AlcoholSiOno" id="alcoholno" autocomplete="off" value="no" />
+                        <label class="btn btn-outline-primary" for="alcoholno">No</label>
+                    </div>
+                    
+                    <!-- Opciones adicionales -->
+                    <div id="opcionesAlcohol" style="display: none; margin-top: 1rem;">
+                        <label class="form-label">Si marcaste sí, ¿cuánto alcohol usualmente consumes?</label>
+                        <div class="mb-3">
+                            <input type="radio" name="frecuenciaAlcohol" id="frecuencia1" class="form-check-input" value="Ocacionalmente" />
+                            Ocasionalmente (Una vez a la semana)<br />
+                    
+                            <input type="radio" name="frecuenciaAlcohol" id="frecuencia2" class="form-check-input" value="Regularmente" />
+                            Regularmente (Una vez al día)<br />
+                    
+                            <input type="radio" name="frecuenciaAlcohol" id="frecuencia3" class="form-check-input" value="Frecuentemente" />
+                            Frecuentemente (Más de uno al día)<br />
                             
-                        
+                            <input type="radio" name="frecuenciaAlcohol" id="frecuencia3" class="form-check-input" value="Siempre" />
+                            siempre(Casi todos los dias)<br />
+                        </div>
+                    
+                        <label class="form-label">Si marcaste sí, marca en un círculo el nivel de preocupación que tienes con respecto al consumo de alcohol.</label>
+                        <div>
+                            <input type="radio" name="preocupacionAlcohol" id="preocupacion1" class="form-check-input" value="Poco" />
+                            Me preocupa un poco<br />
+                    
+                            <input type="radio" name="preocupacionAlcohol" id="preocupacion2" class="form-check-input" value="Moderada" />
+                            Me preocupa moderadamente<br />
+                    
+                            <input type="radio" name="preocupacionAlcohol" id="preocupacion3" class="form-check-input" value="Alta" />
+                            Me preocupa mucho<br />
+                    
+                            <input type="radio" name="preocupacionAlcohol" id="preocupacion4" class="form-check-input" value="Extrema" />
+                            Estoy extremadamente preocupado<br />
+                        </div>
                     </div>
                 </div>
+            </div>
 
                 <div class="step">
-                    <label class="form-label"> Drogras recreativas (cocaina, heroina, cannabis) </label>      
-                            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                <input type="radio" class="btn-check" name="drogasSiOno" id="drogasi" autocomplete="off" value="si"/>
-                                <label class="btn btn-outline-primary" for="drogasi">Sí</label>
-                                <input type="radio" class="btn-check" name="drogasSiOno" id="drogasNO" autocomplete="off" value="no"/>
-                                <label class="btn btn-outline-primary" for="drogasNO">No</label>
-                            </div>   
-                        
-                        
-                            <label class="form-label">si marcaste si, cuanta droga consumes usualmente por dia?</label> 
-                                <div class="mb-3">
-                
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="CantidadDrogras" id="noConsumo1" autocomplete="off" value="No consumo drogas"/>
-                                        <label class="form-check-label" for="noConsumo1">No consumo drogas</label>
+                    <!-- Drogas Recreativas -->
+                        <h5>¿Ha consumido alguna de las siguientes sustancias durante el último año?</h5>
+                        <label class="form-label"> Drogras recreativas (cocaina, heroina, cannabis) </label>      
+                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                    <input type="radio" class="btn-check" name="drogasSiOno" id="drogasi" autocomplete="off" value="si"/>
+                                    <label class="btn btn-outline-primary" for="drogasi">Sí</label>
+                                    <input type="radio" class="btn-check" name="drogasSiOno" id="drogasNO" autocomplete="off" value="no"/>
+                                    <label class="btn btn-outline-primary" for="drogasNO">No</label>
+                                </div>   
+                            
+                                <!-- Opciones adicionales -->
+                    <div id="opcionesDrogas" style="display: none; margin-top: 1rem;">
+                                <label class="form-label">si marcaste si, cuanta droga consumes usualmente por dia?</label> 
+                                    <div class="mb-3">
+                    
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="CantidadDrogras" id="noConsumo1" autocomplete="off" value="ocasionalmente"/> 
+                                            Ocasionalmente (Una vez a la semana)<br />
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="CantidadDrogras" id="ocasional1" autocomplete="off" value="regularmente"/>
+                                            Regularmente (Una vez al día)<br />
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="CantidadDrogras" id="esporadico1" autocomplete="off" value="frecuentemente"/>
+                                            Frecuentemente (Más de uno al día)<br />
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" class="form-check-input" name="CantidadDrogras" id="regular1" autocomplete="off" value="siempre (todos los dias)"/>
+                                            siempre (todos los dias )<br />
+                                        </div>
+
                                     </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="CantidadDrogras" id="ocasional1" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
-                                        <label class="form-check-label" for="ocasional">La consumo ocasionalmente (menos de una vez al mes)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="CantidadDrogras" id="esporadico1" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
-                                        <label class="form-check-label" for="esporadico1">La consumo esporádicamente (algunas veces al mes)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="CantidadDrogras" id="regular1" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
-                                        <label class="form-check-label" for="regular1">La consumo regularmente (al menos una vez por semana)</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input type="radio" class="form-check-input" name="CantidadDrogras" id="frecuente1" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
-                                        <label class="form-check-label" for="frecuente1">La consumo frecuentemente (todos los días o casi todos los días)</label>
-                                    </div>
-                                </div>
-                                
-                                    <label class="form-label">Si marcaste si, marca en un círculo el nivel de 
-                                    preocupación que tienes con respecto a el consumo de drogas.</label>    
-                                    <div>
                                     
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion10" value="0 - No me preocupa en absoluto">
-                                            <label class="form-check-label" for="preocupacion10">0 - No me preocupa en absoluto</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion11" value="Me preocupa un poco">
-                                            <label class="form-check-label" for="preocupacion11">1 - Me preocupa un poco</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion12" value="Me preocupa moderadamente">
-                                            <label class="form-check-label" for="preocupacion12">2 - Me preocupa moderadamente</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion13" value="Me preocupa bastante">
-                                            <label class="form-check-label" for="preocupacion13">3 - Me preocupa bastante</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion14" value="Me preocupa mucho">
-                                            <label class="form-check-label" for="preocupacion14">4 - Me preocupa mucho</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion15" value="Estoy extremadamente preocupado">
-                                            <label class="form-check-label" for="preocupacion15">5 - Estoy extremadamente preocupado</label>
-                                        </div>
-                                    </div>  
+                                        <label class="form-label">Si marcaste si, marca en un círculo el nivel de 
+                                        preocupación que tienes con respecto a el consumo de drogas.</label>    
+                                        <div>
+                                        
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion10" value="0 - Me preocupa un poc">
+                                                Me preocupa un poco<br />
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion11" value="me preocupa moderadamente ">
+                                                me preocupa moderadamente <br />
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion12" value="Me preocupa mucho">
+                                                Me preocupa mucho <br />
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="DrogasPreocupacion" id="preocupacion13" value="Estoy Extremadamente Preocupado">
+                                                estoy extremadamente preocupado<br />
+                                            </div>
+
+                                        </div>  
+                    </div>
 
                             <label class="form-label"> Marihuana </label>      
                             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -1316,9 +1313,10 @@
                                 <label class="btn btn-outline-primary" for="marihuanaSi">Sí</label>
                                 <input type="radio" class="btn-check" name="marihuanaSiOno" id="marihuanaNo" autocomplete="off" value="no"/>
                                 <label class="btn btn-outline-primary" for="marihuanaNo">No</label>
-                            </div>   
-                            <label class="form-label">¿cuánta marihuana consumes habitualmente por día?</label>
-                            <div class="mb-3">
+                            </div>
+                    <div id="opcionesmarihuana" style="display: none; margin-top: 1rem;"> 
+                        <label class="form-label">¿cuánta marihuana consumes habitualmente por día?</label>
+                        <div class="mb-3">
                 
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="frecuenciaMarihuana" id="noConsumo22" autocomplete="off" value="No consumo marihuana"/>
@@ -1371,8 +1369,11 @@
                                         </div>
                                 </div>
                             </div> 
-                                
                         </div>
+                    </div>
+                        
+                                
+                        
                 </div>
             
             <div class="step">
@@ -1653,7 +1654,70 @@
 
             });
 
-            
+        // Escuchar los cambios en los botones de radio
+        const nicotinaSi = document.getElementById('nicotina');
+        const nicotinaNo = document.getElementById('nicotinaNO');
+        const opcionesNicotina = document.getElementById('opcionesNicotina');
+
+        nicotinaSi.addEventListener('change', () => {
+            if (nicotinaSi.checked) {
+                opcionesNicotina.style.display = 'block'; // Mostrar las opciones
+            }
+        });
+
+        nicotinaNo.addEventListener('change', () => {
+            if (nicotinaNo.checked) {
+                opcionesNicotina.style.display = 'none'; // Ocultar las opciones
+            }
+        });
+        const alcoholSi = document.getElementById('alcoholsi');
+        const alcoholNo = document.getElementById('alcoholno');
+        const opcionesAlcohol = document.getElementById('opcionesAlcohol');
+
+        alcoholSi.addEventListener('change', () => {
+            if (alcoholSi.checked) {
+                opcionesAlcohol.style.display = 'block'; // Mostrar las opciones
+            }
+        });
+
+        alcoholNo.addEventListener('change', () => {
+            if (alcoholNo.checked) {
+                opcionesAlcohol.style.display = 'none'; 
+            }
+        });
+
+        const drogasSi = document.getElementById('drogasi');
+        const drogasNo = document.getElementById('drogasNO');
+        const opcionesDrogas = document.getElementById('opcionesDrogas');
+
+        drogasSi.addEventListener('change', () => {
+            if (drogasSi.checked) {
+                opcionesDrogas.style.display = 'block'; 
+            }
+        });
+
+        drogasNo.addEventListener('change', () => {
+            if (drogasNo.checked) {
+                opcionesDrogas.style.display = 'none'; 
+            }
+        });
+
+        const marihuanasi = document.getElementById('marihuanaSi');
+        const marihuanano = document.getElementById('marihuanaNo');
+        const opcionesmarihuana = document.getElementById('opcionesmarihuana');
+
+        marihuanasi.addEventListener('change', () => {
+            if (marihuanasi.checked) {
+                opcionesmarihuana.style.display = 'block'; 
+            }
+        });
+
+        marihuanano.addEventListener('change', () => {
+            if (marihuanano.checked) {
+                opcionesmarihuana.style.display = 'none'; 
+            }
+        });
+        
 
         </script>
 
