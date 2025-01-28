@@ -63,7 +63,7 @@ def VerFichaPacientes(request):
             mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
 
             respuestas = formulario.parametros
-            mensajeEVPER = Respuesta_evitativo_persistente(json.loads(respuestas)) 
+           
             #uso importante de JsonLoad, esta es la unica manera
             #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
             
@@ -83,7 +83,7 @@ def VerFichaPacientes(request):
             if len(ubicacionDolor) != len(intensidadDolor):
                 ubicacion_intensidad_list += "<li><strong>Error:</strong> Las listas no coinciden en longitud</li>\n"
 
-               
+                
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
 
@@ -93,7 +93,6 @@ def VerFichaPacientes(request):
                 mensajeDuracionDolor=mensajeDuracionDolor,
                 mensajeOpinion=mensajeOpinion,
                 mensajeApoyo=mensajeApoyo,
-                mensajeEVPER=mensajeEVPER,
                 ubicacion_intensidad=ubicacion_intensidad_list
             )
 
@@ -149,24 +148,8 @@ def evaluar_necesidad_apoyo(apoyo):
 
 
 
-def Respuesta_evitativo_persistente(respuestas):
-    EVITATIVAS = "evitativo"
-    PERSISTENTES = "persistente"
-    evitativo = 0
-    persistente = 0
 
-    for respuesta in respuestas:
-        if respuesta.strip().lower() == EVITATIVAS:
-            evitativo += 1
-        elif respuesta.strip().lower() == PERSISTENTES:
-            persistente += 1
 
-    if evitativo > persistente:
-        return '<h6 style="color: red;">Tiene una conducta de evitación</h6>'
-    elif persistente > evitativo:
-        return '<h6 style="color: red;">Tiene una conducta persistente</h6>'
-    else:
-        return '<h6 style="color: orange;">Tiene una conducta equilibrada</h6>'
     
-    
+
 
