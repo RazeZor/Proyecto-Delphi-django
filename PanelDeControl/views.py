@@ -57,12 +57,15 @@ def VerFichaPacientes(request):
         try:
             paciente = Paciente.objects.get(rut=rut)
             formulario = formularioClinico.objects.get(paciente=paciente)
-
+            semaforo = json.loads(formulario.preguntas1)
+            
+            
             mensajeDuracionDolor = evaluar_duracion_dolor(formulario.duracionDolor)
             mensajeOpinion = evaluar_opinion(formulario.opinionProblemaEnfermeda, formulario.opinionCuraDolor)
             mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
+            mensajeSemaforo = EscalaSemaforo(semaforo)
 
-            respuestas = formulario.parametros
+
            
             #uso importante de JsonLoad, esta es la unica manera
             #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
@@ -71,8 +74,9 @@ def VerFichaPacientes(request):
 
             ubicacionDolor = json.loads(formulario.ubicacionDolor)
             intensidadDolor = json.loads(formulario.dolorIntensidad)
-
+            
             ubicacion_intensidad_list = ""
+
 
             min_len = min(len(ubicacionDolor), len(intensidadDolor))
             for i in range(min_len):
@@ -93,7 +97,8 @@ def VerFichaPacientes(request):
                 mensajeDuracionDolor=mensajeDuracionDolor,
                 mensajeOpinion=mensajeOpinion,
                 mensajeApoyo=mensajeApoyo,
-                ubicacion_intensidad=ubicacion_intensidad_list
+                ubicacion_intensidad=ubicacion_intensidad_list,
+                mensajeSemaforo=mensajeSemaforo
             )
 
 
@@ -144,6 +149,28 @@ def evaluar_necesidad_apoyo(apoyo):
             '<h6 style="color: red;">El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra).</h6>'
         )
     return ('')
+
+def EscalaSemaforo(preguntas1):
+    score = 0
+    RESPUESTA = 'si'
+    MODERADO = 'moderado'
+    MUCHO = 'mucho'
+    EXTREMO = 'extremo'
+    for preguntas in preguntas1:
+        if preguntas == RESPUESTA:
+            score += 1
+        if preguntas.strip().lower() == MODERADO or preguntas.strip().lower()  == MUCHO or preguntas.strip().lower() == EXTREMO:
+            score += 1
+    if score <=3:
+        return ('<label style="color: green;">el paciente tiene un riesgo bajo, se recomienda educar y tranquilizar al paciente, diciendo que el diagnostico es bueno</label>')
+    elif score >= 4 and score <=7:
+        return ('<label style="color: orange;">el paciente tiene un riesgo medio, evaluar si nesesitara ayuda de otro profesional </label>')
+    elif score >= 8:
+        return ('<p style="color: red;">el paciente tiene un riesgo alto, se recomienda tratamiento interdiciplinario</p>')
+
+
+        
+        
 
 
 
