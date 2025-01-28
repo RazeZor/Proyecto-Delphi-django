@@ -38,6 +38,34 @@ def FormularioInicial(request):
         contacto = request.POST.get('contact')
         cobertura_de_salud = request.POST.get('cobertura')
 
+        # Validación de fecha
+        try:
+            fechaNacimiento = datetime.strptime(request.POST.get('fechaNac'), '%Y-%m-%d').date()
+        except ValueError:
+            messages.error(request, 'El campo fecha de nacimiento debe estar en formato YYYY-MM-DD.')
+            return render(request, 'FormularioInicial.html')
+
+        errores = []
+        if not rut:
+            errores.append('El campo RUT es obligatorio.')
+        if not nombre:
+            errores.append('El campo nombre es obligatorio.')
+        if not apellido:
+            errores.append('El campo apellido es obligatorio.')
+        if not fechaNacimiento:
+            errores.append('El campo fecha de nacimiento es obligatorio.')
+        if not genero:
+            errores.append('El campo género es obligatorio.')
+        if not contacto:
+            errores.append('El campo contacto es obligatorio.')
+        if not cobertura_de_salud:
+            errores.append('El campo cobertura de salud es obligatorio.')
+
+        if errores:
+            for error in errores:
+                messages.error(request, error)
+            return render(request, 'FormularioInicial.html')
+
         paciente, created = Paciente.objects.update_or_create(
             rut=rut,
             defaults={
@@ -49,6 +77,7 @@ def FormularioInicial(request):
                 'cobertura_de_salud': cobertura_de_salud,
             }
         )
+
 
         formulario = formularioClinico(
     paciente=paciente,
