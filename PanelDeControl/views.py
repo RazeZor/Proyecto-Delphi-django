@@ -57,14 +57,20 @@ def VerFichaPacientes(request):
         try:
             paciente = Paciente.objects.get(rut=rut)
             formulario = formularioClinico.objects.get(paciente=paciente)
+            #escala Semaforo Integrada
             semaforo = json.loads(formulario.preguntas1)
-            
-            
-            mensajeDuracionDolor = evaluar_duracion_dolor(formulario.duracionDolor)
-            mensajeOpinion = evaluar_opinion(formulario.opinionProblemaEnfermeda, formulario.opinionCuraDolor)
-            mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
             mensajeSemaforo = EscalaSemaforo(semaforo)
+            
+            #mensaje apoyo 
+            mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
+            
+            #mensaje caracteristicas de dolor
+            caracteristicasDolor = json.loads(formulario.caracteristicasDeDolor)
+            MensajecaracteristicasDolor = Neuropaticas(caracteristicasDolor)
 
+            #mensaje fibromialgia
+            condicionesSalud1 = json.loads(formulario.TiposDeEnfermedades)
+            MensajeCondicionesSalud = condicionesSalud(condicionesSalud1)
 
            
             #uso importante de JsonLoad, esta es la unica manera
@@ -94,11 +100,11 @@ def VerFichaPacientes(request):
             informe = informe_template.format(
                 paciente=paciente,
                 formulario=formulario,
-                mensajeDuracionDolor=mensajeDuracionDolor,
-                mensajeOpinion=mensajeOpinion,
                 mensajeApoyo=mensajeApoyo,
                 ubicacion_intensidad=ubicacion_intensidad_list,
-                mensajeSemaforo=mensajeSemaforo
+                mensajeSemaforo=mensajeSemaforo,
+                MensajecaracteristicasDolor=MensajecaracteristicasDolor,
+                MensajeCondicionesSalud=MensajeCondicionesSalud,
             )
 
 
@@ -111,44 +117,8 @@ def VerFichaPacientes(request):
 
     return render(request, 'FichaPacientes.html', context)
 
-def evaluar_duracion_dolor(duracionDolor):
-    condicionduracionDolor = 'mas de 6 meses'
-    if duracionDolor == condicionduracionDolor:
-        return (
-            '<div style="background-color:rgb(242, 110, 119); color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
-            '<h6>El paciente reporta un dolor de más de 6 meses. Se le sugiere al clínico utilizar la escala DN4.</h6>'
-            '</div>'
-        )
-    return ''
 
-def evaluar_opinion(opinionEnfermedad, opinioncuraDolor):
-    puntaje = 0
-    
-    if opinioncuraDolor == 'no':
-        puntaje += 2
-    if opinionEnfermedad == 'si':
-        puntaje += 1
 
-    if puntaje > 2:
-        return (
-            '<div style="background-color:rgb(242, 110, 119); color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
-            '<h6>Se le sugiere al médico utilizar la escala PCS ---> creencias: aceptación de dolor <--- CPAQ</h6>'
-            '</div>'
-        )
-    elif puntaje == 2:
-        return (
-            '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
-            '<h6>Creencias: aceptación de dolor <--- CPAQ</h6>'
-            '</div>'
-        )
-    elif puntaje == 1:
-        return (
-            '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
-            '<h6>Se le sugiere al médico utilizar la escala PCS ---> creencias</h6>'
-            '</div>'
-        )
-    
-    return ''
 
 def evaluar_necesidad_apoyo(apoyo):
     if apoyo == 'si':
@@ -181,7 +151,7 @@ def EscalaSemaforo(preguntas1):
     elif score >= 4 and score <= 7:
         return (
             '<div style="background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; border: 1px solid #ffeeba;">'
-            '<label>El paciente tiene un riesgo medio, evaluar si necesitará ayuda de otro profesional.</label>'
+            '<label>El paciente tiene un riesgo medio en la escala Scrining Semaforo, evaluar si necesitará ayuda de otro profesional.</label>'
             '</div>'
         )
     elif score >= 8:
@@ -190,8 +160,30 @@ def EscalaSemaforo(preguntas1):
             '<p>El paciente tiene un riesgo alto, se recomienda tratamiento interdisciplinario.</p>'
             '</div>'
         )
-
         
+def Neuropaticas(caracteristicasDolor):
+    for caracteristicas in caracteristicasDolor:
+        if caracteristicas == "ardiente" or caracteristicas == "corriente" or caracteristicas == "adormecimiento" or caracteristicas == "Hormigueo":
+            return (
+                '<div style="background-color: #fff3cd; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+                '<label>El paciente tiene un dolor neuropático se recomienda al Clinico Usar la Escala DN4 o TSK-11 </label>'
+                '</div>'
+            )
+    return ('')
+
+
+def condicionesSalud(condicionesSalud):
+    for condicion in condicionesSalud:
+        if condicion == "Fibromialgia":
+            return (
+                '<div style="background-color: #fff3cd; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+                '<label>El paciente tiene una enfermedad de Fibromialgia, se recomienda uso de formulario para Fibromialgia</label>'
+                '</div>'
+            )
+    return ('')
+
+
+
         
 
 
