@@ -22,7 +22,7 @@ from CrudClinico import views as vistaClinico # Importa las vistas de la aplicac
 from FormularioInicial import views as vistaClinicos
 from informe import views as vistaInforme
 from ListaDePacientes import views as lista
-
+from TiposDeFormularios import views as tiposFormularios
 urlpatterns = [
     path('admin/', admin.site.urls), # Asocia la URL /admin/ con la vista de administración de Django.
     path('', l.validarLogin,name='login'),  # Asocia la URL / con la vista Login.validarLogin.
@@ -37,5 +37,6 @@ urlpatterns = [
     path('panel/ListaPacientes',lista.MostrarPacientes,name='pacientes'),
     path('editar/', vistaClinico.EditarClinicos, name='editar'),
     path('eliminar_paciente/', lista.EliminarPaciente, name='eliminar'),
+    path('CuestionarioPSFS/',tiposFormularios.RenderizarPSFS,name='PSFS'),
 
 ]
