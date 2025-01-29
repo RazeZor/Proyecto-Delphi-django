@@ -7,6 +7,9 @@
     <title>Formulario de Dolor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 
 <style>
@@ -235,8 +238,19 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" id="fechaNac" name="fechaNac" class="form-control" required/>
+                        <input type="text" id="fechaNac" name="fechaNac" class="form-control" placeholder="Ingrese su Fecha de Nacimiento" required/>
                     </div>
+                    
+                    <script>
+                    $( function() { // libreria de jquery (mas antigua que mi Abuela)
+                        $("#fechaNac").datepicker({
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: "1900:+0", 
+                            dateFormat: "yy-mm-dd" 
+                        });
+                    });
+                    </script>
                     <div class="form-group">
                         <label class="form-label">Seleccione genero</label>
                         <input type="radio" class="btn-check" name="genero" id="masculino1" autocomplete="off" value="Masculino" />

@@ -115,10 +115,11 @@ def evaluar_duracion_dolor(duracionDolor):
     condicionduracionDolor = 'mas de 6 meses'
     if duracionDolor == condicionduracionDolor:
         return (
-            '<h6 style="color: red;">El paciente reporta un dolor de más de 6 meses. Se le sugiere al clinico utilizar la escala DN4.</h6>'
+            '<div style="background-color:rgb(242, 110, 119); color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
+            '<h6>El paciente reporta un dolor de más de 6 meses. Se le sugiere al clínico utilizar la escala DN4.</h6>'
+            '</div>'
         )
-    else:
-        return ("<h4>No hay consejos.</h4>")
+    return ''
 
 def evaluar_opinion(opinionEnfermedad, opinioncuraDolor):
     puntaje = 0
@@ -130,15 +131,21 @@ def evaluar_opinion(opinionEnfermedad, opinioncuraDolor):
 
     if puntaje > 2:
         return (
-            '<h6 style="color: red;">Se le sugiere al médico utilizar la escala PCS ---> creencias: aceptación de dolor <--- CPAQ</h6>'
+            '<div style="background-color:rgb(242, 110, 119); color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
+            '<h6>Se le sugiere al médico utilizar la escala PCS ---> creencias: aceptación de dolor <--- CPAQ</h6>'
+            '</div>'
         )
     elif puntaje == 2:
         return (
-            '<h6 style="color: red;">Creencias: aceptación de dolor <--- CPAQ</h6>'
+            '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
+            '<h6>Creencias: aceptación de dolor <--- CPAQ</h6>'
+            '</div>'
         )
     elif puntaje == 1:
         return (
-            '<h6 style="color: red;">Se le sugiere al médico utilizar la escala PCS ---> creencias</h6>'
+            '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
+            '<h6>Se le sugiere al médico utilizar la escala PCS ---> creencias</h6>'
+            '</div>'
         )
     
     return ''
@@ -146,7 +153,9 @@ def evaluar_opinion(opinionEnfermedad, opinioncuraDolor):
 def evaluar_necesidad_apoyo(apoyo):
     if apoyo == 'si':
         return (
-            '<h6 style="color: red;">El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra).</h6>'
+            '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
+            '<h6>El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra).</h6>'
+            '</div>'
         )
     return ('')
 
@@ -156,18 +165,31 @@ def EscalaSemaforo(preguntas1):
     MODERADO = 'moderado'
     MUCHO = 'mucho'
     EXTREMO = 'extremo'
+    
     for preguntas in preguntas1:
         if preguntas == RESPUESTA:
             score += 1
-        if preguntas.strip().lower() == MODERADO or preguntas.strip().lower()  == MUCHO or preguntas.strip().lower() == EXTREMO:
+        if preguntas.strip().lower() in [MODERADO, MUCHO, EXTREMO]:
             score += 1
-    if score <=3:
-        return ('<label style="color: green;">el paciente tiene un riesgo bajo, se recomienda educar y tranquilizar al paciente, diciendo que el diagnostico es bueno</label>')
-    elif score >= 4 and score <=7:
-        return ('<label style="color: orange;">el paciente tiene un riesgo medio, evaluar si nesesitara ayuda de otro profesional </label>')
-    elif score >= 8:
-        return ('<p style="color: red;">el paciente tiene un riesgo alto, se recomienda tratamiento interdiciplinario</p>')
 
+    if score <= 3:
+        return (
+            '<div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+            '<label>El paciente tiene un riesgo bajo, se recomienda educar y tranquilizar al paciente, diciendo que el diagnóstico es bueno.</label>'
+            '</div>'
+        )
+    elif score >= 4 and score <= 7:
+        return (
+            '<div style="background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; border: 1px solid #ffeeba;">'
+            '<label>El paciente tiene un riesgo medio, evaluar si necesitará ayuda de otro profesional.</label>'
+            '</div>'
+        )
+    elif score >= 8:
+        return (
+            '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
+            '<p>El paciente tiene un riesgo alto, se recomienda tratamiento interdisciplinario.</p>'
+            '</div>'
+        )
 
         
         
