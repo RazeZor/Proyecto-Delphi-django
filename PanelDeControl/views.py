@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from Login.models import Paciente, formularioClinico,tiempo
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime, timedelta
@@ -50,8 +50,17 @@ def cerrar_sesion(request):
 
 
 def HistorialClinico(request):
-    return render(request, 'HistorialClinicoPacientes.html')
+    paciente = None
+    error = None
 
+    if request.method == 'POST':
+        rut = request.POST.get('rutsito')
+        try:
+            paciente = Paciente.objects.get(rut=rut)
+        except Paciente.DoesNotExist:
+            error = "No se encontró ningún paciente con ese RUT."
+
+    return render(request, 'HistorialClinicoPacientes.html', {'paciente': paciente, 'error': error})
 
 
 
