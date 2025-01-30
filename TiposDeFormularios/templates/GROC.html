@@ -1,0 +1,131 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Cuestionario GROC</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="{% static 'CSS/PSFS.css' %}"/>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="{%url 'panel' %}">
+                        <i class="fas fa-hospital-user me-2"></i>Sistema Clínico
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'panel' %}">
+                                    <i class="fas fa-users me-1"></i> Panel De Control
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>    
+
+            <div class="container mt-5">
+                <div class="card shadow">
+                    <div class="card-header bg-blue text-white">
+                        <h2 class="card-title">Cuestionario GROC</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Pacientes Registrados</label>
+                            <select class="form-select form-select-lg" name="paciente" id="paciente">
+                                <option selected>Busca Tu Paciente</option>
+                                {% for paciente in pacientes %}
+                                    <option value="{{ paciente.rut }}">{{ paciente.rut }} : {{ paciente.nombre }} {{ paciente.apellido }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <form>
+                            
+                    <div class="scale-container">
+                        <div class="selected-value">Valor seleccionado:    
+                            <span id="selectedValue">0</span>
+                        </div>
+                        <input type="range" orient="vertical" min="-7" max="6" value="0" class="slider" id="grocSlider">
+                        <div class="slider-labels">
+                            <span>+6 Mucho mejor</span>
+                            <span>+5 Bastante mejor</span>
+                            <span>+4 Moderadamente mejor</span>
+                            <span>+3 Algo mejor</span>
+                            <span>+2 Un poco mejor</span>
+                            <span>+1 Un poquito mejor</span>
+                            <span>0 Más o menos lo mismo</span>
+                            <span>-1 Un poquito peor</span>
+                            <span>-2 Un poco peor</span>
+                            <span>-3 Algo peor</span>
+                            <span>-4 Moderadamente peor</span>
+                            <span>-5 Bastante peor</span>
+                            <span>-6 Mucho peor</span>
+                            <span>-7 Lo peor que podría estar</span>
+                        </div>
+                    </div>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            const slider = document.getElementById('grocSlider');
+            const selectedValue = document.getElementById('selectedValue');
+    
+            slider.addEventListener('input', function() {
+                selectedValue.textContent = this.value;
+            });
+        </script>
+        <!-- Script para que funcione el slide-->>
+        <script>
+            const slider = document.getElementById('grocSlider');
+            const selectedValue = document.getElementById('selectedValue');
+    
+            slider.addEventListener('input', function() {
+                selectedValue.textContent = this.value;
+            });
+        </script>
+    </body>
+</html>

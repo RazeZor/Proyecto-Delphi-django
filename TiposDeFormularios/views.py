@@ -9,3 +9,11 @@ def RenderizarPSFS(request):
         messages.error(request, 'No se encuentra ningún paciente registrado')
     
     return render(request, 'PSFS.html', {'pacientes': pacientes})
+
+def RenderizarGROC(request):
+    pacientes = Paciente.objects.all()  
+
+    if not pacientes:
+        messages.error(request, 'No se encuentra ningún paciente registrado')
+    
+    return render(request, 'GROC.html', {'pacientes': pacientes})
