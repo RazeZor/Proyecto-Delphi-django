@@ -37,6 +37,8 @@ def FormularioInicial(request):
         genero = request.POST.get('genero')
         contacto = request.POST.get('contact')
         cobertura_de_salud = request.POST.get('cobertura')
+        trabajo = request.POST.get('trabajo')
+        profesion = request.POST.get('profesion')
 
         # Validación de fecha
         try:
@@ -60,6 +62,10 @@ def FormularioInicial(request):
             errores.append('El campo contacto es obligatorio.')
         if not cobertura_de_salud:
             errores.append('El campo cobertura de salud es obligatorio.')
+        if not trabajo:
+            errores.append('El campo trabajo es obligatorio.')
+        if not profesion:
+            errores.append('El campo profesión es obligatorio.')
 
         if errores:
             for error in errores:
