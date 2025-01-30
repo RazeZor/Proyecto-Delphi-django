@@ -6,7 +6,7 @@ class Clinico(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, unique=True)  # Clave primaria única
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    profesion = models.CharField(max_length=50,default='default_profession')
+    profesion = models.CharField(max_length=50, default='default_profession')
     contraseña = models.CharField(max_length=50, default='default_password')
     EsAdmin = models.BooleanField(default=False)
     pacientes = models.ManyToManyField('Paciente', related_name='clinicos')
@@ -24,6 +24,8 @@ class Paciente(models.Model):
     genero = models.CharField(max_length=15,null=True)
     contacto = models.CharField(max_length=12)
     cobertura_de_salud = models.CharField(max_length=50)
+    trabajo = models.CharField(max_length=50, null=True, blank=True)
+    profesion = models.CharField(max_length=50, default='Sin profesion')
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
 
