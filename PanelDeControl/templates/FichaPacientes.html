@@ -41,12 +41,6 @@
                         Agregar Pacientes
                     </a>
                 </li>
-                <li>
-                    <a href="{% url 'ficha' %}">
-                        <i class='bx bx-list-ul'></i>
-                        Lista de Pacientes
-                    </a>
-                </li>
                 {% if es_admin %}
                 <li>
                     <a href="{% url 'ver' %}" class="calendar-plus">
@@ -83,21 +77,6 @@
                     </form>
                 </div>
                 <div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">
-                            <h4>Lista de formularios</h4>
-                        </label>
-                        <select
-                            class="form-select form-select-lg"
-                            name=""
-                            id=""
-                        >
-                            <option selected>--Seleccione--</option>
-                            <option value="">f1</option>
-                            <option value="">f2</option>
-                            <option value="">f3</option>
-                        </select>
-                    </div>
                     {% if encontrado == False %}
                         <div class="error-message">
                             {{ mensaje }}
@@ -115,8 +94,6 @@
                             {{ informe|safe }}
                         </div>
                         {% endif %}
-                        
-                        
                     </div>
                 </div>
             </div>
