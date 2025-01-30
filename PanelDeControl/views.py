@@ -5,8 +5,6 @@ from django.http import HttpResponse, JsonResponse
 from datetime import datetime, timedelta
 import time 
 
-
-
 def panel(request):
     if 'nombre_clinico' in request.session:
         nombre_clinico = request.session['nombre_clinico']
@@ -49,6 +47,13 @@ def cerrar_sesion(request):
     
     # Redirige al login (o a cualquier otra página que desees)
     return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
+
+
+def HistorialClinico(request):
+    return render(request, 'HistorialClinicoPacientes.html')
+
+
+
 
 def VerInformePacientes(request):
     if 'nombre_clinico' not in request.session:

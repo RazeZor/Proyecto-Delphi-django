@@ -33,6 +33,7 @@ urlpatterns = [
     path('Cerrar/',v.cerrar_sesion,name='cerrarSesion'),
     path('cuerpoHumano/',vistaClinicos.CuerpoHumano),
     path('panel/fichaPacientes/',v.VerInformePacientes,name='ficha'),
+    path('panel/historialClinico/',v.HistorialClinico,name='historialClinico'),
     path('informe/',vistaInforme.RenderInforme,name='informe'),
     path('panel/ListaPacientes',lista.MostrarPacientes,name='pacientes'),
     path('editar/', vistaClinico.EditarClinicos, name='editar'),
