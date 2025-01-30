@@ -87,60 +87,70 @@
             <div class="alert alert-danger mt-3">{{ error }}</div>
         {% endif %}
 
-            <main>
-                <div class="patient-info mt-4">
-                    <h4>Ficha Clínica del Paciente</h4>
-
-                    <div class="patient-data">
-                        <div class="grupo1">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ paciente.nombre }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rut" class="form-label">RUT:</label>
-                                <input type="text" class="form-control" id="rut" name="rut" value="{{ paciente.rut }}" readonly>
-                            </div>
+        <main>
+            <div class="patient-info mt-4">
+                <h4>Ficha Clínica del Paciente</h4>
+        
+                <div class="patient-data">
+                    <div class="grupo1">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ paciente.nombre }}" readonly>
                         </div>
-
-                        <div class="grupo2">
-                            <div class="mb-3">
-                                <label for="fechaNacimiento"class="form-label">Fecha de nacimiento:</label>
-                                <input type="text" class="form-control" id="fechanac" name="fechanac" value="{{ paciente.fechaNacimiento }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for "telefono"class="form-label"> Teléfono:</label>
-                                <input type "text" class="form-control"id="telefono" name= "telefono"
-                                    value = "{{ paciente.contacto }}"
-                                    readonly />
-                            </div>
-                        </div>
-
-                        <div class "grupo3">
-                            <div class "mb-3">
-                                <label for "cobertura_de_salud"
-                                    class "form-label">Cobertura de Salud:</label>
-                                <input type "text"
-                                    class = "form-control"
-                                    id ="cobertura_de_salud"
-                                    name ="cobertura_de_salud"
-                                    value = "{{ paciente.cobertura_de_salud }}"
-                                    readonly />
-                            </div>
+                        <div class="mb-3">
+                            <label for="rut" class="form-label">RUT:</label>
+                            <input type="text" class="form-control" id="rut" name="rut" value="{{ paciente.rut }}" readonly>
                         </div>
                     </div>
-
-                    <!-- Historial Médico -->
-                    <div class="historial-container">
-                        <div class="mb-3" id="historial">
-                            <label for="historial" class="form-label">Historial Médico:</label>
-                            <div class="historial-box">
-                                <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" class="btn btn-info">Informe Clínico General</a>
+        
+                    <div class="grupo2">
+                        <div class="mb-3">
+                            <label for="fechaNacimiento" class="form-label">Fecha de nacimiento:</label>
+                            <input type="text" class="form-control" id="fechanac" name="fechanac" value="{{ paciente.fechaNacimiento }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono"
+                                value="{{ paciente.contacto }}" readonly />
+                        </div>
+                    </div>
+        
+                    <div class="grupo3">
+                        <div class="mb-3">
+                            <label for="cobertura_de_salud" class="form-label">Cobertura de Salud:</label>
+                            <input type="text"
+                                class="form-control"
+                                id="cobertura_de_salud"
+                                name="cobertura_de_salud"
+                                value="{{ paciente.cobertura_de_salud }}"
+                                readonly />
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Historial Médico -->
+                <div class="historial-container">
+                    <div class="mb-3" id="historial">
+                        <label for="historial" class="form-label">Historial Médico:</label>
+                        <div class="historial-box">
+                            <div class="historial-container">
+                                <div class="mb-3" id="historial">
+                                    <label for="historial" class="form-label">Historial Médico:</label>
+                                    <div class="historial-box">
+                                        <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" id="informe-button" style="display: none;">
+                                            <img src="{% static 'image/Logo_Centro_Clinico_Delphi' %}" width="300"  class="img-fluid" />
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
+            </div>
+        </main>
+        
+        
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
@@ -150,6 +160,32 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" 
         crossorigin="anonymous"></script>
+
+        <script>
+            function toggleButtonVisibility() {
+                const nombre = document.getElementById('nombre').value;
+                const rut = document.getElementById('rut').value;
+                const fechanac = document.getElementById('fechanac').value;
+                const telefono = document.getElementById('telefono').value;
+                const coberturaDeSalud = document.getElementById('cobertura_de_salud').value;
+            
+                const button = document.getElementById('informe-button');
+            
+    
+                if (nombre && rut && fechanac && telefono && coberturaDeSalud) {
+                    button.style.display = 'block'; 
+                } else {
+                    button.style.display = 'none'; 
+                }
+            }
+            
+    
+            toggleButtonVisibility();
+            
+            document.querySelectorAll('.patient-data input').forEach(input => {
+                input.addEventListener('input', toggleButtonVisibility);
+            });
+            </script>
 
 
 </body>
