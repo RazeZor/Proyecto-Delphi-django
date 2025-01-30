@@ -10,6 +10,7 @@ def RenderizarPSFS(request):
     
     return render(request, 'PSFS.html', {'pacientes': pacientes})
 
+
 def RenderizarGROC(request):
     pacientes = Paciente.objects.all()  
 
