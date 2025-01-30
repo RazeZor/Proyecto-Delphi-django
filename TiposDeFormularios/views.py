@@ -9,3 +9,5 @@ def RenderizarPSFS(request):
         messages.error(request, 'No se encuentra ningún paciente registrado')
     
     return render(request, 'PSFS.html', {'pacientes': pacientes})
+
+

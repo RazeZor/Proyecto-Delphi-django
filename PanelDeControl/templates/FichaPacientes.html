@@ -104,9 +104,8 @@
                         </div>
                         {% endif %}
                 </div>
-                <style>
-                    
-                </style>
+                
+
                 <div>
                     <div class="overlay" id="overlay">
                         
@@ -118,6 +117,49 @@
                         {% endif %}
                         
                         
+                    </div>
+                </div>
+            </div>
+            <div class="patient-info">
+                <h4>Ficha Clínica del Paciente</h4>
+                
+                <div class="patient-data">
+                    <div class="grupo1">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ paciente.nombre }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rut" class="form-label">RUT:</label>
+                            <input type="text" class="form-control" id="rut" name="rut" value="{{ paciente.rut }}" readonly>
+                        </div>
+                    </div>
+            
+                    <div class="grupo2">
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Fecha de nacimiento</label>
+                            <input type="text" class="form-control" id="fechanac" name="fechanac" value="{{ paciente.fechanac }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono" value="{{ paciente.telefono }}" readonly>
+                        </div>
+                    </div>
+            
+                    <div class="grupo3">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="text" class="form-control" id="email" name="email" value="{{ paciente.email }}" readonly>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="historial-container">
+                    <div class="mb-3" id="historial">
+                        <label for="historial" class="form-label">Historial Médico:</label>
+                        <div class="historial-box">
+                            <a class="boton" name="rut">Formulario Inicial</a>
+                        </div>
                     </div>
                 </div>
             </div>

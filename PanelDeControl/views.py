@@ -38,6 +38,11 @@ def panel(request):
     else:
         return redirect('login')
     
+#def RenderizarDatosPaciente(request):
+    #pacientes = Paciente.objects.all()
+    #return render(request, 'panel.html', {'pacientes': pacientes})    
+
+
 def cerrar_sesion(request):
     # Elimina todos los datos de la sesión
     request.session.flush()
@@ -45,7 +50,7 @@ def cerrar_sesion(request):
     # Redirige al login (o a cualquier otra página que desees)
     return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
 
-def VerFichaPacientes(request):
+def VerInformePacientes(request):
     if 'nombre_clinico' not in request.session:
         return redirect('login')
     
