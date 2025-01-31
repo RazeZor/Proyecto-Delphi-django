@@ -136,7 +136,7 @@
                                     class="form-control"
                                     id="trabajo"
                                     name="trabajo"
-                                    value="{{ paciente.trabajo }}"
+                                    value="{{ paciente.profesion }}"
                                     readonly />
                             </div>
                         </div>
@@ -187,14 +187,11 @@
                         <h6>Nota :</h6>
                         <div class="mb-3">
                             <label for="" class="form-label"></label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                name=""
-                                id=""
-                                aria-describedby="helpId"
-                                placeholder="Sobre el paciente "
-                            />
+                            <div class="mb-3">
+                                <label for="" class="form-label"></label>
+                                <textarea class="form-control" name="" id="" rows="3"></textarea>
+                            </div>
+                            
                             <button
                                 type="button"
                                 class="btn btn-secondary"
