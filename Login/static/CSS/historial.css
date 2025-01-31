@@ -12,6 +12,14 @@
     --white: #ffffff;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.contenedorRUTyFORM{
+    display: flex;
+    
+}
+.contenedorRUTyFORM {
+    display: flex;
+    
+}
 
 /* Estilos generales */
 body {
