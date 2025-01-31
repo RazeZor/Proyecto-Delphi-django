@@ -81,9 +81,16 @@ class formularioClinico(models.Model):
     
     #pagina 8
     pregunta1_nivelDeSalud = models.TextField(null=True, blank=True)
-    pregunta2_horas_de_sueño_en_promedio = models.TextField(null=True, blank=True)
     pregunta3_frecuencia_De_Suenio = models.TextField(null=True, blank=True)
     pregunta4_opinion_peso_actual = models.TextField(null=True, blank=True)
+    
+    #pagina 8.5 sobre el sueño
+    hora_acostarse = models.TextField(null=True,blank=True)
+    tiempo_dormirse = models.TextField(null=True,blank=True)
+    hora_despertar = models.TextField(null=True,blank=True)
+    hora_levantarse = models.TextField(null=True,blank=True)
+    despertares = models.TextField(null=True,blank=True)
+    
     #pagina 9
     pregunta5_ConsumoComidaRapida = models.TextField(null=True, blank=True)
     pregunta6_PorcionesDeFrutas = models.TextField(null=True, blank=True)

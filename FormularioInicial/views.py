@@ -122,10 +122,18 @@ def FormularioInicial(request):
     
     #pagina8
     pregunta1_nivelDeSalud=request.POST.get('pregunta1_nivelDeSalud'),
-    pregunta2_horas_de_sueño_en_promedio=request.POST.get('horas_sueno'),
     pregunta3_frecuencia_De_Suenio=request.POST.get('op3'),
     pregunta4_opinion_peso_actual=request.POST.get('pregunta4_opinion_peso_actual'),
     pregunta5_ConsumoComidaRapida=request.POST.get('op5'),
+    
+    #pagina 8.5 sueño
+    hora_acostarse=request.POST.get('hora_acostarse'),
+    tiempo_dormirse=request.POST.get('tiempo_dormirse'),
+    hora_despertar=request.POST.get('hora_despertar'),
+    hora_levantarse=request.POST.get('hora_levantarse'),
+    despertares=request.POST.get('despertares'),
+
+    #pagina 9
     pregunta6_PorcionesDeFrutas=request.POST.get('op6'),
     pregunta7_ejercicioDias=request.POST.get('op7'),
     pregunta8_minutosPorEjercicios=request.POST.get('op8'),
