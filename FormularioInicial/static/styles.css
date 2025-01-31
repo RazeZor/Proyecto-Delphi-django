@@ -1,6 +1,15 @@
 /* Estilos generales del contenedor */
+.miniContenedor {
+  display: flex;
+  gap: 20px; 
+}
 
-
+#label1{
+  margin-top: 10px;
+}
+#label2{
+  margin-top: 10px;
+}
 .step {
   max-width: 800px;
   margin: 0 auto;
