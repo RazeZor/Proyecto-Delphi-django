@@ -70,37 +70,21 @@
         <div class="container mt-4">
 
             <h4 id="h4Goty">Buscar Paciente por RUT</h4>
-        <div class="contenedorRUTyFORM">
-            <form method="post" action="{% url 'historialClinico' %}">
-                {% csrf_token %}
-                
-                    <div class="mb-3">
+            <div class="contenedorRUTyFORM">
+                <!-- Formulario de búsqueda por RUT -->
+                <form method="post" action="{% url 'historialClinico' %}">
+                    {% csrf_token %}
+                    <div class="mb-3" >
                         <label for="rut" class="form-label">Ingrese RUT:</label>
                         <input type="text" class="form-control" id="rutsito" name="rutsito" required>
-
                     </div>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </form>
-                <div class="mb-3">
-                    <div class="mb-3">
-                        <label for="" class="form-label">Elige De Formulario</label>
-                        <select
-                            class="form-select form-select-lg"
-                            name=""
-                            id=""
-                        >
-                            <option selected>Formularios...</option>
-                            <option value="">PSFC</option>
-                            <option value="">GROK</option>
-                            <option value="">PCS</option>
-                        </select>
-                    </div>
-                    <button type="" class="btn btn-primary">Agregar</button>
-                    
-                </div>
+            
+                <!-- Selección de formulario -->
                 
-
-        </div>
+            </div>
+            
             
                 
     
@@ -179,7 +163,18 @@
             
         </div>
         <div class="historial-container">
+            
             <div class="mb-3" id="historial">
+                <div class="mb-3" id="EleccionFormulario">
+                    <label for="" class="form-label">Elige De Formulario</label>
+                    <select class="form-select form-select-lg" name="" id="">
+                        <option selected>Formularios...</option>
+                        <option value="">PSFC</option>
+                        <option value="">GROK</option>
+                        <option value="">PCS</option>
+                    </select>
+                    <button type="button" class="btn btn-primary mt-2">Agregar</button>
+                </div>
                 <label for="historial" class="form-label">Historial Médico:</label>
                 <div class="historial-box">
                     <div class="evento" id="eventos1">

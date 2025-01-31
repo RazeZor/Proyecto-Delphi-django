@@ -12,15 +12,22 @@
     --white: #ffffff;
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-.contenedorRUTyFORM{
-    display: flex;
-    
-}
 .contenedorRUTyFORM {
     display: flex;
-    
+    gap: 20px; 
+    align-items: center; 
+    flex-wrap: wrap; 
 }
 
+.contenedorRUTyFORM form,
+.contenedorRUTyFORM .mb-3 {
+    flex: 1; 
+    min-width: 250px; 
+}
+
+#EleccionFormulario {
+    margin-top: 20px; /* Ajusta el valor según lo necesites */
+}
 /* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
@@ -29,6 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     color: var(--primary);
+    overflow-x: hidden;
 }
 
 /* Navbar mejorado */
@@ -469,4 +477,109 @@ form{
     color: var(--gray);
     font-size: 0.9rem;
     margin: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem;
+    }
+    
+    .navbar-brand img {
+        width: 100px;
+    }
+}
+
+/* Responsive Sidebar */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        padding: 1rem;
+    }
+    
+    .d-flex {
+        flex-direction: column;
+    }
+}
+
+/* Responsive Patient Info */
+@media (max-width: 1024px) {
+    .patient-info {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .patient-data {
+        width: 100%;
+        padding-right: 0;
+    }
+    
+    .grupo1, .grupo2, .grupo3 {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .patient-info input {
+        width: 100%;
+    }
+}
+
+/* Responsive Historial Container */
+@media (max-width: 1024px) {
+    .historial-container {
+        width: 100%;
+        padding: 20px 0;
+    }
+    
+    #historial {
+        width: 100%;
+    }
+}
+
+/* Responsive Form and Search */
+@media (max-width: 768px) {
+    .contenedorRUTyFORM {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .contenedorRUTyFORM form,
+    .contenedorRUTyFORM .mb-3 {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    form {
+        width: 100%;
+    }
+}
+
+/* Responsive Typography */
+@media (max-width: 576px) {
+    body {
+        font-size: 14px;
+    }
+    
+    h4 {
+        font-size: 1.25rem;
+    }
+    
+    .btn-primary {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Responsive Buttons and Interactions */
+@media (max-width: 768px) {
+    .btn-primary {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Ensure images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
