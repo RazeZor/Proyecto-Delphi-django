@@ -48,17 +48,19 @@ class formularioClinico(models.Model):
     clinico = models.ForeignKey('Clinico', on_delete=models.CASCADE, related_name='formularios')
     fechaCreacion = models.DateTimeField(auto_now_add=True) 
     medicamentos = models.JSONField(null=True,blank=True) #listo
-    #hasta aqui la pagina 1
-    #pagina2
+    
+    #pagina 2
     duracionDolor = models.CharField(max_length=20,null=True, blank=True) # todos los tipos de botones 
     caracteristicasDeDolor = models.JSONField()
     
+    #pagina 3
+    #estos datos van derivados a paciente 
     
-    #pagina3
+    #pagina4
     ubicacionDolor= models.JSONField(null=True,blank=True)
     dolorIntensidad = models.JSONField(null=True, blank=True)
     
-    #pagina4
+    #pagina5
     causaDolor = models.CharField(max_length=50,null=True, blank=True)
     accidenteLaboral = models.JSONField(null=True, blank=True)
     calidadAtencion = models.TextField(null=True, blank=True)
@@ -66,37 +68,37 @@ class formularioClinico(models.Model):
     opinionCuraDolor = models.CharField(max_length=20,null=True, blank=True)
     
     
-    #pagina 5
+    #pagina 6
     TiposDeEnfermedades = models.JSONField(null=True, blank=True)
 
-    #pagina6
+    #pagina 7
     IntensidadDolor = models.TextField(null=True, blank=True)
     preguntas1 = models.JSONField(null=True, blank=True)
     nesesidadDeApoyo = models.CharField(max_length=20,null=True, blank=True)
     
     
-    #pagina7 
+    #pagina 8
     actividades_afectadas = models.JSONField(null=True,blank=True)
     parametros = models.JSONField(null=True, blank=True)
     
-    #pagina 8
+    #pagina 9
     pregunta1_nivelDeSalud = models.TextField(null=True, blank=True)
     pregunta3_frecuencia_De_Suenio = models.TextField(null=True, blank=True)
     pregunta4_opinion_peso_actual = models.TextField(null=True, blank=True)
     
-    #pagina 8.5 sobre el sueño
+    #pagina 9.5 sobre el sueño
     hora_acostarse = models.TextField(null=True,blank=True)
     tiempo_dormirse = models.TextField(null=True,blank=True)
     hora_despertar = models.TextField(null=True,blank=True)
     hora_levantarse = models.TextField(null=True,blank=True)
     despertares = models.TextField(null=True,blank=True)
     
-    #pagina 9
+    #pagina 10
     pregunta5_ConsumoComidaRapida = models.TextField(null=True, blank=True)
     pregunta6_PorcionesDeFrutas = models.TextField(null=True, blank=True)
     pregunta7_ejercicioDias = models.TextField(null=True, blank=True)
     pregunta8_minutosPorEjercicios = models.TextField(null=True, blank=True)
-    #pagina 9
+    #pagina 11
     proposito = models.TextField(null=True,blank=True)
     red_de_apoyo = models.TextField(null=True,blank=True)
     placer_cosas = models.TextField(null=True,blank=True)
@@ -104,7 +106,7 @@ class formularioClinico(models.Model):
     ansioso = models.TextField(null=True,blank=True)
     preocupacion = models.TextField(null=True,blank=True)
     
-    #pag 10
+    #pagina 12
     NicotinaSiOno = models.JSONField(blank=True,null=True)
     condicionNicotina =  models.TextField(null=True,blank=True)
     nicotinaPreocupacion = models.TextField(null=True,blank=True)
@@ -113,7 +115,7 @@ class formularioClinico(models.Model):
     condicionAlcohol =  models.TextField(null=True,blank=True)
     AlcoholPreocupacion = models.TextField(null=True,blank=True)
     
-    #pag 11
+    #pagina 13
     drogasSiOno = models.JSONField(blank=True,null=True) 
     condicionDrogas =  models.TextField(null=True,blank=True)
     DrogasPreocupacion = models.TextField(null=True,blank=True)
@@ -123,8 +125,7 @@ class formularioClinico(models.Model):
     marihuanaPreocupacion = models.TextField(null=True,blank=True)
 
 
-    
-    #motivacion 
+    #pagina 14 
     preguntas2 = models.JSONField(null=True, blank=True)
     AreasMotivacion = models.JSONField(null=True,blank=True)
     motivacion_Salud = models.TextField(null=True,blank=True)
