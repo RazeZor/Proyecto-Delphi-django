@@ -64,6 +64,7 @@ def HistorialClinico(request):
 
 
 
+
 def VerInformePacientes(request):
     if 'nombre_clinico' not in request.session:
         return redirect('login')

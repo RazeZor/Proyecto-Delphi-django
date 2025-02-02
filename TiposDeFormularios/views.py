@@ -1,14 +1,32 @@
-from django.shortcuts import render
-from Login.models import Paciente
+import json
+from django.shortcuts import render, get_object_or_404
+from Login.models import formularioClinico, Paciente
 from django.contrib import messages
 
 def RenderizarPSFS(request):
-    pacientes = Paciente.objects.all()  
-
-    if not pacientes:
-        messages.error(request, 'No se encuentra ningún paciente registrado')
+    rut = request.GET.get('rut', '')  
+    paciente = get_object_or_404(Paciente, rut=rut)
+    formularios = formularioClinico.objects.filter(paciente=paciente)
     
-    return render(request, 'PSFS.html', {'pacientes': pacientes})
+    if formularios.exists():
+        formulario = formularios.first()  # Obtener el primer formulario
+        actividades = json.loads(formulario.actividades_afectadas)  # Convertir JSON a lista
+        
+        # Asignar las actividades a variables
+        actividad1 = actividades[0] if len(actividades) > 0 else ''
+        actividad2 = actividades[1] if len(actividades) > 1 else ''
+        actividad3 = actividades[2] if len(actividades) > 2 else ''
+        
+    else:
+        actividad1 = actividad2 = actividad3 = ''
+    
+    return render(request, 'PSFS.html', {
+        'rut': rut, 
+        'actividad1': actividad1,
+        'actividad2': actividad2,
+        'actividad3': actividad3,
+    })
+
 
 
 def RenderizarGROC(request):

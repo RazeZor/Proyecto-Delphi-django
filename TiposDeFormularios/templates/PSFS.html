@@ -54,15 +54,10 @@
                         <h2 class="card-title">Cuestionario PSFS</h2>
                     </div>
                     <div class="card-body">
-                        <div class="mb-3">
-                            <label for="" class="form-label">Pacientes Registrados</label>
-                            <select class="form-select form-select-lg" name="paciente" id="paciente">
-                                <option selected>Busca Tu Paciente</option>
-                                {% for paciente in pacientes %}
-                                    <option value="{{ paciente.rut }}">{{ paciente.rut }} : {{ paciente.nombre }} {{ paciente.apellido }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                            <div class="mb-3">
+                                <label for="rut" class="form-label">RUT:</label>
+                                <input type="text" class="form-control" id="rut" name="rut" value="{{ rut }}" readonly>
+                            </div>
                         <form>
                             
 
@@ -79,38 +74,41 @@
                                             <th>Actividad</th>
                                             <th>Puntajes Sesion</th>
                                             <th>Total Puntaje</th>
+                 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- Fila para Actividad 1 -->
                                         <tr>
-                                            <td><input type="text" class="form-control activity" placeholder="Actividad 1"></td>
+                                            <td><input type="text" value="{{actividad1}}" class="form-control activity" placeholder="no tiene actividad" readonly>
+                                                
                                             <td>
                                                 <input type="number" class="form-control score" min="0" max="10" placeholder="0">
                                                 <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesion</button>
                                             </td>
                                             <td><span class="total">0</span></td>
                                         </tr>
-                                        <!-- Fila para Actividad 2 -->
+                                        
                                         <tr>
-                                            <td><input type="text" class="form-control activity" placeholder="Actividad 2"></td>
+                                            <td><input type="text" value="{{actividad3}}" class="form-control activity" placeholder="no tiene actividad"></td>
                                             <td>
                                                 <input type="number" class="form-control score" min="0" max="10" placeholder="0">
-                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+  agregar Sesion</button>
+                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesion</button>
                                             </td>
                                             <td><span class="total">0</span></td>
                                         </tr>
-                                        <!-- Fila para Actividad 3 -->
+                                        
                                         <tr>
-                                            <td><input type="text" class="form-control activity" placeholder="Actividad 3"></td>
+                                            <td><input type="text" value="{{actividad2}}" class="form-control activity" placeholder="no tiene actividad"></td>
                                             <td>
                                                 <input type="number" class="form-control score" min="0" max="10" placeholder="0">
-                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+  agregar Sesion</button>
+                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesion</button>
                                             </td>
                                             <td><span class="total">0</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                
+                                
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
