@@ -8,6 +8,7 @@
     --light-gray: #f8f9fa;
 }
 
+
 /* Estilo del navbar más suave y acogedor */
 .navbar {
     background: linear-gradient(to right, var(--blue), #2d3766);

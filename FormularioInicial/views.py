@@ -2,8 +2,10 @@ from datetime import datetime, timedelta
 from django.shortcuts import render, redirect
 from Login.models import formularioClinico, Clinico, Paciente,tiempo
 from django.contrib import messages
-
 import json
+
+
+
 
 
 def FormularioInicial(request):

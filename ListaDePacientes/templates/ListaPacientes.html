@@ -1,5 +1,4 @@
 {%load static %}
-
 <!doctype html>
 <html lang="en">
     <head>
@@ -12,7 +11,7 @@
 
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg">
+            <nav class="navbar navbar-expand-lg fixed-top">
                 <div class="container">
                     <a class="navbar-brand" href="{%url 'panel' %}">
                         <i class="fas fa-hospital-user me-2"></i>Sistema Clínico
@@ -24,7 +23,7 @@
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
                                 <a class="nav-link" href="{%url 'ver' %}">
-                                    <i class="fas fa-users me-1" ></i>Ver Clínicos
+                                    <i class="fas fa-users me-1"></i>Ver Clínicos
                                 </a>
                             </li>
                         </ul>
@@ -33,94 +32,152 @@
             </nav>
         </header>
 
-        <main>
-            <div class="table-container">
-                <div class="table-title">
-                    Registro de Pacientes
+        <main class="main-content">
+            <div class="container">
+                <div class="dashboard-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h1 class="dashboard-title">
+                                <i class="fas fa-user-injured me-2"></i>Pacientes
+                            </h1>
+                            <p class="dashboard-subtitle">Gestión de registros clínicos</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="search-wrapper">
+                                <div class="input-group">
+                                    <span class="input-group-text border-0">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                    <input type="text" id="searchInput" class="form-control border-0 shadow-none" placeholder="Buscar paciente por nombre, RUT o cobertura...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>rut</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>telefono</th>
-                            <th>Género</th>
-                            <th>Cobertura de Salud</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for paciente in paciente %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ paciente.rut }}</td>
-                            <td>{{ paciente.nombre }}</td>
-                            <td>{{ paciente.apellido }}</td>
-                            <td>{{ paciente.contacto }}</td>
-                            <td>{{ paciente.genero }}</td>
-                            <td>{{ paciente.cobertura_de_salud }}</td>
-                            <td>
-                                <form action="{% url 'eliminar' %}" method="POST" style="display: inline;">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="rut" value="{{ paciente.rut }}">
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="abrirConfirmacionModal('{{ paciente.rut }}')">
-                                        <i class="fas fa-trash-alt me-1"></i> Eliminar
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="7" class="empty-state">
-                                <p>No hay pacientes registrados en el sistema</p>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+
+                <div class="patients-card">
+                    <div class="table-responsive">
+                        <table class="table custom-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>RUT</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Teléfono</th>
+                                    <th>Género</th>
+                                    <th>Cobertura de Salud</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for paciente in paciente %}
+                                <tr class="patient-row">
+                                    <td><span class="id-badge">{{ forloop.counter }}</span></td>
+                                    <td>{{ paciente.rut }}</td>
+                                    <td>{{ paciente.nombre }}</td>
+                                    <td>{{ paciente.apellido }}</td>
+                                    <td>
+                                        <span class="phone-badge">
+                                            <i class="fas fa-phone-alt me-1"></i>
+                                            {{ paciente.contacto }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="gender-badge">
+                                            {{ paciente.genero }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="coverage-badge">
+                                            {{ paciente.cobertura_de_salud }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <form action="{% url 'eliminar' %}" method="POST" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="rut" value="{{ paciente.rut }}">
+                                            <button type="button" class="btn btn-action" onclick="abrirConfirmacionModal('{{ paciente.rut }}')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="8" class="empty-state">
+                                        <div class="empty-content">
+                                            <i class="fas fa-user-slash"></i>
+                                            <p>No hay pacientes registrados en el sistema</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+            <!-- Modal de confirmación -->
             <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmacionModalLabel" style="color: black;">Confirmar Eliminación</h5>
+                            <h5 class="modal-title" id="confirmacionModalLabel">
+                                <i class="fas fa-exclamation-circle me-2"></i>
+                                Confirmar Eliminación
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <p style="color: black;">¿Estás seguro de eliminar a este Paciente</p>
+                            <div class="alert-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <p class="modal-message">¿Estás seguro de eliminar a este paciente?</p>
+                            <p class="modal-warning">Esta acción no se puede deshacer.</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                <i class="fas fa-times me-1"></i>Cancelar
+                            </button>
+                            <button type="button" class="btn btn-danger" id="confirmarEliminar">
+                                <i class="fas fa-trash-alt me-1"></i>Eliminar
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
         <script>
-            function Confirmacion(button) {
-                const confirmacion = confirm("¿Estás seguro de eliminar a este paciente?");
-                if (confirmacion) {
-                    button.closest('form').submit(); 
-                }
-            }
-            let rutEliminar;
-
+            // Función de búsqueda de pacientes
+                document.getElementById('searchInput').addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const rows = document.querySelectorAll('.patient-row');
+        
+                    rows.forEach(row => {
+                        const text = row.textContent.toLowerCase();
+                        const shouldShow = text.includes(searchTerm);
+                        row.style.display = shouldShow ? '' : 'none';
+                    });
+                });
+        
+                // Mantener el código existente del modal
+                let rutEliminar;
+        
                 function abrirConfirmacionModal(rut) {
-                    rutEliminar = rut; 
+                    rutEliminar = rut;
                     var myModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
                     myModal.show();
                 }
+        
                 document.getElementById('confirmarEliminar').addEventListener('click', function() {
                     const form = document.querySelector(`form input[value="${rutEliminar}"]`).closest('form');
-                    form.submit(); // Enviar el formulario
+                    form.submit();
                 });
         </script>
-
         <footer>
-            <p>© 2025 Centro Clinico Delphi - Derechos Reservados </p>
+            <p>© 2025 Centro Clinico Delphi - Derechos Reservados</p>
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>

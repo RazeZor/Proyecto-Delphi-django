@@ -1,13 +1,28 @@
 :root {
-    --primary-color: #21294e;
-    --secondary-color: #21294e;
-    --accent-color: #e74c3c;
-    --light-gray: #f8f9fa;
-    --text-color: #ffffff;
-    --pink: #cd2481;
+    --primary-color: #cd2481;
+    --primary-light: #ff4ca7;
+    --primary-dark: #a41c66;
+    --white: #ffffff;
+    --light-pink: #fff0f7;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --text-color: #2d3748;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--gray-100);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Mantener el navbvar existente */
 .navbar {
-    background: linear-gradient(to right, var(--blue), #2d3766);
+    background: var(--text-color);
     padding: 1rem;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
@@ -17,7 +32,7 @@
     font-weight: 600;
     font-size: 1.5rem;
     font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
-    text-shadow: 1px 1px 2px #21294e
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
 }
 
 .nav-link {
@@ -35,7 +50,7 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: var(--pink);
+    background-color: var(--primary-color);
     transition: width 0.3s ease;
 }
 
@@ -43,177 +58,230 @@
     width: 100%;
 }
 
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    color: var(--text-color);
-    background-color: var(--light-gray);
-    line-height: 1.6;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-    position: relative;
+/* Main Content */
+.main-content {
+    padding: 7rem 0 4rem;
+    min-height: calc(100vh - 60px);
 }
 
-/* Overlay para el fondo */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.85); /* Ajusta el último valor (0.85) para más o menos transparencia */
-    z-index: -1;
-}
-
-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 1.5rem 0;
+.dashboard-header {
     margin-bottom: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
 }
 
-header h1 {
-    color: white;
-    font-weight: 300;
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.dashboard-title {
+    color: var(--text-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 
-header a i {
-    color: white;
-}
-
-
-.table-container {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    max-width: 90%;
-    padding: 1rem;
-}
-
-.table-title {
-    background: var(--primary-color);
-    color: white;
-    padding: 1.5rem;
-    border-radius: 8px 8px 0 0;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin: -1rem -1rem 1rem -1rem;
-}
-
-.table {
+.dashboard-subtitle {
+    color: var(--primary-color);
+    font-size: 1.1rem;
     margin-bottom: 0;
 }
 
-.table thead th {
-    background-color: var(--light-gray);
-    color: var(--primary-color);
-    font-weight: 600;
-    border-bottom: 2px solid var(--secondary-color);
-    padding: 1rem;
-}
-
-.table tbody tr {
+/* Search Bar */
+.search-wrapper {
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
 }
 
-.table tbody tr:hover {
-    background-color: rgba(52, 152, 219, 0.1);
+.search-wrapper:focus-within {
+    box-shadow: var(--shadow-md);
+}
+
+.search-wrapper .input-group {
+    padding: 0.5rem;
+}
+
+.search-wrapper .input-group-text {
+    background: transparent;
+    color: var(--primary-color);
+}
+
+#searchInput {
+    background: transparent;
+    padding: 0.5rem 1rem;
+}
+
+#searchInput::placeholder {
+    color: #a0aec0;
+}
+
+/* Patients Card */
+.patients-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    padding: 1.5rem;
+}
+
+/* Table Styles */
+.custom-table {
+    margin-bottom: 0;
+}
+
+.custom-table thead th {
+    background: var(--light-pink);
+    color: var(--primary-dark);
+    font-weight: 600;
+    padding: 1rem;
+    border: none;
+    font-size: 0.95rem;
+}
+
+.custom-table tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.custom-table tbody tr:hover {
+    background: var(--light-pink);
     transform: translateY(-2px);
 }
 
-.table td {
+.custom-table td {
     padding: 1rem;
     vertical-align: middle;
 }
 
-.btn {
+/* Badges */
+.id-badge {
+    background: var(--light-pink);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
     border-radius: 20px;
-    padding: 0.5rem 1rem;
-    font-weight: 500;
+    font-weight: 600;
+}
+
+.phone-badge {
+    color: var(--text-color);
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.gender-badge, .coverage-badge {
+    background: var(--light-pink);
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Action Buttons */
+.btn-action {
+    color: var(--primary-color);
+    background: var(--light-pink);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 
-.btn-info {
-    background-color: var(--secondary-color);
-    border: none;
-    color: white;
-}
-
-.btn-info:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
-}
-
-.btn-danger {
-    background-color: var(--accent-color);
-    border: none;
-}
-
-.btn-danger:hover {
-    background-color: #c0392b;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
-}
-
-.text-danger {
-    color: var(--accent-color) !important;
-}
-
-footer {
+.btn-action:hover {
     background: var(--primary-color);
-    color: white;
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+    padding: 3rem !important;
+}
+
+.empty-content {
+    text-align: center;
+    color: #a0aec0;
+}
+
+.empty-content i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-light);
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 20px;
+    border: none;
+}
+
+.modal-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1.5rem;
+}
+
+.modal-title {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.alert-icon {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+.modal-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.modal-warning {
+    text-align: center;
+    color: #a0aec0;
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--gray-200);
+    padding: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background: var(--white);
+    color: var(--text-color);
     text-align: center;
     padding: 1rem 0;
     position: fixed;
     bottom: 0;
     width: 100%;
-    font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
-    .table-container {
-        max-width: 95%;
-        margin: 1rem auto;
-        overflow-x: auto;
+    .dashboard-header {
+        text-align: center;
+        margin-bottom: 1.5rem;
     }
-
-    header h1 {
-        font-size: 2rem;
+    
+    .search-wrapper {
+        margin-top: 1rem;
     }
-
-    .btn {
-        padding: 0.3rem 0.8rem;
-        font-size: 0.8rem;
+    
+    .patients-card {
+        padding: 1rem;
+        margin: 0 -0.5rem;
+        border-radius: 15px;
+    }
+    
+    .custom-table td, .custom-table th {
+        padding: 0.75rem;
+        font-size: 0.9rem;
     }
 }
-
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.table-container {
-    animation: fadeIn 0.5s ease-out;
-}
-
-
-.empty-state {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-color);
-    font-style: italic;
-}
-
-
-.btn:focus {
-    outline: 3px solid rgba(52, 152, 219, 0.5);
-    outline-offset: 2px;
-}   
