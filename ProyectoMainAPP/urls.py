@@ -40,4 +40,5 @@ urlpatterns = [
     path('eliminar_paciente/', lista.EliminarPaciente, name='eliminar'),
     path('CuestionarioPSFS/',tiposFormularios.RenderizarPSFS,name='PSFS'),
     path('CuestionarioGROC/',tiposFormularios.RenderizarGROC,name='GROK'),
+    path('NotaPaciente/', v.GuardarNotaPaciente, name='NotaPaciente'),
 ]

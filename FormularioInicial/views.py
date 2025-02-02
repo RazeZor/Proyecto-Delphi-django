@@ -38,9 +38,10 @@ def FormularioInicial(request):
         fechaNacimiento = request.POST.get('fechaNac')
         genero = request.POST.get('genero')
         contacto = request.POST.get('contact')
+        trabajo = request.POST.get('trabajo')
+        profesion = request.POST.get('profesion')
         cobertura_de_salud = request.POST.get('cobertura')
-        trabajo = request.POST.get('tiposTrabajo')
-        profesion = request.POST.get('Trabajo')
+        
 
         # Validación de fecha
         try:
@@ -83,6 +84,9 @@ def FormularioInicial(request):
                 'genero': genero,
                 'contacto': contacto,
                 'cobertura_de_salud': cobertura_de_salud,
+                'trabajo':trabajo,
+                'profesion':profesion
+        
             }
         )
 

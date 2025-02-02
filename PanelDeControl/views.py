@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import get_object_or_404, render, redirect
-from Login.models import Paciente, formularioClinico,tiempo
+from Login.models import Paciente, formularioClinico,tiempo,Notas
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime, timedelta
 import time 
@@ -62,6 +62,33 @@ def HistorialClinico(request):
 
     return render(request, 'HistorialClinicoPacientes.html', {'paciente': paciente, 'error': error})
 
+def GuardarNotaPaciente(request):
+    paciente = None
+    error = None
+    nota_existente = None
+
+    if request.method == 'POST':
+        rut = request.POST.get('rutsito')
+        nota_texto = request.POST.get('nota')
+        try:
+            paciente = Paciente.objects.get(rut=rut)
+
+            # Si ya existe una nota para este paciente, obtenla, si no, créala
+            nota_existente, created = Notas.objects.get_or_create(paciente=paciente)
+            if nota_texto:  
+                nota_existente.notas = nota_texto
+                nota_existente.save()
+
+        except Paciente.DoesNotExist:
+            error = "No se encontró ningún paciente con ese RUT."
+    if paciente:
+        nota_existente = Notas.objects.filter(paciente=paciente).first()
+
+    return render(request, 'HistorialClinicoPacientes.html', {
+        'paciente': paciente,
+        'error': error,
+        'nota': nota_existente.notas if nota_existente else ''
+    })
 
 
 

@@ -24,8 +24,8 @@ class Paciente(models.Model):
     genero = models.CharField(max_length=15,null=True)
     contacto = models.CharField(max_length=12)
     cobertura_de_salud = models.CharField(max_length=50)
-    trabajo = models.CharField(max_length=50, null=True, blank=True)
-    profesion = models.CharField(max_length=50, default='Sin profesion')
+    trabajo = models.TextField(null=True, blank=True)
+    profesion = models.TextField(null=True,blank=True)
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
 
@@ -135,7 +135,13 @@ class tiempo(models.Model):
     
     def __str__(self):
         return f'tiempo = {self.duracion}'
+    
+class Notas(models.Model):
+    notas = models.TextField(null=True, blank=True)
+    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, primary_key=True)  
 
+    def __str__(self):
+        return f'Notas de {self.paciente.nombre} {self.paciente.apellido}'
     
     
     

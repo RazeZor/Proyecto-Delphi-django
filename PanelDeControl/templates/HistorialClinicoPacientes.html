@@ -131,12 +131,12 @@
                                     readonly />
                             </div>
                             <div class="mb-3">
-                                <label for="trabajo" class="form-label">Tipo Trabajo</label>
+                                <label for="trabajo" class="form-label">Profesion</label>
                                 <input type="text"
                                     class="form-control"
                                     id="trabajo"
                                     name="trabajo"
-                                    value="{{ paciente.profesion }}"
+                                    value="{{ paciente.profesion}}"
                                     readonly />
                             </div>
                         </div>
@@ -148,6 +148,15 @@
                                     id="genero"
                                     name="genero"
                                     value="{{ paciente.genero }}"
+                                    readonly />
+                            </div>
+                            <div class="mb-3">
+                                <label for="trabajo" class="form-label">work type </label>
+                                <input type="text"
+                                    class="form-control"
+                                    id="trabajo"
+                                    name="trabajo"
+                                    value="{{ paciente.trabajo}}"
                                     readonly />
                             </div>
                         </div>
@@ -195,29 +204,25 @@
                         <p>Fecha: 10/10/2023</p>
                         <p>dias de licencias : 20 Dias</p>
                     </div>
-                    <div class="evento" id="eventos2">
-                        <h5>Notas a Considerar</h5>
-                        <h6>Nota :</h6>
-                        <div class="mb-3">
-                            <label for="" class="form-label"></label>
-                            <div class="mb-3">
-                                <label for="" class="form-label"></label>
-                                <textarea class="form-control" name="" id="" rows="3"></textarea>
-                            </div>
-                            
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                data-bs-toggle="button"
-                                aria-pressed="false"
-                                autocomplete="off"
-                            >
-                                Guardar nota
-                            </button>
-                            
-                        </div>
-                        
-                    </div>
+                    {% if paciente %}
+    <form method="post" action="{% url 'NotaPaciente' %}">
+        {% csrf_token %}
+        <input type="hidden" name="rutsito" value="{{ paciente.rut }}">
+
+        <div class="evento" id="eventos2">
+            <h5>Notas a Considerar</h5>
+            <h6>Nota:</h6>
+            <div class="mb-3">
+                <textarea class="form-control" name="nota" id="nota" rows="3">{{ nota }}</textarea>
+            </div>
+
+            <button type="submit" class="btn btn-secondary">
+                Guardar nota
+            </button>
+        </div>
+    </form>
+{% endif %}   
+
                     <!-- Botón de informe -->
                     <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" id="informe-button" style="display: none;">
                         <img src="{% static 'image/fotoInforme.svg' %}" alt="Informe Inicial" width="100">
