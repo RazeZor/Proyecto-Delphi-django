@@ -281,77 +281,75 @@
 
                 <!-- step de trabajos  -->
                 <div class="step">
-                    <h2 class="mb-4">Datos de trabajo de paciente</h2>
-                    
-                    <div class="list-group">
-                        <label class="form-label"><strong>Seleccione el tipo de trabajo que realiza</strong></label>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="Trabajo sedentario" required/> Trabajo sedentario (Actividad fisica en la cual se encuentra sentado la mayor parte del tiempo)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Oficinistas</li>
-                            <li>contadores</li>
-                            <li>Trabajo de atención telefónica</li>
-                        </ul>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="Trabajo con movilidad moderada" required/> Trabajo con movilidad moderada (Actividad fisica en la cual alterna entre estar sentado y de pie, con desplazamientos ocasionales)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Docentes</li>
-                            <li>vendedores</li>
-                            <li>Personal de atención al cliente</li>
-                        </ul>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="Trabajo de moderado esfuerzo fisico"required/> Trabajo de moderado esfuerzo fisico (Actividad fisica variable la cual puede implicar a levantar cargas medias y posturas prologadas)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Técnicos de mantenimiento</li>
-                            <li>Trabajadores de bodegas</li>
-                            <li>Enfermeros</li>
-                        </ul>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="Trabajo de alto esfuerzo fisico"required/> Trabajo de alto esfuerzo fisico (Actividad fisica constante la cual implica levantar cargas pesadas y posturas forzadas)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Trabajadores de la construcción</li>
-                            <li>Personal de carga y descarga</li>
-                            <li>operarios de montaje industrial</li>
-                        </ul>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="Trabajo en transporte y maquinaria pesada" required/> Trabajo en transporte y maquinaria pesada (Actividad con prolongadas horas de conduccion, puede implicar vibraciones constantes, ruido y esfuerzo postural)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Conductores de camiones</li>
-                            <li>choferes de transporte público</li>
-                            <li>maquinaria agrícola o forestal</li>
-                        </ul>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="Trabajo manual especializado" required/> Trabajo manual especializado (Actividad que requiere presicion y movimientos repetitivos, puede implicar posturas constantes)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Mecánicos</li>
-                            <li>Dentistas</li>
-                            <li>Artesanos</li>
-                        </ul>
-                        <label class="list-group-item">
-                            <input class="form-check-input me-1" type="radio" name="tiposTrabajo" value="rabajo con alta exposicion ambiental"required/> Trabajo con alta exposicion ambiental (Actividad que implica exposicion a condiciones climaticas extremas , esfuerzo fisico combinado con equipos de proteccion)
-                        </label>
-                        Ejemplos:
-                        <ul>
-                            <li>Bomberos</li>
-                            <li>Dentistas</li>
-                            <li>agricultores</li>
-                        </ul>
+                    <h2 class="mb-4">Datos de trabajo del paciente</h2>
+                
+                    <div class="work-type-section">
+                        <h3>Seleccione el tipo de trabajo que realiza</h3>
+                        
+                        <div class="work-type-options">
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo sedentario" required/>
+                                    <strong>Trabajo sedentario</strong> (Actividad física en la cual se encuentra sentado la mayor parte del tiempo)
+                                </label>
+                                
+                            </div>
+                
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo con movilidad moderada" required/>
+                                    <strong>Trabajo con movilidad moderada</strong> (Actividad física en la cual alterna entre estar sentado y de pie, con desplazamientos ocasionales)
+                                </label>
+                                
+                            </div>
+                
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo de moderado esfuerzo físico" required/>
+                                    <strong>Trabajo de moderado esfuerzo físico</strong> (Actividad física variable que puede implicar levantar cargas medias y posturas prolongadas)
+                                </label>
+                                
+                            </div>
+                
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo de alto esfuerzo físico" required/>
+                                    <strong>Trabajo de alto esfuerzo físico</strong> (Actividad física constante que implica levantar cargas pesadas y posturas forzadas)
+                                </label>
+                                
+                            </div>
+                
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo en transporte y maquinaria pesada" required/>
+                                    <strong>Trabajo en transporte y maquinaria pesada</strong> (Actividad con prolongadas horas de conducción, puede implicar vibraciones constantes, ruido y esfuerzo postural)
+                                </label>
+                                
+                            </div>
+                
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo manual especializado" required/>
+                                    <strong>Trabajo manual especializado</strong> (Actividad que requiere precisión y movimientos repetitivos, puede implicar posturas constantes)
+                                </label>
+                                
+                            </div>
+                
+                            <div class="work-type-option">
+                                <label class="work-type-label">
+                                    <input class="form-check-input" type="radio" name="tiposTrabajo" value="Trabajo con alta exposición ambiental" required/>
+                                    <strong>Trabajo con alta exposición ambiental</strong> (Actividad que implica exposición a condiciones climáticas extremas, esfuerzo físico combinado con equipos de protección)
+                                </label>
+                               
+                            </div>
+                        </div>
                     </div>
-                    <label class="form-label"><strong>Escriba nombre del trabajo que realiza</strong></label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="Trabajo" id="Trabajo" placeholder="Ingrese nombre de su trabajo" required/>
+                
+                    <div class="work-name-section">
+                        <label class="form-label"><strong>Escriba el nombre del trabajo que realiza</strong></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="Trabajo" id="Trabajo" placeholder="Ingrese el nombre de su trabajo" required/>
+                        </div>
                     </div>
                 </div>
 
