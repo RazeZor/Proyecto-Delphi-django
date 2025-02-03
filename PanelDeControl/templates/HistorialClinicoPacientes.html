@@ -213,7 +213,7 @@
                             <h5>Notas a Considerar</h5>
                             <h6>Nota:</h6>
                             <div class="mb-3">
-                                <textarea class="form-control" name="nota" id="nota" rows="3">{{ nota }}</textarea>
+                                <textarea class="form-control" name="nota" id="nota" rows="3">{{ nota|default:"El paciente No tiene Notas" }}</textarea>
                             </div>
                             
                             <button type="submit" class="btn btn-secondary">
@@ -221,7 +221,8 @@
                             </button>
                         </div>
                     </form>
-                {% endif %} 
+                {% endif %}
+               
 
                     <!-- Botón de informe -->
                     <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" id="informe-button" style="display: none;">

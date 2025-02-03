@@ -77,9 +77,8 @@ def HistorialClinico(request):
     return render(request, 'HistorialClinicoPacientes.html', {
         'paciente': paciente,
         'error': error,
-        'nota': nota_existente.notas if nota_existente else ''
+        'nota': nota_existente.notas if nota_existente else ''  # Cambiamos None por ''
     })
-
 
 def VerInformePacientes(request):
     if 'nombre_clinico' not in request.session:
