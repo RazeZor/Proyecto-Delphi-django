@@ -114,30 +114,7 @@
                         </div>
                     {% endfor %}
                 </div>
-                <style>
-                    .messages-container {
-                        margin-bottom: 20px;
-                        background-color:rgb(250, 250, 164);
-                    }
-                    .messages-container .alert {
-                        margin-bottom: 15px;
-                        padding: 15px 20px;
-                        border-radius: 8px; /* Bordes redondeados */
-                        font-size: 1rem; /* Tamaño de texto legible */
-                        position: relative;
-                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-                    }
-
-                    .messages-container .alert {
-                        margin-bottom: 10px;
-                    }
-
-                    .messages-container .alert .btn-close {
-                        position: absolute;
-                        top: 10px;
-                        right: 10px;
-                    }
-                </style>
+             
 
                 <script>
                     function formatearRut(rut) {
@@ -221,63 +198,103 @@
                     });
                 </script>
                 <input type="hidden" name="duracion_sesion" id="duracionSesionInput" value="00:00:00">
-                <div class="step active">
+                <div class="step">
                     <h2 class="mb-4">Datos de ingreso de paciente</h2>
-                    <div class="form-group">
-                        <label class="form-label">Rut</label>
-                        <input type="text" class="form-control" name="rut" id="rut" placeholder="Ejemplo: 21.222.899-3" required oninput="manejarRut()" onblur="onBlurRut()"/>
-                        <div id="mensaje-error" style="color: red; display: none;">Error en el formato. Por favor, ingrese un RUT válido.</div>
-                    </div>
-                    <div class="miniContenedor">
-                        <label class="form-label" id="label1">Nombre</label>
-                        <div class="input-group">
-
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Rut</label>
+                            <input type="text" class="form-control" name="rut" id="rut" placeholder="Ejemplo: 21.222.899-3" required oninput="manejarRut()" onblur="onBlurRut()"/>
+                            <div id="mensaje-error" style="color: red; display: none;">Error en el formato. Por favor, ingrese un RUT válido.</div>
+                        </div>
+                
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Nombre</label>
                             <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" required/>
                         </div>
-                        <label class="form-label" id="label2">Apellido</label>
-                        <div class="input-group">
+                
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Apellido</label>
                             <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" required/>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Fecha de Nacimiento</label>
-                        <input type="text" id="fechaNac" name="fechaNac" class="form-control" placeholder="Ingrese su Fecha de Nacimiento" required/>
-                    </div>
-                    
-                    <script>
-                    $( function() { // libreria de jquery (mas antigua que mi Abuela)
-                        $("#fechaNac").datepicker({
-                            changeMonth: true,
-                            changeYear: true,
-                            yearRange: "1900:+0", 
-                            dateFormat: "yy-mm-dd" 
-                        });
-                    });
-                    </script>
-                    <div class="form-group">
-                        <label class="form-label">Seleccione genero</label>
-                        <input type="radio" class="btn-check" name="genero" id="masculino1" autocomplete="off" value="Masculino" />
-                        <label class="btn btn-outline-primary" for="masculino1">Masculino</label>
-                        <input type="radio" class="btn-check" name="genero" id="fem2" autocomplete="off" value="Femenino" />
-                        <label class="btn btn-outline-primary" for="fem2">Femenino</label>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Contacto</label>
-                        <input type="tel" class="form-control" name="contact" id="contact" placeholder="Ingrese Teléfono de paciente" required/>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Seleccione tipo de cobertura de salud</label>
-                        <input type="radio" class="btn-check" name="cobertura" id="fonasa1" autocomplete="off" value="fonasa" />
-                        <label class="btn btn-outline-primary" for="fonasa1">fonasa</label>
-                        <input type="radio" class="btn-check" name="cobertura" id="isapre1" autocomplete="off" value="isapre" />
-                        <label class="btn btn-outline-primary" for="isapre1">isapre</label>
+                
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Fecha de Nacimiento</label>
+                            <input type="text" id="fechaNac" name="fechaNac" class="form-control" placeholder="Ingrese su Fecha de Nacimiento" required/>
+                            <script>
+                                $( function() {
+                                    $("#fechaNac").datepicker({
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        yearRange: "1900:+0", 
+                                        dateFormat: "yy-mm-dd"
+                                    });
+                                });
+                            </script>
+                        </div>
+                
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Seleccione género</label>
+                            <div>
+                                <input type="radio" class="btn-check" name="genero" id="masculino1" autocomplete="off" value="Masculino"/>
+                                <label class="btn btn-outline-primary me-2" for="masculino1">Masculino</label>
+                                
+                                <input type="radio" class="btn-check" name="genero" id="fem2" autocomplete="off" value="Femenino"/>
+                                <label class="btn btn-outline-primary" for="fem2">Femenino</label>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Contacto</label>
+                            <input type="tel" class="form-control" name="contact" id="contact" placeholder="Ingrese Teléfono de paciente" required/>
+                        </div>
+                
+                        <div class="col-md-6 form-group">
+                            <label class="form-label">Seleccione tipo de cobertura de salud</label>
+                            <div>
+                                <input type="radio" class="btn-check" name="cobertura" id="fonasa1" autocomplete="off" value="fonasa"/>
+                                <label class="btn btn-outline-primary me-2" for="fonasa1">Fonasa</label>
+                
+                                <input type="radio" class="btn-check" name="cobertura" id="isapre1" autocomplete="off" value="isapre"/>
+                                <label class="btn btn-outline-primary" for="isapre1">Isapre</label>
+                            </div>
+                        </div>
+                
+                        <div class="col-md-6 form-group">
+                            <label>Fecha inicio licencia:</label>
+                            <input type="date" id="fecha_inicio" name="fecha_inicio" required class='form-control'>
+                        </div>
+                
+                        <div class="col-md-6 form-group">
+                            <label>Fecha fin licencia:</label>
+                            <input type='date' id='fecha_fin' name='fecha_fin' required class='form-control'>
+                        </div>
+                        <input type='hidden' id='dias_licencia' name='dias_licencia'>
+                
                     </div>
                 
+                    <!-- Script para calcular días -->
+                    <script>
+                        document.querySelectorAll('input[type=date]').forEach(input => {
+                            input.addEventListener('change', calcularDias);
+                        });
+                
+                        function calcularDias() {
+                            const inicio = new Date(document.getElementById('fecha_inicio').value);
+                            const fin = new Date(document.getElementById('fecha_fin').value);
+                
+                            if (fin < inicio) {
+                                alert('La fecha final no puede ser anterior a la inicial');
+                                return;
+                            }
+                
+                            const diferencia = fin.getTime() - inicio.getTime();
+                            const dias = Math.ceil(diferencia / (1000 * 3600 * 24)) + 1; // +1 para incluir día inicial
+                            document.getElementById('dias_licencia').value = dias;
+                        }
+                    </script>
+                
                 </div>
+                
 
                 <!-- step de trabajos  -->
                 <div class="step">
@@ -286,7 +303,7 @@
                     <div class="work-type-section">
                         <h3>Seleccione el tipo de trabajo que realiza</h3>
                         
-                        <div class="work-type-options">
+                        <div class="form-group">
                             <div class="work-type-option">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo sedentario" required/>
@@ -295,7 +312,7 @@
                                 
                             </div>
                 
-                            <div class="work-type-option">
+                            <div class="form-group">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo con movilidad moderada" required/>
                                     <strong>Trabajo con movilidad moderada</strong> (Actividad física en la cual alterna entre estar sentado y de pie, con desplazamientos ocasionales)
@@ -303,7 +320,7 @@
                                 
                             </div>
                 
-                            <div class="work-type-option">
+                            <div class="form-group">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo de moderado esfuerzo físico" required/>
                                     <strong>Trabajo de moderado esfuerzo físico</strong> (Actividad física variable que puede implicar levantar cargas medias y posturas prolongadas)
@@ -311,7 +328,7 @@
                                 
                             </div>
                 
-                            <div class="work-type-option">
+                            <div class="form-group">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo de alto esfuerzo físico" required/>
                                     <strong>Trabajo de alto esfuerzo físico</strong> (Actividad física constante que implica levantar cargas pesadas y posturas forzadas)
@@ -319,7 +336,7 @@
                                 
                             </div>
                 
-                            <div class="work-type-option">
+                            <div class="form-group">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo en transporte y maquinaria pesada" required/>
                                     <strong>Trabajo en transporte y maquinaria pesada</strong> (Actividad con prolongadas horas de conducción, puede implicar vibraciones constantes, ruido y esfuerzo postural)
@@ -327,7 +344,7 @@
                                 
                             </div>
                 
-                            <div class="work-type-option">
+                            <div class="form-group">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo manual especializado" required/>
                                     <strong>Trabajo manual especializado</strong> (Actividad que requiere precisión y movimientos repetitivos, puede implicar posturas constantes)
@@ -335,7 +352,7 @@
                                 
                             </div>
                 
-                            <div class="work-type-option">
+                            <div class="form-group">
                                 <label class="work-type-label">
                                     <input class="form-check-input" type="radio" name="trabajo" value="Trabajo con alta exposición ambiental" required/>
                                     <strong>Trabajo con alta exposición ambiental</strong> (Actividad que implica exposición a condiciones climáticas extremas, esfuerzo físico combinado con equipos de protección)
@@ -345,7 +362,7 @@
                         </div>
                     </div>
                 
-                    <div class="work-name-section">
+                    <div class="form-group">
                         <label class="form-label"><strong>Escriba el nombre del trabajo que realiza</strong></label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="profesion" id="Trabajo" placeholder="Ingrese el nombre de su trabajo" required/>

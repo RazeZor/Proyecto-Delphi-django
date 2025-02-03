@@ -95,7 +95,7 @@ def VerInformePacientes(request):
             #escala Semaforo Integrada
             semaforo = json.loads(formulario.preguntas1)
             mensajeSemaforo = EscalaSemaforo(semaforo)
-            
+            opinionproblemaEnfermead = CreenciaDolor(formulario.opinionProblemaEnfermeda)
             #mensaje apoyo 
             mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
             
@@ -107,6 +107,13 @@ def VerInformePacientes(request):
             condicionesSalud1 = json.loads(formulario.TiposDeEnfermedades)
             MensajeCondicionesSalud = condicionesSalud(condicionesSalud1)
 
+            # mensaje de evitacion 
+            respuestas = formulario.parametros
+            mensajeEVPER = Respuesta_evitativo_persistente(json.loads(respuestas)) 
+            
+            
+            #uso importante de JsonLoad, esta es la unica manera
+            #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
            
             #uso importante de JsonLoad, esta es la unica manera
             #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
@@ -140,6 +147,8 @@ def VerInformePacientes(request):
                 mensajeSemaforo=mensajeSemaforo,
                 MensajecaracteristicasDolor=MensajecaracteristicasDolor,
                 MensajeCondicionesSalud=MensajeCondicionesSalud,
+                opinionproblemaEnfermead=opinionproblemaEnfermead,
+                mensajeEVPER=mensajeEVPER
             )
 
 
@@ -159,7 +168,7 @@ def evaluar_necesidad_apoyo(apoyo):
     if apoyo == 'si':
         return (
             '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
-            '<h6>El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra).</h6>'
+            '<h6>El paciente pide apoyo para ansiedad o depresión. Se sugiere derivar a un especialista (psicólogo, psiquiatra), se Recomienda al Clinico Usar Formulario PHQ-9</h6>'
             '</div>'
         )
     return ('')
@@ -201,7 +210,7 @@ def Neuropaticas(caracteristicasDolor):
         if caracteristicas == "ardiente" or caracteristicas == "corriente" or caracteristicas == "adormecimiento" or caracteristicas == "Hormigueo":
             return (
                 '<div style="background-color: #fff3cd; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
-                '<label>El paciente tiene un dolor neuropático se recomienda al Clinico Usar la Escala DN4 o TSK-11 </label>'
+                '<label>El paciente tiene un dolor neuropático se recomienda al Clinico Usar la Escala DN4 </label>'
                 '</div>'
             )
     return ('')
@@ -217,6 +226,34 @@ def condicionesSalud(condicionesSalud):
             )
     return ('')
 
+def CreenciaDolor(CreenciaDolor):
+    if (CreenciaDolor == 'si'):
+        return (
+                '<div style="background-color: #fff3cd; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+                '<label>El paciente cree que tiene un dolor no diagnosticado, Se suguiere uso de Pain Catastrophizing Scale (PCS) </label>'
+                '</div>'
+            )
+    return ('')
+
+
+def Respuesta_evitativo_persistente(respuestas):
+    EVITATIVAS = "evitativo"
+    PERSISTENTES = "persistente"
+    evitativo = 0
+    persistente = 0
+
+    for respuesta in respuestas:
+        if respuesta.strip().lower() == EVITATIVAS:
+            evitativo += 1
+        elif respuesta.strip().lower() == PERSISTENTES:
+            persistente += 1
+
+    if evitativo > persistente:
+        return '<h6 style="color: red;">Tiene una conducta de evitación</h6>'
+    elif persistente > evitativo:
+        return '<h6 style="color: red;">Tiene una conducta persistente</h6>'
+    else:
+        return '<h6 style="color: orange;">Tiene una conducta equilibrada</h6>'
 
 
         

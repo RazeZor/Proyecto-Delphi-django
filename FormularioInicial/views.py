@@ -41,6 +41,9 @@ def FormularioInicial(request):
         trabajo = request.POST.get('trabajo')
         profesion = request.POST.get('profesion')
         cobertura_de_salud = request.POST.get('cobertura')
+        LicenciaInicio = request.POST.get('fecha_inicio')
+        LicenciaFin = request.POST.get('fecha_fin')
+        LicenciaDias = request.POST.get('dias_licencia')
         
 
         # Validación de fecha
@@ -85,7 +88,11 @@ def FormularioInicial(request):
                 'contacto': contacto,
                 'cobertura_de_salud': cobertura_de_salud,
                 'trabajo':trabajo,
-                'profesion':profesion
+                'profesion':profesion,
+                'LicenciaInicio':LicenciaInicio,
+                'LicenciaFin':LicenciaFin,
+                'LicenciaDias':LicenciaDias
+                
         
             }
         )

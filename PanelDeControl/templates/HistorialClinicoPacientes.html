@@ -201,8 +201,9 @@
                 <div class="historial-box">
                     <div class="evento" id="eventos1">
                         <h5>licencia Medica</h5>
-                        <p>Fecha: 10/10/2023</p>
-                        <p>dias de licencias : 20 Dias</p>
+                        <p>inicio licencia: {{ paciente.LicenciaInicio |default:""}}</p>
+                        <p>fin licencia : {{ paciente.LicenciaFin |default:""}}</p>
+                        <p>dias de licencia : {{ paciente.LicenciaDias|default:"" }} </p>
                     </div>
                     {% if paciente %}
                     <form method="post" action="{% url 'historialClinico' %}">
@@ -229,6 +230,7 @@
                         <img src="{% static 'image/fotoInforme.svg' %}" alt="Informe Inicial" width="100">
                         <label for="historial" class="form-label">Informe Inicial</label>
                     </a>
+                    
                 </div>
             </aside>
         <aside >

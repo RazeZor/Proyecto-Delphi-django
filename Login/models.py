@@ -8,6 +8,7 @@ class Clinico(models.Model):
     apellido = models.CharField(max_length=50)
     profesion = models.CharField(max_length=50, default='default_profession')
     contraseña = models.CharField(max_length=50, default='default_password')
+    
     EsAdmin = models.BooleanField(default=False)
     pacientes = models.ManyToManyField('Paciente', related_name='clinicos')
     EsAdmin = models.BooleanField(default=False)
@@ -26,6 +27,10 @@ class Paciente(models.Model):
     cobertura_de_salud = models.CharField(max_length=50)
     trabajo = models.TextField(null=True, blank=True)
     profesion = models.TextField(null=True,blank=True)
+    LicenciaInicio= models.DateField(null=True,blank=True)
+    LicenciaFin= models.DateField(null=True,blank=True)
+    LicenciaDias= models.TextField(null=True,blank=True)
+    
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
 
