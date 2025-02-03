@@ -148,10 +148,14 @@ class Notas(models.Model):
     def __str__(self):
         return f'Notas de {self.paciente.nombre} {self.paciente.apellido}'
     
-    
-    
-    
-    
+
+
+class CuestionarioPSFS(models.Model):
+    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, primary_key=True)
+    fecha_creacion = models.DateField()
+    puntaje_actividad_1 = models.IntegerField(null=True, blank=True)
+    puntaje_actividad_2 = models.IntegerField(null=True, blank=True)
+    puntaje_actividad_3 = models.IntegerField(null=True, blank=True)
     
     
     

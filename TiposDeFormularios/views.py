@@ -1,7 +1,10 @@
 import json
 from django.shortcuts import render, get_object_or_404
-from Login.models import formularioClinico, Paciente
+from Login.models import formularioClinico, Paciente,CuestionarioPSFS
 from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+import json
 
 def RenderizarPSFS(request):
     rut = request.GET.get('rut', '')  
@@ -42,3 +45,36 @@ def RenderizarGROC(request):
         'paciente':paciente
         
     })
+    
+
+def guardar_psfs(request):
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        date = request.POST.get('date')
+        actividades = request.POST.getlist('actividad[]')
+
+        # Obtén el paciente usando el RUT
+        paciente = get_object_or_404(Paciente, rut=rut)
+
+        # Crea el cuestionario PSFS
+        cuestionario = CuestionarioPSFS.objects.create(
+            paciente=paciente,
+            fecha_creacion=date
+        )
+
+        for i, actividad in enumerate(actividades):
+            scores = request.POST.getlist(f'score_actividad{i + 1}[]')  
+            puntaje_total = sum(int(score) for score in scores)  
+
+            if i == 0:
+                cuestionario.puntaje_actividad_1 = puntaje_total
+            elif i == 1:
+                cuestionario.puntaje_actividad_2 = puntaje_total
+            elif i == 2:
+                cuestionario.puntaje_actividad_3 = puntaje_total
+
+        cuestionario.save()
+
+        return redirect('panel')  
+    
+    return HttpResponse('Método no permitido', status=405)

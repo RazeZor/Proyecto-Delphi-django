@@ -3,20 +3,9 @@
 <html lang="en">
     <head>
         <title>Cuestionario PSFS</title>
-        <!-- Required meta tags -->
         <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="{% static 'CSS/PSFS.css' %}"/>
     </head>
 
@@ -24,29 +13,20 @@
         <header>
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="{%url 'panel' %}">
-                        <i class="fas fa-hospital-user me-2"></i>Sistema Clínico
-                    </a>
+                    <a class="navbar-brand" href="{% url 'panel' %}"><i class="fas fa-hospital-user me-2"></i>Sistema Clínico</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{%url 'panel' %}">
-                                    <i class="fas fa-users me-1"></i> Panel De Control
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión
-                                </a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'panel' %}"><i class="fas fa-users me-1"></i> Panel De Control</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-sign-out-alt me-1"></i>Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
+
         <main>
             <div class="container mt-5">
                 <div class="card shadow">
@@ -54,61 +34,53 @@
                         <h2 class="card-title">Cuestionario PSFS</h2>
                     </div>
                     <div class="card-body">
+                        <form method="POST" action="{% url 'guardar_psfs' %}">
+                            {% csrf_token %}
                             <div class="mb-3">
                                 <label for="rut" class="form-label">RUT:</label>
                                 <input type="text" class="form-control" id="rut" name="rut" value="{{ rut }}" readonly>
                             </div>
-                        <form>
-                            
-
+                        
                             <div class="mb-3">
-                                <label for="date" class="form-label">Fecha Creacion Formulario </label>
-                                <input type="date" class="form-control" id="date" required>
+                                <label for="date" class="form-label">Fecha Creación Formulario:</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
                             </div>
+                        
                             <div class="mb-3">
                                 <h5>Actividades y Puntuación</h5>
-                                <p>Ingrese las actividades y los puntajes por día.</p>
+                                <p>Ingrese las actividades y los puntajes por sesión.</p>
                                 <table class="table table-bordered" id="psfs-table">
                                     <thead>
                                         <tr>
-                                            <th>Actividades Afectados</th>
-                                            <th>Puntajes Por Sesion</th>
+                                            <th>Actividades Afectadas</th>
+                                            <th>Puntajes Por Sesión</th>
                                             <th>Total Puntaje</th>
-                 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" value="{{actividad1}}" class="form-control activity" placeholder="no tiene actividad" readonly>
-                                                
-                                            <td>
-                                                <input type="number" class="form-control score" min="0" max="10" placeholder="0">
-                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesion</button>
+                                            <td><input type="text" class="form-control activity" name="actividad[]" value="{{actividad1}}" placeholder="no tiene actividad" readonly></td>
+                                            <td><input type="number" class="form-control score" name="score_actividad1[]" min="0" max="10" placeholder="0">
+                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesión</button>
                                             </td>
                                             <td><span class="total">0</span></td>
                                         </tr>
-                                        
                                         <tr>
-                                            <td><input type="text" value="{{actividad3}}" class="form-control activity" placeholder="no tiene actividad"></td>
-                                            <td>
-                                                <input type="number" class="form-control score" min="0" max="10" placeholder="0">
-                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesion</button>
+                                            <td><input type="text" class="form-control activity" name="actividad[]" value="{{actividad2}}" placeholder="no tiene actividad"></td>
+                                            <td><input type="number" class="form-control score" name="score_actividad2[]" min="0" max="10" placeholder="0">
+                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesión</button>
                                             </td>
                                             <td><span class="total">0</span></td>
                                         </tr>
-                                        
                                         <tr>
-                                            <td><input type="text" value="{{actividad2}}" class="form-control activity" placeholder="no tiene actividad"></td>
-                                            <td>
-                                                <input type="number" class="form-control score" min="0" max="10" placeholder="0">
-                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesion</button>
+                                            <td><input type="text" class="form-control activity" name="actividad[]" value="{{actividad3}}" placeholder="no tiene actividad"></td>
+                                            <td><input type="number" class="form-control score" name="score_actividad3[]" min="0" max="10" placeholder="0">
+                                                <button type="button" class="btn btn-sm btn-secondary mt-2 add-score">+ agregar Sesión</button>
                                             </td>
                                             <td><span class="total">0</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                
-                                
                             </div>
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </form>
@@ -116,29 +88,13 @@
                 </div>
             </div>
         </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
-
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-
-        <!-- Script para manejar la lógica de la tabla -->
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const table = document.getElementById('psfs-table');
 
-                // Función para agregar un nuevo campo de puntaje
                 table.addEventListener('click', function (e) {
                     if (e.target.classList.contains('add-score')) {
                         const scoreCell = e.target.closest('td');
@@ -148,11 +104,11 @@
                         newInput.min = '0';
                         newInput.max = '10';
                         newInput.placeholder = '0';
+                        newInput.name = `score_actividad${scoreCell.closest('tr').rowIndex + 1}[]`; // Adaptar nombre según la actividad
                         scoreCell.insertBefore(newInput, e.target);
                     }
                 });
 
-                // Función para calcular el total de cada fila
                 table.addEventListener('input', function (e) {
                     if (e.target.classList.contains('score')) {
                         const row = e.target.closest('tr');
