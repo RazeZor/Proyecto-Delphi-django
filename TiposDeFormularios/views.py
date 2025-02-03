@@ -9,8 +9,8 @@ def RenderizarPSFS(request):
     formularios = formularioClinico.objects.filter(paciente=paciente)
     
     if formularios.exists():
-        formulario = formularios.first()  # Obtener el primer formulario
-        actividades = json.loads(formulario.actividades_afectadas)  # Convertir JSON a lista
+        formulario = formularios.first()  
+        actividades = json.loads(formulario.actividades_afectadas) 
         
         # Asignar las actividades a variables
         actividad1 = actividades[0] if len(actividades) > 0 else ''
@@ -30,9 +30,15 @@ def RenderizarPSFS(request):
 
 
 def RenderizarGROC(request):
-    pacientes = Paciente.objects.all()  
+    rut = request.GET.get('rut', '')  
+    paciente = get_object_or_404(Paciente, rut=rut)
 
-    if not pacientes:
+    if not rut:
         messages.error(request, 'No se encuentra ningún paciente registrado')
     
-    return render(request, 'GROC.html', {'pacientes': pacientes})
+    return render(request, 'GROC.html', {
+        
+        'rut': rut,
+        'paciente':paciente
+        
+    })
