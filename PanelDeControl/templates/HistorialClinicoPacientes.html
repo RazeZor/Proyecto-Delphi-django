@@ -205,23 +205,23 @@
                         <p>dias de licencias : 20 Dias</p>
                     </div>
                     {% if paciente %}
-    <form method="post" action="{% url 'NotaPaciente' %}">
-        {% csrf_token %}
-        <input type="hidden" name="rutsito" value="{{ paciente.rut }}">
-
-        <div class="evento" id="eventos2">
-            <h5>Notas a Considerar</h5>
-            <h6>Nota:</h6>
-            <div class="mb-3">
-                <textarea class="form-control" name="nota" id="nota" rows="3">{{ nota }}</textarea>
-            </div>
-
-            <button type="submit" class="btn btn-secondary">
-                Guardar nota
-            </button>
-        </div>
-    </form>
-{% endif %}   
+                    <form method="post" action="{% url 'historialClinico' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="rutsito" value="{{ paciente.rut }}">
+                        
+                        <div class="evento" id="eventos2">
+                            <h5>Notas a Considerar</h5>
+                            <h6>Nota:</h6>
+                            <div class="mb-3">
+                                <textarea class="form-control" name="nota" id="nota" rows="3">{{ nota }}</textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-secondary">
+                                Guardar nota
+                            </button>
+                        </div>
+                    </form>
+                {% endif %} 
 
                     <!-- Botón de informe -->
                     <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" id="informe-button" style="display: none;">

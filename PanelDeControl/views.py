@@ -49,47 +49,36 @@ def cerrar_sesion(request):
     return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
 
 
+
 def HistorialClinico(request):
-    paciente = None
-    error = None
-
-    if request.method == 'POST':
-        rut = request.POST.get('rutsito')
-        try:
-            paciente = Paciente.objects.get(rut=rut)
-        except Paciente.DoesNotExist:
-            error = "No se encontró ningún paciente con ese RUT."
-
-    return render(request, 'HistorialClinicoPacientes.html', {'paciente': paciente, 'error': error})
-
-def GuardarNotaPaciente(request):
     paciente = None
     error = None
     nota_existente = None
 
     if request.method == 'POST':
         rut = request.POST.get('rutsito')
-        nota_texto = request.POST.get('nota')
-        try:
-            paciente = Paciente.objects.get(rut=rut)
+        nota_texto = request.POST.get('nota')  # Obtener la nota del formulario
 
-            # Si ya existe una nota para este paciente, obtenla, si no, créala
+        try:
+            # Buscar al paciente por su RUT
+            paciente = Paciente.objects.get(rut=rut)
+            # Obtener o crear la nota existente
             nota_existente, created = Notas.objects.get_or_create(paciente=paciente)
+
             if nota_texto:  
+                # Actualizar la nota si se ha proporcionado texto
                 nota_existente.notas = nota_texto
                 nota_existente.save()
 
         except Paciente.DoesNotExist:
             error = "No se encontró ningún paciente con ese RUT."
-    if paciente:
-        nota_existente = Notas.objects.filter(paciente=paciente).first()
 
+    # Renderizar la plantilla con los datos del paciente y la nota
     return render(request, 'HistorialClinicoPacientes.html', {
         'paciente': paciente,
         'error': error,
         'nota': nota_existente.notas if nota_existente else ''
     })
-
 
 
 def VerInformePacientes(request):
