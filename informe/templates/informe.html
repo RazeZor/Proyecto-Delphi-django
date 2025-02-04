@@ -225,6 +225,7 @@
         <div class="report-card">
             <!-- Sección inicial (siempre visible) -->
              <!-- Sección inicial aqui iran los consejos ) -->
+            <a href="">Descargar Informe en PDF</a>
             <div class="info-section" id="informacion">
                     <div class="respuestas">
                            <ul> 
@@ -321,19 +322,19 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="info-label">Propósito y significado de vida</div>
-                            <div class="info-value">{formulario.proposito}/3</div>
+                            <div class="info-value">{formulario.proposito}</div>
                             <div class="info-label">Conexión con red de apoyo</div>
-                            <div class="info-value">{formulario.red_de_apoyo}/3</div>
+                            <div class="info-value">{formulario.red_de_apoyo}</div>
                             <div class="info-label">Interés o placer en actividades</div>
-                            <div class="info-value">{formulario.placer_cosas}/3</div>
+                            <div class="info-value">{formulario.placer_cosas}</div>
                         </div>
                         <div class="col-md-6">
                             <div class="info-label">Nivel de depresión</div>
-                            <div class="info-value">{formulario.deprimido}/3</div>
+                            <div class="info-value">{formulario.deprimido}</div>
                             <div class="info-label">Nivel de ansiedad</div>
-                            <div class="info-value">{formulario.ansioso}/3</div>
+                            <div class="info-value">{formulario.ansioso}</div>
                             <div class="info-label">Nivel de preocupación</div>
-                            <div class="info-value">{formulario.preocupacion}/3</div>
+                            <div class="info-value">{formulario.preocupacion}</div>
                         </div>
                     </div>
                 </section>
@@ -371,10 +372,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="info-label">Nivel de Preocupación por Consumo</div>
-                            <div class="info-value">Nicotina: {formulario.nicotinaPreocupacion}/3</div>
-                            <div class="info-value">Alcohol: {formulario.AlcoholPreocupacion}/3</div>
-                            <div class="info-value">Drogas: {formulario.DrogasPreocupacion}/3</div>
-                            <div class="info-value">Marihuana: {formulario.marihuanaPreocupacion}/3</div>
+                            <div class="info-value">Nicotina: {MensajeNicotina}</div>
+                            <div class="info-value">Alcohol: {mensajeAcoholP}</div>
+                            <div class="info-value">Drogas: {mensajeDrogasP}</div>
+                            <div class="info-value">Marihuana: {mensajeMarihuanaP}</div>
                         </div>
                     </div>
                 </section>
@@ -401,6 +402,8 @@
                     </div>
                 </section>
             </div>
+
+            
     
             <!-- Botón Ver más/menos -->
             <button id="verMasBtn" class="expand-button" onclick="toggleContent()">
@@ -425,11 +428,7 @@
                     }}
                 }}
         
-                function generarPDF() {{
-                    window.print();
-                    // Alternativamente, puedes implementar la generación de PDF usando jsPDF
-                    // Esta es una implementación básica usando la funcionalidad de impresión del navegador
-                }}
+               
             </script>
         </div>
     </div>

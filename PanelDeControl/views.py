@@ -111,31 +111,43 @@ def VerInformePacientes(request):
             respuestas = formulario.parametros
             mensajeEVPER = Respuesta_evitativo_persistente(json.loads(respuestas)) 
             
+            #preocupacion Consumo
+            preocupacionNicotina = formulario.nicotinaPreocupacion
+            MensajeNicotina = "no tiene" if preocupacionNicotina is None else preocupacionNicotina
+            
+            #preocupacion alchol
+            preocupacionAlcohol = formulario.AlcoholPreocupacion
+            mensajeAcoholP = "no tiene" if preocupacionAlcohol is None else preocupacionAlcohol
+            
+            #preocupacion drogas 
+            preocupacionDrogas = formulario.DrogasPreocupacion
+            mensajeDrogasP = "no tiene" if preocupacionDrogas is None else preocupacionDrogas
+            
+            #preocupacion marihuana
+            preocupacionMarihuana = formulario.marihuanaPreocupacion
+            mensajeMarihuanaP = "no tiene" if preocupacionMarihuana is None else preocupacionMarihuana
             
             #uso importante de JsonLoad, esta es la unica manera
             #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
-           
-            #uso importante de JsonLoad, esta es la unica manera
-            #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
+            
+            
+            
             
             # el cuerpo humano Bien mostrado 
-
             ubicacionDolor = json.loads(formulario.ubicacionDolor)
             intensidadDolor = json.loads(formulario.dolorIntensidad)
-            
             ubicacion_intensidad_list = ""
-
-
             min_len = min(len(ubicacionDolor), len(intensidadDolor))
             for i in range(min_len):
                 ubicacion = ubicacionDolor[i]
                 intensidad = intensidadDolor[i]
                 ubicacion_intensidad_list += f"<li><strong>{ubicacion}:</strong> {intensidad}</li>\n"
-
             if len(ubicacionDolor) != len(intensidadDolor):
                 ubicacion_intensidad_list += "<li><strong>Error:</strong> Las listas no coinciden en longitud</li>\n"
 
-                
+            
+            
+            
             with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
                 informe_template = template_file.read()
 
@@ -148,7 +160,12 @@ def VerInformePacientes(request):
                 MensajecaracteristicasDolor=MensajecaracteristicasDolor,
                 MensajeCondicionesSalud=MensajeCondicionesSalud,
                 opinionproblemaEnfermead=opinionproblemaEnfermead,
-                mensajeEVPER=mensajeEVPER
+                mensajeEVPER=mensajeEVPER,
+                MensajeNicotina=MensajeNicotina,
+                mensajeAcoholP=mensajeAcoholP,
+                mensajeDrogasP=mensajeDrogasP,
+                mensajeMarihuanaP=mensajeMarihuanaP
+                 
             )
 
 
@@ -262,7 +279,32 @@ def Respuesta_evitativo_persistente(respuestas):
                 '</div>')
 
 
-        
+def DescargarPDF(request):
+    paciente = {
+        'rut': '12345678-9',
+        'nombre': 'Juan',
+        'apellido': 'Pérez',
+        'fechaNacimiento': '01-01-1990',
+        'genero': 'Masculino',
+        'contacto': '123456789',
+        'cobertura_de_salud': 'Fonasa'
+    }
+    
+    formulario = {
+        'fechaCreacion': '04-02-2025',
+        'clinico': 'Dr. López',
+        'duracionDolor': '2 semanas',
+        'caracteristicasDeDolor': 'Agudo'
+    }
+
+    html_string = render_to_string('informe.html', {'paciente': paciente, 'formulario': formulario})
+    
+    pdf = HTML(string=html_string).write_pdf()
+    
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
+    return response
+
 
 
 
