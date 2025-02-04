@@ -249,11 +249,17 @@ def Respuesta_evitativo_persistente(respuestas):
             persistente += 1
 
     if evitativo > persistente:
-        return '<h6 style="color: red;">Tiene una conducta de evitación</h6>'
+        return ('<div style="background-color: #fff3cd; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+                '<label>Paciente tiene una conducta de evitacion</label>'
+                '</div>')
     elif persistente > evitativo:
-        return '<h6 style="color: red;">Tiene una conducta persistente</h6>'
+        return  ('<div style="background-color: #f8d7da; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+                '<label>Paciente tiene una conducta de persistencia</label>'
+                '</div>')
     else:
-        return '<h6 style="color: orange;">Tiene una conducta equilibrada</h6>'
+        return  ('<div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
+                '<label>Paciente tiene una conducta equilibrada</label>'
+                '</div>')
 
 
         
