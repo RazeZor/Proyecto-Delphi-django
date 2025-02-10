@@ -161,7 +161,7 @@ class Groc(models.Model):
     paciente = models.OneToOneField(Paciente,on_delete=models.CASCADE,primary_key=True)
     fecha_creacion = models.DateField()
     puntajeGroc = models.JSONField(null=True,blank=True)
- 
+    
     
     
     
