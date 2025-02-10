@@ -279,31 +279,6 @@ def Respuesta_evitativo_persistente(respuestas):
                 '</div>')
 
 
-def DescargarPDF(request):
-    paciente = {
-        'rut': '12345678-9',
-        'nombre': 'Juan',
-        'apellido': 'Pérez',
-        'fechaNacimiento': '01-01-1990',
-        'genero': 'Masculino',
-        'contacto': '123456789',
-        'cobertura_de_salud': 'Fonasa'
-    }
-    
-    formulario = {
-        'fechaCreacion': '04-02-2025',
-        'clinico': 'Dr. López',
-        'duracionDolor': '2 semanas',
-        'caracteristicasDeDolor': 'Agudo'
-    }
-
-    html_string = render_to_string('informe.html', {'paciente': paciente, 'formulario': formulario})
-    
-    pdf = HTML(string=html_string).write_pdf()
-    
-    response = HttpResponse(pdf, content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="archivo.pdf"'
-    return response
 
 
 
