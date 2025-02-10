@@ -3,24 +3,29 @@ from django.shortcuts import get_object_or_404, redirect, render
 from Login.models import Clinico
 from django.contrib import messages
 def AgregarClinico(request):
-    if request.method == 'POST':
-        rut = request.POST['rut']
-        nombre = request.POST['nombre']
-        apellido = request.POST['apellido']
-        profesion = request.POST['profesion']
-        contraseña = request.POST['contraseña']
-        
-        try:
-            clinico = Clinico(rut=rut, nombre=nombre, apellido=apellido,profesion=profesion, contraseña=contraseña)
-            clinico.save()
-            messages.success(request, 'Clínico Agregado Exitosamente')
+    if 'nombre_clinico' in request.session:
+        nombre_clinico = request.session['nombre_clinico']
+        es_admin = request.session.get('es_admin', False)
+        if request.method == 'POST':
+            rut = request.POST['rut']
+            nombre = request.POST['nombre']
+            apellido = request.POST['apellido']
+            profesion = request.POST['profesion']
+            contraseña = request.POST['contraseña']
             
-            return redirect('ver')
-            
-            
-        except Exception as e:
-            messages.error(request, f'Error al agregar el clínico: {e}')
-    return render(request, 'AgregarClinico.html')
+            try:
+                clinico = Clinico(rut=rut, nombre=nombre, apellido=apellido,profesion=profesion, contraseña=contraseña)
+                clinico.save()
+                messages.success(request, 'Clínico Agregado Exitosamente')
+                
+                return redirect('ver')
+                
+                
+            except Exception as e:
+                messages.error(request, f'Error al agregar el clínico: {e}')
+        return render(request, 'AgregarClinico.html')
+    else:
+        return redirect('login')
 
 
 def VerClinicos(request):

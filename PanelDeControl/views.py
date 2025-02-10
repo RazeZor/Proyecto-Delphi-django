@@ -51,132 +51,142 @@ def cerrar_sesion(request):
 
 
 def HistorialClinico(request):
-    paciente = None
-    error = None
-    nota_existente = None
+    if 'nombre_clinico' in request.session:
+        nombre_clinico = request.session['nombre_clinico']
+        es_admin = request.session.get('es_admin', False)
+        paciente = None
+        error = None
+        nota_existente = None
 
-    if request.method == 'POST':
-        rut = request.POST.get('rutsito')
-        nota_texto = request.POST.get('nota')  # Obtener la nota del formulario
+        if request.method == 'POST':
+            rut = request.POST.get('rutsito')
+            nota_texto = request.POST.get('nota')  # Obtener la nota del formulario
 
-        try:
-            # Buscar al paciente por su RUT
-            paciente = Paciente.objects.get(rut=rut)
-            # Obtener o crear la nota existente
-            nota_existente, created = Notas.objects.get_or_create(paciente=paciente)
+            try:
+                # Buscar al paciente por su RUT
+                paciente = Paciente.objects.get(rut=rut)
+                # Obtener o crear la nota existente
+                nota_existente, created = Notas.objects.get_or_create(paciente=paciente)
 
-            if nota_texto:  
-                # Actualizar la nota si se ha proporcionado texto
-                nota_existente.notas = nota_texto
-                nota_existente.save()
+                if nota_texto:  
+                    # Actualizar la nota si se ha proporcionado texto
+                    nota_existente.notas = nota_texto
+                    nota_existente.save()
 
-        except Paciente.DoesNotExist:
-            error = "No se encontró ningún paciente con ese RUT."
+            except Paciente.DoesNotExist:
+                error = "No se encontró ningún paciente con ese RUT."
 
-    # Renderizar la plantilla con los datos del paciente y la nota
-    return render(request, 'HistorialClinicoPacientes.html', {
-        'paciente': paciente,
-        'error': error,
-        'nota': nota_existente.notas if nota_existente else ''  # Cambiamos None por ''
-    })
+        # Renderizar la plantilla con los datos del paciente y la nota
+        return render(request, 'HistorialClinicoPacientes.html', {
+            'paciente': paciente,
+            'error': error,
+            'nota': nota_existente.notas if nota_existente else ''  # Cambiamos None por ''
+        })
+    else:
+        return redirect('login')
 
 def VerInformePacientes(request):
-    if 'nombre_clinico' not in request.session:
+    if 'nombre_clinico' in request.session:
+        nombre_clinico = request.session['nombre_clinico']
+        es_admin = request.session.get('es_admin', False)
+        if 'nombre_clinico' not in request.session:
+            return redirect('login')
+        
+        nombre_clinico = request.session['nombre_clinico']
+        rut = request.GET.get('rut', None)
+        context = {'nombre_clinico': nombre_clinico}
+
+        if rut:
+            try:
+                paciente = Paciente.objects.get(rut=rut)
+                formulario = formularioClinico.objects.get(paciente=paciente)
+                #escala Semaforo Integrada
+                semaforo = json.loads(formulario.preguntas1)
+                mensajeSemaforo = EscalaSemaforo(semaforo)
+                opinionproblemaEnfermead = CreenciaDolor(formulario.opinionProblemaEnfermeda)
+                #mensaje apoyo 
+                mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
+                
+                #mensaje caracteristicas de dolor
+                caracteristicasDolor = json.loads(formulario.caracteristicasDeDolor)
+                MensajecaracteristicasDolor = Neuropaticas(caracteristicasDolor)
+
+                #mensaje fibromialgia
+                condicionesSalud1 = json.loads(formulario.TiposDeEnfermedades)
+                MensajeCondicionesSalud = condicionesSalud(condicionesSalud1)
+
+                # mensaje de evitacion 
+                respuestas = formulario.parametros
+                mensajeEVPER = Respuesta_evitativo_persistente(json.loads(respuestas)) 
+                
+                #preocupacion Consumo
+                preocupacionNicotina = formulario.nicotinaPreocupacion
+                MensajeNicotina = "no tiene" if preocupacionNicotina is None else preocupacionNicotina
+                
+                #preocupacion alchol
+                preocupacionAlcohol = formulario.AlcoholPreocupacion
+                mensajeAcoholP = "no tiene" if preocupacionAlcohol is None else preocupacionAlcohol
+                
+                #preocupacion drogas 
+                preocupacionDrogas = formulario.DrogasPreocupacion
+                mensajeDrogasP = "no tiene" if preocupacionDrogas is None else preocupacionDrogas
+                
+                #preocupacion marihuana
+                preocupacionMarihuana = formulario.marihuanaPreocupacion
+                mensajeMarihuanaP = "no tiene" if preocupacionMarihuana is None else preocupacionMarihuana
+                
+                #uso importante de JsonLoad, esta es la unica manera
+                #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
+                
+                
+                
+                
+                # el cuerpo humano Bien mostrado 
+                ubicacionDolor = json.loads(formulario.ubicacionDolor)
+                intensidadDolor = json.loads(formulario.dolorIntensidad)
+                ubicacion_intensidad_list = ""
+                min_len = min(len(ubicacionDolor), len(intensidadDolor))
+                for i in range(min_len):
+                    ubicacion = ubicacionDolor[i]
+                    intensidad = intensidadDolor[i]
+                    ubicacion_intensidad_list += f"<li><strong>{ubicacion}:</strong> {intensidad}</li>\n"
+                if len(ubicacionDolor) != len(intensidadDolor):
+                    ubicacion_intensidad_list += "<li><strong>Error:</strong> Las listas no coinciden en longitud</li>\n"
+
+                
+                
+                
+                with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
+                    informe_template = template_file.read()
+
+                informe = informe_template.format(
+                    paciente=paciente,
+                    formulario=formulario,
+                    mensajeApoyo=mensajeApoyo,
+                    ubicacion_intensidad=ubicacion_intensidad_list,
+                    mensajeSemaforo=mensajeSemaforo,
+                    MensajecaracteristicasDolor=MensajecaracteristicasDolor,
+                    MensajeCondicionesSalud=MensajeCondicionesSalud,
+                    opinionproblemaEnfermead=opinionproblemaEnfermead,
+                    mensajeEVPER=mensajeEVPER,
+                    MensajeNicotina=MensajeNicotina,
+                    mensajeAcoholP=mensajeAcoholP,
+                    mensajeDrogasP=mensajeDrogasP,
+                    mensajeMarihuanaP=mensajeMarihuanaP
+                    
+                )
+
+
+                context['informe'] = informe
+                context['encontrado'] = True
+
+            except (Paciente.DoesNotExist, formularioClinico.DoesNotExist):
+                context['encontrado'] = False
+                context['mensaje'] = "No se encontró el paciente o su formulario clínico"
+
+        return render(request, 'FichaPacientes.html', context)
+    else:
         return redirect('login')
-    
-    nombre_clinico = request.session['nombre_clinico']
-    rut = request.GET.get('rut', None)
-    context = {'nombre_clinico': nombre_clinico}
-
-    if rut:
-        try:
-            paciente = Paciente.objects.get(rut=rut)
-            formulario = formularioClinico.objects.get(paciente=paciente)
-            #escala Semaforo Integrada
-            semaforo = json.loads(formulario.preguntas1)
-            mensajeSemaforo = EscalaSemaforo(semaforo)
-            opinionproblemaEnfermead = CreenciaDolor(formulario.opinionProblemaEnfermeda)
-            #mensaje apoyo 
-            mensajeApoyo = evaluar_necesidad_apoyo(formulario.nesesidadDeApoyo)
-            
-            #mensaje caracteristicas de dolor
-            caracteristicasDolor = json.loads(formulario.caracteristicasDeDolor)
-            MensajecaracteristicasDolor = Neuropaticas(caracteristicasDolor)
-
-            #mensaje fibromialgia
-            condicionesSalud1 = json.loads(formulario.TiposDeEnfermedades)
-            MensajeCondicionesSalud = condicionesSalud(condicionesSalud1)
-
-            # mensaje de evitacion 
-            respuestas = formulario.parametros
-            mensajeEVPER = Respuesta_evitativo_persistente(json.loads(respuestas)) 
-            
-            #preocupacion Consumo
-            preocupacionNicotina = formulario.nicotinaPreocupacion
-            MensajeNicotina = "no tiene" if preocupacionNicotina is None else preocupacionNicotina
-            
-            #preocupacion alchol
-            preocupacionAlcohol = formulario.AlcoholPreocupacion
-            mensajeAcoholP = "no tiene" if preocupacionAlcohol is None else preocupacionAlcohol
-            
-            #preocupacion drogas 
-            preocupacionDrogas = formulario.DrogasPreocupacion
-            mensajeDrogasP = "no tiene" if preocupacionDrogas is None else preocupacionDrogas
-            
-            #preocupacion marihuana
-            preocupacionMarihuana = formulario.marihuanaPreocupacion
-            mensajeMarihuanaP = "no tiene" if preocupacionMarihuana is None else preocupacionMarihuana
-            
-            #uso importante de JsonLoad, esta es la unica manera
-            #que carguen bien las respuestas Json De el Atribuo JsonField de la base de Datos
-            
-            
-            
-            
-            # el cuerpo humano Bien mostrado 
-            ubicacionDolor = json.loads(formulario.ubicacionDolor)
-            intensidadDolor = json.loads(formulario.dolorIntensidad)
-            ubicacion_intensidad_list = ""
-            min_len = min(len(ubicacionDolor), len(intensidadDolor))
-            for i in range(min_len):
-                ubicacion = ubicacionDolor[i]
-                intensidad = intensidadDolor[i]
-                ubicacion_intensidad_list += f"<li><strong>{ubicacion}:</strong> {intensidad}</li>\n"
-            if len(ubicacionDolor) != len(intensidadDolor):
-                ubicacion_intensidad_list += "<li><strong>Error:</strong> Las listas no coinciden en longitud</li>\n"
-
-            
-            
-            
-            with open('informe/templates/informe.html', 'r', encoding='utf-8') as template_file:
-                informe_template = template_file.read()
-
-            informe = informe_template.format(
-                paciente=paciente,
-                formulario=formulario,
-                mensajeApoyo=mensajeApoyo,
-                ubicacion_intensidad=ubicacion_intensidad_list,
-                mensajeSemaforo=mensajeSemaforo,
-                MensajecaracteristicasDolor=MensajecaracteristicasDolor,
-                MensajeCondicionesSalud=MensajeCondicionesSalud,
-                opinionproblemaEnfermead=opinionproblemaEnfermead,
-                mensajeEVPER=mensajeEVPER,
-                MensajeNicotina=MensajeNicotina,
-                mensajeAcoholP=mensajeAcoholP,
-                mensajeDrogasP=mensajeDrogasP,
-                mensajeMarihuanaP=mensajeMarihuanaP
-                 
-            )
-
-
-            context['informe'] = informe
-            context['encontrado'] = True
-
-        except (Paciente.DoesNotExist, formularioClinico.DoesNotExist):
-            context['encontrado'] = False
-            context['mensaje'] = "No se encontró el paciente o su formulario clínico"
-
-    return render(request, 'FichaPacientes.html', context)
 
 
 

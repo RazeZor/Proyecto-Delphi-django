@@ -4,10 +4,15 @@ from django.contrib import messages
 
 # Create your views here.
 def MostrarPacientes(request):
-    paciente = Paciente.objects.all()
-    if not paciente.exists():
-        messages.error(request, "No hay pacientes registrados")
-    return render(request, 'ListaPacientes.html', {'paciente': paciente})
+    if 'nombre_clinico' in request.session:
+        nombre_clinico = request.session['nombre_clinico']
+        es_admin = request.session.get('es_admin', False)
+        paciente = Paciente.objects.all()
+        if not paciente.exists():
+            messages.error(request, "No hay pacientes registrados")
+        return render(request, 'ListaPacientes.html', {'paciente': paciente})
+    else:
+        return redirect('login')
 
 def EliminarPaciente(request):
     if request.method == 'POST':
