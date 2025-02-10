@@ -198,6 +198,7 @@
                     });
                 </script>
                 <input type="hidden" name="duracion_sesion" id="duracionSesionInput" value="00:00:00">
+                
                 <div class="step">
                     <h2 class="mb-4">Datos de ingreso de paciente</h2>
                     <div class="row">
@@ -616,60 +617,60 @@
                 </div>
                 
                 <script>
-                        const cuerpo = document.getElementById("cuerpoHumano");
-                        const partesDelCuerpo = [
-                //VISTA FRONTAL
-                { nombre: "VFCara", x: 42, y: 0, ancho: 34, alto: 51 },  // Cabeza FRONTAL
-                { nombre: "VFCuello ", x: 29, y: 50,ancho :52,alto:20}, // cuello FRONTAL
-                { nombre: "VFPectoral derecho", x: 23, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo FRONTAL
-                { nombre: "VFPectoral izquierdo", x: 58, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho FRONTAL
-                { nombre: "VFHombro derecho", x: 4, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo FRONTAL
-                { nombre: "VFHombro izquierdo", x: 92, y: 70, ancho: 19, alto: 39 }, // Hombro derecho FRONTAL
-                { nombre: "VFBrazo derecho", x: 4, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo FRONTAL
-                { nombre: "VFBrazo izquierdo", x: 92, y: 108, ancho: 21, alto: 40 }, // Brazo derecho FRONTAL
-                { nombre: "VFAntebrazo derecho", x: 1, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo FRONTAL
-                { nombre: "VFAntebrazo izquierdo", x: 92, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho FRONTAL
-                { nombre: "VFMano derecha", x: 0, y: 207, ancho: 20, alto: 39 }, // Man izquierdo FRONTAL
-                { nombre: "VFMano izquierda", x: 97, y: 207, ancho: 20, alto: 39 }, // Man derecho FRONTAL
-                { nombre: "VFAbdomen Superior derecho", x: 28, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo FRONTAL
-                { nombre: "VFAbdomen Superior izquierdo", x: 58, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho FRONTAL
-                { nombre: "VFAbdomen Inferior derecho", x: 28, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo FRONTAL
-                { nombre: "VFAbdomen Inferior izquierdo", x: 58, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho FRONTAL
-                { nombre: "VFPelvis", x: 27, y: 176, ancho: 63, alto: 27 }, // Pelvis FRONTAL
-                { nombre: "VFGenitales", x: 52, y: 202, ancho: 13, alto: 8 }, // Genitales FRONTAL
-                { nombre: "VFMuslo derecho", x: 24, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo FRONTAL
-                { nombre: "VFMuslo izquierdo", x: 64, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho FRONTAL
-                { nombre: "VFRodilla derecha", x: 27, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquiera FRONTAL
-                { nombre: "VFRodilla izquierda", x: 64, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha FRONTAL
-                { nombre: "VFPierna derecha", x: 27, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierdo FRONTAL
-                { nombre: "VFPierna izquierda", x: 64, y: 307, ancho: 26, alto: 93 }, // Pierna Derecho FRONTAL
-                { nombre: "VFTalon derecha", x: 29, y: 400, ancho: 24, alto: 12 }, // Talon Izquierdo FRONTAL
-                { nombre: "VFTalon izquierda", x: 64, y: 400, ancho: 26, alto: 12 }, // Talon Derecho FRONTAL 
-                { nombre: "VFPie derec", x: 29, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo FRONTAL
-                { nombre: "VFPie izquierdo", x: 64, y: 412, ancho: 26, alto: 37 }, // Pie Derecho FRONTAL
-                //VISTA TRASERA
-                { nombre: "VTCabeza", x: 211, y: 0, ancho: 34, alto: 51 },  // Cabeza TRASERA
-                { nombre: "VTcuello", x: 198, y: 50, ancho: 52, alto: 20 }, // cuello TRASERA
-                { nombre: "VTEspalda Alta", x: 192, y: 70, ancho: 70, alto: 70 }, // Espalda Alta
-                { nombre: "VTHombro izquierdo", x: 173, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo TRASERA
-                { nombre: "VTHombro derecho", x: 261, y: 70, ancho: 19, alto: 39 }, // Hombro derecho TRASERA
-                { nombre: "VTBrazo izquierdo", x: 173, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo TRASERA
-                { nombre: "VTBrazo derecho", x: 261, y: 108, ancho: 21, alto: 40 }, // Brazo derecho TRASERA
-                { nombre: "VTAntebrazo izquierdo", x: 170, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo TRASERA
-                { nombre: "VTAntebrazo derecho", x: 261, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho TRASERA
-                { nombre: "VTMano izquierda", x: 169, y: 207, ancho: 20, alto: 39 }, // Man izquierdo TRASERA
-                { nombre: "VTMano derecha", x: 266, y: 207, ancho: 20, alto: 39 }, // Man derecho TRASERA
-                { nombre: "VTEspalda Baja", x: 197, y: 140, ancho: 63, alto: 32 }, // Abdomen Inferior Izquierdo TRASERA
-                { nombre: "VTGluteo Izquierdo", x: 196, y: 176, ancho: 30, alto: 27 }, // Pelvis TRASERA
-                { nombre: "VTGluteo Derecho", x: 226, y: 176, ancho: 33, alto: 27 }, // Pelvis TRASERA
-                { nombre: "VTMuslo Izquierdo", x: 193, y: 202, ancho: 29, alto: 105 }, // Muslo Izquierdo TRASERA
-                { nombre: "VTMuslo Derecho", x: 233, y: 202, ancho: 29, alto: 105 }, // Muslo Derecho TRASERA
-                { nombre: "VTPierna Izquierda", x: 196, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierda TRASERA
-                { nombre: "VTPierna Derecha", x: 233, y: 307, ancho: 26, alto: 93 }, // Pierna Derecha TRASERA
-                { nombre: "VTPie Izquierdo", x: 198, y: 398, ancho: 24, alto: 50 }, // Pie Izquierdo TRASERA
-                { nombre: "VTPie Derecho", x: 233, y: 398, ancho: 26, alto: 50 }, // Pie Derecho TRASERA
-            ];
-                
+                    const cuerpo = document.getElementById("cuerpoHumano");
+                    const partesDelCuerpo = [
+                        //VISTA FRONTAL
+                        { nombre: "VFCara", x: 42, y: 0, ancho: 34, alto: 51 },  // Cabeza FRONTAL
+                        { nombre: "VFCuello ", x: 29, y: 50,ancho :52,alto:20}, // cuello FRONTAL
+                        { nombre: "VFPectoral derecho", x: 23, y: 70, ancho: 35, alto: 39 }, // Pectoral Izquierdo FRONTAL
+                        { nombre: "VFPectoral izquierdo", x: 58, y: 70, ancho: 35, alto: 39 }, // Pectoral derecho FRONTAL
+                        { nombre: "VFHombro derecho", x: 4, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo FRONTAL
+                        { nombre: "VFHombro izquierdo", x: 92, y: 70, ancho: 19, alto: 39 }, // Hombro derecho FRONTAL
+                        { nombre: "VFBrazo derecho", x: 4, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo FRONTAL
+                        { nombre: "VFBrazo izquierdo", x: 92, y: 108, ancho: 21, alto: 40 }, // Brazo derecho FRONTAL
+                        { nombre: "VFAntebrazo derecho", x: 1, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo FRONTAL
+                        { nombre: "VFAntebrazo izquierdo", x: 92, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho FRONTAL
+                        { nombre: "VFMano derecha", x: 0, y: 207, ancho: 20, alto: 39 }, // Man izquierdo FRONTAL
+                        { nombre: "VFMano izquierda", x: 97, y: 207, ancho: 20, alto: 39 }, // Man derecho FRONTAL
+                        { nombre: "VFAbdomen Superior derecho", x: 28, y: 109, ancho: 31, alto: 40 }, // Abdomen Superior Izquierdo FRONTAL
+                        { nombre: "VFAbdomen Superior izquierdo", x: 58, y: 109, ancho: 32, alto: 40 }, // Abdomen Superior Derecho FRONTAL
+                        { nombre: "VFAbdomen Inferior derecho", x: 28, y: 149, ancho: 31, alto: 28 }, // Abdomen Inferior Izquierdo FRONTAL
+                        { nombre: "VFAbdomen Inferior izquierdo", x: 58, y: 149, ancho: 32, alto: 28 }, // Abdomen Inferior Derecho FRONTAL
+                        { nombre: "VFPelvis", x: 27, y: 176, ancho: 63, alto: 27 }, // Pelvis FRONTAL
+                        { nombre: "VFGenitales", x: 52, y: 202, ancho: 13, alto: 8 }, // Genitales FRONTAL
+                        { nombre: "VFMuslo derecho", x: 24, y: 202, ancho: 29, alto: 85 }, // Muslo Izquierdo FRONTAL
+                        { nombre: "VFMuslo izquierdo", x: 64, y: 202, ancho: 29, alto: 85 }, // Muslo Derecho FRONTAL
+                        { nombre: "VFRodilla derecha", x: 27, y: 287, ancho: 29, alto: 20 }, // Rodilla Izquiera FRONTAL
+                        { nombre: "VFRodilla izquierda", x: 64, y: 287, ancho: 29, alto: 20 }, // Rodilla Derecha FRONTAL
+                        { nombre: "VFPierna derecha", x: 27, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierdo FRONTAL
+                        { nombre: "VFPierna izquierda", x: 64, y: 307, ancho: 26, alto: 93 }, // Pierna Derecho FRONTAL
+                        { nombre: "VFTalon derecha", x: 29, y: 400, ancho: 24, alto: 12 }, // Talon Izquierdo FRONTAL
+                        { nombre: "VFTalon izquierda", x: 64, y: 400, ancho: 26, alto: 12 }, // Talon Derecho FRONTAL 
+                        { nombre: "VFPie derec", x: 29, y: 412, ancho: 24, alto: 37 }, // Pie Izquierdo FRONTAL
+                        { nombre: "VFPie izquierdo", x: 64, y: 412, ancho: 26, alto: 37 }, // Pie Derecho FRONTAL
+                        //VISTA TRASERA
+                        { nombre: "VTCabeza", x: 211, y: 0, ancho: 34, alto: 51 },  // Cabeza TRASERA
+                        { nombre: "VTcuello", x: 198, y: 50, ancho: 52, alto: 20 }, // cuello TRASERA
+                        { nombre: "VTEspalda Alta", x: 192, y: 70, ancho: 70, alto: 70 }, // Espalda Alta
+                        { nombre: "VTHombro izquierdo", x: 173, y: 70, ancho: 19, alto: 39 }, // Hombro izquierdo TRASERA
+                        { nombre: "VTHombro derecho", x: 261, y: 70, ancho: 19, alto: 39 }, // Hombro derecho TRASERA
+                        { nombre: "VTBrazo izquierdo", x: 173, y: 108, ancho: 22, alto: 40 }, // Brazo izquierdo TRASERA
+                        { nombre: "VTBrazo derecho", x: 261, y: 108, ancho: 21, alto: 40 }, // Brazo derecho TRASERA
+                        { nombre: "VTAntebrazo izquierdo", x: 170, y: 148, ancho: 24, alto: 60 }, // Antebrazo izquierdo TRASERA
+                        { nombre: "VTAntebrazo derecho", x: 261, y: 148, ancho: 24, alto: 60 }, // Antebrazo derecho TRASERA
+                        { nombre: "VTMano izquierda", x: 169, y: 207, ancho: 20, alto: 39 }, // Man izquierdo TRASERA
+                        { nombre: "VTMano derecha", x: 266, y: 207, ancho: 20, alto: 39 }, // Man derecho TRASERA
+                        { nombre: "VTEspalda Baja", x: 197, y: 140, ancho: 63, alto: 32 }, // Abdomen Inferior Izquierdo TRASERA
+                        { nombre: "VTGluteo Izquierdo", x: 196, y: 176, ancho: 30, alto: 27 }, // Pelvis TRASERA
+                        { nombre: "VTGluteo Derecho", x: 226, y: 176, ancho: 33, alto: 27 }, // Pelvis TRASERA
+                        { nombre: "VTMuslo Izquierdo", x: 193, y: 202, ancho: 29, alto: 105 }, // Muslo Izquierdo TRASERA
+                        { nombre: "VTMuslo Derecho", x: 233, y: 202, ancho: 29, alto: 105 }, // Muslo Derecho TRASERA
+                        { nombre: "VTPierna Izquierda", x: 196, y: 307, ancho: 26, alto: 93 }, // Pierna Izquierda TRASERA
+                        { nombre: "VTPierna Derecha", x: 233, y: 307, ancho: 26, alto: 93 }, // Pierna Derecha TRASERA
+                        { nombre: "VTPie Izquierdo", x: 198, y: 398, ancho: 24, alto: 50 }, // Pie Izquierdo TRASERA
+                        { nombre: "VTPie Derecho", x: 233, y: 398, ancho: 26, alto: 50 }, // Pie Derecho TRASERA
+                    ];
+                        
                             // Objeto para mantener un registro de los elementos creados
                             const elementosPorNombre = {};
                 
