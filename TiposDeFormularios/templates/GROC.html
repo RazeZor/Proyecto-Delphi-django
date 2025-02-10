@@ -37,18 +37,34 @@
                     <p class="mb-2"><strong>Cobertura:</strong> {{ paciente.cobertura_de_salud }}</p>
                 </div>
 
-                <div id="puntajes">
-                    <h3>Puntajes GROC</h3>
+                <div id="puntajes" class="bg-white p-6 rounded-lg shadow-lg max-w-4xl mx-auto mt-6">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">Puntajes GROC</h3>
+                    
                     {% if puntajes %}
-                        <ul>
-                            {% for puntaje in puntajes %}
-                                <li>Sesion {{ forloop.counter }}: {{ puntaje.puntaje }}</li>
-                            {% endfor %}
-                        </ul>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full table-auto border-collapse">
+                                <thead class="bg-blue-800 text-white">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-sm font-medium">Sesión</th>
+                                        <th class="px-6 py-3 text-center text-sm font-medium">Puntaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for puntaje in puntajes %}
+                                        <tr class="border-b hover:bg-gray-100">
+                                            <td class="px-6 py-3 text-left">{{ forloop.counter }}</td>
+                                            <td class="px-6 py-3 text-center">{{ puntaje.puntaje }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     {% else %}
-                        <p>No hay puntajes registrados.</p>
+                        <p class="text-center text-gray-500 mt-4">No hay puntajes registrados.</p>
                     {% endif %}
                 </div>
+                
+                
             </div>
             
             
