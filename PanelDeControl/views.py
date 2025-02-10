@@ -45,9 +45,8 @@ def cerrar_sesion(request):
     # Elimina todos los datos de la sesión
     request.session.flush()
     
-    # Redirige al login (o a cualquier otra página que desees)
-    return redirect('login')  # Asegúrate de que 'login' sea el nombre de tu URL de login
-
+    response = redirect('login')  # Redirige a la página de login
+    return response
 
 
 def HistorialClinico(request):
