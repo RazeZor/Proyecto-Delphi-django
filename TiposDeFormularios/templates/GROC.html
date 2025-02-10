@@ -18,15 +18,6 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{%url 'ver' %}">
-                                <i class="fas fa-users me-1"></i>Ver Clínicos
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
         </nav>
     </header>
@@ -40,16 +31,26 @@
                     <input type="text" id="rut" class="w-full p-2 border rounded-lg" name="rut" value="{{ rut }}" readonly>
                 </div>
                 <div id="patient-info" class="mt-4">
-                    <p class="mb-2"><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+                    <p class="mb-2"><strong>Nombre:</strong> {{ paciente.nombre }} {{paciente.apellido}}</p>
                     <p class="mb-2"><strong>Género:</strong> {{ paciente.genero }}</p>
                     <p class="mb-2"><strong>Profesión:</strong> {{ paciente.profesion }}</p>
                     <p class="mb-2"><strong>Cobertura:</strong> {{ paciente.cobertura_de_salud }}</p>
                 </div>
 
-                <div id="puntajaSesiones" class="mt-4">
-                    
+                <div id="puntajes">
+                    <h3>Puntajes GROC</h3>
+                    {% if puntajes %}
+                        <ul>
+                            {% for puntaje in puntajes %}
+                                <li>Sesion {{ forloop.counter }}: {{ puntaje.puntaje }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No hay puntajes registrados.</p>
+                    {% endif %}
                 </div>
             </div>
+            
             
             
             <form id="groc-form" method='POST'>
@@ -120,93 +121,67 @@
                 });
             </script>
         </div>
+        <div id="chart-container">
+            <canvas id="grocChart"></canvas>
+        </div>
+       
     </main>
 
     <footer class="bg-gray-800 text-white p-4 text-center">
         <p>&copy; 2024 Sistema de Seguimiento Clínico GROC</p>
     </footer>
 
+   
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Obtener los valores inyectados por Django en el HTML
-            const rut = "{{ rut }}";  // Valor del rut pasado desde el backend
-            const pacienteNombre = "{{ paciente.nombre }}";  // Nombre del paciente
-            const pacienteEdad = "{{ paciente.edad }}";  // Edad del paciente
-            const pacienteCobertura = "{{ paciente.cobertura_de_salud }}";  // Cobertura de salud del paciente
-            const pacienteProfesion = "{{ paciente.profesion }}";  // Profesión del paciente
-        
-            // Establecer el valor del campo RUT
-            const rutField = document.getElementById('rut');
-            rutField.value = rut;  // Establecer el RUT en el campo
-        
-            // Mostrar detalles del paciente
-            const patientDetails = document.getElementById('patient-details');
-            const patientInfo = document.getElementById('patient-info');
-            
-            // Asegurarse de que todos los datos del paciente estén disponibles
-            if (pacienteNombre && pacienteEdad && pacienteCobertura && pacienteProfesion) {
-                patientDetails.classList.remove('hidden');  // Mostrar los detalles del paciente
-                patientInfo.innerHTML = `
-                    <strong>Nombre:</strong> ${paciente.Nombre} <br>
-                    <strong>Edad:</strong> ${paciente.Edad} <br>
-                    <strong>Cobertura de Salud:</strong> ${paciente.Cobertura} <br>
-                    <strong>Profesión:</strong> ${paciente.Profesion} <br>
-                `;
-            } else {
-                patientDetails.classList.add('hidden');  // Ocultar los detalles si faltan datos
+            // Obtener los datos de puntajes desde Django, como un arreglo de objetos
+            const puntajes = {{ puntajes|safe }};  // Inyectamos los datos de puntajes desde Django
+    
+            // Extraer las sesiones y los puntajes de los datos
+            const sesiones = puntajes.map((item, index) => `Sesión ${index + 1}`);
+            const valores = puntajes.map(item => item.puntaje);
+    
+            // Configuración del gráfico
+            const ctx = document.getElementById('grocChart').getContext('2d');
+const grocChart = new Chart(ctx, {
+    type: 'line', 
+    data: {
+        labels: sesiones,
+        datasets: [{
+            label: 'Puntaje GROC',
+            data: valores,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            fill: false,
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,  // Esta opción permite ajustar el gráfico al contenedor
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Puntaje'
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Sesiones'
+                }
             }
-        
-            
-            // Progress Chart (place holder)
-            const ctx = document.getElementById('progress-chart').getContext('2d');
-            const progressChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Inicial', 'Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
-                    datasets: [{
-                        label: 'Progreso GROC',
-                        data: [0, -3, 0, 3, 5],
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: false
-                        }
-                    }
-                }
-            });
-        
-            // Form Submission
-            document.getElementById('groc-form').addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Obtener los valores de los campos
-                const rut = document.getElementById('rut').value; // Suponiendo que 'rut' es el campo del paciente
-                const currentGrocValue = document.getElementById('puntajeGroc').value; // Valor actual de la escala GROC
-                const date = document.getElementById('evaluation-date').value; // Fecha de la evaluación
-                // Verificar si los valores necesarios están disponibles
-                if (rut && currentGrocValue !== null && date) {
-                    // Mostrar la información en un alert
-                    alert(`Evaluación guardada para el paciente ${rut}:\nValor GROC: ${currentGrocValue}\nFecha: ${date}\nNota de Sesión: ${puntajaSesiones}`);
-                } else {
-                    // Mostrar un mensaje si los campos no están completos
-                    alert('Por favor, seleccione un paciente, un valor en la escala GROC y una fecha.');
-                }
-            });
-
-        
-            // Logout
-            document.getElementById('logout').addEventListener('click', () => {
-                alert('Sesión cerrada');
-                // Implementa la lógica de logout real.
-            });
+        }
+    }
+});     
         });
-        
-        
     </script>
+    
+        
+        
+
 </body>
 </html>

@@ -91,19 +91,18 @@ body {
 }
 
 
-/* Chart and Progress Styles */
-#progress-chart {
-    background-color: var(--light-blue);
-    border-radius: 8px;
-    padding: 10px;
+
+#chart-container {
+    height: 600px; /* Puedes aumentar la altura según lo necesites */
+    width: 100%;   /* Se asegura de que el contenedor ocupe todo el ancho disponible */
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 1.3rem;
-    }
+canvas {
+    width: 100% !important;   /* Asegura que el canvas ocupe el 100% del ancho del contenedor */
+    height: 100% !important;  /* Asegura que el canvas ocupe el 100% del alto del contenedor */
 }
+
+
 
 /* Footer */
 footer {

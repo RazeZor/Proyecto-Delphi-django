@@ -1,37 +1,9 @@
-from datetime import datetime
 import json
 from django.shortcuts import render, get_object_or_404
 from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-import json
-
-def RenderizarPSFS(request):
-    rut = request.GET.get('rut', '')  
-    paciente = get_object_or_404(Paciente, rut=rut)
-    formularios = formularioClinico.objects.filter(paciente=paciente)
-    
-    if formularios.exists():
-        formulario = formularios.first()  
-        actividades = json.loads(formulario.actividades_afectadas) 
-        
-        # Asignar las actividades a variables
-        actividad1 = actividades[0] if len(actividades) > 0 else ''
-        actividad2 = actividades[1] if len(actividades) > 1 else ''
-        actividad3 = actividades[2] if len(actividades) > 2 else ''
-        
-    else:
-        actividad1 = actividad2 = actividad3 = ''
-    
-    return render(request, 'PSFS.html', {
-        'rut': rut, 
-        'actividad1': actividad1,
-        'actividad2': actividad2,
-        'actividad3': actividad3,
-    })
-
-
 from datetime import datetime
 
 def RenderizarGROC(request):
@@ -41,15 +13,22 @@ def RenderizarGROC(request):
     # Verificamos si ya existe una evaluación en la tabla Groc para este paciente
     evaluacion_existente = Groc.objects.filter(paciente=paciente).exists()
 
+    # Obtener los puntajes del paciente, si existe una evaluación
+    puntajes = []
+    if evaluacion_existente:
+        # Obtiene los puntajes de la evaluación del paciente
+        groc_obj = Groc.objects.get(paciente=paciente)
+        puntajes = groc_obj.puntajeGroc  # Esto devuelve una lista de diccionarios
+    
     if request.method == 'POST':
-        fecha_creacion = datetime.now().date()  # Usamos solo la fecha (sin la hora)
+        fecha_creacion = datetime.now().date()
         puntajeGroc = request.POST.get('puntajeGroc')  # Valor único de la escala
         action = request.POST.get('action', '')  # Obtenemos la acción
 
         # Validar campos
         if not puntajeGroc:
             messages.error(request, "Todos los campos son obligatorios.")
-            return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente})
+            return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente, 'puntajes': puntajes})
 
         if action == 'guardar':
             # Acción de guardar (si no existe una evaluación anterior)
@@ -76,7 +55,9 @@ def RenderizarGROC(request):
                 messages.error(request, "No se encontró la evaluación para actualizar.")
             return redirect('historialClinico')
 
-    return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente})
+    return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente, 'puntajes': puntajes, 'contador': 1})
+
+
 
 def guardar_psfs(request):
     if request.method == 'POST':
@@ -109,3 +90,27 @@ def guardar_psfs(request):
         return redirect('panel')  
     
     return HttpResponse('Método no permitido', status=405)
+
+def RenderizarPSFS(request):
+    rut = request.GET.get('rut', '')  
+    paciente = get_object_or_404(Paciente, rut=rut)
+    formularios = formularioClinico.objects.filter(paciente=paciente)
+    
+    if formularios.exists():
+        formulario = formularios.first()  
+        actividades = json.loads(formulario.actividades_afectadas) 
+        
+        # Asignar las actividades a variables
+        actividad1 = actividades[0] if len(actividades) > 0 else ''
+        actividad2 = actividades[1] if len(actividades) > 1 else ''
+        actividad3 = actividades[2] if len(actividades) > 2 else ''
+        
+    else:
+        actividad1 = actividad2 = actividad3 = ''
+    
+    return render(request, 'PSFS.html', {
+        'rut': rut, 
+        'actividad1': actividad1,
+        'actividad2': actividad2,
+        'actividad3': actividad3,
+    })
