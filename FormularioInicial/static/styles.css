@@ -302,7 +302,6 @@
   color: white !important;
   font-weight: bold;
   font-size: 1.8rem;
-  text-transform: uppercase; /* Hace que el texto sea más llamativo */
   letter-spacing: 1px; /* Separa ligeramente las letras */
 }
 
@@ -324,10 +323,7 @@
   transform: scale(1.1); /* Un ligero zoom al pasar el mouse */
 }
 
-.navbar-toggler {
-  border: none;
-  outline: none;
-}
+
 
 @media (max-width: 991px) { /* Ajustes para móviles */
   .navbar {

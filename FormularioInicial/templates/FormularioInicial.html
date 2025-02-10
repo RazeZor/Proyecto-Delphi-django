@@ -23,17 +23,10 @@
 <body class="bg-light">
     <header>
         <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="{% url 'panel' %}">Formulario Clinico</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <i class="navbar-brand"  id = "tiempo">Tiempo : 00:00:00</i>
-                    </ul>
-                </div>
-            </div>
+            <a href="{%url 'panel' %}">
+                <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
+                </i> 
+            </a>
         </nav>
     </header>
     <script>
