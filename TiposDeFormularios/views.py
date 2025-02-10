@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from django.shortcuts import render, get_object_or_404
 from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc
@@ -31,20 +32,22 @@ def RenderizarPSFS(request):
     })
 
 
+from datetime import datetime
+
 def RenderizarGROC(request):
     rut = request.GET.get('rut', '')  
     paciente = get_object_or_404(Paciente, rut=rut)
 
     # Verificamos si ya existe una evaluación en la tabla Groc para este paciente
     evaluacion_existente = Groc.objects.filter(paciente=paciente).exists()
-    evaluacion_no_existente = Groc.objects.filter(paciente=paciente).exists()
+
     if request.method == 'POST':
-        fecha_creacion = request.POST.get('fecha_creacion')
+        fecha_creacion = datetime.now().date()  # Usamos solo la fecha (sin la hora)
         puntajeGroc = request.POST.get('puntajeGroc')  # Valor único de la escala
         action = request.POST.get('action', '')  # Obtenemos la acción
 
         # Validar campos
-        if not fecha_creacion or puntajeGroc is None:
+        if not puntajeGroc:
             messages.error(request, "Todos los campos son obligatorios.")
             return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente})
 
@@ -56,11 +59,11 @@ def RenderizarGROC(request):
                 puntajeGroc=[{'puntaje': int(puntajeGroc)}]  # Guardamos el primer puntaje en la lista
             )
             messages.success(request, "Evaluación registrada correctamente.")
+            return redirect('historialClinico')
 
         elif action == 'actualizar':
-            # Acción de actualización (agregar puntaje a la lista existente)
             try:
-                evaluacion = Groc.objects.get(fecha_creacion=fecha_creacion, paciente=paciente)
+                evaluacion = Groc.objects.get(paciente=paciente)
                 
                 if isinstance(evaluacion.puntajeGroc, list):
                     evaluacion.puntajeGroc.append({'puntaje': int(puntajeGroc)})
@@ -71,10 +74,9 @@ def RenderizarGROC(request):
                 messages.success(request, "Evaluación actualizada correctamente.")
             except Groc.DoesNotExist:
                 messages.error(request, "No se encontró la evaluación para actualizar.")
+            return redirect('historialClinico')
 
     return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente})
-
-
 
 def guardar_psfs(request):
     if request.method == 'POST':

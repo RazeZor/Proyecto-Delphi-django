@@ -45,6 +45,10 @@
                     <p class="mb-2"><strong>Profesión:</strong> {{ paciente.profesion }}</p>
                     <p class="mb-2"><strong>Cobertura:</strong> {{ paciente.cobertura_de_salud }}</p>
                 </div>
+
+                <div id="puntajaSesiones" class="mt-4">
+                    
+                </div>
             </div>
             
             
@@ -79,10 +83,6 @@
             
                 <div class="mt-6 bg-white shadow-lg rounded-lg p-6">
                     <h2 class="text-xl font-semibold mb-4 text-blue-800">Registrar Evaluación</h2>
-                    <div>
-                        <label class="block mb-2">Fecha de Evaluación</label>
-                        <input type="date" id="evaluation-date" name="fecha_creacion" class="w-full p-2 border rounded-lg" required>
-                    </div>
                     <div>
                         <label class="block mb-2">Nota Adicional (Opcional)</label>
                         <textarea id="evaluation-notes" name="nota_adicional" class="w-full p-2 border rounded-lg" rows="3"></textarea>
@@ -183,19 +183,21 @@
             // Form Submission
             document.getElementById('groc-form').addEventListener('submit', (e) => {
                 e.preventDefault();
-                const date = document.getElementById('evaluation-date').value;
-                const notes = document.getElementById('evaluation-notes').value;
-        
-                if (rut && currentGrocValue !== null) {
-                    alert(`Evaluación guardada para el paciente ${rut}:
-                        Valor GROC: ${currentGrocValue}
-                        Fecha: ${date}
-                        Notas: ${notes}`);
-                    // Aquí enviaría estos datos al backend.
+                
+                // Obtener los valores de los campos
+                const rut = document.getElementById('rut').value; // Suponiendo que 'rut' es el campo del paciente
+                const currentGrocValue = document.getElementById('puntajeGroc').value; // Valor actual de la escala GROC
+                const date = document.getElementById('evaluation-date').value; // Fecha de la evaluación
+                // Verificar si los valores necesarios están disponibles
+                if (rut && currentGrocValue !== null && date) {
+                    // Mostrar la información en un alert
+                    alert(`Evaluación guardada para el paciente ${rut}:\nValor GROC: ${currentGrocValue}\nFecha: ${date}\nNota de Sesión: ${puntajaSesiones}`);
                 } else {
-                    alert('Por favor, seleccione un paciente y un valor en la escala GROC');
+                    // Mostrar un mensaje si los campos no están completos
+                    alert('Por favor, seleccione un paciente, un valor en la escala GROC y una fecha.');
                 }
             });
+
         
             // Logout
             document.getElementById('logout').addEventListener('click', () => {
