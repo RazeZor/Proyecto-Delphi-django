@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render, get_object_or_404
-from Login.models import formularioClinico, Paciente,CuestionarioPSFS
+from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
@@ -31,21 +31,50 @@ def RenderizarPSFS(request):
     })
 
 
-
 def RenderizarGROC(request):
     rut = request.GET.get('rut', '')  
     paciente = get_object_or_404(Paciente, rut=rut)
 
-    if not rut:
-        messages.error(request, 'No se encuentra ningún paciente registrado')
-    
-    return render(request, 'GROC.html', {
-        
-        'rut': rut,
-        'paciente':paciente
-        
-    })
-    
+    # Verificamos si ya existe una evaluación en la tabla Groc para este paciente
+    evaluacion_existente = Groc.objects.filter(paciente=paciente).exists()
+    evaluacion_no_existente = Groc.objects.filter(paciente=paciente).exists()
+    if request.method == 'POST':
+        fecha_creacion = request.POST.get('fecha_creacion')
+        puntajeGroc = request.POST.get('puntajeGroc')  # Valor único de la escala
+        action = request.POST.get('action', '')  # Obtenemos la acción
+
+        # Validar campos
+        if not fecha_creacion or puntajeGroc is None:
+            messages.error(request, "Todos los campos son obligatorios.")
+            return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente})
+
+        if action == 'guardar':
+            # Acción de guardar (si no existe una evaluación anterior)
+            Groc.objects.create(
+                paciente=paciente,
+                fecha_creacion=fecha_creacion,
+                puntajeGroc=[{'puntaje': int(puntajeGroc)}]  # Guardamos el primer puntaje en la lista
+            )
+            messages.success(request, "Evaluación registrada correctamente.")
+
+        elif action == 'actualizar':
+            # Acción de actualización (agregar puntaje a la lista existente)
+            try:
+                evaluacion = Groc.objects.get(fecha_creacion=fecha_creacion, paciente=paciente)
+                
+                if isinstance(evaluacion.puntajeGroc, list):
+                    evaluacion.puntajeGroc.append({'puntaje': int(puntajeGroc)})
+                else:
+                    evaluacion.puntajeGroc = [{'puntaje': int(puntajeGroc)}]
+
+                evaluacion.save()
+                messages.success(request, "Evaluación actualizada correctamente.")
+            except Groc.DoesNotExist:
+                messages.error(request, "No se encontró la evaluación para actualizar.")
+
+    return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente})
+
+
 
 def guardar_psfs(request):
     if request.method == 'POST':

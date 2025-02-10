@@ -157,7 +157,11 @@ class CuestionarioPSFS(models.Model):
     puntaje_actividad_2 = models.JSONField(null=True, blank=True)
     puntaje_actividad_3 = models.JSONField(null=True, blank=True)
     
-
+class Groc(models.Model):
+    paciente = models.OneToOneField(Paciente,on_delete=models.CASCADE,primary_key=True)
+    fecha_creacion = models.DateField()
+    puntajeGroc = models.JSONField(null=True,blank=True)
+    
     
     
 

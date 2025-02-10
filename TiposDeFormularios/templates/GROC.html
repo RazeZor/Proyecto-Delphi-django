@@ -36,79 +36,89 @@
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h2 class="text-xl font-semibold mb-4 text-blue-800">Selección de Paciente</h2>
                 <div>
-                    <label class="block mb-2">Rut:</label>
+                    <label for="rut" class="block mb-2">RUT:</label>
                     <input type="text" id="rut" class="w-full p-2 border rounded-lg" name="rut" value="{{ rut }}" readonly>
-                    
-                    
                 </div>
-                
-                <div id="" class="">
-                    <label class="block mb-2">Nombre: {{paciente.nombre}}</label>
-                    <label class="block mb-2">Genero :{{paciente.genero}}</label>
-                    <label class="block mb-2">profesion : {{paciente.profesion}}</label>
-                    <label class="block mb-2">cobertura: {{paciente.cobertura_de_salud}}</label>
-                </div>
-                
-                <div id="patient-details" class="mt-4 hidden">
-                    <h3 class="font-bold text-gray-700">Detalles del Paciente</h3>
-                    <p id="patient-info" class="text-gray-600"></p>
+                <div id="patient-info" class="mt-4">
+                    <p class="mb-2"><strong>Nombre:</strong> {{ paciente.nombre }}</p>
+                    <p class="mb-2"><strong>Género:</strong> {{ paciente.genero }}</p>
+                    <p class="mb-2"><strong>Profesión:</strong> {{ paciente.profesion }}</p>
+                    <p class="mb-2"><strong>Cobertura:</strong> {{ paciente.cobertura_de_salud }}</p>
                 </div>
             </div>
             
             
-
-            <div class="bg-white shadow-lg rounded-lg p-6">
-                <h2 class="text-xl font-semibold mb-4 text-blue-800">Escala GROC</h2>
-                <div class="grid grid-cols-7 gap-2" id="groc-scale">
-                    <!-- Negativos -->
-                    <button data-value="-7" class="groc-btn bg-red-500 text-white p-2 rounded hover:bg-red-600">-7</button>
-                    <button data-value="-6" class="groc-btn bg-red-500 text-white p-2 rounded hover:bg-red-600">-6</button>
-                    <button data-value="-5" class="groc-btn bg-red-400 text-white p-2 rounded hover:bg-red-500">-5</button>
-                    <button data-value="-4" class="groc-btn bg-red-400 text-white p-2 rounded hover:bg-red-500">-4</button>
-                    <button data-value="-3" class="groc-btn bg-red-300 text-white p-2 rounded hover:bg-red-400">-3</button>
-                    <button data-value="-2" class="groc-btn bg-red-300 text-white p-2 rounded hover:bg-red-400">-2</button>
-                    <button data-value="-1" class="groc-btn bg-red-200 text-white p-2 rounded hover:bg-red-300">-1</button>
-                    <!-- Neutro -->
-                    <button data-value="0" class="groc-btn bg-gray-300 text-gray-800 p-2 rounded hover:bg-gray-400">0</button>
-                    <!-- Positivos -->
-                    <button data-value="1" class="groc-btn bg-green-200 text-white p-2 rounded hover:bg-green-300">+1</button>
-                    <button data-value="2" class="groc-btn bg-green-300 text-white p-2 rounded hover:bg-green-400">+2</button>
-                    <button data-value="3" class="groc-btn bg-green-400 text-white p-2 rounded hover:bg-green-500">+3</button>
-                    <button data-value="4" class="groc-btn bg-green-400 text-white p-2 rounded hover:bg-green-500">+4</button>
-                    <button data-value="5" class="groc-btn bg-green-500 text-white p-2 rounded hover:bg-green-600">+5</button>
-                    <button data-value="6" class="groc-btn bg-green-500 text-white p-2 rounded hover:bg-green-600">+6</button>
-                    <button data-value="7" class="groc-btn bg-green-600 text-white p-2 rounded hover:bg-green-700">+7</button>
+            <form id="groc-form" method='POST'>
+                {% csrf_token %}
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-blue-800">Escala GROC</h2>
+                    <div class="grid grid-cols-7 gap-2" id="groc-scale">
+                        <!-- Botones de selección -->
+                        <button type="button" data-value="-7" class="groc-btn bg-red-500 text-white p-2 rounded hover:bg-red-600">-7</button>
+                        <button type="button" data-value="-6" class="groc-btn bg-red-500 text-white p-2 rounded hover:bg-red-600">-6</button>
+                        <button type="button" data-value="-5" class="groc-btn bg-red-400 text-white p-2 rounded hover:bg-red-500">-5</button>
+                        <button type="button" data-value="-4" class="groc-btn bg-red-400 text-white p-2 rounded hover:bg-red-500">-4</button>
+                        <button type="button" data-value="-3" class="groc-btn bg-red-300 text-white p-2 rounded hover:bg-red-400">-3</button>
+                        <button type="button" data-value="-2" class="groc-btn bg-red-300 text-white p-2 rounded hover:bg-red-400">-2</button>
+                        <button type="button" data-value="-1" class="groc-btn bg-red-200 text-white p-2 rounded hover:bg-red-300">-1</button>
+                        <button type="button" data-value="0" class="groc-btn bg-gray-300 text-gray-800 p-2 rounded hover:bg-gray-400">0</button>
+                        <button type="button" data-value="1" class="groc-btn bg-green-200 text-white p-2 rounded hover:bg-green-300">+1</button>
+                        <button type="button" data-value="2" class="groc-btn bg-green-300 text-white p-2 rounded hover:bg-green-400">+2</button>
+                        <button type="button" data-value="3" class="groc-btn bg-green-400 text-white p-2 rounded hover:bg-green-500">+3</button>
+                        <button type="button" data-value="4" class="groc-btn bg-green-400 text-white p-2 rounded hover:bg-green-500">+4</button>
+                        <button type="button" data-value="5" class="groc-btn bg-green-500 text-white p-2 rounded hover:bg-green-600">+5</button>
+                        <button type="button" data-value="6" class="groc-btn bg-green-500 text-white p-2 rounded hover:bg-green-600">+6</button>
+                        <button type="button" data-value="7" class="groc-btn bg-green-600 text-white p-2 rounded hover:bg-green-700">+7</button>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-lg font-bold">Valor Seleccionado: <span id="selected-value" class="text-blue-600">0</span></p>
+                        <input type="hidden" id="puntajeGroc" name="puntajeGroc" value="0">
+                    </div>
                 </div>
-                
-                <div class="mt-4 text-center">
-                    <p class="text-lg font-bold">Valor Seleccionado: <span id="selected-value" class="text-blue-600">0</span></p>
+            
+                <div class="mt-6 bg-white shadow-lg rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-blue-800">Registrar Evaluación</h2>
+                    <div>
+                        <label class="block mb-2">Fecha de Evaluación</label>
+                        <input type="date" id="evaluation-date" name="fecha_creacion" class="w-full p-2 border rounded-lg" required>
+                    </div>
+                    <div>
+                        <label class="block mb-2">Nota Adicional (Opcional)</label>
+                        <textarea id="evaluation-notes" name="nota_adicional" class="w-full p-2 border rounded-lg" rows="3"></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <center>
+                            {% if not evaluacion_existente %}
+                                <button type="submit" class="btn btn-primary" name="action" value="guardar">Guardar</button>
+                            {% endif %}
+                            {% if evaluacion_existente %}
+                            <button type="submit" class="btn btn-secondary" name="action" value="actualizar">Actualizar</button>
+                            {% endif %}
+                        </center>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="mt-6 bg-white shadow-lg rounded-lg p-6">
-            <h2 class="text-xl font-semibold mb-4 text-blue-800">Historial de Progreso</h2>
-            <canvas id="progress-chart" class="w-full h-64"></canvas>
-        </div>
-
-        <div class="mt-6 bg-white shadow-lg rounded-lg p-6">
-            <h2 class="text-xl font-semibold mb-4 text-blue-800">Registrar Evaluación</h2>
-            <form id="groc-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block mb-2">Fecha de Evaluación</label>
-                    <input type="date" id="evaluation-date" class="w-full p-2 border rounded-lg" required>
-                </div>
-                <div>
-                    <label class="block mb-2">Nota Adicional (Opcional)</label>
-                    <textarea id="evaluation-notes" class="w-full p-2 border rounded-lg" rows="3"></textarea>
-                </div>
-                <div class="md:col-span-2">
-                    <center>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </center>
-                </div>
-                
             </form>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const buttons = document.querySelectorAll(".groc-btn");
+                    const selectedValue = document.getElementById("selected-value");
+                    const hiddenInput = document.getElementById("puntajeGroc");
+            
+                    buttons.forEach(button => {
+                        button.addEventListener("click", function () {
+                            const value = this.getAttribute("data-value");
+                            selectedValue.textContent = value;
+                            hiddenInput.value = value;
+            
+                            // Quita la selección de todos los botones y resalta el seleccionado
+                            buttons.forEach(btn => btn.classList.remove("ring-2", "ring-blue-500"));
+                            this.classList.add("ring-2", "ring-blue-500");
+                        });
+                    });
+                });
+            </script>
         </div>
     </main>
 
@@ -146,21 +156,7 @@
                 patientDetails.classList.add('hidden');  // Ocultar los detalles si faltan datos
             }
         
-            // GROC Scale Interaction
-            const grocScale = document.getElementById('groc-scale');
-            const selectedValue = document.getElementById('selected-value');
-            let currentGrocValue = 0;
-        
-            grocScale.addEventListener('click', (e) => {
-                if (e.target.classList.contains('groc-btn')) {
-                    currentGrocValue = parseInt(e.target.dataset.value);
-                    selectedValue.textContent = currentGrocValue;
-                    selectedValue.className = currentGrocValue < 0 
-                        ? 'text-red-600' 
-                        : (currentGrocValue > 0 ? 'text-green-600' : 'text-blue-600');
-                }
-            });
-        
+            
             // Progress Chart (place holder)
             const ctx = document.getElementById('progress-chart').getContext('2d');
             const progressChart = new Chart(ctx, {
