@@ -70,15 +70,24 @@ def RenderizarGROC(request):
 
 def guardar_psfs(request):
     if request.method == 'POST':
-        rut = request.POST.get('rut')
-        date = request.POST.get('date')
-        actividades = request.POST.getlist('actividad[]')
+        # Usar getlist para obtener múltiples valores de las actividades
+        puntaje_actividad_1 = request.POST.getlist('rango1')  
+        puntaje_actividad_2 = request.POST.getlist('rango2') 
+        puntaje_actividad_3 = request.POST.getlist('rango3') 
+        puntajeTotal = request.POST.get('total_score') 
+        
+        # Verificar si los puntajes fueron recibidos correctamente
+        if not puntaje_actividad_1 or not puntaje_actividad_2 or not puntaje_actividad_3 or not puntajeTotal:
+            messages.error(request, "Faltan algunos puntajes. Por favor, completa todos los campos.")
+            return redirect('psfs_form')  # Redirige si falta algún puntaje
+        
+        # Convertir los puntajes a JSON
+        puntaje_actividad_1_json = json.dumps(puntaje_actividad_1) 
+        puntaje_actividad_2_json = json.dumps(puntaje_actividad_2)
+        puntaje_actividad_3_json = json.dumps(puntaje_actividad_3)
 
-        # Obtén el paciente usando el RUT
-        paciente = get_object_or_404(Paciente, rut=rut)
-
-        # Crea el cuestionario PSFS
-        cuestionario = CuestionarioPSFS.objects.create(
+        # Crear un nuevo cuestionario
+        CuestionarioPSFS.objects.create(
             paciente=paciente,
             fecha_creacion=date
         )
