@@ -3,11 +3,11 @@ from django.shortcuts import render, get_object_or_404
 from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 
 def RenderizarGROC(request):
-    rut = request.GET.get('rut', '')  
+    rut = request.GET.get('rut', '')
     paciente = get_object_or_404(Paciente, rut=rut)
 
     # Verificamos si ya existe una evaluación en la tabla Groc para este paciente
@@ -19,26 +19,31 @@ def RenderizarGROC(request):
         # Obtiene los puntajes de la evaluación del paciente
         groc_obj = Groc.objects.get(paciente=paciente)
         puntajes = groc_obj.puntajeGroc  # Esto devuelve una lista de diccionarios
-    
+        NotaGroc = groc_obj.NotaGroc  # Asignamos NotaGroc si existe una evaluación
+    else:
+        NotaGroc = "el Paciente No tiene Notas"  # Si no existe la evaluación, asignamos un valor predeterminado
+
     if request.method == 'POST':
         fecha_creacion = datetime.now().date()
         puntajeGroc = request.POST.get('puntajeGroc')  # Valor único de la escala
+        NotaGroc = request.POST.get('nota_adicional')  # Actualizamos NotaGroc con el valor del formulario
         action = request.POST.get('action', '')  # Obtenemos la acción
 
         # Validar campos
         if not puntajeGroc:
             messages.error(request, "Todos los campos son obligatorios.")
-            return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente, 'puntajes': puntajes})
+            return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente, 'puntajes': puntajes, 'NotaGroc': NotaGroc})
 
         if action == 'guardar':
             # Acción de guardar (si no existe una evaluación anterior)
             Groc.objects.create(
                 paciente=paciente,
                 fecha_creacion=fecha_creacion,
+                NotaGroc=NotaGroc,
                 puntajeGroc=[{'puntaje': int(puntajeGroc)}]  # Guardamos el primer puntaje en la lista
             )
             messages.success(request, "Evaluación registrada correctamente.")
-            return redirect('historialClinico')
+            return HttpResponseRedirect(request.get_full_path())  # Recarga la página actual
 
         elif action == 'actualizar':
             try:
@@ -53,11 +58,15 @@ def RenderizarGROC(request):
                 messages.success(request, "Evaluación actualizada correctamente.")
             except Groc.DoesNotExist:
                 messages.error(request, "No se encontró la evaluación para actualizar.")
-            return redirect('historialClinico')
+            return HttpResponseRedirect(request.get_full_path())  # Recarga la página actual
 
-    return render(request, 'GROC.html', {'rut': rut, 'paciente': paciente, 'evaluacion_existente': evaluacion_existente, 'puntajes': puntajes, 'contador': 1})
-
-
+    return render(request, 'GROC.html', {
+        'rut': rut,
+        'paciente': paciente,
+        'evaluacion_existente': evaluacion_existente,
+        'puntajes': puntajes,
+        'NotaGroc': NotaGroc  # Asegúrate de pasar NotaGroc al contexto
+    })
 
 def guardar_psfs(request):
     if request.method == 'POST':

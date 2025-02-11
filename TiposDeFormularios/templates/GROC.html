@@ -101,8 +101,12 @@
                 <div class="mt-6 bg-white shadow-lg rounded-lg p-6">
                     <h2 class="text-xl font-semibold mb-4 text-blue-800">Registrar Evaluación</h2>
                     <div>
-                        <label class="block mb-2">Nota Adicional (Opcional)</label>
-                        <textarea id="evaluation-notes" name="nota_adicional" class="w-full p-2 border rounded-lg" rows="3"></textarea>
+                            <label class="block mb-2">Nota Adicional (Opcional)</label>
+                            <textarea id="evaluation-notes" name="nota_adicional" class="w-full p-2 border rounded-lg" rows="3">{{NotaGroc|default:"el Paciente No tiene Notas"}}
+                            </textarea>
+                        </form>
+                        
+                        
                     </div>
                     <div class="md:col-span-2">
                         <center>
@@ -112,6 +116,7 @@
                             {% if evaluacion_existente %}
                             <button type="submit" class="btn btn-secondary" name="action" value="actualizar">Actualizar</button>
                             {% endif %}
+                            <button type="submit" class="btn btn-secondary" name="action" value="GuardarNota">GuardarNota</button>
                         </center>
                     </div>
                 </div>
@@ -163,31 +168,77 @@
 const grocChart = new Chart(ctx, {
     type: 'line', 
     data: {
-        labels: sesiones,
+        labels: sesiones,  // Datos de las sesiones en el eje X
         datasets: [{
-            label: 'Evolucion Del Paciente',
-            data: valores,
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            fill: false,
-            tension: 0.1
+            label: 'Evolución del Paciente',
+            data: valores,  // Datos de los puntajes
+            borderColor: 'rgba(75, 192, 192, 1)',  // Color de la línea
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Color del área debajo de la línea (semi-transparente)
+            fill: true,  // Rellenar debajo de la línea (puedes cambiar a `false` si no deseas relleno)
+            tension: 0.4,  // Curvatura de la línea, un valor mayor da una curva más suave
+            borderWidth: 2,  // Grosor de la línea
+            pointBackgroundColor: 'rgba(75, 192, 192, 1)',  // Color de los puntos en la línea
+            pointRadius: 5,  // Radio de los puntos
+            pointHoverRadius: 8,  // Radio de los puntos cuando pasas el mouse sobre ellos
+            pointBorderColor: '#fff',  // Color del borde de los puntos
+            pointBorderWidth: 2,  // Ancho del borde de los puntos
+            lineTension: 0.4,  // Suaviza las curvas de la línea
         }]
     },
     options: {
-        responsive: true,
-        maintainAspectRatio: false,  // Esta opción permite ajustar el gráfico al contenedor
+        responsive: true,  // El gráfico es responsivo
+        maintainAspectRatio: false,  // Permite que el gráfico se ajuste al tamaño del contenedor
         scales: {
             y: {
-                beginAtZero: true,
+                beginAtZero: true,  // Empieza el eje Y desde cero
                 title: {
-                    display: true,
-                    text: 'Puntaje'
-                }
+                    display: true,  // Mostrar título en el eje Y
+                    text: 'Puntaje',  // Título del eje Y
+                    font: {
+                        size: 16,  // Tamaño de la fuente
+                        weight: 'bold',  // Peso de la fuente
+                    },
+                    color: '#333',  // Color del título
+                },
+                grid: {
+                    color: '#ddd',  // Color de la cuadrícula
+                    borderColor: '#ccc',  // Color del borde de la cuadrícula
+                    borderWidth: 1,  // Ancho del borde de la cuadrícula
+                },
             },
             x: {
                 title: {
-                    display: true,
-                    text: 'Sesiones'
+                    display: true,  // Mostrar título en el eje X
+                    text: 'Sesiones',  // Título del eje X
+                    font: {
+                        size: 16,  // Tamaño de la fuente
+                        weight: 'bold',  // Peso de la fuente
+                    },
+                    color: '#333',  // Color del título
+                },
+                grid: {
+                    color: '#ddd',  // Color de la cuadrícula
+                    borderColor: '#ccc',  // Color del borde de la cuadrícula
+                    borderWidth: 1,  // Ancho del borde de la cuadrícula
+                },
+            }
+        },
+        plugins: {
+            tooltip: {
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',  // Color de fondo del tooltip
+                titleColor: '#fff',  // Color del título del tooltip
+                bodyColor: '#fff',  // Color del cuerpo del tooltip
+                borderColor: '#ccc',  // Color del borde del tooltip
+                borderWidth: 1,  // Ancho del borde del tooltip
+            },
+            legend: {
+                position: 'top',  // Ubicación de la leyenda
+                labels: {
+                    font: {
+                        size: 14,  // Tamaño de la fuente de la leyenda
+                        weight: 'bold',  // Peso de la fuente
+                    },
+                    color: '#333',  // Color de la fuente de la leyenda
                 }
             }
         }
@@ -197,7 +248,7 @@ const grocChart = new Chart(ctx, {
     </script>
     
         
-        
+           
 
 </body>
 </html>
