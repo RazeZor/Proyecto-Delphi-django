@@ -156,6 +156,8 @@ class CuestionarioPSFS(models.Model):
     puntaje_actividad_1 = models.JSONField(null=True, blank=True)
     puntaje_actividad_2 = models.JSONField(null=True, blank=True)
     puntaje_actividad_3 = models.JSONField(null=True, blank=True)
+    puntajeTotal = models.JSONField(null=True,blank=True)
+    NotaCuestionarioPSFS=models.TextField(null=True,blank=True)
     
 class Groc(models.Model):
     paciente = models.OneToOneField(Paciente,on_delete=models.CASCADE,primary_key=True)

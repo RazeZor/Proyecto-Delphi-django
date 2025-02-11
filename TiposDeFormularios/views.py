@@ -1,8 +1,7 @@
 import json
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 
@@ -70,65 +69,96 @@ def RenderizarGROC(request):
 
 def guardar_psfs(request):
     if request.method == 'POST':
-        # Usar getlist para obtener múltiples valores de las actividades
-        puntaje_actividad_1 = request.POST.getlist('rango1')  
-        puntaje_actividad_2 = request.POST.getlist('rango2') 
-        puntaje_actividad_3 = request.POST.getlist('rango3') 
-        puntajeTotal = request.POST.get('total_score') 
+        rut = request.POST.get('rut')
+        paciente = get_object_or_404(Paciente, rut=rut)
+        action = request.POST.get('action', '')
+
+        # Datos del formulario
+        puntaje_actividad_1 = request.POST.getlist('rango1')
+        puntaje_actividad_2 = request.POST.getlist('rango2')
+        puntaje_actividad_3 = request.POST.getlist('rango3')
+        puntajeTotal = request.POST.getlist('total_score')
+
+        if action == 'guardar':
+            # Guardar un nuevo cuestionario
+            cuestionario = CuestionarioPSFS.objects.create(
+                paciente=paciente,
+                fecha_creacion=datetime.now().date(),
+                puntaje_actividad_1=json.dumps(puntaje_actividad_1),
+                puntaje_actividad_2=json.dumps(puntaje_actividad_2),
+                puntaje_actividad_3=json.dumps(puntaje_actividad_3),
+                puntajeTotal=json.dumps(puntajeTotal),
+            )
+            cuestionario.save()
         
-        # Verificar si los puntajes fueron recibidos correctamente
-        if not puntaje_actividad_1 or not puntaje_actividad_2 or not puntaje_actividad_3 or not puntajeTotal:
-            messages.error(request, "Faltan algunos puntajes. Por favor, completa todos los campos.")
-            return redirect('psfs_form')  # Redirige si falta algún puntaje
-        
-        # Convertir los puntajes a JSON
-        puntaje_actividad_1_json = json.dumps(puntaje_actividad_1) 
-        puntaje_actividad_2_json = json.dumps(puntaje_actividad_2)
-        puntaje_actividad_3_json = json.dumps(puntaje_actividad_3)
+        elif action == 'actualizar':
+            # Actualizar un cuestionario existente sin sobrescribir datos
+            cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+            if cuestionario:
+                # Convertir los JSON en listas para agregar datos sin sobrescribir
+                actividad_1_actual = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
+                actividad_2_actual = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
+                actividad_3_actual = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
+                total_actual = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
 
-        # Crear un nuevo cuestionario
-        CuestionarioPSFS.objects.create(
-            paciente=paciente,
-            fecha_creacion=date
-        )
+                # Agregar los nuevos valores sin sobrescribir
+                actividad_1_actual.extend(puntaje_actividad_1)
+                actividad_2_actual.extend(puntaje_actividad_2)
+                actividad_3_actual.extend(puntaje_actividad_3)
+                total_actual.extend(puntajeTotal)
 
-        for i, actividad in enumerate(actividades):
-            scores = request.POST.getlist(f'score_actividad{i + 1}[]')  
-            puntaje_total = sum(int(score) for score in scores)  
+                # Guardar los datos actualizados
+                cuestionario.puntaje_actividad_1 = json.dumps(actividad_1_actual)
+                cuestionario.puntaje_actividad_2 = json.dumps(actividad_2_actual)
+                cuestionario.puntaje_actividad_3 = json.dumps(actividad_3_actual)
+                cuestionario.puntajeTotal = json.dumps(total_actual)
+                cuestionario.save()
+            else:
+                return HttpResponse('No hay un cuestionario existente para actualizar.', status=404)
 
-            if i == 0:
-                cuestionario.puntaje_actividad_1 = puntaje_total
-            elif i == 1:
-                cuestionario.puntaje_actividad_2 = puntaje_total
-            elif i == 2:
-                cuestionario.puntaje_actividad_3 = puntaje_total
+        return redirect('historialClinico')
 
-        cuestionario.save()
-
-        return redirect('panel')  
-    
     return HttpResponse('Método no permitido', status=405)
 
 def RenderizarPSFS(request):
     rut = request.GET.get('rut', '')  
     paciente = get_object_or_404(Paciente, rut=rut)
     formularios = formularioClinico.objects.filter(paciente=paciente)
+    cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
     
+    if cuestionario:
+        puntajes_actividad_1 = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
+        puntajes_actividad_2 = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
+        puntajes_actividad_3 = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
+        puntajes_total = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
+
+        # Crear estructura de sesiones
+        sesiones = []
+        for i in range(len(puntajes_actividad_1)):
+            sesiones.append({
+                "sesion": i + 1,
+                "actividad_1": puntajes_actividad_1[i] if i < len(puntajes_actividad_1) else "-",
+                "actividad_2": puntajes_actividad_2[i] if i < len(puntajes_actividad_2) else "-",
+                "actividad_3": puntajes_actividad_3[i] if i < len(puntajes_actividad_3) else "-",
+                "total": puntajes_total[i] if i < len(puntajes_total) else "-",
+            })
+    else:
+        sesiones = []
+
     if formularios.exists():
         formulario = formularios.first()  
         actividades = json.loads(formulario.actividades_afectadas) 
         
-        # Asignar las actividades a variables
         actividad1 = actividades[0] if len(actividades) > 0 else ''
         actividad2 = actividades[1] if len(actividades) > 1 else ''
         actividad3 = actividades[2] if len(actividades) > 2 else ''
-        
     else:
         actividad1 = actividad2 = actividad3 = ''
-    
-    return render(request, 'PSFS.html', {
+
+    return render(request, 'CuestionarioPSFS.html', {
         'rut': rut, 
         'actividad1': actividad1,
         'actividad2': actividad2,
         'actividad3': actividad3,
+        'sesiones': sesiones
     })
