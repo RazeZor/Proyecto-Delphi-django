@@ -26,7 +26,9 @@
             <a href="{%url 'panel' %}">
                 <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
                 </i> 
+                
             </a>
+            <div id="tiempo">Tiempo: 00:00:00</div>
         </nav>
     </header>
     <script>
@@ -41,7 +43,7 @@
                 const seg = segundos % 60;
                 const formatoTiempo = `${String(horas).padStart(2, "0")}:${String(minutos).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
                 
-                tiempoElemento.textContent = `Tiempo : ${formatoTiempo}`;
+                tiempoElemento.textContent = `Tiempo: ${formatoTiempo}`;
                 duracionInput.value = formatoTiempo; // Actualiza el campo oculto con la duración
                 
                 segundos++;

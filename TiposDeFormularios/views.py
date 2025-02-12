@@ -121,10 +121,12 @@ def guardar_psfs(request):
     return HttpResponse('Método no permitido', status=405)
 
 def RenderizarPSFS(request):
+
     rut = request.GET.get('rut', '')  
     paciente = get_object_or_404(Paciente, rut=rut)
     formularios = formularioClinico.objects.filter(paciente=paciente)
     cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+    evaluacion_existente = CuestionarioPSFS.objects.filter(paciente=paciente).exists()
     
     if cuestionario:
         puntajes_actividad_1 = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
@@ -160,5 +162,6 @@ def RenderizarPSFS(request):
         'actividad1': actividad1,
         'actividad2': actividad2,
         'actividad3': actividad3,
-        'sesiones': sesiones
+        'sesiones': sesiones,
+        'evaluacion_existente':evaluacion_existente
     })

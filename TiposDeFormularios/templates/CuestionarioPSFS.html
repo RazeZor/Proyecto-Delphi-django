@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Agrega esto en el <head> de tu archivo HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <title>PSFS Cuestionario</title>
 </head>
 <body class="bg-gray-100">
@@ -97,21 +100,23 @@
                             </div>
                     
                             <!-- Botones -->
-                            <div class="flex gap-6">
-                                <button type="submit" 
-                            class="flex-1 bg-green-500 text-white py-4 px-6 text-lg font-semibold rounded-xl hover:bg-green-600 transition-colors" 
-                            name="action" 
-                            value="guardar">
-                            Guardar
-                            </button>
-                
-                    <!-- Botón para Actualizar -->
-                    <button type="submit" 
-                            class="flex-1 bg-yellow-500 text-white py-4 px-6 text-lg font-semibold rounded-xl hover:bg-yellow-600 transition-colors" 
-                            name="action" 
-                            value="actualizar">
-                            Actualizar
-                    </button>
+                            
+                                <div class="flex gap-6">
+
+                                    <button type="button" 
+                                        class="flex-1 bg-pink-500 text-white py-4 px-6 text-lg font-semibold rounded-xl hover:bg-red-600 transition-colors" 
+                                        onclick="confirmarAccion('guardar')">
+                                        Guardar
+                                    </button>
+
+                                    <!-- Botón Actualizar -->
+                                    <button type="button" 
+                                        class="flex-1 bg-green-500 text-white py-4 px-6 text-lg font-semibold rounded-xl hover:bg-yellow-600 transition-colors" 
+                                        onclick="confirmarAccion('actualizar')">
+                                        Actualizar
+                                    </button>
+                     
+                    
                             </div>
                         </div>
                     </form>
@@ -233,6 +238,35 @@
         
 
         });
+        
+    </script>
+
+    <script>
+        function confirmarAccion(accion) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: accion === 'guardar' ? 'Se guardarán los datos.' : 'Se actualizarán los datos.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, estoy seguro',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Crear un input oculto para pasar el valor del botón
+                    const inputAccion = document.createElement('input');
+                    inputAccion.type = 'hidden';
+                    inputAccion.name = 'action';
+                    inputAccion.value = accion;
+                    
+                    // Agregar el input oculto al formulario y enviar
+                    const formulario = document.querySelector('form'); 
+                    formulario.appendChild(inputAccion);
+                    formulario.submit();
+                }
+            });
+        }
     </script>
     
 </body>
