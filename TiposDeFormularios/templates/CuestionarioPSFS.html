@@ -1,3 +1,4 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,10 +8,27 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Agrega esto en el <head> de tu archivo HTML -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="{% static 'CSS/historial.css' %}">
 
     <title>PSFS Cuestionario</title>
 </head>
-<body class="bg-gray-100">
+<body class="">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand">
+                    <a href="{%url 'panel' %}">
+                        <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
+                        </i> 
+                    </a>
+                </span>
+                <div class="d-flex align-items-center">
+                    <div class="menu-links">
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="min-h-screen p-8">
         <div class="max-w-7xl mx-auto space-y-8"> <!-- Aumentado el max-w y espaciado -->
             <!-- Header Mejorado -->
