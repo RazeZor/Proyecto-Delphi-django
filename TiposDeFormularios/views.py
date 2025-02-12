@@ -68,57 +68,62 @@ def RenderizarGROC(request):
     })
 
 def guardar_psfs(request):
-    if request.method == 'POST':
-        rut = request.POST.get('rut')
-        paciente = get_object_or_404(Paciente, rut=rut)
-        action = request.POST.get('action', '')
+    try:
+        if request.method == 'POST':
+            rut = request.POST.get('rut')
+            paciente = get_object_or_404(Paciente, rut=rut)
+            action = request.POST.get('action', '')
 
-        # Datos del formulario
-        puntaje_actividad_1 = request.POST.getlist('rango1')
-        puntaje_actividad_2 = request.POST.getlist('rango2')
-        puntaje_actividad_3 = request.POST.getlist('rango3')
-        puntajeTotal = request.POST.getlist('total_score')
+            # Datos del formulario
+            puntaje_actividad_1 = request.POST.getlist('rango1')
+            puntaje_actividad_2 = request.POST.getlist('rango2')
+            puntaje_actividad_3 = request.POST.getlist('rango3')
+            puntajeTotal = request.POST.getlist('total_score')
 
-        if action == 'guardar':
-            # Guardar un nuevo cuestionario
-            cuestionario = CuestionarioPSFS.objects.create(
-                paciente=paciente,
-                fecha_creacion=datetime.now().date(),
-                puntaje_actividad_1=json.dumps(puntaje_actividad_1),
-                puntaje_actividad_2=json.dumps(puntaje_actividad_2),
-                puntaje_actividad_3=json.dumps(puntaje_actividad_3),
-                puntajeTotal=json.dumps(puntajeTotal),
-            )
-            cuestionario.save()
-        
-        elif action == 'actualizar':
-            # Actualizar un cuestionario existente sin sobrescribir datos
-            cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
-            if cuestionario:
-                # Convertir los JSON en listas para agregar datos sin sobrescribir
-                actividad_1_actual = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
-                actividad_2_actual = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
-                actividad_3_actual = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
-                total_actual = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
-
-                # Agregar los nuevos valores sin sobrescribir
-                actividad_1_actual.extend(puntaje_actividad_1)
-                actividad_2_actual.extend(puntaje_actividad_2)
-                actividad_3_actual.extend(puntaje_actividad_3)
-                total_actual.extend(puntajeTotal)
-
-                # Guardar los datos actualizados
-                cuestionario.puntaje_actividad_1 = json.dumps(actividad_1_actual)
-                cuestionario.puntaje_actividad_2 = json.dumps(actividad_2_actual)
-                cuestionario.puntaje_actividad_3 = json.dumps(actividad_3_actual)
-                cuestionario.puntajeTotal = json.dumps(total_actual)
+            if action == 'guardar':
+                # Guardar un nuevo cuestionario
+                cuestionario = CuestionarioPSFS.objects.create(
+                    paciente=paciente,
+                    fecha_creacion=datetime.now().date(),
+                    puntaje_actividad_1=json.dumps(puntaje_actividad_1),
+                    puntaje_actividad_2=json.dumps(puntaje_actividad_2),
+                    puntaje_actividad_3=json.dumps(puntaje_actividad_3),
+                    puntajeTotal=json.dumps(puntajeTotal),
+                )
                 cuestionario.save()
-            else:
-                return HttpResponse('No hay un cuestionario existente para actualizar.', status=404)
+            
+            elif action == 'actualizar':
+                # Actualizar un cuestionario existente sin sobrescribir datos
+                cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+                if cuestionario:
+                    # Convertir los JSON en listas para agregar datos sin sobrescribir
+                    actividad_1_actual = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
+                    actividad_2_actual = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
+                    actividad_3_actual = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
+                    total_actual = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
 
-        return redirect('historialClinico')
+                    # Agregar los nuevos valores sin sobrescribir
+                    actividad_1_actual.extend(puntaje_actividad_1)
+                    actividad_2_actual.extend(puntaje_actividad_2)
+                    actividad_3_actual.extend(puntaje_actividad_3)
+                    total_actual.extend(puntajeTotal)
 
-    return HttpResponse('Método no permitido', status=405)
+                    # Guardar los datos actualizados
+                    cuestionario.puntaje_actividad_1 = json.dumps(actividad_1_actual)
+                    cuestionario.puntaje_actividad_2 = json.dumps(actividad_2_actual)
+                    cuestionario.puntaje_actividad_3 = json.dumps(actividad_3_actual)
+                    cuestionario.puntajeTotal = json.dumps(total_actual)
+                    cuestionario.save()
+                else:
+                    return HttpResponse('No hay un cuestionario existente para actualizar.', status=404)
+
+            return redirect('historialClinico')
+
+        return HttpResponse('Método no permitido', status=405)
+    except ValueError:
+        return HttpResponse('YA EXISTEN DATOS ', status=404)
+    except:
+        return HttpResponse('YA EXISTEN DATOS ', status=404)
 
 def RenderizarPSFS(request):
 
@@ -134,7 +139,6 @@ def RenderizarPSFS(request):
         puntajes_actividad_3 = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
         puntajes_total = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
 
-        # Crear estructura de sesiones
         sesiones = []
         for i in range(len(puntajes_actividad_1)):
             sesiones.append({
