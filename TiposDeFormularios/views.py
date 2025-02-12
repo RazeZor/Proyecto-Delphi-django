@@ -190,13 +190,18 @@ def GuardarNota(request):
         notaPSFS = request.POST.get('notes')
         paciente = get_object_or_404(Paciente, rut=rut)
         EvaluacionExistente = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+        try:
+            if EvaluacionExistente:
+                EvaluacionExistente.NotaCuestionarioPSFS = notaPSFS  # Asignación correcta
+                EvaluacionExistente.save()
+                messages.success(request, "Nota actualizada correctamente.")
+                return redirect('HistorialClinico')
+            else:
+                return HttpResponse("Ha ocurrido un error inesperado", status=405)
+        except:
+            return HttpResponse("la evalaucion no ah podido se recogida Correctamente ")
         
-        if EvaluacionExistente:
-            EvaluacionExistente.NotaCuestionarioPSFS = notaPSFS  # Asignación correcta
-            EvaluacionExistente.save()
-            messages.success(request, "Nota actualizada correctamente.")
-            return redirect('historialClinico')
-        else:
-            return HttpResponse("Ha ocurrido un error inesperado", status=405)
+        
     else:
         return HttpResponse("No cargaron bien los datos", status=405)
+
