@@ -534,9 +534,11 @@
                         .tabla-dolor .acciones button:hover {
                             background-color: #2980b9;  /* Cambiar color al pasar el ratón */
                         }
-                    </style>
+                    </style> <!-- Estilos del Cuerpo Humano  -->
                     <div class="container">
                         <div class="row">
+                            <label class="form-label">Seleccione las partes del cuerpo donde sienta dolor o dificultades. Luego, elija la intensidad del dolor en la tabla de al lado, la parte sera seleccionada cuando
+                                la zona se marque de el color correspondiente a la intensidad de dolor. Si se equivoca, puede eliminar la selección usando el botón correspondiente en la columna de acciones. UNISEX</label>
                             <div class="col-md-6"> 
                                 <center>
                                     <div class="cuerpoHumano" id="cuerpoHumano">
@@ -1079,29 +1081,62 @@
                             <label><input class="form-check-input" type="checkbox" value="extremo" name="preguntas1">Extremo</label> 
                         </div>
                     </div>
+                   <script>
+                        // Selecciona todos los checkbox
+                        const checkboxes = document.querySelectorAll('.form-check-input');
 
-                <table id="apoyo" border="1" cellpadding="20" cellspacing="0" style="width: 100%; text-align: left;">
-                    <tr>
-                        <td>
-                            <label class="form-label">
-                            Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor manejo de la ansiedad y la depresión a menudo conduce a un mejor manejo del dolor. Hable con su médico de familia o enfermero especializado para una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
-                            </label>
-                            <label class="form-label"><strong>¿Desea usted apoyo en esta situación?</strong></label>
-                            <center>
-                                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                                    <input type="radio" class="btn-check" name="support" id="support-yes" autocomplete="off" value="si"/>
-                                    <label class="btn btn-outline-primary" for="support-yes">Sí</label>
+                        checkboxes.forEach((checkbox) => {
+                            checkbox.addEventListener('change', (event) => {
+                                // Verifica si está en una fila (<tr>)
+                                const fila = event.target.closest('tr');
+                                if (fila) {
+                                    // Desmarca otros checkbox en la misma fila
+                                    fila.querySelectorAll('.form-check-input').forEach((cb) => {
+                                        if (cb !== event.target) {
+                                            cb.checked = false;
+                                        }
+                                    });
+                                    return; // Sale para evitar que se ejecute el otro bloque
+                                }
 
-                                    <input type="radio" class="btn-check" name="support" id="support-no" autocomplete="off" value="no"/>
-                                    <label class="btn btn-outline-primary" for="support-no">No</label>
-                                </div>
-                            </center>
-                        </td>
-                    </tr>
-                </table>
+                                // Verifica si está en un grupo específico (.checkbox-group)
+                                const grupo = event.target.closest('.checkbox-group');
+                                if (grupo) {
+                                    // Desmarca otros checkbox en el mismo grupo
+                                    grupo.querySelectorAll('.form-check-input').forEach((cb) => {
+                                        if (cb !== event.target) {
+                                            cb.checked = false;
+                                        }
+                                    });
+                                }
+                            });
+                        });
+
+                   </script>
+
+
+                    <table id="apoyo" border="1" cellpadding="20" cellspacing="0" style="width: 100%; text-align: left;">
+                        <tr>
+                            <td>
+                                <label class="form-label">
+                                Las personas con dolor crónico frecuentemente también padecen ansiedad o depresión. Un mejor manejo de la ansiedad y la depresión a menudo conduce a un mejor manejo del dolor. Hable con su médico de familia o enfermero especializado para una evaluación de la ansiedad y la depresión si cree que esto se aplica a usted.
+                                </label>
+                                <label class="form-label"><strong>¿Desea usted apoyo en esta situación?</strong></label>
+                                <center>
+                                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                                        <input type="radio" class="btn-check" name="support" id="support-yes" autocomplete="off" value="si"/>
+                                        <label class="btn btn-outline-primary" for="support-yes">Sí</label>
+
+                                        <input type="radio" class="btn-check" name="support" id="support-no" autocomplete="off" value="no"/>
+                                        <label class="btn btn-outline-primary" for="support-no">No</label>
+                                    </div>
+                                </center>
+                            </td>
+                        </tr>
+                    </table>
                                         
                     
-            </div>
+                </div>
 
             <!-- Actividades de evitacion y persistencia -->
             <div class="step" name="PreguntaNueva">
