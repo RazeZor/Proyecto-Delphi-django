@@ -41,6 +41,7 @@ urlpatterns = [
     path('CuestionarioGROC/',tiposFormularios.RenderizarGROC,name='GROK'),
     path('CuestionarioPSFS/',tiposFormularios.RenderizarPSFS, name='PSFS'),
     path('GuardarPSFS/',tiposFormularios.guardar_psfs, name='uwu'),
+    path('GuardarNota/',tiposFormularios.GuardarNota,name='GuardarNota')
 
     
     

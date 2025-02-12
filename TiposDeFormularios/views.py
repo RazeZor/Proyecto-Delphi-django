@@ -18,8 +18,8 @@ def RenderizarGROC(request):
         # Obtiene los puntajes de la evaluación del paciente
         groc_obj = Groc.objects.get(paciente=paciente)
         puntajes = groc_obj.puntajeGroc  # Esto devuelve una lista de diccionarios
-        NotaGroc = groc_obj.NotaGroc  # Asignamos NotaGroc si existe una evaluación
-    else:
+        NotaGroc = groc_obj.NotaGroc  # Asignamos NotaGroc si existe una evaluacion
+    else:   
         NotaGroc = "el Paciente No tiene Notas"  # Si no existe la evaluación, asignamos un valor predeterminado
 
     if request.method == 'POST':
@@ -58,6 +58,18 @@ def RenderizarGROC(request):
             except Groc.DoesNotExist:
                 messages.error(request, "No se encontró la evaluación para actualizar.")
             return HttpResponseRedirect(request.get_full_path())  # Recarga la página actual
+        elif action == 'GuardarNota':
+            try:
+                evaluacion = Groc.objects.get(paciente=paciente)
+                evaluacion.NotaGroc = NotaGroc
+                evaluacion.save()
+
+                messages.success(request, "Nota actualizada correctamente.")
+            except Groc.DoesNotExist:
+                messages.error(request, "No se encontró la evaluación para actualizar la nota.")
+            
+            return HttpResponseRedirect(request.get_full_path())  # Recarga la página actual
+
 
     return render(request, 'GROC.html', {
         'rut': rut,
@@ -129,10 +141,11 @@ def RenderizarPSFS(request):
 
     rut = request.GET.get('rut', '')  
     paciente = get_object_or_404(Paciente, rut=rut)
-    formularios = formularioClinico.objects.filter(paciente=paciente)
+    formularios = formularioClinico.objects.filter(paciente=paciente) # para mostrar las 3 Actividades Del
+    #Fomulario Inicial
     cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
     evaluacion_existente = CuestionarioPSFS.objects.filter(paciente=paciente).exists()
-    
+    nota = cuestionario.NotaCuestionarioPSFS
     if cuestionario:
         puntajes_actividad_1 = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
         puntajes_actividad_2 = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
@@ -167,5 +180,23 @@ def RenderizarPSFS(request):
         'actividad2': actividad2,
         'actividad3': actividad3,
         'sesiones': sesiones,
-        'evaluacion_existente':evaluacion_existente
+        'evaluacion_existente':evaluacion_existente,
+        'nota':nota
     })
+
+def GuardarNota(request):
+    if request.method == 'POST':
+        rut = request.POST.get('rut')
+        notaPSFS = request.POST.get('notes')
+        paciente = get_object_or_404(Paciente, rut=rut)
+        EvaluacionExistente = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+        
+        if EvaluacionExistente:
+            EvaluacionExistente.NotaCuestionarioPSFS = notaPSFS  # Asignación correcta
+            EvaluacionExistente.save()
+            messages.success(request, "Nota actualizada correctamente.")
+            return redirect('historialClinico')
+        else:
+            return HttpResponse("Ha ocurrido un error inesperado", status=405)
+    else:
+        return HttpResponse("No cargaron bien los datos", status=405)
