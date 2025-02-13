@@ -164,7 +164,30 @@ class Groc(models.Model):
     puntajeGroc = models.JSONField(null=True,blank=True)
     NotaGroc = models.TextField(null=True,blank=True)
     
+class CuestionarioEQ_5D(models.Model):
+    paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, primary_key=True)
+    clinico = models.ForeignKey('Clinico', on_delete=models.CASCADE, related_name='CuestionarioEQ_5D')
+
+    # Preguntas (Texto)
+    movilidad = models.JSONField(null=True, blank=True)
+    cuidado_personal = models.JSONField(null=True, blank=True)
+    actividades_cotidianas = models.JSONField(null=True, blank=True)
+    dolor_malestar = models.JSONField(null=True, blank=True)
+    ansiedad_depresion = models.JSONField(null=True, blank=True)
+
+    # Puntajes (Enteros)
+    puntaje_movilidad = models.JSONField(null=True, blank=True)
+    puntaje_cuidado_personal = models.JSONField(null=True, blank=True)
+    puntaje_actividades_cotidianas = models.JSONField(null=True, blank=True)
+    puntaje_dolor_malestar = models.JSONField(null=True, blank=True)
+    puntaje_ansiedad_depresion = models.JSONField(null=True, blank=True)
+
+
+    # VAS Score
+    vas_score = models.JSONField(null=True, blank=True)
     
+    def __str__(self):
+        return f"Cuestionario EQ-5D para {self.paciente.nombre}"
     
     
 

@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import render, get_object_or_404,redirect
-from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc
+from django.urls import reverse
+from Login.models import formularioClinico, Paciente,CuestionarioPSFS,Groc,Clinico,CuestionarioEQ_5D
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
@@ -79,21 +80,20 @@ def RenderizarGROC(request):
         'NotaGroc': NotaGroc  # Asegúrate de pasar NotaGroc al contexto
     })
 
-def guardar_psfs(request):
+def gestionar_psfs(request):
     try:
+        rut = request.GET.get('rut', '') or request.POST.get('rut', '')
+        paciente = get_object_or_404(Paciente, rut=rut)
+        action = request.POST.get('action', '')
+        
         if request.method == 'POST':
-            rut = request.POST.get('rut')
-            paciente = get_object_or_404(Paciente, rut=rut)
-            action = request.POST.get('action', '')
-
-            # Datos del formulario
             puntaje_actividad_1 = request.POST.getlist('rango1')
             puntaje_actividad_2 = request.POST.getlist('rango2')
             puntaje_actividad_3 = request.POST.getlist('rango3')
             puntajeTotal = request.POST.getlist('total_score')
-
+            notaPSFS = request.POST.get('notes')
+            
             if action == 'guardar':
-                # Guardar un nuevo cuestionario
                 cuestionario = CuestionarioPSFS.objects.create(
                     paciente=paciente,
                     fecha_creacion=datetime.now().date(),
@@ -103,105 +103,201 @@ def guardar_psfs(request):
                     puntajeTotal=json.dumps(puntajeTotal),
                 )
                 cuestionario.save()
-            
+                messages.success(request, "Cuestionario guardado correctamente.")
+                return redirect(f"{reverse('gestionar_psfs')}?rut={rut}")
+                
             elif action == 'actualizar':
-                # Actualizar un cuestionario existente sin sobrescribir datos
                 cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
                 if cuestionario:
-                    # Convertir los JSON en listas para agregar datos sin sobrescribir
                     actividad_1_actual = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
                     actividad_2_actual = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
                     actividad_3_actual = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
                     total_actual = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
 
-                    # Agregar los nuevos valores sin sobrescribir
+                    # Agregar sin sobrescribir
                     actividad_1_actual.extend(puntaje_actividad_1)
                     actividad_2_actual.extend(puntaje_actividad_2)
                     actividad_3_actual.extend(puntaje_actividad_3)
                     total_actual.extend(puntajeTotal)
 
-                    # Guardar los datos actualizados
                     cuestionario.puntaje_actividad_1 = json.dumps(actividad_1_actual)
                     cuestionario.puntaje_actividad_2 = json.dumps(actividad_2_actual)
                     cuestionario.puntaje_actividad_3 = json.dumps(actividad_3_actual)
                     cuestionario.puntajeTotal = json.dumps(total_actual)
                     cuestionario.save()
+                    messages.success(request, "Cuestionario actualizado correctamente.")
+                    return redirect(f"{reverse('gestionar_psfs')}?rut={rut}")
+
                 else:
                     return HttpResponse('No hay un cuestionario existente para actualizar.', status=404)
+            
+            # Guardar o actualizar la nota
+            if notaPSFS:
+                EvaluacionExistente = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+                if EvaluacionExistente:
+                    EvaluacionExistente.NotaCuestionarioPSFS = notaPSFS
+                    EvaluacionExistente.save()
+                    messages.success(request, "Nota actualizada correctamente.")
+                    return redirect(f"{reverse('gestionar_psfs')}?rut={rut}")
 
-            return redirect('historialClinico')
+                else:
+                    return HttpResponse("No hay un cuestionario para actualizar la nota.", status=404)
+                    
+            
+        
+        # Renderizar PSFS
+        formularios = formularioClinico.objects.filter(paciente=paciente)
+        cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
+        evaluacion_existente = CuestionarioPSFS.objects.filter(paciente=paciente).exists()
+        nota = cuestionario.NotaCuestionarioPSFS if cuestionario else None
+        
+        if cuestionario:
+            puntajes_actividad_1 = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
+            puntajes_actividad_2 = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
+            puntajes_actividad_3 = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
+            puntajes_total = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
 
-        return HttpResponse('Método no permitido', status=405)
+            sesiones = []
+            for i in range(len(puntajes_actividad_1)):
+                sesiones.append({
+                    "sesion": i + 1,
+                    "actividad_1": puntajes_actividad_1[i] if i < len(puntajes_actividad_1) else "-",
+                    "actividad_2": puntajes_actividad_2[i] if i < len(puntajes_actividad_2) else "-",
+                    "actividad_3": puntajes_actividad_3[i] if i < len(puntajes_actividad_3) else "-",
+                    "total": puntajes_total[i] if i < len(puntajes_total) else "-",
+                })
+        else:
+            sesiones = []
+
+        if formularios.exists():
+            formulario = formularios.first()  
+            actividades = json.loads(formulario.actividades_afectadas) 
+            
+            actividad1 = actividades[0] if len(actividades) > 0 else ''
+            actividad2 = actividades[1] if len(actividades) > 1 else ''
+            actividad3 = actividades[2] if len(actividades) > 2 else ''
+        else:
+            actividad1 = actividad2 = actividad3 = ''
+
+        return render(request, 'CuestionarioPSFS.html', {
+            'rut': rut, 
+            'actividad1': actividad1,
+            'actividad2': actividad2,
+            'actividad3': actividad3,
+            'sesiones': sesiones,
+            'evaluacion_existente': evaluacion_existente,
+            'nota': nota
+        })
+    
     except ValueError:
-        return HttpResponse('YA EXISTEN DATOS ', status=404)
-    except:
-        return HttpResponse('YA EXISTEN DATOS ', status=404)
+        return HttpResponse('YA EXISTEN DATOS', status=404)
+    except Exception as e:
+        return HttpResponse(f'Error inesperado: {str(e)}', status=500)
 
-def RenderizarPSFS(request):
 
-    rut = request.GET.get('rut', '')  
-    paciente = get_object_or_404(Paciente, rut=rut)
-    formularios = formularioClinico.objects.filter(paciente=paciente) # para mostrar las 3 Actividades Del
-    #Fomulario Inicial
-    cuestionario = CuestionarioPSFS.objects.filter(paciente=paciente).first()
-    evaluacion_existente = CuestionarioPSFS.objects.filter(paciente=paciente).exists()
-    nota = cuestionario.NotaCuestionarioPSFS
-    if cuestionario:
-        puntajes_actividad_1 = json.loads(cuestionario.puntaje_actividad_1) if cuestionario.puntaje_actividad_1 else []
-        puntajes_actividad_2 = json.loads(cuestionario.puntaje_actividad_2) if cuestionario.puntaje_actividad_2 else []
-        puntajes_actividad_3 = json.loads(cuestionario.puntaje_actividad_3) if cuestionario.puntaje_actividad_3 else []
-        puntajes_total = json.loads(cuestionario.puntajeTotal) if cuestionario.puntajeTotal else []
 
-        sesiones = []
-        for i in range(len(puntajes_actividad_1)):
-            sesiones.append({
-                "sesion": i + 1,
-                "actividad_1": puntajes_actividad_1[i] if i < len(puntajes_actividad_1) else "-",
-                "actividad_2": puntajes_actividad_2[i] if i < len(puntajes_actividad_2) else "-",
-                "actividad_3": puntajes_actividad_3[i] if i < len(puntajes_actividad_3) else "-",
-                "total": puntajes_total[i] if i < len(puntajes_total) else "-",
-            })
-    else:
-        sesiones = []
-
-    if formularios.exists():
-        formulario = formularios.first()  
-        actividades = json.loads(formulario.actividades_afectadas) 
+def RenderizarEQ_5D(request):
+    if 'nombre_clinico' in request.session:
+        nombre_clinico = request.session['nombre_clinico']
+        es_admin = request.session.get('es_admin', False)
+        rut_clinico = request.session.get('rut_clinico')
         
-        actividad1 = actividades[0] if len(actividades) > 0 else ''
-        actividad2 = actividades[1] if len(actividades) > 1 else ''
-        actividad3 = actividades[2] if len(actividades) > 2 else ''
-    else:
-        actividad1 = actividad2 = actividad3 = ''
+        if not rut_clinico:
+            messages.error(request, 'Debe haber un inicio de sesión para estar aquí...')
+            return redirect('login')
 
-    return render(request, 'CuestionarioPSFS.html', {
-        'rut': rut, 
-        'actividad1': actividad1,
-        'actividad2': actividad2,
-        'actividad3': actividad3,
-        'sesiones': sesiones,
-        'evaluacion_existente':evaluacion_existente,
-        'nota':nota
-    })
-
-def GuardarNota(request):
-    if request.method == 'POST':
-        rut = request.POST.get('rut')
-        notaPSFS = request.POST.get('notes')
-        paciente = get_object_or_404(Paciente, rut=rut)
-        EvaluacionExistente = CuestionarioPSFS.objects.filter(paciente=paciente).first()
         try:
-            if EvaluacionExistente:
-                EvaluacionExistente.NotaCuestionarioPSFS = notaPSFS  # Asignación correcta
-                EvaluacionExistente.save()
-                messages.success(request, "Nota actualizada correctamente.")
-                return redirect('HistorialClinico')
-            else:
-                return HttpResponse("Ha ocurrido un error inesperado", status=405)
-        except:
-            return HttpResponse("la evalaucion no ah podido se recogida Correctamente ")
-        
-        
-    else:
-        return HttpResponse("No cargaron bien los datos", status=405)
+            clinico = Clinico.objects.get(rut=rut_clinico)
+        except Clinico.DoesNotExist:
+            messages.error(request, 'El clínico no está en el sistema, intenta nuevamente...')
+            return redirect('login')
 
+        rut = request.GET.get('rut', '') or request.POST.get('rut', '')
+        paciente = get_object_or_404(Paciente, rut=rut)
+
+        if request.method == 'POST':
+            action = request.POST.get('action')
+            if action == 'actualizar':
+                cuestionario, created = CuestionarioEQ_5D.objects.get_or_create(paciente=paciente)
+                
+                # Obtener los nuevos valores
+                nuevos_valores = {
+                    'puntaje_movilidad': request.POST.get('puntaje_movilidad'),
+                    'puntaje_cuidado_personal': request.POST.get('puntaje_cuidado_personal'),
+                    'puntaje_actividades_cotidianas': request.POST.get('puntaje_actividades_cotidianas'),
+                    'puntaje_dolor_malestar': request.POST.get('puntaje_dolor_malestar'),
+                    'puntaje_ansiedad_depresion': request.POST.get('puntaje_ansiedad_depresion'),
+                    'vas_score': request.POST.get('vasScore')
+                }
+                
+                # Actualizar cada campo JsonField
+                for campo, valor in nuevos_valores.items():
+                    valores_actuales = getattr(cuestionario, campo)
+                    valores_actuales.append(valor)
+                    setattr(cuestionario, campo, valores_actuales)
+                
+                cuestionario.save()
+                messages.success(request, 'El cuestionario se ha actualizado correctamente.')
+                return HttpResponseRedirect(request.get_full_path())
+            elif action == 'guardar':
+                movilidad = request.POST.getlist('movilidad')
+                cuidado_personal = request.POST.getlist('cuidadoPersonal')
+                actividades_cotidianas = request.POST.getlist('actividadesCotidianas')
+                dolor_malestar = request.POST.getlist('dolorMalestar')
+                ansiedad_depresion = request.POST.getlist('ansiedadDepresion')
+                puntaje_movilidad = request.POST.getlist('puntaje_movilidad', None)
+                puntaje_cuidado_personal = request.POST.getlist('puntaje_cuidado_personal', None)
+                puntaje_actividades_cotidianas = request.POST.getlist('puntaje_actividades_cotidianas', None)
+                puntaje_dolor_malestar = request.POST.getlist('puntaje_dolor_malestar', None)
+                puntaje_ansiedad_depresion = request.POST.getlist('puntaje_ansiedad_depresion', None)
+                vas_score = request.POST.getlist('vasScore', None)
+
+                cuestionario = CuestionarioEQ_5D(
+                    paciente=paciente,
+                    clinico=clinico,
+                    movilidad=movilidad,
+                    cuidado_personal=cuidado_personal,
+                    actividades_cotidianas=actividades_cotidianas,
+                    dolor_malestar=dolor_malestar,
+                    ansiedad_depresion=ansiedad_depresion,
+                    puntaje_movilidad=puntaje_movilidad,
+                    puntaje_cuidado_personal=puntaje_cuidado_personal,
+                    puntaje_actividades_cotidianas=puntaje_actividades_cotidianas,
+                    puntaje_dolor_malestar=puntaje_dolor_malestar,
+                    puntaje_ansiedad_depresion=puntaje_ansiedad_depresion,
+                    vas_score=vas_score
+                )
+                cuestionario.save()
+                messages.success(request, 'El cuestionario se ha guardado correctamente.')
+                return HttpResponseRedirect(request.get_full_path())
+
+
+        historial_evaluaciones = CuestionarioEQ_5D.objects.filter(paciente=paciente)
+
+        # Preparar datos para la tabla
+        puntajes_por_sesion = []
+        max_length = max(len(evaluacion.vas_score) for evaluacion in historial_evaluaciones)
+
+        for i in range(max_length):
+            for evaluacion in historial_evaluaciones:
+                if i < len(evaluacion.vas_score):  # Verificar si hay un puntaje en este índice
+                    puntajes_por_sesion.append({
+                        'sesion': f's{len(puntajes_por_sesion) // len(historial_evaluaciones) + 1}',
+                        'vas_score': evaluacion.vas_score[i],
+                        'movilidad': evaluacion.puntaje_movilidad[i],
+                        'cuidado_personal': evaluacion.puntaje_cuidado_personal[i],
+                        'actividades_cotidianas': evaluacion.puntaje_actividades_cotidianas[i],
+                        'dolor_malestar': evaluacion.puntaje_dolor_malestar[i],
+                        'ansiedad_depresion': evaluacion.puntaje_ansiedad_depresion[i]
+                    })
+
+
+        return render(request, 'CuestionarioEQ-5D.html', {
+            'rut': rut,
+            'puntajes_por_sesion': puntajes_por_sesion,
+            'paciente':paciente
+        })
+
+    else:
+        messages.error(request, 'Debe haber un inicio de sesión para acceder a esta página.')
+        return redirect('login')

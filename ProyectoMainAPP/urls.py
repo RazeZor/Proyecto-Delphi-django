@@ -39,9 +39,9 @@ urlpatterns = [
     path('editar/', vistaClinico.EditarClinicos, name='editar'),
     path('eliminar_paciente/', lista.EliminarPaciente, name='eliminar'),
     path('CuestionarioGROC/',tiposFormularios.RenderizarGROC,name='GROK'),
-    path('CuestionarioPSFS/',tiposFormularios.RenderizarPSFS, name='PSFS'),
-    path('GuardarPSFS/',tiposFormularios.guardar_psfs, name='uwu'),
-    path('GuardarNota/',tiposFormularios.GuardarNota,name='GuardarNota')
+    path('CuestionarioPSFS/',tiposFormularios.gestionar_psfs, name='gestionar_psfs'),
+    path('CuestionarioEQ_5D/',tiposFormularios.RenderizarEQ_5D,name='EQ_5D')
+
 
     
     

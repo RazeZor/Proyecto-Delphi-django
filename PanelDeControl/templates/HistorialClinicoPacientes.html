@@ -178,13 +178,15 @@
                     <label for="formulario" class="form-label">Elige Formulario</label>
                     <select class="form-select form-select-lg" id="formulario">
                         <option selected disabled>Formularios...</option>
-                        <option value="{% url 'PSFS' %}">PSFS</option>
+                        <option value="{% url 'gestionar_psfs' %}">PSFS</option>
                         <option value="{% url 'GROK' %}">GROC</option>
+                        <option value="{% url 'EQ_5D' %}">EQ_5D</option>
+                        
                     </select>
                     <button type="button" class="btn btn-primary mt-2" id="agregarFormulario">Agregar</button>
                 </div>
                 
-                <script>
+            <script>
                 document.getElementById("agregarFormulario").addEventListener("click", function() {
                     let formulario = document.getElementById("formulario").value;
                     let rut = document.getElementById("rut").value;  // Obtener el RUT del input
@@ -195,7 +197,7 @@
                         alert("Selecciona un formulario y asegúrate de que el paciente tenga un RUT.");
                     }
                 });
-                </script>
+            </script>
                 
                 <label for="historial" class="form-label">Historial Médico:</label>
                 <div class="historial-box">
@@ -230,7 +232,7 @@
                         <img src="{% static 'image/fotoInforme.svg' %}" alt="Informe Inicial" width="100">
                         <label for="historial" class="form-label">Informe Inicial</label>
                     </a>
-                    
+
                 </div>
             </aside>
         <aside >
@@ -283,7 +285,7 @@
                 input.addEventListener('input', toggleButtonVisibility);
             });
             
-            </script>
+        </script>
 
 
 
