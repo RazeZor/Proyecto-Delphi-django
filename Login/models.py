@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 # Modelo Clínico: Representa un clínico en el sistema.
 class Clinico(models.Model):
     rut = models.CharField(max_length=12, primary_key=True, unique=True)  # Clave primaria única
@@ -25,7 +26,7 @@ class Paciente(models.Model):
     genero = models.CharField(max_length=15,null=True)
     contacto = models.CharField(max_length=12)
     cobertura_de_salud = models.CharField(max_length=50)
-    trabajo = models.TextField(null=True, blank=True)
+    trabajo = models.TextField(null=True, blank=True) 
     profesion = models.TextField(null=True,blank=True)
     LicenciaInicio= models.DateField(null=True,blank=True)
     LicenciaFin= models.DateField(null=True,blank=True)
@@ -34,7 +35,7 @@ class Paciente(models.Model):
     def __str__(self):
         return f'{self.nombre} {self.apellido} ({self.rut})'
 
-#charfield  : son los varchar qe sabemos de sql
+# charfield  : son los varchar qe sabemos de sql
 
 # textField : es un atributo que recibe una cantidad gigante de strings 
 
@@ -147,9 +148,7 @@ class Notas(models.Model):
 
     def __str__(self):
         return f'Notas de {self.paciente.nombre} {self.paciente.apellido}'
-    
-
-
+      
 class CuestionarioPSFS(models.Model):
     paciente = models.OneToOneField(Paciente, on_delete=models.CASCADE, primary_key=True)
     fecha_creacion = models.DateField()

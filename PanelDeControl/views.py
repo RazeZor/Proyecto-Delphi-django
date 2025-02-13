@@ -5,6 +5,7 @@ from django.http import HttpResponse, JsonResponse
 from datetime import datetime, timedelta
 import time 
 
+
 def panel(request):
     if 'nombre_clinico' in request.session:
         nombre_clinico = request.session['nombre_clinico']
@@ -215,19 +216,19 @@ def EscalaSemaforo(preguntas1):
     if score <= 3:
         return (
             '<div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
-            '<label>El paciente tiene un riesgo bajo, se recomienda educar y tranquilizar al paciente, diciendo que el diagnóstico es bueno.</label>'
+            '<label>Dentro del Diagnostico de la Escala Screnning Semaforo, El paciente tiene un riesgo bajo, se recomienda educar y tranquilizar al paciente, diciendo que el diagnóstico es bueno.</label>'
             '</div>'
         )
     elif score >= 4 and score <= 7:
         return (
             '<div style="background-color: #fff3cd; color: #856404; padding: 15px; border-radius: 5px; border: 1px solid #ffeeba;">'
-            '<label>El paciente tiene un riesgo medio en la escala Scrining Semaforo, evaluar si necesitará ayuda de otro profesional.</label>'
+            '<label>Dentro del Diagnostico de la Escala Screnning Semaforo, El paciente tiene un riesgo medio , evaluar si necesitará ayuda de otro profesional.</label>'
             '</div>'
         )
     elif score >= 8:
         return (
             '<div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; border: 1px solid #f5c6cb;">'
-            '<p>El paciente tiene un riesgo alto, se recomienda tratamiento interdisciplinario.</p>'
+            '<p>Dentro del Diagnostico de la Escala Screnning Semaforo, El paciente tiene un riesgo alto, se recomienda tratamiento interdisciplinario.</p>'
             '</div>'
         )
         
