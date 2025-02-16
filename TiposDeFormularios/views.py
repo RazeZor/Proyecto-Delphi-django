@@ -194,8 +194,6 @@ def gestionar_psfs(request):
     except Exception as e:
         return HttpResponse(f'Error inesperado: {str(e)}', status=500)
 
-
-
 def RenderizarEQ_5D(request):
     if 'nombre_clinico' in request.session:
         nombre_clinico = request.session['nombre_clinico']
@@ -282,7 +280,7 @@ def RenderizarEQ_5D(request):
             for evaluacion in historial_evaluaciones:
                 if i < len(evaluacion.vas_score):  # Verificar si hay un puntaje en este índice
                     puntajes_por_sesion.append({
-                        'sesion': f's{len(puntajes_por_sesion) // len(historial_evaluaciones) + 1}',
+                        'sesion': f'{len(puntajes_por_sesion) // len(historial_evaluaciones) + 1}',
                         'vas_score': evaluacion.vas_score[i],
                         'movilidad': evaluacion.puntaje_movilidad[i],
                         'cuidado_personal': evaluacion.puntaje_cuidado_personal[i],
@@ -301,3 +299,6 @@ def RenderizarEQ_5D(request):
     else:
         messages.error(request, 'Debe haber un inicio de sesión para acceder a esta página.')
         return redirect('login')
+
+def algo():
+    pass
