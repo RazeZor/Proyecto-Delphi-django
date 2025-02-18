@@ -269,36 +269,39 @@ def RenderizarEQ_5D(request):
                 messages.success(request, 'El cuestionario se ha guardado correctamente.')
                 return HttpResponseRedirect(request.get_full_path())
 
-
+        # Mover esta parte fuera del if POST para que siempre se ejecute
         historial_evaluaciones = CuestionarioEQ_5D.objects.filter(paciente=paciente)
 
-        # Preparar datos para la tabla
-        puntajes_por_sesion = []
-        max_length = max(len(evaluacion.vas_score) for evaluacion in historial_evaluaciones)
+        # Verificar si hay evaluaciones
+        if historial_evaluaciones.exists():
+            # Preparar datos para la tabla
+            puntajes_por_sesion = []
 
-        for i in range(max_length):
-            for evaluacion in historial_evaluaciones:
-                if i < len(evaluacion.vas_score):  # Verificar si hay un puntaje en este índice
-                    puntajes_por_sesion.append({
-                        'sesion': f'{len(puntajes_por_sesion) // len(historial_evaluaciones) + 1}',
-                        'vas_score': evaluacion.vas_score[i],
-                        'movilidad': evaluacion.puntaje_movilidad[i],
-                        'cuidado_personal': evaluacion.puntaje_cuidado_personal[i],
-                        'actividades_cotidianas': evaluacion.puntaje_actividades_cotidianas[i],
-                        'dolor_malestar': evaluacion.puntaje_dolor_malestar[i],
-                        'ansiedad_depresion': evaluacion.puntaje_ansiedad_depresion[i]
-                    })
+            # Verificar si hay datos en vas_score antes de usar max()
+            max_length = max((len(evaluacion.vas_score) for evaluacion in historial_evaluaciones), default=0)
 
+            for i in range(max_length):
+                for evaluacion in historial_evaluaciones:
+                    if i < len(evaluacion.vas_score):  # Verificar si hay un puntaje en este índice
+                        puntajes_por_sesion.append({
+                            'sesion': f'{len(puntajes_por_sesion) // len(historial_evaluaciones) + 1}',
+                            'vas_score': evaluacion.vas_score[i],
+                            'movilidad': evaluacion.puntaje_movilidad[i],
+                            'cuidado_personal': evaluacion.puntaje_cuidado_personal[i],
+                            'actividades_cotidianas': evaluacion.puntaje_actividades_cotidianas[i],
+                            'dolor_malestar': evaluacion.puntaje_dolor_malestar[i],
+                            'ansiedad_depresion': evaluacion.puntaje_ansiedad_depresion[i]
+                        })
+        else:
+            puntajes_por_sesion = []  
 
+        # Siempre se ejecuta este render
         return render(request, 'CuestionarioEQ-5D.html', {
             'rut': rut,
             'puntajes_por_sesion': puntajes_por_sesion,
-            'paciente':paciente
+            'paciente': paciente
         })
-
     else:
         messages.error(request, 'Debe haber un inicio de sesión para acceder a esta página.')
         return redirect('login')
 
-def algo():
-    pass

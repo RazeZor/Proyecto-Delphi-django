@@ -35,122 +35,171 @@
                     
                     <form method="POST" class="space-y-6">
                         {% csrf_token %}
-                    <label for="rut" class="block mb-2">RUT:</label>
-                    <input type="text" id="rut" class="w-full p-2 border rounded-lg" name="rut" value="{{ rut }}" readonly>
+                        <label for="rut" class="block text-gray-700 mb-2">RUT:</label>
+                        <input type="text" id="rut" class="w-full p-2 border rounded-lg text-gray-700 bg-gray-100"
+                            name="rut" value="{{ rut }}" readonly>
+
+                        <!-- Bloque Movilidad -->
                         <div id="bloqueMovilidad" class="bloque">
                             <h3 class="text-lg font-medium text-gray-700 mb-3">Movilidad</h3>
                             <div class="space-y-2">
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="movilidad" value="No tengo problemas para caminar" data-puntaje="1" required class="form-radio text-blue-600" onchange="actualizarPuntaje('movilidad')">
+                                    <input type="radio" name="movilidad" value="No tengo problemas para caminar"
+                                        data-puntaje="1" required class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('movilidad')">
                                     <span class="text-gray-700">No tengo problemas para caminar</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="movilidad" value="Tengo algunos problemas para caminar" data-puntaje="2" class="form-radio text-blue-600" onchange="actualizarPuntaje('movilidad')">
+                                    <input type="radio" name="movilidad" value="Tengo algunos problemas para caminar"
+                                        data-puntaje="2" class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('movilidad')">
                                     <span class="text-gray-700">Tengo algunos problemas para caminar</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="movilidad" value="Tengo que estar en cama" data-puntaje="3" class="form-radio text-blue-600" onchange="actualizarPuntaje('movilidad')">
+                                    <input type="radio" name="movilidad" value="Tengo que estar en cama"
+                                        data-puntaje="3" class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('movilidad')">
                                     <span class="text-gray-700">Tengo que estar en cama</span>
                                 </label>
                             </div>
-                            <span id="puntajeMovilidad" name="puntaje_movilidad" data-puntaje="0" style="display: none;">0</span>
+                            <span id="puntajeMovilidad" name="puntaje_movilidad" data-puntaje="0"
+                                style="display: none;">0</span>
                             <input type="hidden" name="puntaje_movilidad" id="puntajeMovilidadInput">
-                            
                         </div>
-                    
+
                         <!-- Bloque Cuidado Personal -->
                         <div id="bloqueCuidadoPersonal" class="bloque">
                             <h3 class="text-lg font-medium text-gray-700 mb-3">Cuidado Personal</h3>
                             <div class="space-y-2">
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="cuidadoPersonal" value="No tengo problemas con mi cuidado personal" data-puntaje="1" required class="form-radio text-blue-600" onchange="actualizarPuntaje('cuidadoPersonal')">
+                                    <input type="radio" name="cuidadoPersonal"
+                                        value="No tengo problemas con mi cuidado personal" data-puntaje="1" required
+                                        class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('cuidadoPersonal')">
                                     <span class="text-gray-700">No tengo problemas con mi cuidado personal</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="cuidadoPersonal" value="Tengo algunos problemas para lavarme o vestirme" data-puntaje="2" class="form-radio text-blue-600" onchange="actualizarPuntaje('cuidadoPersonal')">
+                                    <input type="radio" name="cuidadoPersonal"
+                                        value="Tengo algunos problemas para lavarme o vestirme" data-puntaje="2"
+                                        class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('cuidadoPersonal')">
                                     <span class="text-gray-700">Tengo algunos problemas para lavarme o vestirme</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="cuidadoPersonal" value="Soy incapaz de lavarme o vestirme" data-puntaje="3" class="form-radio text-blue-600" onchange="actualizarPuntaje('cuidadoPersonal')">
+                                    <input type="radio" name="cuidadoPersonal"
+                                        value="Soy incapaz de lavarme o vestirme" data-puntaje="3"
+                                        class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('cuidadoPersonal')">
                                     <span class="text-gray-700">Soy incapaz de lavarme o vestirme</span>
                                 </label>
                             </div>
-                            <span id="puntajeCuidadoPersonal" name="puntaje_cuidado_personal" data-puntaje="0" style="display: none;">0</span>
+                            <span id="puntajeCuidadoPersonal" name="puntaje_cuidado_personal" data-puntaje="0"
+                                style="display: none;">0</span>
                             <input type="hidden" name="puntaje_cuidado_personal" id="puntajeCuidadoPersonalInput">
-                            
                         </div>
-                    
+
                         <!-- Bloque Actividades Cotidianas -->
                         <div id="bloqueActividadesCotidianas" class="bloque">
                             <h3 class="text-lg font-medium text-gray-700 mb-3">Actividades Cotidianas</h3>
                             <div class="space-y-2">
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="actividadesCotidianas" value="No tengo problemas para realizar mis actividades Cotidianas" data-puntaje="1" required class="form-radio text-blue-600" onchange="actualizarPuntaje('actividadesCotidianas')">
-                                    <span class="text-gray-700">No tengo problemas para realizar mis actividades Cotidianas</span>
+                                    <input type="radio" name="actividadesCotidianas"
+                                        value="No tengo problemas para realizar mis actividades Cotidianas"
+                                        data-puntaje="1" required class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('actividadesCotidianas')">
+                                    <span class="text-gray-700">No tengo problemas para realizar mis actividades
+                                        Cotidianas</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="actividadesCotidianas" value="Tengo algunos problemas para realizar mis actividades Cotidianas" data-puntaje="2" class="form-radio text-blue-600" onchange="actualizarPuntaje('actividadesCotidianas')">
-                                    <span class="text-gray-700">Tengo algunos problemas para realizar mis actividades Cotidianas</span>
+                                    <input type="radio" name="actividadesCotidianas"
+                                        value="Tengo algunos problemas para realizar mis actividades Cotidianas"
+                                        data-puntaje="2" class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('actividadesCotidianas')">
+                                    <span class="text-gray-700">Tengo algunos problemas para realizar mis actividades
+                                        Cotidianas</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="actividadesCotidianas" value="Soy incapaz de realizar mis actividades cotidianas" data-puntaje="3" class="form-radio text-blue-600" onchange="actualizarPuntaje('actividadesCotidianas')">
-                                    <span class="text-gray-700">Soy incapaz de realizar mis actividades cotidianas</span>
+                                    <input type="radio" name="actividadesCotidianas"
+                                        value="Soy incapaz de realizar mis actividades cotidianas" data-puntaje="3"
+                                        class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('actividadesCotidianas')">
+                                    <span class="text-gray-700">Soy incapaz de realizar mis actividades
+                                        cotidianas</span>
                                 </label>
                             </div>
-                            <span id="puntajeActividadesCotidianas" name="puntaje_actividades_cotidianas" data-puntaje="0" style="display: none;">0</span>
-                            <input type="hidden" name="puntaje_actividades_cotidianas" id="puntajeActividadesCotidianasInput">
-                            
+                            <span id="puntajeActividadesCotidianas" name="puntaje_actividades_cotidianas"
+                                data-puntaje="0" style="display: none;">0</span>
+                            <input type="hidden" name="puntaje_actividades_cotidianas"
+                                id="puntajeActividadesCotidianasInput">
                         </div>
-                    
+
                         <!-- Bloque Dolor/Malestar -->
                         <div id="bloqueDolorMalestar" class="bloque">
                             <h3 class="text-lg font-medium text-gray-700 mb-3">Dolor/Malestar</h3>
                             <div class="space-y-2">
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="dolorMalestar" value="No tengo dolor ni malestar" data-puntaje="1" required class="form-radio text-blue-600" onchange="actualizarPuntaje('dolorMalestar')">
+                                    <input type="radio" name="dolorMalestar" value="No tengo dolor ni malestar"
+                                        data-puntaje="1" required class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('dolorMalestar')">
                                     <span class="text-gray-700">No tengo dolor ni malestar</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="dolorMalestar" value="Tengo dolor o malestar moderado" data-puntaje="2" class="form-radio text-blue-600" onchange="actualizarPuntaje('dolorMalestar')">
+                                    <input type="radio" name="dolorMalestar" value="Tengo dolor o malestar moderado"
+                                        data-puntaje="2" class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('dolorMalestar')">
                                     <span class="text-gray-700">Tengo dolor o malestar moderado</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="dolorMalestar" value="Tengo mucho dolor o malestar" data-puntaje="3" class="form-radio text-blue-600" onchange="actualizarPuntaje('dolorMalestar')">
+                                    <input type="radio" name="dolorMalestar" value="Tengo mucho dolor o malestar"
+                                        data-puntaje="3" class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('dolorMalestar')">
                                     <span class="text-gray-700">Tengo mucho dolor o malestar</span>
                                 </label>
                             </div>
-                            <span id="puntajeDolorMalestar" name="puntaje_dolor_malestar" data-puntaje="0" style="display: none;">0</span>
+                            <span id="puntajeDolorMalestar" name="puntaje_dolor_malestar" data-puntaje="0"
+                                style="display: none;">0</span>
                             <input type="hidden" name="puntaje_dolor_malestar" id="puntajeDolorMalestarInput">
                         </div>
-                    
+
                         <!-- Bloque Ansiedad/Depresión -->
                         <div id="bloqueAnsiedadDepresion" class="bloque">
                             <h3 class="text-lg font-medium text-gray-700 mb-3">Ansiedad/Depresión</h3>
                             <div class="space-y-2">
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="ansiedadDepresion" value="No estoy ansioso ni deprimido" data-puntaje="1" required class="form-radio text-blue-600" onchange="actualizarPuntaje('ansiedadDepresion')">
+                                    <input type="radio" name="ansiedadDepresion" value="No estoy ansioso ni deprimido"
+                                        data-puntaje="1" required class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('ansiedadDepresion')">
                                     <span class="text-gray-700">No estoy ansioso ni deprimido</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="ansiedadDepresion" value="Estoy moderadamente ansioso o deprimido" data-puntaje="2" class="form-radio text-blue-600" onchange="actualizarPuntaje('ansiedadDepresion')">
+                                    <input type="radio" name="ansiedadDepresion"
+                                        value="Estoy moderadamente ansioso o deprimido" data-puntaje="2"
+                                        class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('ansiedadDepresion')">
                                     <span class="text-gray-700">Estoy moderadamente ansioso o deprimido</span>
                                 </label>
                                 <label class="flex items-center space-x-3">
-                                    <input type="radio" name="ansiedadDepresion" value="Estoy muy ansioso o deprimido" data-puntaje="3" class="form-radio text-blue-600" onchange="actualizarPuntaje('ansiedadDepresion')">
+                                    <input type="radio" name="ansiedadDepresion"
+                                        value="Estoy muy ansioso o deprimido" data-puntaje="3"
+                                        class="form-radio text-blue-600 focus:ring-blue-500"
+                                        onchange="actualizarPuntaje('ansiedadDepresion')">
                                     <span class="text-gray-700">Estoy muy ansioso o deprimido</span>
                                 </label>
                             </div>
-                                <span id="puntajeAnsiedadDepresion" name="puntaje_ansiedad_depresion" data-puntaje="0" style="display: none;">0</span>
-                                <input type="hidden" name="puntaje_ansiedad_depresion" id="puntajeAnsiedadDepresionInput">
-
+                            <span id="puntajeAnsiedadDepresion" name="puntaje_ansiedad_depresion" data-puntaje="0"
+                                style="display: none;">0</span>
+                            <input type="hidden" name="puntaje_ansiedad_depresion"
+                                id="puntajeAnsiedadDepresionInput">
                         </div>
-                    
+
                         <div class="border-t pt-6">
                             <h3 class="text-lg font-medium text-gray-700 mb-3">Escala Visual Analógica (EQ-VAS)</h3>
                             <div class="space-y-4">
                                 <p class="text-gray-600">Por favor, indique en la escala su estado de salud hoy:</p>
                                 <div class="flex items-center space-x-4">
-                                    <input type="range" id="vasSlider" name="vasScore" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" min="0" max="100" value="50">
+                                    <input type="range" id="vasSlider" name="vasScore"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                        min="0" max="100" value="50">
                                     <span id="vasValue" class="text-lg font-medium text-blue-600">50</span>
                                 </div>
                                 <div class="flex justify-between text-sm text-gray-500">
@@ -159,20 +208,20 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <script>
-                            document.getElementById('vasSlider').addEventListener('input', function(e) {
+                            document.getElementById('vasSlider').addEventListener('input', function (e) {
                                 document.getElementById('vasValue').textContent = e.target.value;
                             });
                         </script>
-                    
+
                         <div class="flex justify-end space-x-4">
                             <button type="submit" name="action" value="actualizar"
-                                class="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700">
+                                class="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-500">
                                 Actualizar
                             </button>
                             <button type="submit" name="action" value="guardar"
-                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                                class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 Guardar Evaluación
                             </button>
                         </div>
@@ -221,18 +270,27 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200" id="historialEvaluaciones">
-                            {% for puntaje in puntajes_por_sesion %}
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.sesion }}</td> <!-- Número de sesión -->
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.vas_score }}</td> <!-- Puntaje VAS -->
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.movilidad }}</td> <!-- Puntaje Movilidad -->
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.cuidado_personal }}</td> <!-- Puntaje Cuidado Personal -->
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.actividades_cotidianas }}</td> <!-- Puntaje Actividades Cotidianas -->
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.dolor_malestar }}</td> <!-- Puntaje Dolor/Malestar -->
-                                <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.ansiedad_depresion }}</td> <!-- Puntaje Ansiedad/Depresión -->
-                            </tr>
-                            {% endfor %}
+                            {% if puntajes_por_sesion %}
+                                {% for puntaje in puntajes_por_sesion %}
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.sesion }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.vas_score }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.movilidad }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.cuidado_personal }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.actividades_cotidianas }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.dolor_malestar }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ puntaje.ansiedad_depresion }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="px-6 py-4 text-center" colspan="7">
+                                        No hay datos disponibles para mostrar.
+                                    </td>
+                                </tr>
+                            {% endif %}
                         </tbody>
+                        
                         
                         
                         

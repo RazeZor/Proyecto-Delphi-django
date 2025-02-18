@@ -1,69 +1,68 @@
-
 :root {
     --primary-color: #21294e;
     --secondary-color: #21294e;
     --accent-color: #cd2481;
-    --sidebar-width: 250px;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --sidebar-width: 280px;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: #f8f9fa;
 }
 
+/* Mejoras en la Barra de Navegación */
 .navbar {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color)) !important;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
     padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: 600;
+.navbar-brand img {
+    transition: var(--transition);
 }
 
-.search-bar {
-    position: relative;
-    max-width: 300px;
+.navbar-brand img:hover {
+    transform: scale(1.05);
 }
 
-.search-bar input {
-    padding-left: 2.5rem;
-    border-radius: 20px;
-    border: none;
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-}
-
-.search-bar i {
-    position: absolute;
-    left: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-}
-
+/* Sidebar Mejorado */
 .sidebar {
     width: var(--sidebar-width);
     background: white;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    padding: 2rem 1rem;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    padding: 2rem 1.5rem;
     min-height: calc(100vh - 72px);
+    position: relative;
+    z-index: 1;
 }
 
 .sidebar h4 {
     color: var(--primary-color);
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+    position: relative;
+}
+
+.sidebar h4::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent-color), transparent);
 }
 
 .sidebar ul li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .sidebar ul li a {
@@ -71,51 +70,125 @@ body {
     text-decoration: none;
     display: flex;
     align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    transition: var(--transition);
+    font-weight: 500;
 }
 
 .sidebar ul li a:hover {
-    background-color: var(--accent-color);
+    background: linear-gradient(to right, var(--accent-color), #cd2481);
     color: white;
+    transform: translateX(5px);
 }
 
 .sidebar ul li a i {
-    margin-right: 10px;
-    font-size: 1.2rem;
+    margin-right: 12px;
+    font-size: 1.3rem;
 }
 
+/* Tarjetas del Dashboard Mejoradas */
+.dashboard-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.8rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition);
+    border-left: 4px solid var(--accent-color);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.dashboard-card h5 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dashboard-card h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-card i {
+    font-size: 1.4rem;
+    color: var(--accent-color);
+}
+
+/* Contenido Principal */
 .main-content {
     flex-grow: 1;
     padding: 2rem;
     background-color: #f8f9fa;
 }
 
-.dashboard-card {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+.container-fluid {
+    padding: 0 2rem;
 }
 
-.dashboard-card:hover {
-    transform: translateY(-5px);
-}
-
+/* Footer Mejorado */
 footer {
-    background: var(--primary-color) !important;
-    padding: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    padding: 1.2rem;
     margin-top: auto;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
 }
 
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        min-height: auto;
+/* Responsive Design Mejorado */
+@media (max-width: 1200px) {
+    .dashboard-card {
+        padding: 1.5rem;
     }
 }
 
+@media (max-width: 992px) {
+    .sidebar {
+        width: 240px;
+    }
+}
 
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 1.5rem 1rem;
+    }
+
+    .main-content {
+        padding: 1.5rem;
+    }
+
+    .container-fluid {
+        padding: 0 1rem;
+    }
+
+    .dashboard-card {
+        margin-bottom: 1rem;
+    }
+
+    .navbar h1 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-card {
+    animation: fadeIn 0.5s ease forwards;
+}
