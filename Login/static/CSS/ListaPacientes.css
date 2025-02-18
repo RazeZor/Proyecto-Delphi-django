@@ -13,6 +13,7 @@
     --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
+
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--gray-100);
@@ -284,4 +285,40 @@ footer {
         padding: 0.75rem;
         font-size: 0.9rem;
     }
+}
+
+/* Estilos para los botones de paginación */
+.pagination-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination-controls .btn-secondary {
+    background-color: var(--primary-color);
+    border: none;
+    color: #2d3748;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    margin: 0 5px;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+.pagination-controls .btn-secondary:hover {
+    background-color: var(--primary-dark);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.pagination-controls .btn-secondary:active {
+    background-color: var(--gray-300);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(0);
+}
+
+.pagination-controls .btn-secondary:disabled {
+    background-color: var(--gray-100);
+    color: var(--gray-300);
+    cursor: not-allowed;
+    box-shadow: none;
 }

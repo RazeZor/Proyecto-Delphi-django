@@ -70,7 +70,7 @@
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="pacienteTableBody">
                                 {% for paciente in paciente %}
                                 <tr class="patient-row">
                                     <td><span class="id-badge">{{ forloop.counter }}</span></td>
@@ -103,21 +103,19 @@
                                         </form>
                                     </td>
                                 </tr>
-                                {% empty %}
-                                <tr>
-                                    <td colspan="8" class="empty-state">
-                                        <div class="empty-content">
-                                            <i class="fas fa-user-slash"></i>
-                                            <p>No hay pacientes registrados en el sistema</p>
-                                        </div>
-                                    </td>
-                                </tr>
                                 {% endfor %}
                             </tbody>
                         </table>
+                        <div class="pagination-controls">
+                            <button id="prevPage" class="btn btn-secondary" disabled>&laquo; Anterior</button>
+                            <button id="nextPage" class="btn btn-secondary">Siguiente &raquo;</button>
+                        </div>
+                        
                     </div>
+                    
                 </div>
             </div>
+            
 
             <!-- Modal de confirmación -->
             <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
@@ -150,6 +148,55 @@
             </div>
         </main>
         <script>
+                    // Paginación
+            const rowsPerPage = 6; // Cantidad de pacientes por página
+            let currentPage = 1;
+
+            function mostrarPagina(page) {
+                const rows = document.querySelectorAll('.patient-row');
+                const totalRows = rows.length;
+                const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+                // Ocultar todos los pacientes
+                rows.forEach(row => row.style.display = 'none');
+
+                // Calcular el rango de filas a mostrar
+                const start = (page - 1) * rowsPerPage;
+                const end = start + rowsPerPage;
+
+                // Mostrar las filas de la página actual
+                for (let i = start; i < end && i < totalRows; i++) {
+                    rows[i].style.display = '';
+                }
+
+                // Habilitar o deshabilitar botones de navegación
+                document.getElementById('prevPage').disabled = (page === 1);
+                document.getElementById('nextPage').disabled = (page === totalPages);
+            }
+
+            // Control de botones
+            document.getElementById('prevPage').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    mostrarPagina(currentPage);
+                }
+            });
+
+            document.getElementById('nextPage').addEventListener('click', () => {
+                const rows = document.querySelectorAll('.patient-row');
+                const totalRows = rows.length;
+                const totalPages = Math.ceil(totalRows / rowsPerPage);
+
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    mostrarPagina(currentPage);
+                }
+            });
+
+            // Mostrar la primera página al cargar la tabla
+            document.addEventListener('DOMContentLoaded', () => {
+                mostrarPagina(currentPage);
+            });
             // Función de búsqueda de pacientes
                 document.getElementById('searchInput').addEventListener('input', function(e) {
                     const searchTerm = e.target.value.toLowerCase();
@@ -175,6 +222,7 @@
                     const form = document.querySelector(`form input[value="${rutEliminar}"]`).closest('form');
                     form.submit();
                 });
+                
         </script>
         <footer>
             <p>© 2025 Centro Clinico Delphi - Derechos Reservados</p>
