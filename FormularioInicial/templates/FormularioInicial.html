@@ -258,35 +258,37 @@
                 
                         <div class="col-md-6 form-group">
                             <label class="form-label">Fecha inicio licencia:</label>
-                            <input type="date" id="fecha_inicio" name="fecha_inicio" required class='form-control'>
+                            <input type="date" id="fecha_inicio" name="fecha_inicio" required class='form-control' onchange="calcularFechaFin()">
                         </div>
-                
                         <div class="col-md-6 form-group">
-                            <label class="form-label">Fecha fin licencia:</label>
-                            <input type='date' id='fecha_fin' name='fecha_fin' required class='form-control'>
+                            <label class="form-label">Días de Licencia</label>
+                            <input type='number' id='dias_licencia' name='dias_licencia' required class='form-control' onchange="calcularFechaFin()" placeholder="Ingresa Tus dias de licencia">
                         </div>
-                        <input type='hidden' id='dias_licencia' name='dias_licencia'>
+                        <input type='hidden' id='fecha_fin' name='fecha_fin' required class='form-control'>
                 
                     </div>
                 
-                    <!-- Script para calcular días -->
                     <script>
-                        document.querySelectorAll('input[type=date]').forEach(input => {
-                            input.addEventListener('change', calcularDias);
-                        });
-                
-                        function calcularDias() {
-                            const inicio = new Date(document.getElementById('fecha_inicio').value);
-                            const fin = new Date(document.getElementById('fecha_fin').value);
-                
-                            if (fin < inicio) {
-                                alert('La fecha final no puede ser anterior a la inicial');
-                                return;
+                        function calcularFechaFin() {
+                            // Obtener la fecha de inicio y los días de licencia
+                            const fechaInicio = document.getElementById("fecha_inicio").value;
+                            const diasLicencia = parseInt(document.getElementById("dias_licencia").value);
+                    
+                            // Verificar que ambos valores estén presentes
+                            if (fechaInicio && !isNaN(diasLicencia)) {
+                                const fechaInicioObj = new Date(fechaInicio);  // Crear un objeto de fecha
+                                fechaInicioObj.setDate(fechaInicioObj.getDate() + diasLicencia);  // Sumar los días de licencia
+                    
+                                // Formatear la fecha de fin en formato latinoamericano (DD/MM/YYYY)
+                                const dia = String(fechaInicioObj.getDate()).padStart(2, '0'); // Agregar ceros si el día es de un solo dígito
+                                const mes = String(fechaInicioObj.getMonth() + 1).padStart(2, '0'); // Mes es base 0, por lo que sumamos 1
+                                const anio = fechaInicioObj.getFullYear();
+                    
+                                const fechaFin = `${dia}/${mes}/${anio}`;
+                    
+                                // Asignar la fecha de fin al campo oculto
+                                document.getElementById("fecha_fin").value = fechaFin;
                             }
-                
-                            const diferencia = fin.getTime() - inicio.getTime();
-                            const dias = Math.ceil(diferencia / (1000 * 3600 * 24)) + 1; // +1 para incluir día inicial
-                            document.getElementById('dias_licencia').value = dias;
                         }
                     </script>
                 
