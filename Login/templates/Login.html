@@ -1,122 +1,85 @@
 {% load static %}
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>login</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <link rel="icon" href="{% static 'image/icon' %}"  />
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delphi Centro Clínico - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        body {
+            background-image: url("{% static 'image/background_1.jpg' %}");
+            min-height: 100vh;
+            display: flex;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="curved-bg"></div>
+    <div class="curved-bg-2"></div>
+    
+    <div class="login-container">
+        <section class="brand-section">
+            <img src="{% static 'image/CCD.png' %}" alt="Delphi Centro Clínico">
+            <h2>Salud y bienestar<br>enfocados en ti</h2>
+        </section>
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        
-        />
-        <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-        <style>
-            body {
-                background-image: url("{% static 'image/background_1.jpg' %}");
-                background-size: cover;  /* Esto ajusta la imagen al tamaño de la pantalla */
+        <section class="form-section">
+            <form class="login-form" method="POST">
+                {% csrf_token %}
+                <h1>Login</h1>
                 
-            }
-            body.loaded {
-                opacity: 1; /* La imagen se hace visible al cargar */
-            }
-        </style>
-    </head>
-
-    <body>
-        <header>
-        </header>
-        <main>
-        <div class="contenededorGrande">
-            <div class="ContenedorLadoIzquierdo">
-                <div class="Contenido">
-                    <img src="{% static 'image/CCD.png' %}" alt="" srcset="">
-                    <p class="card-text">
-                        Salud y bienestar enfocados en ti
-                </div>
-            </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Login</h4>
-                        </div>
-                        <div class="card-body">
-                            {% if messages %}
-                        <ul>
-                            {% for message in messages %}
-                                <li>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
-
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="rut" class="form-label"></label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="rut"
-                                    name="rut"
-                                    placeholder="Rut"
-                                    required
-                                />
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label"></label>
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password"
-                                    name="password"
-                                    placeholder="contraseña"
-                                    required
-                                />
-                                
-                            </div>
-                            <button type="submit" class="botonLogin">Login</button>
-                            
-                        </form>
-                        </div>
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <p class="message">{{ message }}</p>
+                        {% endfor %}
                     </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <input type="text" id="rut" name="rut" placeholder="Rut" required>
                 </div>
-            </div>
-        </div>
-        
+
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                </div>
+
+                <button type="submit" class="login-btn">Ingresar</button>
+            </form>
+        </section>
     </div>
-        </main>
-        <footer>
-            
-        </footer>
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-
-        <script>
-            window.addEventListener('load', function () {
-                document.body.classList.add('loaded');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animación suave para los inputs
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                input.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
             });
-        </script>
-    </body>
+
+            // Validación básica del formulario
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const rut = document.getElementById('rut').value;
+                const password = document.getElementById('password').value;
+
+                if (!rut || !password) {
+                    e.preventDefault();
+                    alert('Por favor complete todos los campos');
+                }
+            });
+        });
+    </script>
+</body>
 </html>
+```
