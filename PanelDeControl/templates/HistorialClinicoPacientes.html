@@ -33,38 +33,7 @@
 
     <div class="granContenedor">
         <div class="d-flex">
-            <div class="sidebar">
-                <h4>Menú</h4>
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="{% url 'formularioInicial' %}">
-                            <i class='bx bx-user'></i>
-                            Agregar Pacientes
-                        </a>
-                    </li>
-    
-                    {% if es_admin %}
-                    <li>
-                        <a href="{% url 'ver' %}" class="calendar-plus">
-                            <i class='bx bx-calendar-plus'></i>
-                            Lista Clinicos
-                        </a>
-                    </li>
-                    {% endif %}
-                    <li>
-                        <a href="#">
-                            <i class='bx bx-chart'></i>
-                            Gráfico de salud por paciente
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'cerrarSesion' %}" class="text-danger">
-                            <i class='bx bx-log-out'></i>
-                            Cerrar Sesión
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        
     
         
         <div class="container mt-4">

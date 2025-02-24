@@ -270,23 +270,17 @@
                 
                     <script>
                         function calcularFechaFin() {
-                            // Obtener la fecha de inicio y los días de licencia
                             const fechaInicio = document.getElementById("fecha_inicio").value;
                             const diasLicencia = parseInt(document.getElementById("dias_licencia").value);
                     
-                            // Verificar que ambos valores estén presentes
                             if (fechaInicio && !isNaN(diasLicencia)) {
-                                const fechaInicioObj = new Date(fechaInicio);  // Crear un objeto de fecha
-                                fechaInicioObj.setDate(fechaInicioObj.getDate() + diasLicencia);  // Sumar los días de licencia
+                                const fechaInicioObj = new Date(fechaInicio);
+                                fechaInicioObj.setDate(fechaInicioObj.getDate() + diasLicencia);
                     
-                                // Formatear la fecha de fin en formato latinoamericano (DD/MM/YYYY)
-                                const dia = String(fechaInicioObj.getDate()).padStart(2, '0'); // Agregar ceros si el día es de un solo dígito
-                                const mes = String(fechaInicioObj.getMonth() + 1).padStart(2, '0'); // Mes es base 0, por lo que sumamos 1
-                                const anio = fechaInicioObj.getFullYear();
+                                // Convertir a formato YYYY-MM-DD
+                                const fechaFin = fechaInicioObj.toISOString().split("T")[0];
                     
-                                const fechaFin = `${dia}/${mes}/${anio}`;
-                    
-                                // Asignar la fecha de fin al campo oculto
+                                // Asignar el valor corregido al campo oculto
                                 document.getElementById("fecha_fin").value = fechaFin;
                             }
                         }
@@ -853,7 +847,7 @@
                                 <td><input class="form-check-input me-1" type="checkbox" value="Accidente Vascular" name="TiposDeEnfermedades"/>Accidente Vascular</td>
                                 <td><input class="form-check-input me-1" type="checkbox" value="Problemas renales" name="TiposDeEnfermedades"/>Problemas renales</td>
                                 <td><input class="form-check-input me-1" type="checkbox" value="Colesterol Alto" name="TiposDeEnfermedades"/>Colesterol Alto</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Depresión"name="TiposDeEnfermedades" />Depresión</td>
+                                <td><input class="form-check-input me-1" type="checkbox" value="Depresion"name="TiposDeEnfermedades" />Depresión</td>
                             </tr>
                             <tr>
                                 <td><input class="form-check-input me-1" type="checkbox" value="Fibromialgia" name="TiposDeEnfermedades"/>Fibromialgia</td>

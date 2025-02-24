@@ -244,14 +244,29 @@ def Neuropaticas(caracteristicasDolor):
 
 
 def condicionesSalud(condicionesSalud):
+    mensajes = []
+    
+    recomendaciones = {
+        "Fibromialgia": "El paciente tiene una enfermedad de Fibromialgia, se recomienda uso de formulario para Fibromialgia",
+        "Hormigueos o adormecimiento": "El paciente tiene una enfermedad de Hormigueos o adormecimiento, se recomienda uso de formulario de dolor neuropático",
+        "diabetes": "El paciente tiene una enfermedad de diabetes, se recomienda uso de formulario de dolor neuropático",
+        "Ansiedad": "El paciente tiene una enfermedad de Ansiedad, se recomienda uso de formulario abreviado de Depresión",
+        "Depresion": "El paciente tiene una enfermedad de Depresión, se recomienda uso de formulario abreviado de Depresión"
+    }
+    
     for condicion in condicionesSalud:
-        if condicion == "Fibromialgia":
-            return (
-                '<div style="background-color: #fff3cd; color: #155724; padding: 15px; border-radius: 5px; border: 1px solid #c3e6cb;">'
-                '<label>El paciente tiene una enfermedad de Fibromialgia, se recomienda uso de formulario para Fibromialgia</label>'
-                '</div>'
-            )
-    return ('')
+        if condicion in recomendaciones:
+            mensajes.append(f"<label>{recomendaciones[condicion]}</label>")
+    
+    if mensajes:
+        return (
+            '<div style="background-color: #fff3cd; color: #155724; padding: 15px; '
+            'border-radius: 5px; border: 1px solid #c3e6cb;">' +
+            "<br>".join(mensajes) +
+            "</div>"
+        )
+    
+    return ""
 
 def CreenciaDolor(CreenciaDolor):
     if (CreenciaDolor == 'si'):
