@@ -253,17 +253,7 @@
 
 
 
-.contenedor {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-  gap: 20px; /* Espaciado entre columnas */
-  padding: 20px;
-  border: 2px solid #ccc; /* Bordes del cuadrado */
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  max-width: 600px; /* Ancho máximo del contenedor */
-  margin: auto; /* Centrado horizontal */
-}
+
 
 .pregunta {
   padding: 10px;
@@ -290,12 +280,7 @@
   background-color: #21294E;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 10%;
-  z-index: 1000;
+
 }
 
 .navbar-brand {
@@ -474,6 +459,8 @@ body {
   padding: 20px;
 }
 
+
+
 .tabla {
   width: 100%;
   border-collapse: collapse;
@@ -503,6 +490,68 @@ body {
 
 .form-label {
   font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #0A1931; /* Azul marino oscuro */
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand i {
+  margin-right: 8px;
+  color: #FFD700; /* Dorado para resaltar el icono */
+}
+
+.navbar-toggler {
+  border: none;
+  background-color: white;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* Contenedor del navbar */
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos del reloj */
+#tiempo {
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-right: 20px;
+}
+
+/* Para mejorar el diseño en móviles */
+@media (max-width: 992px) {
+  .navbar {
+      text-align: center;
+  }
+
+  #tiempo {
+      margin-top: 10px;
+      display: block;
+      text-align: center;
+  }
+}
+
+main {
+  padding: 2rem;
+  margin-top: 50px; /* Ajusta según la altura del navbar */
 }
 
 
@@ -552,4 +601,5 @@ body {
   top: 10px;
   right: 10px;
 }
+
 

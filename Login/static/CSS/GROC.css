@@ -42,6 +42,10 @@ body {
     color: var(--blue);
 }
 
+
+
+
+
 .navbar {
     background: var(--blue);
     padding: 1rem;
@@ -49,7 +53,7 @@ body {
 }
 
 .navbar-brand {
-    color: var(--white) !important;
+    color: var(--blue) !important;
     font-weight: 600;
     font-size: 1.5rem;
     font-family: 'Arial Rounded MT Bold', Arial, sans-serif;

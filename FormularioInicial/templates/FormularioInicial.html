@@ -13,24 +13,24 @@
 </head>
 
 <style>
-    body {
-        background-image: url("{% static 'image/background_1.jpg' %}");
-        background-size: cover;  /* Esto ajusta la imagen al tamaño de la pantalla */ 
-    }
+  
+
     
 
 </style>
 <body class="bg-light">
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <a href="{%url 'panel' %}">
-                <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
-                </i> 
-                
-            </a>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="{%url 'panel' %}">
+                    <i class="fas fa-hospital-user me-2"></i>Sistema Clínico
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
             <div id="tiempo">Tiempo: 00:00:00</div>
         </nav>
-    </header>
+            
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             let segundos = 0; 
@@ -53,62 +53,11 @@
         });
     </script>
     <main>
-        <div class="form-container">
-            <div class="timeline">
-                <div class="position-relative">
-                    <div class="step-indicator active" data-step="1">1</div>
-                    <span class="step-title">Datos</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="2">2</div>
-                    <span class="step-title">Dolor</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="3">3</div>
-                    <span class="step-title">Causa</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="4">4</div>
-                    <span class="step-title">afecciones</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="5">5</div>
-                    <span class="step-title">Salud</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="6">6</div>
-                    <span class="step-title">Esquema</span>
-                </div>
-
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="7">7</div>
-                    <span class="step-title">Preguntas</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="8">8</div>
-                    <span class="step-title">Vida</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="9">9</div>
-                    <span class="step-title">Sustancias</span>
-                </div>
-                <div class="position-relative">
-                    <div class="step-indicator" data-step="11">11</div>
-                    <span class="step-title">Motivaci&oacuten</span>
-                </div>
-        </div>
+        
 
     <form id="Step" action="{% url 'formularioInicial' %}" method="post">
                 {% csrf_token %}
-                <div class="messages-container">
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                            <i class="bi bi-info-circle-fill me-2"></i> 
-                            {{ message|capfirst }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endfor %}
-                </div>
+                
              
 
                 <script>
@@ -196,6 +145,7 @@
                 
                 <!-- Contacto y datos del Paciente   -->
                 <div class="step">
+                    
                     <h2 class="mb-4">Datos de ingreso de paciente</h2>
                     <div class="row">
                         <div class="col-md-6 form-group">
@@ -836,74 +786,74 @@
                                 <th>Otros</th>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Artrosis" name="TiposDeEnfermedades" />Artrosis</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Cefaleas" name="TiposDeEnfermedades" />Cefaleas</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="diabetes" name="TiposDeEnfermedades" />Diabetes</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="arritmia"  name="TiposDeEnfermedades"/>Arritmia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Ansiedad" name="TiposDeEnfermedades"/>Ansiedad</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Artrosis" name="TiposDeEnfermedades" />Artrosis</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Cefaleas" name="TiposDeEnfermedades" />Cefaleas</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="diabetes" name="TiposDeEnfermedades" />Diabetes</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="arritmia"  name="TiposDeEnfermedades"/>Arritmia</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Ansiedad" name="TiposDeEnfermedades"/>Ansiedad</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Artritis reumatoide"name="TiposDeEnfermedades" />Artritis reumatoide</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Accidente Vascular" name="TiposDeEnfermedades"/>Accidente Vascular</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas renales" name="TiposDeEnfermedades"/>Problemas renales</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Colesterol Alto" name="TiposDeEnfermedades"/>Colesterol Alto</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Depresion"name="TiposDeEnfermedades" />Depresión</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Artritis reumatoide"name="TiposDeEnfermedades" />Artritis reumatoide</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Accidente Vascular" name="TiposDeEnfermedades"/>Accidente Vascular</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Problemas renales" name="TiposDeEnfermedades"/>Problemas renales</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Colesterol Alto" name="TiposDeEnfermedades"/>Colesterol Alto</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Depresion"name="TiposDeEnfermedades" />Depresión</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Fibromialgia" name="TiposDeEnfermedades"/>Fibromialgia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hormigueos o adormecimiento" name="TiposDeEnfermedades"/>Hormigueos o adormecimiento</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas de vejiga" name="TiposDeEnfermedades"/>Problemas de vejiga</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Marcapasos" name="TiposDeEnfermedades"/>Marcapasos</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Cáncer" name="TiposDeEnfermedades"/>Cáncer</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Fibromialgia" name="TiposDeEnfermedades"/>Fibromialgia</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Hormigueos o adormecimiento" name="TiposDeEnfermedades"/>Hormigueos o adormecimiento</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Problemas de vejiga" name="TiposDeEnfermedades"/>Problemas de vejiga</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Marcapasos" name="TiposDeEnfermedades"/>Marcapasos</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Cáncer" name="TiposDeEnfermedades"/>Cáncer</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Osteoporosis" name="TiposDeEnfermedades"/>Osteoporosis</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Parkinson" name="TiposDeEnfermedades"/>Párkinson</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Problemas de hígado" name="TiposDeEnfermedades"/>Problemas de hígado</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Anemia" name="TiposDeEnfermedades"/>Anemia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Cirugias previas" name="TiposDeEnfermedades"/>Cirugías previas</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Osteoporosis" name="TiposDeEnfermedades"/>Osteoporosis</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Parkinson" name="TiposDeEnfermedades"/>Párkinson</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Problemas de hígado" name="TiposDeEnfermedades"/>Problemas de hígado</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Anemia" name="TiposDeEnfermedades"/>Anemia</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Cirugias previas" name="TiposDeEnfermedades"/>Cirugías previas</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Historia de caídas" name="TiposDeEnfermedades"/>Historia de caídas</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Epilepsia" name="TiposDeEnfermedades"/>Epilepsia</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Alteracion de tiroides" name="TiposDeEnfermedades"/>Alteración de tiroides</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hipertension" name="TiposDeEnfermedades"/>Hipertensión</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Sindrome de fatiga cronica" name="TiposDeEnfermedades"/>Síndrome de fatiga crónica</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Historia de caídas" name="TiposDeEnfermedades"/>Historia de caídas</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Epilepsia" name="TiposDeEnfermedades"/>Epilepsia</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Alteracion de tiroides" name="TiposDeEnfermedades"/>Alteración de tiroides</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Hipertension" name="TiposDeEnfermedades"/>Hipertensión</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Sindrome de fatiga cronica" name="TiposDeEnfermedades"/>Síndrome de fatiga crónica</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Dolor mandibular" name="TiposDeEnfermedades"/>Dolor mandibular</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Esclerosis múltiple" name="TiposDeEnfermedades"/>Esclerosis múltiple</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Resistencia a la insulina" name="TiposDeEnfermedades"/>Resistencia a la insulina</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Asma" name="TiposDeEnfermedades"/>Asma</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Alergias" name="TiposDeEnfermedades"/>Alergias</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Dolor mandibular" name="TiposDeEnfermedades"/>Dolor mandibular</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Esclerosis múltiple" name="TiposDeEnfermedades"/>Esclerosis múltiple</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Resistencia a la insulina" name="TiposDeEnfermedades"/>Resistencia a la insulina</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Asma" name="TiposDeEnfermedades"/>Asma</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Alergias" name="TiposDeEnfermedades"/>Alergias</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hernia discal o discopatias" name="TiposDeEnfermedades"/>Hernia discal o discopatías</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Sindrome de piernas inquietas" name="TiposDeEnfermedades"/>Síndrome de piernas inquietas</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Hernia discal o discopatias" name="TiposDeEnfermedades"/>Hernia discal o discopatías</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Sindrome de piernas inquietas" name="TiposDeEnfermedades"/>Síndrome de piernas inquietas</td>
                                 <td></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="VIH" name="TiposDeEnfermedades"/>VIH</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Obesidad" name="TiposDeEnfermedades"/>Obesidad</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="VIH" name="TiposDeEnfermedades"/>VIH</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Obesidad" name="TiposDeEnfermedades"/>Obesidad</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Fracturas"name="TiposDeEnfermedades" />Fracturas</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Sindrome de fatiga cronica"name="TiposDeEnfermedades" />Sindrome de fatiga crónica</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Fracturas"name="TiposDeEnfermedades" />Fracturas</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Sindrome de fatiga cronica"name="TiposDeEnfermedades" />Sindrome de fatiga crónica</td>
                                 <td></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Falta de air" name="TiposDeEnfermedades"/>Falta de aire</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Trombosis" name="TiposDeEnfermedades"/>Trombosis</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Falta de air" name="TiposDeEnfermedades"/>Falta de aire</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Trombosis" name="TiposDeEnfermedades"/>Trombosis</td>
                             </tr>
                             <tr>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Hiperlaxo"name="TiposDeEnfermedades" />Hiperlaxo</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Hiperlaxo"name="TiposDeEnfermedades" />Hiperlaxo</td>
                                 <td></td> 
                                 <td></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Colon irritable"name="TiposDeEnfermedades" />Colon irritable</td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Secuela de COVID"name="TiposDeEnfermedades" />Secuela de COVID</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Colon irritable"name="TiposDeEnfermedades" />Colon irritable</td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Secuela de COVID"name="TiposDeEnfermedades" />Secuela de COVID</td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><input class="form-check-input me-1" type="checkbox" value="Secuela de COVID"name="TiposDeEnfermedades" />Dermatitis nerviosas o atópicas </td>
+                                <td><input class="custom-checkbox" type="checkbox" value="Secuela de COVID"name="TiposDeEnfermedades" />Dermatitis nerviosas o atópicas </td>
                             </tr>
                         </table>
                     
@@ -912,6 +862,60 @@
                             table #apoyo{
                                 margin-top: 20%;
                             }
+                            /* Estilo para los checkboxes modernos */
+                            .custom-checkbox {
+                                appearance: none;
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                width: 18px;
+                                height: 18px;
+                                border: 2px solid #007bff;
+                                border-radius: 4px;
+                                display: inline-block;
+                                position: relative;
+                                cursor: pointer;
+                                background-color: #fff;
+                                transition: all 0.3s ease;
+                            }
+
+                            /* Cuando el checkbox está marcado */
+                            .custom-checkbox:checked {
+                                background-color: #007bff;
+                                border-color: #007bff;
+                            }
+
+                            /* Agregar el ícono de check */
+                            .custom-checkbox:checked::after {
+                                content: '\2714';
+                                color: white;
+                                font-size: 14px;
+                                font-weight: bold;
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                            }
+
+                            /* Efecto hover */
+                            .custom-checkbox:hover {
+                                border-color: #0056b3;
+                            }
+
+                            /* Estilo para los labels */
+                            td {
+                                font-family: Arial, sans-serif;
+                                font-size: 14px;
+                                color: #333;
+                                padding: 8px;
+                                cursor: pointer;
+                            }
+
+                            /* Ajustar la alineación entre checkbox y texto */
+                            td input.custom-checkbox {
+                                margin-right: 8px;
+                                vertical-align: middle;
+                            }
+
                         </style>
 
                         
@@ -1557,24 +1561,7 @@
                                     Mucho<br/>
 
                             </div>
-                            
-                            <div class="pregunta">
-                                <label for="" class="form-label">¿Se ha sentido molesto por estar nervioso, ansioso o tenso?</label>
-                                
-                                    <input type="radio" name="preocupacion" id="preocupacion1" class="form-check-input" value="No estoy preocupado en absoluto" />
-                                    nunca<br />
-                                    
-                                    <input type="radio" name="preocupacion" id="preocupacion2" class="form-check-input" value="Estoy un poco preocupado" />
-                                    Un poco<br/>
-                                    
-                                    <input type="radio" name="preocupacion" id="preocupacion3" class="form-check-input" value="Estoy moderadamente preocupado" />
-                                    Moderadamente<br/>
-                                    
-                                    <input type="radio" name="preocupacion" id="preocupacion4" class="form-check-input" value="Estoy muy preocupado" />
-                                    Mucho<br/>
-                                
-                                
-                            </div>
+                        
                         <div>
                             
                     </div>
