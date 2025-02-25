@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import get_object_or_404, render, redirect
-from Login.models import Paciente, formularioClinico,tiempo,Notas
+from Login.models import Paciente, formularioClinico,tiempo,Notas,Clinico
 from django.http import HttpResponse, JsonResponse
 from datetime import datetime, timedelta
 import time 
@@ -11,25 +11,28 @@ def panel(request):
         nombre_clinico = request.session['nombre_clinico']
         es_admin = request.session.get('es_admin', False)
 
-        tiempos = tiempo.objects.all()
+        # 🔹 Buscar el clínico en la base de datos
+        clinico = Clinico.objects.filter(nombre=nombre_clinico).first()
+        profesion = clinico.profesion if clinico else "Sin profesión"
 
+
+        # Obtener tiempos y calcular promedio
+        tiempos = tiempo.objects.all()
         if tiempos.exists():
             total_duracion = sum((t.duracion for t in tiempos), timedelta())
             promedio_duracion = total_duracion / len(tiempos)
-
             horas, resto = divmod(promedio_duracion.total_seconds(), 3600)
             minutos, segundos = divmod(resto, 60)
             promedio_formateado = f"{int(horas):02}:{int(minutos):02}:{int(segundos):02}"
         else:
-            promedio_formateado = "00:00:00"  
-        
+            promedio_formateado = "00:00:00"
+
         pacientes = Paciente.objects.all()
-        numeroPaciente = 0
-        for paciente in pacientes:
-            numeroPaciente = numeroPaciente+1
-            
+        numeroPaciente = pacientes.count()
+
         return render(request, 'panel.html', {
             'nombre_clinico': nombre_clinico,
+            'profesion': profesion,
             'es_admin': es_admin,
             'promedio_formateado': promedio_formateado,
             'numeroPaciente': numeroPaciente

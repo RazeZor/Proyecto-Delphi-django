@@ -9,210 +9,342 @@
 </head>
 
     <style>
-            :root {{
-                --primary: #21294e;
-                --accent: #cd2481;
-                --light: #f8f9fa;
-                --gray: #6c757d;
-            }}
+        :root {{
+            /* Colores principales */
+            --primary: #2D3250;
+            --secondary: #424769;
+            --accent: #cd2481;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
             
-            body {{
-                font-family: 'Arial', sans-serif;
-                background-color: #f5f6f8;
-                color: var(--primary);
-                line-height: 1.6;
-            }}
+            /* Colores de fondo */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-accent: #f3f4f6;
             
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 8px 16px -4px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+            
+            /* Transiciones */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Espaciado */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            
+            /* Bordes */
+            --border-radius-sm: 0.375rem;
+            --border-radius: 0.5rem;
+            --border-radius-lg: 1rem;
+            --border-radius-xl: 1.5rem;
+        }}
+
+        body {{
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }}
+
+        /* Header Mejorado */
+        .header-section {{
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: var(--spacing-xl) 0;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .header-section::before {{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            opacity: 0.1;
+        }}
+
+        .header-section h1 {{
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin: 0;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }}
+
+        /* Tarjeta del Informe */
+        .report-card {{
+            background-color: var(--bg-primary);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .report-card::before {{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+        }}
+
+        /* Secciones de Información */
+        .info-section {{
+            background-color: var(--bg-primary);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            margin-bottom: var(--spacing-lg);
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }}
+
+        .info-section:hover {{
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }}
+
+        .section-title {{
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--accent);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }}
+
+        .section-title::before {{
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: var(--border-radius-sm);
+        }}
+
+        /* Etiquetas y Valores */
+        .info-label {{
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }}
+
+        .info-label i {{
+            color: var(--accent);
+            font-size: 1.1rem;
+        }}
+
+        .info-value {{
+            color: var(--secondary);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-sm);
+            background-color: var(--bg-accent);
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--accent);
+            transition: var(--transition);
+        }}
+
+        .info-value:hover {{
+            background-color: var(--bg-secondary);
+            transform: translateX(4px);
+        }}
+
+        /* Ubicación del Dolor */
+        .pain-location {{
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: linear-gradient(to right, var(--bg-accent), var(--bg-primary));
+            border-radius: var(--border-radius);
+            margin: var(--spacing-sm) 0;
+            border: 1px solid rgba(0,0,0,0.05);
+        }}
+
+        .arrow-down {{
+            color: var(--danger);
+            font-size: 1.4rem;
+            animation: pulse 2s infinite;
+        }}
+
+        .ubicacion-text {{
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary);
+        }}
+
+        .intensidad-text {{
+            font-weight: bold;
+            color: var(--danger);
+            padding: 0.4rem 1rem;
+            background-color: rgba(239,68,68,0.1);
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }}
+
+        /* Botón Ver más/menos */
+        #verMasBtn {{
+            width: 100%;
+            padding: var(--spacing-md);
+            background-color: var(--bg-primary);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }}
+
+        #verMasBtn::before {{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 1;
+            opacity: 0.1;
+        }}
+
+        #verMasBtn:hover::before {{
+            width: 300px;
+            height: 300px;
+        }}
+
+        #verMasBtn:hover {{
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }}
+
+        /* Contenido Expandible */
+        #informacion {{
+            max-height: 500px;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }}
+
+        .expanded {{
+            max-height: 5000px !important;
+        }}
+
+        /* Animaciones */
+        @keyframes pulse {{
+            0% {{ transform: scale(1); }}
+            50% {{ transform: scale(1.1); }}
+            100% {{ transform: scale(1); }}
+        }}
+
+        @keyframes fadeIn {{
+            from {{ opacity: 0; transform: translateY(20px); }}
+            to {{ opacity: 1; transform: translateY(0); }}
+        }}
+
+        .fade-in {{
+            animation: fadeIn 0.6s ease-out forwards;
+        }}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {{
             .header-section {{
-                background-color: var(--primary);
-                color: white;
-                padding: 2rem 0;
-                margin-bottom: 2rem;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: var(--spacing-lg) 0;
             }}
-    
-            .header-actions {{
-                margin-top: 1.5rem;
+
+            .header-section h1 {{
+            font-size: 1.8rem;
             }}
-    
-            .action-button {{
-                padding: 0.5rem 1.5rem;
-                border-radius: 50px;
-                border: none;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                font-weight: 500;
-                transition: all 0.3s ease;
-            }}
-    
-            .btn-print {{
-                background-color: white;
-                color: var(--primary);
-            }}
-    
-            .btn-download {{
-                background-color: var(--accent);
-                color: white;
-            }}
-    
-            .btn-print:hover, .btn-download:hover {{
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }}
-            
+
             .report-card {{
-                background-color: white;
-                border-radius: 16px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-                padding: 2rem;
-                margin-bottom: 2rem;
+            padding: var(--spacing-md);
             }}
-            
-            .section-title {{
-                color: var(--accent);
-                font-weight: 600;
-                margin-bottom: 1.5rem;
-                padding-bottom: 0.8rem;
-                border-bottom: 2px solid var(--accent);
-                position: relative;
-            }}
-    
-            .section-title::after {{
-                content: '';
-                position: absolute;
-                bottom: -2px;
-                left: 0;
-                width: 50px;
-                height: 2px;
-                background-color: var(--primary);
-            }}
-            
+
             .info-section {{
-                background-color: #ffffff;
-                padding: 1.8rem;
-                border-radius: 12px;
-                margin-bottom: 2rem;
-                border: 1px solid rgba(0,0,0,0.05);
-                transition: all 0.3s ease;
+            padding: var(--spacing-md);
             }}
-    
-            .info-section:hover {{
-                box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+
+            .section-title {{
+            font-size: 1.2rem;
             }}
-            
-            .info-label {{
-                font-weight: 600;
-                color: var(--primary);
-                margin-bottom: 0.5rem;
-                font-size: 0.95rem;
+        }}
+
+        /* Estilos de Impresión */
+        @media print {{
+            body {{
+            background-color: white;
             }}
-            
-            .info-value {{
-                color: var(--gray);
-                margin-bottom: 1.2rem;
-                padding-left: 0.5rem;
-                border-left: 3px solid var(--accent);
+
+            .report-card {{
+            box-shadow: none;
+            border: none;
             }}
-            
-            .logo-img {{
-                width: 200px;
-                height: auto;
-                margin-bottom: 1.5rem;
+
+            .header-section {{
+            background: none;
+            color: var(--primary);
+            padding: var(--spacing-md) 0;
             }}
-            
-            footer {{
-                background-color: var(--primary);
-                color: white;
-                padding: 2rem 0;
-                margin-top: 3rem;
+
+            .info-section {{
+            break-inside: avoid;
+            border: 1px solid #ddd;
             }}
-    
-            /* Diseño mejorado para la ubicación del dolor */
-            .pain-location {{
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                padding: 1rem;
-                background-color: #f8f9fa;
-                border-radius: 8px;
-                margin: 1rem 0;
-            }}
-    
-            .arrow-down {{
-                color: #ff0000;
-                font-size: 1.2rem;
-            }}
-    
-            .ubicacion-text {{
-                font-size: 1rem;
-                font-weight: 500;
-                color: var(--primary);
-            }}
-    
-            .intensidad-text {{
-                font-weight: bold;
-                color: #ff0000;
-                padding: 0.3rem 0.8rem;
-                background-color: rgba(255,0,0,0.1);
-                border-radius: 50px;
-            }}
-    
-            /* Mejoras para el botón Ver más/menos */
+
             #verMasBtn {{
-                width: 100%;
-                padding: 1rem;
-                background-color: white;
-                border: 2px solid var(--primary);
-                color: var(--primary);
-                border-radius: 8px;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.5rem;
+            display: none;
             }}
-    
-            #verMasBtn:hover {{
-                background-color: var(--primary);
-                color: white;
-            }}
-    
-            /* Estilos para el contenido expandible */
+
             #informacion {{
-                max-height: 500px;
-                overflow: hidden;
-                transition: max-height 0.5s ease;
+            max-height: none !important;
             }}
-    
-            .expanded {{
-                max-height: 5000px !important;
+
+            .pain-location {{
+            border: 1px solid #ddd;
             }}
-    
-            @media print {{
-                body {{
-                    background-color: white;
-                }}
-                .report-card {{
-                    box-shadow: none;
-                    border: none;
-                }}
-                .header-section, footer {{
-                    background-color: white;
-                    color: var(--primary);
-                }}
-                .header-actions, #verMasBtn {{
-                    display: none;
-                }}
-                .info-section {{
-                    break-inside: avoid;
-                }}
-                #informacion {{
-                    max-height: none !important;
-                }}
-            }}
+        }}
     </style>
+
 
 <body>
     <div class="header-section">
@@ -223,8 +355,6 @@
 
     <div class="container">
         <div class="report-card">
-            <!-- Sección inicial (siempre visible) -->
-             <!-- Sección inicial aqui iran los consejos ) -->
             <div class="info-section" id="informacion">
                     <div class="respuestas">
                            <ul> 

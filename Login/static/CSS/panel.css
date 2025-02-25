@@ -18,7 +18,7 @@ body {
 
 /* Mejoras en la Barra de Navegación */
 .navbar {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-color)) !important;
     padding: 1rem;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
 }
@@ -104,7 +104,7 @@ body {
 }
 
 .dashboard-card h5 {
-    color: var(--primary-color);
+    color: var(--accent-color);
     font-size: 1.1rem;
     margin-bottom: 1rem;
     display: flex;
