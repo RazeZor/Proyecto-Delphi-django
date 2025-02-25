@@ -296,7 +296,7 @@ footer {
 .pagination-controls .btn-secondary {
     background-color: var(--primary-color);
     border: none;
-    color: #2d3748;
+    color: #ffffff;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
     margin: 0 5px;
