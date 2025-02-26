@@ -18,7 +18,24 @@ body {
     background-size: cover;
 }
 
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Espacio para el ícono */
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #666; /* Color del ícono */
+}
 
 .login-container {
     display: flex;
