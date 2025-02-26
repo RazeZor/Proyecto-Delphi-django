@@ -222,7 +222,7 @@
                                     
                                 </div>
 
-                                <span id="puntajeMovilidad" name="puntaje_movilidad" data-puntaje="0" >0</span>
+                                <span id="puntajeMovilidad" name="puntaje_movilidad" data-puntaje="0" style="display: none;" >0</span>
                                 <input type="hidden" name="puntaje_movilidad" id="puntajeMovilidadInput">
                             </div>
 
@@ -255,7 +255,7 @@
                                         <span class="ml-2">Soy incapaz de lavarme o vestirme</span>
                                     </label>
                                 </div>
-                                <span id="puntajeCuidadoPersonal" name="puntaje_cuidado_personal" data-puntaje="0">0</span>
+                                <span id="puntajeCuidadoPersonal" name="puntaje_cuidado_personal" data-puntaje="0" style="display: none;">0</span>
                                 <input type="hidden" name="puntaje_cuidado_personal" id="puntajeCuidadoPersonalInput">
                             </div>
 
@@ -288,7 +288,7 @@
                                         <span class="ml-2">Soy incapaz de realizar mis actividades cotidianas</span>
                                     </label>
                                 </div>
-                                <span id="puntajeActividadesCotidianas" name="puntaje_actividades_cotidianas" data-puntaje="0">0</span>
+                                <span id="puntajeActividadesCotidianas" name="puntaje_actividades_cotidianas" data-puntaje="0" style="display: none;">0</span>
                                 <input type="hidden" name="puntaje_actividades_cotidianas" id="puntajeActividadesCotidianasInput">
                             </div>
 
@@ -355,9 +355,10 @@
                                         <span class="ml-2">Estoy muy ansioso o deprimido</span>
                                     </label>
                                 </div>
-                                <span id="puntajeAnsiedadDepresion" name="puntaje_ansiedad_depresion" data-puntaje="0">0</span>
+                                <span id="puntajeAnsiedadDepresion" name="puntaje_ansiedad_depresion" data-puntaje="0" style="display: none;">0</span>
                             <input type="hidden" name="puntaje_ansiedad_depresion"
-                                id="puntajeAnsiedadDepresionInput">
+                                id="puntajeAnsiedadDepresionInput" >
+                                
                             </div>
 
                             <!-- EQ-VAS con termómetro -->
@@ -527,6 +528,8 @@
                 card.style.boxShadow = 'none';
             });
         });
+
+        
     </script>
 </body>
 </html>

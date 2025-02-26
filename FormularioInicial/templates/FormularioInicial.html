@@ -31,6 +31,8 @@
             <div id="tiempo">Tiempo: 00:00:00</div>
         </nav>
             
+
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             let segundos = 0; 
@@ -57,7 +59,15 @@
 
     <form id="Step" action="{% url 'formularioInicial' %}" method="post">
                 {% csrf_token %}
-                
+                <div class="messages-container">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i> 
+                            {{ message|capfirst }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </div>
              
 
                 <script>
@@ -1475,8 +1485,8 @@
                 
             </div>
 
-                <div>
-                    <div class="step">
+
+            <div class="step">
                         <div class="contenedor">
                             
                             <div class="pregunta">
@@ -1545,27 +1555,29 @@
                                     Mucho<br />
                                 </div>
                             </div>
+                            
+                            
                             <div class="pregunta">
                                 <label for="" class="form-label">¿Se ha sentido molesto por estar nervioso, ansioso o tenso?</label>
                                 
-                                    <input type="radio" name="ansioso" id="ansioso_0" class="form-check-input" value="No, en absoluto" />
-                                    nunca<br/>
+                                    <input type="radio" name="preocupacion" id="preocupacion1" class="form-check-input" value="No estoy preocupado en absoluto" />
+                                    nunca<br />
                                     
-                                    <input type="radio" name="ansioso" id="ansioso_1" class="form-check-input" value="Un poco" />
-                                    un poco<br/>
+                                    <input type="radio" name="preocupacion" id="preocupacion2" class="form-check-input" value="Estoy un poco preocupado" />
+                                    Un poco<br/>
                                     
-                                    <input type="radio" name="ansioso" id="ansioso_2" class="form-check-input" value="Moderadamente" />
+                                    <input type="radio" name="preocupacion" id="preocupacion3" class="form-check-input" value="Estoy moderadamente preocupado" />
                                     Moderadamente<br/>
                                     
-                                    <input type="radio" name="ansioso" id="ansioso_3" class="form-check-input" value="Mucho" />
+                                    <input type="radio" name="preocupacion" id="preocupacion4" class="form-check-input" value="Estoy muy preocupado" />
                                     Mucho<br/>
-
+                                
+                                
                             </div>
-                        
                         <div>
                             
                     </div>
-                </div>
+                
             </div>
 
             <!-- Inicio de Consumo de sustancias  -->
@@ -1664,7 +1676,7 @@
                 <div class="step">
 
                         <h5>¿Ha consumido alguna de las siguientes sustancias durante el último año?</h5>
-                        <label class="form-label"> Drogras recreativas (cocaina, heroina, cannabis) </label>      
+                        <label class="form-label"> Drogras recreativas (cocaina, heroina, Metanfetaminas, LSD, entre otras) </label>      
                                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                                     <input type="radio" class="btn-check" name="drogasSiOno" id="drogasi" autocomplete="off" value="si"/>
                                     <label class="btn btn-outline-primary" for="drogasi">Sí</label>
@@ -1733,24 +1745,21 @@
                 
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="frecuenciaMarihuana" id="noConsumo22" autocomplete="off" value="No consumo marihuana"/>
-                                    <label class="form-check-label" for="noConsumo22">No consumo marihuana</label>
+                                    <label class="form-check-label" for="noConsumo22">Ocasionalmente (Una vez a la semana)</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="frecuenciaMarihuana" id="ocasional21" autocomplete="off" value="La consumo ocasionalmente (menos de una vez al mes)"/>
-                                    <label class="form-check-label" for="ocasional21">La consumo ocasionalmente (menos de una vez al mes)</label>
+                                    <label class="form-check-label" for="ocasional21">Regularmente (Una vez al día)</label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="frecuenciaMarihuana" id="esporadico23" autocomplete="off" value="La consumo esporádicamente (algunas veces al mes)"/>
-                                    <label class="form-check-label" for="esporadico23">La consumo esporádicamente (algunas veces al mes)</label>
+                                    <label class="form-check-label" for="esporadico23"> Frecuentemente (Más de uno al día)<br /></label>
                                 </div>
                                 <div class="form-check">
                                     <input type="radio" class="form-check-input" name="frecuenciaMarihuana" id="regular14" autocomplete="off" value="La consumo regularmente (al menos una vez por semana)"/>
-                                    <label class="form-check-label" for="regular14">La consumo regularmente (al menos una vez por semana)</label>
+                                    <label class="form-check-label" for="regular14">siempre (todos los dias )<br /></label>
                                 </div>
-                                <div class="form-check">
-                                    <input type="radio" class="form-check-input" name="frecuenciaMarihuana" id="frecuente14" autocomplete="off" value="La consumo frecuentemente (todos los días o casi todos los días)"/>
-                                    <label class="form-check-label" for="frecuente14">La consumo frecuentemente (todos los días o casi todos los días)</label>
-                                </div>
+
                             </div>
                                 
                             <label class="form-label">Marca el nivel de preocupación que tienes con respecto a la marihuana:</label>
@@ -1758,28 +1767,21 @@
                                 <div style="display: flex; flex-direction: column;">
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="marihuanaPreocupacion" id="preocupacion0" value="No me preocupa en absoluto">
-                                            <label class="form-check-label" for="preocupacion0">0 - No me preocupa en absoluto</label>
+                                            <label class="form-check-label" for="preocupacion0">Me preocupa un poco</label>
                                         </div>
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="marihuanaPreocupacion" id="preocupacion1" value="Me preocupa un poco">
-                                            <label class="form-check-label" for="preocupacion1">1 - Me preocupa un poco</label>
+                                            <label class="form-check-label" for="preocupacion1">me preocupa moderadamente</label>
                                         </div>
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="marihuanaPreocupacion" id="preocupacion2" value="Me preocupa moderadamente">
-                                            <label class="form-check-label" for="preocupacion2">2 - Me preocupa moderadamente</label>
+                                            <label class="form-check-label" for="preocupacion2">Me preocupa mucho</label>
                                         </div>
                                         <div class="form-check">
                                             <input type="radio" class="form-check-input" name="marihuanaPreocupacion" id="preocupacion3" value="Me preocupa bastante">
-                                            <label class="form-check-label" for="preocupacion3">3 - Me preocupa bastante</label>
+                                            <label class="form-check-label" for="preocupacion3">estoy extremadamente preocupado</label>
                                         </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="marihuanaPreocupacion" id="preocupacion4" value="Me preocupa mucho">
-                                            <label class="form-check-label" for="preocupacion4">4 - Me preocupa mucho</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input type="radio" class="form-check-input" name="marihuanaPreocupacion" id="preocupacion5" value="Estoy extremadamente preocupado<">
-                                            <label class="form-check-label" for="preocupacion5">5 - Estoy extremadamente preocupado</label>
-                                        </div>
+                                        
                                 </div>
                             </div> 
                         </div>
