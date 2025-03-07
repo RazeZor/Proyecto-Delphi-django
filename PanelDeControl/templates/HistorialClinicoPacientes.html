@@ -1,263 +1,327 @@
-{%load static %}
-<!doctype html>
-<html lang="en">
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <title>Buscar Paciente</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{% static 'CSS/historial.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Pacientes | Centro Clínico Delphi</title>
+    
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{% static 'css/historial.css' %}">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand">
-                <a href="{%url 'panel' %}">
-                    <i class='delphi'><img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="" width="150">
-                    </i> 
+    <!-- Header con navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="{% url 'panel' %}" class="logo">
+                    <img src="{% static 'image/Logo_Centro_Clinico_Delphi.svg' %}" alt="Logo Centro Clínico Delphi" width="150">
                 </a>
-               
-                
-            </span>
-            <div class="d-flex align-items-center">
-                <div class="menu-links">
-                </div>
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Abrir menú">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="{% url 'panel' %}"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="{% url 'formularioInicial' %}"><i class="fas fa-calendar-alt"></i> Agregar Pacientes</a></li>
+                        
+                    </ul>
+                </nav>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="granContenedor">
-        <div class="d-flex">
-        
-    
-        
-        <div class="container mt-4">
-
-            <h4 id="h4Goty">Buscar Paciente por RUT</h4>
-            <div class="contenedorRUTyFORM">
-                <!-- Formulario de búsqueda por RUT -->
-                <form method="post" action="{% url 'historialClinico' %}">
-                    {% csrf_token %}
-                    <div class="mb-3" >
-                        <label for="rut" class="form-label">Ingrese RUT:</label>
-                        <input type="text" class="form-control" id="rutsito" name="rutsito" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Buscar</button>
-                </form>
-            
-                <!-- Selección de formulario -->
-                
+    <!-- Contenido principal -->
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1>Ficha Clínica</h1>
+                <p>Busque y gestione la información de sus pacientes</p>
             </div>
-            
-            
-                
-    
-            {% if error %}
-                <div class="alert alert-danger mt-3">{{ error }}</div>
-            {% endif %}
-    
-            <main>
-                <div class="patient-info mt-4">
-                    <h4>Ficha Clínica del Paciente</h4>
-            
-                    <div class="patient-data">
-                        <div class="grupo1">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre y Apellido</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ paciente.nombre }} {{ paciente.apellido }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rut" class="form-label">RUT:</label>
-                                <input type="text" class="form-control" id="rut" name="rut" value="{{ paciente.rut }}" readonly>
-                            </div>
-                        </div>
-            
-                        <div class="grupo2">
-                            <div class="mb-3">
-                                <label for="fechaNacimiento" class="form-label">Fecha de nacimiento:</label>
-                                <input type="text" class="form-control" id="fechanac" name="fechanac" value="{{ paciente.fechaNacimiento }}" readonly>
-                            </div>
-                            <div class="mb-3">
-                                <label for="telefono" class="form-label">Teléfono:</label>
-                                <input type="text" class="form-control" id="telefono" name="telefono"
-                                    value="{{ paciente.contacto }}" readonly />
-                            </div>
-                        </div>
-            
-                        <div class="grupo3">
-                            <div class="mb-3">
-                                <label for="cobertura_de_salud" class="form-label">Cobertura de Salud:</label>
-                                <input type="text"
-                                    class="form-control"
-                                    id="cobertura_de_salud"
-                                    name="cobertura_de_salud"
-                                    value="{{ paciente.cobertura_de_salud }}"
-                                    readonly />
-                            </div>
-                            <div class="mb-3">
-                                <label for="trabajo" class="form-label">Profesion</label>
-                                <input type="text"
-                                    class="form-control"
-                                    id="trabajo"
-                                    name="trabajo"
-                                    value="{{ paciente.profesion}}"
-                                    readonly />
-                            </div>
-                        </div>
-                        <div class="grupo3">
-                            <div class="mb-3">
-                                <label for="genero" class="form-label">genero</label>
-                                <input type="text"
-                                    class="form-control"
-                                    id="genero"
-                                    name="genero"
-                                    value="{{ paciente.genero }}"
-                                    readonly />
-                            </div>
-                            <div class="mb-3">
-                                <label for="trabajo" class="form-label">work type </label>
-                                <input type="text"
-                                    class="form-control"
-                                    id="trabajo"
-                                    name="trabajo"
-                                    value="{{ paciente.trabajo}}"
-                                    readonly />
-                            </div>
-                        </div>
 
+            <div class="card-grid">
+                <!-- Tarjeta de búsqueda -->
+                <div class="card search-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-search"></i> Buscar Paciente</h2>
                     </div>
-            
-                    <!-- Historial Médico -->
-                    
-                </div>
-            </main>
-            
-            
-            
-        </div>
-        <aside class="historial-container">
-            
-            <aside class="mb-3" id="historial">
-                <div class="mb-3" id="EleccionFormulario">
-                    <label for="formulario" class="form-label">Elige Formulario</label>
-                    <select class="form-select form-select-lg" id="formulario">
-            
-                        <option value="{% url 'gestionar_psfs' %}">PSFS</option>
-                        <option value="{% url 'GROK' %}">GROC</option>
-                        <option value="{% url 'EQ_5D' %}">EQ_5D</option>
-                        
-                    </select>
-                    <button type="button" class="btn btn-primary mt-2" id="agregarFormulario">Agregar</button>
-                </div>
-                
-            <script>
-                document.getElementById("agregarFormulario").addEventListener("click", function() {
-                    let formulario = document.getElementById("formulario").value;
-                    let rut = document.getElementById("rut").value;  // Obtener el RUT del input
-                
-                    if (formulario && rut) {
-                        window.location.href = formulario + "?rut=" + encodeURIComponent(rut);
-                    } else {
-                        alert("Selecciona un formulario y asegúrate de que el paciente tenga un RUT.");
-                    }
-                });
-            </script>
-                
-                <label for="historial" class="form-label">Historial Médico:</label>
-                <div class="historial-box">
-                    <div class="evento" id="eventos1">
-                        <h5>licencia Medica</h5>
-                        <p>inicio licencia: {{ paciente.LicenciaInicio |default:""}}</p>
-                        <p>fin licencia : {{ paciente.LicenciaFin |default:""}}</p>
-                        <p>dias de licencia : {{ paciente.LicenciaDias|default:"" }} </p>
-                    </div>
-                    {% if paciente %}
-                    <form method="post" action="{% url 'historialClinico' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="rutsito" value="{{ paciente.rut }}">
-                        
-                        <div class="evento" id="eventos2">
-                            <h5>Notas a Considerar</h5>
-                            <h6>Nota:</h6>
-                            <div class="mb-3">
-                                <textarea class="form-control" name="nota" id="nota" rows="3">{{ nota|default:"El paciente No tiene Notas" }}</textarea>
+                    <div class="card-body">
+                        <form method="post" action="{% url 'historialClinico' %}" class="search-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="rutsito">RUT del Paciente</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-id-card"></i>
+                                    <input type="text" id="rutsito" name="rutsito" placeholder="Ej: 12345678-9" required>
+                                </div>
                             </div>
-                            
-                            <button type="submit" class="btn btn-secondary">
-                                Guardar nota
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i> Buscar
                             </button>
+                        </form>
+
+                        {% if error %}
+                        <div class="alert alert-error">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>{{ error }}</span>
                         </div>
-                    </form>
-                {% endif %}
-               
-
-                    <!-- Botón de informe -->
-                    <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" id="informe-button" style="display: none;">
-                        <img src="{% static 'image/fotoInforme.svg' %}" alt="Informe Inicial" width="100">
-                        <label for="historial" class="form-label">Informe Inicial</label>
-                    </a>
-
+                        {% endif %}
+                    </div>
                 </div>
-            </aside>
-        <aside >
-    </div>
-   
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" 
-        crossorigin="anonymous"></script>
+                <!-- Tarjeta de información del paciente -->
+                <div class="card patient-card" id="patientCard">
+                    <div class="card-header">
+                        <h2><i class="fas fa-user"></i> Información del Paciente</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="patient-info">
+                            <div class="info-grid">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre y Apellido</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="nombre" name="nombre" value="{{ paciente.nombre }} {{ paciente.apellido }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="rut">RUT</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-id-card"></i>
+                                        <input type="text" id="rut" name="rut" value="{{ paciente.rut }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fechanac">Fecha de Nacimiento</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-calendar"></i>
+                                        <input type="text" id="fechanac" name="fechanac" value="{{ paciente.fechaNacimiento }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="text" id="telefono" name="telefono" value="{{ paciente.contacto }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="cobertura_de_salud">Cobertura de Salud</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-heartbeat"></i>
+                                        <input type="text" id="cobertura_de_salud" name="cobertura_de_salud" value="{{ paciente.cobertura_de_salud }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="profesion">Profesión</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                        <input type="text" id="profesion" name="profesion" value="{{ paciente.profesion }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="genero">Género</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-venus-mars"></i>
+                                        <input type="text" id="genero" name="genero" value="{{ paciente.genero }}" readonly>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="trabajo">Tipo de Trabajo</label>
+                                    <div class="input-with-icon">
+                                        <i class="fas fa-building"></i>
+                                        <input type="text" id="trabajo" name="trabajo" value="{{ paciente.trabajo }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" 
-        crossorigin="anonymous"></script>
+            <!-- Sección de historial y formularios -->
+            <div class="card-grid">
+                <!-- Tarjeta de formularios -->
+                <div class="card forms-card" id="formsCard">
+                    <div class="card-header">
+                        <h2><i class="fas fa-file-medical"></i> Formularios</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="formulario">Seleccionar Formulario</label>
+                            <div class="select-wrapper">
+                                <select id="formulario" class="form-select">
+                                    <option value="{% url 'gestionar_psfs' %}">PSFS - Escala Funcional Específica del Paciente</option>
+                                    <option value="{% url 'GROK' %}">GROC - Escala de Calificación de Cambio Global</option>
+                                    <option value="{% url 'EQ_5D' %}">EQ-5D - Cuestionario de Calidad de Vida</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="agregarFormulario">
+                            <i class="fas fa-plus"></i> Agregar Formulario
+                        </button>
+                    </div>
+                </div>
 
-        <script>
-            
-            function VisibilizarApretandoBoton() {
+                <!-- Tarjeta de historial médico -->
+                <div class="card history-card" id="historyCard">
+                    <div class="card-header">
+                        <h2><i class="fas fa-history"></i> Historial Médico</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="history-item" id="eventos1">
+                            <div class="history-icon">
+                                <i class="fas fa-file-medical"></i>
+                            </div>
+                            <div class="history-content">
+                                <h3>Licencia Médica</h3>
+                                <p><strong>Inicio:</strong> {{ paciente.LicenciaInicio|default:"No registrado" }}</p>
+                                <p><strong>Fin:</strong> {{ paciente.LicenciaFin|default:"No registrado" }}</p>
+                                <p><strong>Días:</strong> {{ paciente.LicenciaDias|default:"0" }}</p>
+                            </div>
+                        </div>
+
+                        {% if paciente %}
+                        <form method="post" action="{% url 'historialClinico' %}" class="notes-form" id="eventos2">
+                            {% csrf_token %}
+                            <input type="hidden" name="rutsito" value="{{ paciente.rut }}">
+                            <div class="history-item">
+                                <div class="history-icon">
+                                    <i class="fas fa-sticky-note"></i>
+                                </div>
+                                <div class="history-content">
+                                    <h3>Notas Clínicas</h3>
+                                    <div class="form-group">
+                                        <textarea name="nota" id="nota" rows="3" placeholder="Ingrese notas importantes sobre el paciente">{{ nota|default:"" }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary">
+                                        <i class="fas fa-save"></i> Guardar Nota
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        {% endif %}
+
+                        <!-- Botón de informe -->
+                        <a href="{% url 'ficha' %}?rut={{ paciente.rut }}" id="informe-button" class="report-link">
+                            <div class="report-icon">
+                                <i class="fas fa-file-medical-alt"></i>
+                            </div>
+                            <div class="report-content">
+                                <h3>Informe Inicial</h3>
+                                <p>Ver o generar informe completo del paciente</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Centro Clínico Delphi. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para mostrar/ocultar elementos según la información del paciente
+            function actualizarVisibilidad() {
                 const nombre = document.getElementById('nombre').value;
                 const rut = document.getElementById('rut').value;
                 const fechanac = document.getElementById('fechanac').value;
                 const telefono = document.getElementById('telefono').value;
                 const coberturaDeSalud = document.getElementById('cobertura_de_salud').value;
-            
-                const button = document.getElementById('informe-button');
-                const button1 = document.getElementById('eventos1');
-                const button2 = document.getElementById('eventos2');
-            
-    
-                if (nombre && rut && fechanac && telefono && coberturaDeSalud) {
-                    button.style.display = 'block'; 
-                } else {
-                    button.style.display = 'none'; 
+                
+                const patientCard = document.getElementById('patientCard');
+                const formsCard = document.getElementById('formsCard');
+                const historyCard = document.getElementById('historyCard');
+                const informeButton = document.getElementById('informe-button');
+                const eventos1 = document.getElementById('eventos1');
+                const eventos2 = document.getElementById('eventos2');
+                
+                // Verificar si hay información del paciente
+                const hayPaciente = nombre && rut && fechanac && telefono && coberturaDeSalud;
+                
+                // Mostrar u ocultar elementos según corresponda
+                patientCard.style.display = hayPaciente ? 'block' : 'none';
+                formsCard.style.display = hayPaciente ? 'block' : 'none';
+                historyCard.style.display = hayPaciente ? 'block' : 'none';
+                
+                if (informeButton) {
+                    informeButton.style.display = hayPaciente ? 'flex' : 'none';
                 }
-                if (nombre && rut && fechanac && telefono && coberturaDeSalud) {
-                    button1.style.display = 'block'; 
-                } else {
-                    button1.style.display = 'none'; 
+                
+                if (eventos1) {
+                    eventos1.style.display = hayPaciente ? 'flex' : 'none';
                 }
-                if (nombre && rut && fechanac && telefono && coberturaDeSalud) {
-                    button2.style.display = 'block'; 
-                } else {
-                    button2.style.display = 'none'; 
+                
+                if (eventos2) {
+                    eventos2.style.display = hayPaciente ? 'block' : 'none';
                 }
             }
             
-    
-            VisibilizarApretandoBoton();
-            
-            document.querySelectorAll('.patient-data input').forEach(input => {
-                input.addEventListener('input', toggleButtonVisibility);
+            // Agregar formulario seleccionado
+            document.getElementById('agregarFormulario').addEventListener('click', function() {
+                const formulario = document.getElementById('formulario').value;
+                const rut = document.getElementById('rut').value;
+                
+                if (formulario && rut) {
+                    window.location.href = formulario + "?rut=" + encodeURIComponent(rut);
+                } else {
+                    mostrarAlerta('Seleccione un formulario y asegúrese de que el paciente tenga un RUT válido.');
+                }
             });
             
-        </script>
-
-
-
+            // Función para mostrar alertas
+            function mostrarAlerta(mensaje) {
+                const alerta = document.createElement('div');
+                alerta.className = 'alert alert-error';
+                alerta.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${mensaje}</span>`;
+                
+                const searchCard = document.querySelector('.search-card .card-body');
+                searchCard.appendChild(alerta);
+                
+                setTimeout(() => {
+                    alerta.classList.add('fade-out');
+                    setTimeout(() => {
+                        alerta.remove();
+                    }, 300);
+                }, 3000);
+            }
+            
+            // Toggle para menú móvil
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('show');
+                });
+            }
+            
+            // Inicializar visibilidad
+            actualizarVisibilidad();
+        });
+    </script>
 </body>
-
 </html>
